@@ -1,0 +1,17 @@
+@{
+    <!--TODO - Move to nav-->
+    var navLinks = new []
+    {
+        new {
+            Link = "/",
+            Label = "Browse Posts"
+        }
+    };
+}
+
+@foreach(var link in navLinks)
+{
+    <a class="h3" href="@link.Link">
+        @link.Label
+    </a>
+}
