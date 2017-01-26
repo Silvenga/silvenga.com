@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Wyam.Common.Configuration;
+using Wyam.Common.Documents;
 using Wyam.Common.Execution;
 using Wyam.Common.IO;
 using Wyam.Common.Meta;
@@ -69,14 +70,7 @@ namespace Wyam.SlightBlog
 
             engine.Pipelines.Add(PipelineKeys.Foundation,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/**/{{*.cshtml,!_*}}"),
-                new FrontMatter(new Yaml.Yaml()),
-                new Meta(Keys.RelativeFilePath, (doc, ctx) =>
-                {
-                    var themePath = ctx.DirectoryPath(MetaKeys.ThemePath).FullPath;
-                    var a = doc.FilePath(Keys.RelativeFilePath).FullPath.Substring(themePath.Length + 1);
-                    Common.Tracing.Trace.Warning($"{a}");
-                    return a;
-                })
+                new FrontMatter(new Yaml.Yaml())
             );
 
             engine.Pipelines.Add(PipelineKeys.RenderPosts,
@@ -100,7 +94,20 @@ namespace Wyam.SlightBlog
                 new Documents(PipelineKeys.Foundation),
                 new Razor.Razor(),
                 new MinifyHtml(),
+                new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.ThemePath)),
                 new WriteFiles(".html")
+            );
+
+            engine.Pipelines.Add(PipelineKeys.Resources,
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/**/*{{!.cshtml,!.md,}}"),
+                new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.ThemePath)),
+                new WriteFiles()
+            );
+
+            engine.Pipelines.Add(PipelineKeys.PostContent,
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/**/*{{!.cshtml,!.md,}}"),
+                new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.PostsPath)),
+                new WriteFiles()
             );
 
             engine.Pipelines.Add(PipelineKeys.Redirects,
@@ -115,10 +122,6 @@ namespace Wyam.SlightBlog
                     return redirect;
                 }),
                 new WriteFiles()
-            );
-
-            engine.Pipelines.Add(PipelineKeys.Resources,
-                new CopyFiles("**/*{!.cshtml,!.md,}")
             );
 
             engine.Pipelines.Add(PipelineKeys.ValidateLinks,
@@ -145,6 +148,13 @@ namespace Wyam.SlightBlog
                     )
                 )
             );
+        }
+
+        private object SemiFlatten(IDocument doc, IExecutionContext ctx, string directoryPathKey)
+        {
+            var themePath = ctx.DirectoryPath(directoryPathKey).FullPath;
+            var semiFlattened = doc.FilePath(Keys.RelativeFilePath).FullPath.Substring(themePath.Length + 1);
+            return semiFlattened;
         }
 
         public void Scaffold(IDirectory directory)

@@ -42,5 +42,7 @@
         public const string Foundation = nameof(Foundation);
 
         public const string RenderFoundation = nameof(RenderFoundation);
+
+        public const string PostContent = nameof(PostContent);
     }
 }
