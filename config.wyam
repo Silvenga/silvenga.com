@@ -1,3 +1,5 @@
-#recipe blog
+#recipe SlightBlog
+
+#assembly recipe\Wyam.SlightBlog\bin\Debug\Wyam.SlightBlog.dll
 
 Settings.Host = "silvenga.com";

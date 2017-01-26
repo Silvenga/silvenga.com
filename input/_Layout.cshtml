@@ -1,6 +1,6 @@
 @{ 
-	string Title = Model.String(BlogKeys.Title); 
-	string PageTitle = Context.String(BlogKeys.Title) + (string.IsNullOrWhiteSpace(Title) ? string.Empty : " - " + Title);
+	string Title = Model.String(MetaKeys.Title); 
+	string PageTitle = Context.String(MetaKeys.Title) + (string.IsNullOrWhiteSpace(Title) ? string.Empty : " - " + Title);
 
 	var currentYear = DateTime.Now.Year;
 
@@ -54,12 +54,12 @@
                             <div class="main-container">
                                 <div class="article-header">
                                     <h1 class="article-title">
-                                        @Model.String(BlogKeys.Title)
+                                        @Model.String(MetaKeys.Title)
                                     </h1>
-                                    @if(Model.Get<DateTime>(BlogKeys.Published) != default(DateTime)) 
+                                    @if(Model.Get<DateTime>(DocumentKeys.Published) != default(DateTime)) 
                                     {
                                         <div class="article-date">
-                                            @(Model.Get<DateTime>(BlogKeys.Published).ToString("MMMM dd, yyyy"))
+                                            @(Model.Get<DateTime>(DocumentKeys.Published).ToString("MMMM dd, yyyy"))
                                         </div>
                                     }
                                 </div>
@@ -93,7 +93,9 @@
                     <div class="footer-container">
 						@Html.Raw(blog.footer)
                         <br>
-                        Made with &#10084 by <a href="https://silvenga.com">Silvenga</a>
+                        Staticly generated on @DateTimeOffset.Now.ToString() by Wyam.
+                        <br>
+                        Made with &#10084 by <a href="https://silvenga.com">Silvenga</a>. 
                     </div>
                 </div>
             </footer>
