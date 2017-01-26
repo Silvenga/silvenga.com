@@ -10,6 +10,7 @@ using Wyam.Core.Modules.Extensibility;
 using Wyam.Core.Modules.IO;
 using Wyam.Core.Modules.Metadata;
 using Wyam.Html;
+using Wyam.Minification;
 
 namespace Wyam.SlightBlog
 {
@@ -22,21 +23,7 @@ namespace Wyam.SlightBlog
             engine.GlobalMetadata[MetaKeys.MarkdownExtensions] = "advanced+bootstrap";
             engine.GlobalMetadata[MetaKeys.PostsPath] = new DirectoryPath("posts");
             engine.GlobalMetadata[MetaKeys.PagesPath] = new DirectoryPath("pages");
-
-            engine.Pipelines.Add(PipelineKeys.Pages,
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.md"),
-                new FrontMatter(new Yaml.Yaml()),
-                new Execute(ctx => new Markdown.Markdown().UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))),
-                new Concat(
-                    new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.cshtml"),
-                    new FrontMatter(new Yaml.Yaml())
-                ),
-                new Meta(Keys.RelativeFilePath, (doc, ctx) =>
-                {
-                    var slug = doc.Get(DocumentKeys.Slug, doc.FilePath(Keys.SourceFileName).FileNameWithoutExtension.FullPath);
-                    return slug + ".html";
-                })
-            );
+            engine.GlobalMetadata[MetaKeys.ThemePath] = new DirectoryPath("theme");
 
             engine.Pipelines.Add(PipelineKeys.Posts,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
@@ -60,21 +47,43 @@ namespace Wyam.SlightBlog
                 new Meta(Keys.RelativeFilePath, (doc, ctx) =>
                 {
                     var slug = doc.Get(DocumentKeys.Slug, doc.FilePath(Keys.SourceFileName).FileNameWithoutExtension.FullPath);
-                    return slug + ".html";
+                    return slug;
                 }),
                 new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published)).Descending()
             );
 
+            engine.Pipelines.Add(PipelineKeys.Pages,
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.md"),
+                new FrontMatter(new Yaml.Yaml()),
+                new Execute(ctx => new Markdown.Markdown().UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))),
+                new Concat(
+                    new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.cshtml"),
+                    new FrontMatter(new Yaml.Yaml())
+                ),
+                new Meta(Keys.RelativeFilePath, (doc, ctx) =>
+                {
+                    var slug = doc.Get(DocumentKeys.Slug, doc.FilePath(Keys.SourceFileName).FileNameWithoutExtension.FullPath);
+                    return slug;
+                })
+            );
+
             engine.Pipelines.Add(PipelineKeys.Foundation,
-                new ReadFiles(
-                    ctx => $"{{!{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath},!{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath},**}}/{{*.cshtml,!_*}}"),
-                new FrontMatter(new Yaml.Yaml())
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/**/{{*.cshtml,!_*}}"),
+                new FrontMatter(new Yaml.Yaml()),
+                new Meta(Keys.RelativeFilePath, (doc, ctx) =>
+                {
+                    var themePath = ctx.DirectoryPath(MetaKeys.ThemePath).FullPath;
+                    var a = doc.FilePath(Keys.RelativeFilePath).FullPath.Substring(themePath.Length + 1);
+                    Common.Tracing.Trace.Warning($"{a}");
+                    return a;
+                })
             );
 
             engine.Pipelines.Add(PipelineKeys.RenderPosts,
                 new Documents(PipelineKeys.Posts),
                 new Razor.Razor()
-                    .WithLayout("/_PostLayout.cshtml"),
+                    .WithLayout((doc, ctx) => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/_PostLayout.cshtml"),
+                new MinifyHtml(),
                 new WriteFiles(".html"),
                 new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published)).Descending()
             );
@@ -82,14 +91,15 @@ namespace Wyam.SlightBlog
             engine.Pipelines.Add(PipelineKeys.RenderPages,
                 new Documents(PipelineKeys.Pages),
                 new Razor.Razor()
-                    .WithLayout("/_PageLayout.cshtml"),
+                    .WithLayout((doc, ctx) => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/_PageLayout.cshtml"),
+                new MinifyHtml(),
                 new WriteFiles(".html")
             );
 
             engine.Pipelines.Add(PipelineKeys.RenderFoundation,
                 new Documents(PipelineKeys.Foundation),
-                new Razor.Razor()
-                    .WithLayout("/_Layout.cshtml"),
+                new Razor.Razor(),
+                new MinifyHtml(),
                 new WriteFiles(".html")
             );
 

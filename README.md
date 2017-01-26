@@ -11,3 +11,4 @@
 - [ ] Fix Javascript/Less assets (integrate into pipeline)
 - [ ] Figure out how to minify
 - [ ] Enable some type of automatic reload system
+- [ ] Create Sitemaps

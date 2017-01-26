@@ -8,10 +8,35 @@
     };
 }
 
+@{
+    <!--TODO - Move to nav-->
+    var navLinks = new []
+    {
+        new {
+            Link = "/",
+            Label = "Browse Posts"
+        },
+        new {
+            Link = "/projects",
+            Label = "My Projects"
+        },
+        new {
+            Link = "/about",
+            Label = "About Me"
+        }
+    };
+}
+
+
 <nav class="nav-bar">
     <div class="nav-container">
         <div class="nav-text lefted">
-            @Html.Partial("partials/_Navigation")
+            @foreach(var link in navLinks)
+            {
+                <a class="h3" href="@link.Link">
+                    @link.Label
+                </a>
+            }
         </div>
         <div class="nav-icons righted">
             <a href="@links.Twitter">

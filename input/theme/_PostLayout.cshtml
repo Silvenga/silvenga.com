@@ -1,0 +1,30 @@
+@{
+    Layout = "/theme/_Layout.cshtml";
+}
+
+<article class="article">
+    <div class="main-container">
+        <div class="article-header">
+            <h1 class="article-title">
+                @Model.String(MetaKeys.Title)
+            </h1>
+            <div class="article-date">
+                @(Model.Get<DateTime>(DocumentKeys.Published).ToString("MMMM dd, yyyy"))
+            </div>
+        </div>
+        <div class="article-container">
+            <div class="article-content flow">
+                @RenderBody()
+            </div>
+            <!--{{#if @@enableDisques}}
+            <div class="article-comments">
+                <div id="disqus_thread"></div>
+            </div>
+            <script>
+                // Use for the first page load, afterwards everything can be handled in js.
+                var disqus_identifier = '{{post.id}}';
+            </script>
+            {{/if}}-->
+        </div>
+    </div>
+</article>           

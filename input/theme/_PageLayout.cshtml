@@ -1,0 +1,18 @@
+@{
+    Layout = "/theme/_Layout.cshtml";
+}
+
+<article class="article">
+    <div class="main-container">
+        <div class="article-header">
+            <h1 class="article-title">
+                @Model.String(MetaKeys.Title)
+            </h1>
+        </div>
+        <div class="article-container">
+            <div class="article-content flow">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</article>

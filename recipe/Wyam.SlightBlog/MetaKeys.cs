@@ -5,6 +5,7 @@ namespace Wyam.SlightBlog
     public static class MetaKeys
     {
         public const string PagesPath = nameof(PagesPath);
+        public const string ThemePath = nameof(ThemePath);
 
         // ***Global
 
