@@ -12,3 +12,4 @@
 - [ ] Figure out how to minify
 - [ ] Enable some type of automatic reload system
 - [ ] Create Sitemaps
+- [ ] Use Wyam's config system
