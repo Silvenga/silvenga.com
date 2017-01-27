@@ -8,8 +8,9 @@
 - [ ] Comment system is broken... again...
 - [ ] Comment system needs some id (can I use the filename)
 - [X] Markdown is rended differently, fix changes
-- [ ] Fix Javascript/Less assets (integrate into pipeline)
-- [ ] Figure out how to minify
+- [X] Fix Javascript/Less assets (integrate into pipeline)
+- [X] Figure out how to minify
 - [ ] Enable some type of automatic reload system
 - [ ] Create Sitemaps
 - [ ] Use Wyam's config system
+- [ ] Add back Piwik
