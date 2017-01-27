@@ -44,5 +44,8 @@
         public const string RenderFoundation = nameof(RenderFoundation);
 
         public const string PostContent = nameof(PostContent);
+
+        public const string RenderJs = nameof(RenderJs);
+        public const string RenderCss = nameof(RenderCss);
     }
 }

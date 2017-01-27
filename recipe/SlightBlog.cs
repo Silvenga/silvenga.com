@@ -20,11 +20,11 @@ namespace Wyam.SlightBlog
         public void Apply(IEngine engine)
         {
             // Global metadata defaults
-            engine.GlobalMetadata[MetaKeys.Title] = "My Blog";
-            engine.GlobalMetadata[MetaKeys.MarkdownExtensions] = "advanced+bootstrap";
-            engine.GlobalMetadata[MetaKeys.PostsPath] = new DirectoryPath("posts");
-            engine.GlobalMetadata[MetaKeys.PagesPath] = new DirectoryPath("pages");
-            engine.GlobalMetadata[MetaKeys.ThemePath] = new DirectoryPath("theme");
+            engine.Settings[MetaKeys.Title] = "My Blog";
+            engine.Settings[MetaKeys.MarkdownExtensions] = "advanced+bootstrap";
+            engine.Settings[MetaKeys.PostsPath] = new DirectoryPath("posts");
+            engine.Settings[MetaKeys.PagesPath] = new DirectoryPath("pages");
+            engine.Settings[MetaKeys.ThemePath] = new DirectoryPath("theme");
 
             engine.Pipelines.Add(PipelineKeys.Posts,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
@@ -99,7 +99,7 @@ namespace Wyam.SlightBlog
             );
 
             engine.Pipelines.Add(PipelineKeys.Resources,
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/**/*{{!.cshtml,!.md,}}"),
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/{{**,!js,!less,!css}}/*{{!.cshtml,!.md,}}"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.ThemePath)),
                 new WriteFiles()
             );
@@ -108,6 +108,24 @@ namespace Wyam.SlightBlog
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/**/*{{!.cshtml,!.md,}}"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.PostsPath)),
                 new WriteFiles()
+            );
+
+            engine.Pipelines.Add(PipelineKeys.RenderJs,
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/js/*.js"),
+                new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
+                new Combine(),
+                new MinifyJs(),
+                new WriteFiles((doc, ctx) => "min.js")
+            );
+
+            engine.Pipelines.Add(PipelineKeys.RenderCss,
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/less/*.less"),
+                new Less.Less(),
+                new Concat(new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/css/*.css")),
+                new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
+                new Combine(),
+                new MinifyCss(),
+                new WriteFiles((doc, ctx) => "min.css")
             );
 
             engine.Pipelines.Add(PipelineKeys.Redirects,
@@ -157,16 +175,16 @@ namespace Wyam.SlightBlog
             return semiFlattened;
         }
 
-        public void Scaffold(IDirectory directory)
+        public void Scaffold(IFile configFile, IDirectory inputDirectory)
         {
             // Add info page
-            directory.GetFile("about.md").WriteAllText(
+            inputDirectory.GetFile("about.md").WriteAllText(
                 @"Title: About Me
 ---
 I'm awesome!");
 
             // Add post page
-            directory.GetFile("posts/first-post.md").WriteAllText(
+            inputDirectory.GetFile("posts/first-post.md").WriteAllText(
                 @"Title: First Post
 Published: 1/1/2016
 Tags: Introduction
