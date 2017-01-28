@@ -14,3 +14,8 @@
 - [ ] Create Sitemaps
 - [ ] Use Wyam's config system
 - [ ] Add back Piwik
+- [ ] Fix sidebar overlapping larger images
+
+## Notes
+
+- http://www.digitaltapestry.net/posts/markdig-cheat-sheet

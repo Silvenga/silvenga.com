@@ -38,7 +38,7 @@ jQuery(function ($) {
 
         $(".light-box").fluidbox();
 
-        $(window).resize(); // fixes small images for some reason TODO
+        $(window).resize(); // TODO fixes small images for some reason
     }
 
     function attachDisqus() {
