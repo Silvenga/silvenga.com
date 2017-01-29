@@ -1,5 +1,10 @@
 #recipe SlightBlog
 
+#n Wyam.Html
 #assembly recipe\bin\Debug\Wyam.SlightBlog.dll
 
 Settings[Keys.Host] = "silvenga.com";
+
+// Pipelines.Add(
+//    new HtmlInsert("body", "<script async src='livereload.js'></script>")
+//);
