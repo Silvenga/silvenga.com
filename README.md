@@ -10,8 +10,8 @@
 - [X] Markdown is rended differently, fix changes
 - [X] Fix Javascript/Less assets (integrate into pipeline)
 - [X] Figure out how to minify
-- [ ] Enable some type of automatic reload system
-- [ ] Create Sitemaps
+- [X] Enable some type of automatic reload system
+- [X] Create Sitemaps
 - [ ] Use Wyam's config system
 - [ ] Add back Piwik
 - [ ] Fix sidebar overlapping larger images
