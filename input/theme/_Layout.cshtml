@@ -4,7 +4,7 @@
 
 	var currentYear = DateTime.Now.Year;
 
-	var blog = new 
+	var blog = new
 	{
 		title = "Silvenga",
 		description = "Just another Weblog for the masses.",
@@ -56,9 +56,9 @@
                     <div class="footer-container">
 						@Html.Raw(blog.footer)
                         <br>
-                        Staticly generated on @DateTimeOffset.Now.ToString() using Wyam.
+                        Generated on @DateTimeOffset.Now.ToString() using Wyam.
                         <br>
-                        Made with &#10084 by <a href="https://silvenga.com">Silvenga</a>. 
+                        Made with <span class="heart">&#10084</span> by <a href="https://silvenga.com">Silvenga</a>. 
                     </div>
                 </div>
             </footer>

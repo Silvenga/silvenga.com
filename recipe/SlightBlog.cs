@@ -79,7 +79,8 @@ namespace Wyam.SlightBlog
                     .WithLayout((doc, ctx) => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/_PostLayout.cshtml"),
                 new MinifyHtml(),
                 new WriteFiles(".html"),
-                new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published)).Descending()
+                new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published)).Descending(),
+                new Meta("SitemapItem", (doc, ctx) => new SitemapItem(ctx.GetLink(doc, true)))
             );
 
             engine.Pipelines.Add(PipelineKeys.RenderPages,
@@ -87,7 +88,8 @@ namespace Wyam.SlightBlog
                 new Razor.Razor()
                     .WithLayout((doc, ctx) => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/_PageLayout.cshtml"),
                 new MinifyHtml(),
-                new WriteFiles(".html")
+                new WriteFiles(".html"),
+                new Meta("SitemapItem", (doc, ctx) => new SitemapItem(ctx.GetLink(doc, true)))
             );
 
             engine.Pipelines.Add(PipelineKeys.RenderFoundation,
@@ -95,7 +97,8 @@ namespace Wyam.SlightBlog
                 new Razor.Razor(),
                 new MinifyHtml(),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.ThemePath)),
-                new WriteFiles(".html")
+                new WriteFiles(".html"),
+                new Meta("SitemapItem", (doc, ctx) => new SitemapItem(ctx.GetLink(doc, true)))
             );
 
             engine.Pipelines.Add(PipelineKeys.Resources,
@@ -126,6 +129,14 @@ namespace Wyam.SlightBlog
                 new Combine(),
                 new MinifyCss(),
                 new WriteFiles((doc, ctx) => "min.css")
+            );
+
+            engine.Pipelines.Add("Sitemap",
+                new Documents(PipelineKeys.RenderPages),
+                new Concat(new Documents(PipelineKeys.RenderPosts)),
+                new Concat(new Documents(PipelineKeys.RenderFoundation)),
+                new Sitemap(),
+                new WriteFiles((doc, ctx) => "sitemap.xml")
             );
 
             engine.Pipelines.Add(PipelineKeys.Redirects,
