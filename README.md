@@ -15,6 +15,7 @@
 - [ ] Use Wyam's config system
 - [ ] Add back Piwik
 - [ ] Fix sidebar overlapping larger images
+- [ ] Sitemap - root has multiple slashes (should there be a slash)
 
 ## Notes
 

@@ -13,15 +13,15 @@
     var navLinks = new []
     {
         new {
-            Link = "/",
+            Link = @Context.GetLink("/") + "/",
             Label = "Browse Posts"
         },
         new {
-            Link = "/projects",
+            Link = @Context.GetLink("projects") + "/",
             Label = "My Projects"
         },
         new {
-            Link = "/about",
+            Link = @Context.GetLink("about") + "/",
             Label = "About Me"
         }
     };

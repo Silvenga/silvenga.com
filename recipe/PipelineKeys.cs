@@ -1,4 +1,6 @@
-﻿namespace Wyam.SlightBlog
+﻿using Wyam.Common.Modules;
+
+namespace Wyam.SlightBlog
 {
     public static class PipelineKeys
     {
@@ -32,7 +34,7 @@
         /// <summary>
         /// Copies all other resources to the output path.
         /// </summary>
-        public const string Resources = nameof(Resources);
+        public const string FoundationContent = nameof(FoundationContent);
 
         /// <summary>
         /// Validates links.
@@ -47,5 +49,6 @@
 
         public const string RenderJs = nameof(RenderJs);
         public const string RenderCss = nameof(RenderCss);
+        public const string WriteContent = nameof(WriteContent);
     }
 }
