@@ -37,6 +37,7 @@ on_success:
   - git config --global user.email "appveyor@silvenga.com"
   - git config --global user.name "Appveyor CI"
   - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git reset --hard
   - git checkout gh-pages
   - git rm -rf .
   - xcopy ..\output . /E
