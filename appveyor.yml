@@ -8,6 +8,7 @@ assembly_info:
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+cache: recipe/packages
 
 environment:
   access_token:
@@ -29,7 +30,7 @@ build:
   project: recipe/Wyam.SlightBlog.sln
   verbosity: minimal
 after_build:
-  - ..\Wyam\wyam --output ..\output
+  - ..\Wyam\wyam -v --output ..\output
 
 on_success:
   - git config --global credential.helper store
