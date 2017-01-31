@@ -1,0 +1,46 @@
+version: 1.0.{build}
+branches:
+  only:
+    - master
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+
+environment:
+  access_token:
+    secure: ifCELELzfwOyMxc0ThQaEIEi7xfAuUTLEkwxI4GYY4ZIkKN2bCm53893RaKOcMGO
+
+install:
+  - git submodule update --init --recursive
+  - mkdir ..\Wyam
+  - mkdir ..\output
+  - "curl -s https://raw.githubusercontent.com/Wyamio/Wyam/master/RELEASE -o ..\\Wyam\\wyamversion.txt"
+  - set /P WYAMVERSION=< ..\Wyam\wyamversion.txt
+  - echo %WYAMVERSION%
+  - ps: Start-FileDownload "https://github.com/Wyamio/Wyam/releases/download/$env:WYAMVERSION/Wyam-$env:WYAMVERSION.zip" -FileName "..\Wyam\Wyam.zip"
+  - 7z x ..\Wyam\Wyam.zip -o..\Wyam -rf
+
+before_build:
+- cmd: nuget restore recipe/Wyam.SlightBlog.sln
+build:
+  project: recipe/Wyam.SlightBlog.sln
+  verbosity: minimal
+after_build:
+  - ..\Wyam\wyam --output ..\output
+
+on_success:
+  - git config --global credential.helper store
+  - git config --global user.email "appveyor@silvenga.com"
+  - git config --global user.name "Appveyor CI"
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git checkout gh-pages
+  - git rm -rf .
+  - xcopy ..\output . /E
+  - echo silvenga.com > CNAME
+  - git remote set-url origin https://github.com/Silvenga/silvenga.com
+  - git add -A
+  - git commit -a -m "Push from AppVeyor."
+  - git push
