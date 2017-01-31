@@ -1,0 +1,82 @@
+==================================================================
+https://keybase.io/silvenga
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://silvenga.com
+  * I am silvenga (https://keybase.io/silvenga) on keybase.
+  * I have a public key with fingerprint DC75 80D8 0D67 53DC F209  2A54 37F1 A037 FEF7 8709
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.2"
+        },
+        "key": {
+            "fingerprint": "dc7580d80d6753dcf2092a5437f1a037fef78709",
+            "host": "keybase.io",
+            "key_id": "37F1A037FEF78709",
+            "uid": "34979c5046322369c842f3e5fce11400",
+            "username": "silvenga"
+        },
+        "merkle_root": {
+            "ctime": 1411883797,
+            "hash": "fe9c9107860257ea7da5ad04a73b52aaa37c6bb0376c33fa3b3090eb5bc8103eae58485f36f55959fb7ce7a449680dd2af9ce901799f3c7d8b5dcce6459c3417",
+            "seqno": 63999
+        },
+        "service": {
+            "hostname": "silvenga.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1411884017,
+    "expire_in": 157680000,
+    "prev": "6b9441c01a186cf6ae162dff4e8956cb894c517f2a2f8a9a219f4fe14715acfa",
+    "seqno": 22,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+owFdkg9MVVUcxx+PgCJoLFqUgcFFIRQe9/+9hwRRBBaQLIOQMNi5554DT+Dd53uP
+fyI1hpDxp0kBmzTQQmUOpMRIplmsMXUy6I9/mqt0wsKIRmBqTki6l3Bld2d3957z
++X3P9/s7Z6+vu8nstm/NuvZ1sTc2uI1MKaaM8K65SkrR1AoqppJCRVZscxlfNliM
+qRiqEFco0IktVi3YpqnYst0ZvMxEUqXY4bRqNp2iLZKFpaoiDdwoJlZbPnbYHVZD
+i1KRJMi0qg9REjgVEZYGLBR4TiIMpPU3JpIs0UCXLNCcrod2pZY086yqPstJScwG
+nU9KTHrAl/yzwAMJIIHmRY5lOREgmWcJhwWCMMPwNG2ATuxYjuS0FpViWz40/BZj
+R2ERznNo2lJo5LIaCMMzjCxzEpB0R9BZoBcRDBBgaEkWaVaQMJRUKECV5qHEKQIL
+IeQkJCqK7k5EHEcgp3A0oLEiKEhmaA5DLMi8LBBOJIIABEAUCWEJ8jwQ9b6oLCQA
+YUAzEgCEQ5IqK4KKEBZ5ASCOZyQ9ghPvsGlUjMgBAKqMX0epFWHDttG1/4WzIK1Y
+r7E7NJeGtCJ9pcDlsjtjjNCuCruBlmElr29ZJU+x2lT90P57qoyOPtQQXrcXSeFy
+u9WB86wGIUi6e/0xNsKluqaoAJ5nEM1ARhYRESFmRFYlhMcyEESkyIBHAiMRFrJE
+hgCyDCA8wQwvMQJEBP4bk2V1ozB/KVK+DbpKHJiqescc+IjJzWzy9DAb99bk/Zjf
+g8t8m/Yz1TW7xSbM2QEddqI2pXl4NEmlfCcy+AslHnviZ/ubdifPdLqF/eBsff50
+Yuiz/nf2h2/Kjn+3ocHjN2Hb8Z7C9a2hK2sH4KmAs1Mxi3HMkX1ZIfE1fEfOL+wN
+83RUmfStn8dAulmtaNt5qt+/47pmj/5g53NPlgZv7Pe9uWr8dPL3Sprva1tg0P6n
+SqO/IVsCL4bn1jUubrzyjGfIy353L2U/OpRR1TIVUd7e2Xuhpz77s4b4NY3pJ9uc
+JZ1vBp+LFTsGP8npi/D6uDnl/mTwmftjX28b/3NFMLfnVrffyQD/gNwjhXfCnjj0
+4kzcp+MN7aT48815v0c0mc5lw+tXLeru1T4N7oNKondldcuX8zNB0aOb3zh2sTti
+4UR3fVBRT03Kjglx68hUH7fhx7WXF2vLeiOzrzWuqr1a1ewgf6y/d2zuLY/tcaPX
+6g/EZcYvtMySL8JyqsvGXznfizvJUCuquzUkens2nWl5Kehg2EKbOfTs27sCiwtC
+slNzs1wf/twadenA6smFx83+h28mMZ6so6Z6wn14DGTCgxmt3+W+MJE21jzY5zmf
+9VdB4vjYpG/fT1Ul73Vljh1NriGek1Ed1UGH09Y+rWamZv46P53+1bRbvU/f5Mhs
+4t264cLk1+uOzuYmMF33bquHvBKOp/qs2GQ5f+XVXe/PpGtpheUDTZeTy7w+2rty
+q3/Y3w==
+=XZRU
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/silvenga
+
+==================================================================

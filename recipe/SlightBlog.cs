@@ -102,10 +102,8 @@ namespace Wyam.SlightBlog
                 new Documents(PipelineKeys.RenderPosts),
                 new Concat(new Documents(PipelineKeys.RenderPages)),
                 new Concat(new Documents(PipelineKeys.RenderFoundation)),
-                new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published)),
                 new MinifyHtml(),
-                new WriteFiles(".html"),
-                new Meta("SitemapItem", (doc, ctx) => new SitemapItem(ctx.GetLink(doc, true) + "/"))
+                new WriteFiles(".html")
             );
 
             engine.Pipelines.Add(PipelineKeys.FoundationContent,
@@ -117,6 +115,12 @@ namespace Wyam.SlightBlog
             engine.Pipelines.Add(PipelineKeys.PostContent,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/**/*{{!.cshtml,!.md,}}"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.PostsPath)),
+                new WriteFiles()
+            );
+
+            engine.Pipelines.Add("PageContent",
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/**/*{{!.cshtml,!.md,}}"),
+                new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.PagesPath)),
                 new WriteFiles()
             );
 
@@ -140,22 +144,21 @@ namespace Wyam.SlightBlog
 
             engine.Pipelines.Add("Sitemap",
                 new Documents(PipelineKeys.WriteContent),
+                new Meta("SitemapItem", (doc, ctx) =>
+                {
+                    var link = ctx.GetLink(doc, true);
+                    if (ctx.GetLink(doc).EndsWith("/"))
+                    {
+                        link = link.Substring(0, link.Length - 1);
+                    }
+                    else
+                    {
+                        link += "/";
+                    }
+                    return new SitemapItem(link);
+                }),
                 new Sitemap(),
                 new WriteFiles((doc, ctx) => "sitemap.xml")
-            );
-
-            engine.Pipelines.Add(PipelineKeys.Redirects,
-                new Documents(PipelineKeys.RenderPages),
-                new Concat(
-                    new Documents(PipelineKeys.RenderPosts)
-                ),
-                new Execute(ctx =>
-                {
-                    var redirect = new Redirect()
-                        .WithMetaRefreshPages();
-                    return redirect;
-                }),
-                new WriteFiles()
             );
 
             engine.Pipelines.Add(PipelineKeys.ValidateLinks,
@@ -195,14 +198,14 @@ namespace Wyam.SlightBlog
         {
             var baseDirectory = doc.FilePath(Keys.RelativeFilePath)?.Directory.FullPath;
             var slashed = doc.FilePath(Keys.RelativeFilePath)?.FileNameWithoutExtension.FullPath;
-
             return $"{baseDirectory}/{slashed}/index.html";
         }
 
         private IModule OrderByPublishDate()
         {
             return new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published))
-                .Descending();
+                .Descending()
+                .ThenBy((doc, ctx) => doc.FilePath(Keys.SourceFileName));
         }
 
         public void Scaffold(IFile configFile, IDirectory inputDirectory)
