@@ -40,6 +40,7 @@ on_success:
   - git reset --hard
   - git checkout gh-pages
   - git rm -rf .
+  - git clean -f -d
   - xcopy ..\output . /E
   - echo silvenga.com > CNAME
   - git remote set-url origin https://github.com/Silvenga/silvenga.com
