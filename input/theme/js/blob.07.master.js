@@ -207,15 +207,6 @@ jQuery(function ($) {
 
     function onLoaded() {
 
-        attempt(function () {
-            if (Ghost.isAuthenticated()) {
-                $(".ghost-authed").show();
-                $("#ghost-edit-page").on("click", function () {
-                    Ghost.edit($("#page-id").text());
-                });
-            }
-        });
-
         // Used to fix page styling, now fixes lightbox
         attempt(function () {
             setTimeout(function () {
