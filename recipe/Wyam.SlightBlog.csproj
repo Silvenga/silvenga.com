@@ -349,29 +349,29 @@
     <Reference Include="WebMarkupMin.Core, Version=2.2.4.0, Culture=neutral, PublicKeyToken=99472178d266584b, processorArchitecture=MSIL">
       <HintPath>packages\WebMarkupMin.Core.2.2.4\lib\net451\WebMarkupMin.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Common, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Common.0.16.1\lib\net462\Wyam.Common.dll</HintPath>
+    <Reference Include="Wyam.Common, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Common.0.16.3\lib\net462\Wyam.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Core, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Core.0.16.1\lib\net462\Wyam.Core.dll</HintPath>
+    <Reference Include="Wyam.Core, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Core.0.16.3\lib\net462\Wyam.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Html, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Html.0.16.1\lib\net462\Wyam.Html.dll</HintPath>
+    <Reference Include="Wyam.Html, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Html.0.16.3\lib\net462\Wyam.Html.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Less, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Less.0.16.1\lib\net462\Wyam.Less.dll</HintPath>
+    <Reference Include="Wyam.Less, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Less.0.16.3\lib\net462\Wyam.Less.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Markdown, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Markdown.0.16.1\lib\net462\Wyam.Markdown.dll</HintPath>
+    <Reference Include="Wyam.Markdown, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Markdown.0.16.3\lib\net462\Wyam.Markdown.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Minification, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Minification.0.16.1\lib\net462\Wyam.Minification.dll</HintPath>
+    <Reference Include="Wyam.Minification, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Minification.0.16.3\lib\net462\Wyam.Minification.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Razor, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Razor.0.16.1\lib\net462\Wyam.Razor.dll</HintPath>
+    <Reference Include="Wyam.Razor, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Razor.0.16.3\lib\net462\Wyam.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Wyam.Yaml, Version=0.16.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Wyam.Yaml.0.16.1\lib\net462\Wyam.Yaml.dll</HintPath>
+    <Reference Include="Wyam.Yaml, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Wyam.Yaml.0.16.3\lib\net462\Wyam.Yaml.dll</HintPath>
     </Reference>
     <Reference Include="YamlDotNet, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\YamlDotNet.4.1.0\lib\net35\YamlDotNet.dll</HintPath>
