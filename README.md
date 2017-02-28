@@ -16,6 +16,7 @@
 - [X] Add back Piwik
 - [ ] Fix sidebar overlapping larger images
 - [X] Sitemap - root has multiple slashes (should there be a slash)
+- [ ] Setup Git tagging of each page.
 
 ## Notes
 
