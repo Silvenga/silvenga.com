@@ -102,7 +102,7 @@ namespace Wyam.SlightBlog
                 new Documents(PipelineKeys.RenderPosts),
                 new Concat(new Documents(PipelineKeys.RenderPages)),
                 new Concat(new Documents(PipelineKeys.RenderFoundation)),
-                new MinifyHtml(),
+                new MinifyHtml().RemoveOptionalEndTags(false),
                 new WriteFiles(".html")
             );
 
