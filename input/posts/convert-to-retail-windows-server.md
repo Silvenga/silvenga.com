@@ -1,5 +1,4 @@
 Title: Convert Windowss 2016 Eval to Retail
-Published: 3/28/17
 ---
 
 ![](/content/images/2017/dism.png)

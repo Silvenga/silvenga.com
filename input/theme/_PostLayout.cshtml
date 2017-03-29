@@ -9,7 +9,15 @@
                 @Model.String(MetaKeys.Title)
             </h1>
             <div class="article-date">
+                @{
+                    var changes = Model.Get<int>("Changes");
+                    var editText = changes == 1 ? "edit" : "edits";
+                }
                 @(Model.Get<DateTime>(DocumentKeys.Published).ToString("MMMM dd, yyyy"))
+                <span class="article-git">
+                    Committed on @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) with hash @(Model.Get<string>("FirstSha")) - @(Model.Get<int>("Changes")) @editText total
+                </span>
+                      
             </div>
         </div>
         <div class="article-container">

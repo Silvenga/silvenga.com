@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using Newtonsoft.Json;
 
 using Wyam.Common.Configuration;
 using Wyam.Common.Documents;
@@ -11,6 +15,7 @@ using Wyam.Core.Modules.Control;
 using Wyam.Core.Modules.Extensibility;
 using Wyam.Core.Modules.IO;
 using Wyam.Core.Modules.Metadata;
+using Wyam.Git;
 using Wyam.Html;
 using Wyam.Minification;
 
@@ -29,6 +34,7 @@ namespace Wyam.SlightBlog
 
             engine.Pipelines.Add(PipelineKeys.Posts,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
+                new GitMeta(),
                 new FrontMatter(new Yaml.Yaml()),
                 new Execute(ctx => new Markdown.Markdown().UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))),
                 new Where((doc, ctx) =>
@@ -50,6 +56,7 @@ namespace Wyam.SlightBlog
 
             engine.Pipelines.Add(PipelineKeys.Pages,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.md"),
+                new GitMeta(),
                 new FrontMatter(new Yaml.Yaml()),
                 new Execute(ctx => new Markdown.Markdown().UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))),
                 new Concat(
@@ -223,6 +230,41 @@ Published: 1/1/2016
 Tags: Introduction
 ---
 This is my first post!");
+        }
+    }
+
+    public class GitMeta : IModule
+    {
+        public IEnumerable<IDocument> Execute(IReadOnlyList<IDocument> inputs, IExecutionContext context)
+        {
+            var output = new GitCommits().ForEachInputDocument().Execute(inputs, context);
+            return output.AsParallel().Select(x =>
+            {
+                var commits = x.Get<IReadOnlyList<IDocument>>("Commits").Select(c => new
+                               {
+                                   Date = c.Get<DateTimeOffset>("AuthorWhen"),
+                                   Author = c.String("AuthorName"),
+                                   Email = c.String("AuthorEmail"),
+                                   Sha = c.String("Sha")?.Substring(0, 8)
+                               })
+                               .ToList();
+
+                var numberOfChanges = commits.Count;
+                var lastCommit = commits.FirstOrDefault();
+                var firstCommit = commits.LastOrDefault();
+
+                var metaData = new Dictionary<string, object>
+                {
+                    {"Changes", numberOfChanges},
+                    {"LastChange", lastCommit?.Date},
+                    {"FirstChange", firstCommit?.Date},
+                    {"LastSha", lastCommit?.Sha},
+                    {"FirstSha", firstCommit?.Sha},
+                    {DocumentKeys.Published, firstCommit?.Date.DateTime}
+                };
+
+                return context.GetDocument(x, metaData.ToList());
+            });
         }
     }
 }

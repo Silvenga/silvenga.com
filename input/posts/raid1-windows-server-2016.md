@@ -1,5 +1,4 @@
 Title: Install Windows Server 2016 using Software RAID1
-Published: 3/27/17
 ---
 
 ## Setup
