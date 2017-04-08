@@ -61,11 +61,11 @@ Windows requires two partitions when in MBR mode (EFI requires 3, which I won't 
 
 ```
 DISKPART> select disk 0
-DISKPART> create mirror disk=0,1 size=500
-DISKPART> format quick fs=ntfs label="System Recovery"
+DISKPART> create volume mirror disk=0,1 size=500
+DISKPART> format quick fs=ntfs label="System Reserved"
 
 ```
-These commands create a mirrored volume using disk `0` and `1` with a size of `500mb` (default size under Windows 2016). Then it formats the newly created (and automatically selected) volume using `ntfs` as the filesystem and "System Recovery" as the volume label.
+These commands create a mirrored volume using disk `0` and `1` with a size of `500mb` (default size under Windows 2016). Then it formats the newly created (and automatically selected) volume using `ntfs` as the filesystem and "System Reserved" as the volume label.
 
 Then we can create the OS partition using similar commands: 
 ```
@@ -82,25 +82,42 @@ Using `list volume` we should see the list of volumes that we created. Note that
 
 In the above setup, each volume represents a single logical "partition", but in reality each of these volumes spans two physical drives. These volumes are great under Windows, but not so useful to the BIOS attempting to bootstrap a OS. To make it possible for the BIOS to start Windows we need to create real partitions for each of our mirror volumes. 
 
+First let's use `detail disk` to make sure we target the correct volumes.
 ```
 DISKPART> select disk 0
-DISKPART> select volume 0
+DISKPART> detail disk
+```
+
+In the picture, `volume 0` is our `System Recovery` volume and `volume 1` is our OS volume, different configurations may be different.
+
+```
+DISKPART> select disk 0
+DISKPART> select volume 1
 DISKPART> retain
 ```
-This creates a real partition for volume 0 (System Recovery) to on disk 0. To mark the newly created real partition to be the boot partition we can use the following: 
+This creates a real partition for volume 0 (System Recovery) on disk 0. Use `list partition` to find to again make sure to target the correct partition.
+
 ```
 DISKPART> select disk 0
-DISKPART> select partition 1
+DISKPART> list partition
+```
+
+Our `System Recovery` partition is `500 MB`, in this example, this partition is `partition 1`.
+
+To mark the newly created, real partition to be the boot partition we can use the following:
+```
+DISKPART> select disk 0
+DISKPART> select partition 2
 DISKPART> active
 ```
 We need to do the same thing on the other drive too, as so:
 
 ```
 DISKPART> select disk 1
-DISKPART> select volume 0
+DISKPART> select volume 1
 DISKPART> retain
 DISKPART> select disk 1
-DISKPART> select partition 1
+DISKPART> select partition 2
 DISKPART> active
 ```
 
@@ -108,14 +125,22 @@ We also need a partition for the OS drive (required by the installer). This can 
 
 ```
 DISKPART> select disk 0
-DISKPART> select volume 1
+DISKPART> select volume 0
 DISKPART> retain
 DISKPART> select disk 1
-DISKPART> select volume 1
+DISKPART> select volume 0
 DISKPART> retain
 ```
 
+![](/content/images/2017/installed.png)
+
 At this point you can install Windows as normal to one of the mirror partitions.
+
+## Postscript
+
+Testing more with HyperV, I discovered that formating the mirrors using Windows setup was required to get a booting OS. I remember doing this before as the IPMI device I was using kept on crashing during installation - forcing me to restart the Windows installation.
+
+![](/content/images/2017/formatting-drives.gif)
 
 ## Considerations
 
