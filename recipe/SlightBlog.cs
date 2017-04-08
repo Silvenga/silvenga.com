@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Newtonsoft.Json;
-
 using Wyam.Common.Configuration;
 using Wyam.Common.Documents;
 using Wyam.Common.Execution;
 using Wyam.Common.IO;
 using Wyam.Common.Meta;
 using Wyam.Common.Modules;
+using Wyam.Common.Modules.Contents;
 using Wyam.Core.Modules.Contents;
 using Wyam.Core.Modules.Control;
 using Wyam.Core.Modules.Extensibility;
@@ -218,14 +217,16 @@ namespace Wyam.SlightBlog
         public void Scaffold(IFile configFile, IDirectory inputDirectory)
         {
             // Add info page
-            inputDirectory.GetFile("about.md").WriteAllText(
-                @"Title: About Me
+            inputDirectory.GetFile("about.md")
+                          .WriteAllText(
+                              @"Title: About Me
 ---
 I'm awesome!");
 
             // Add post page
-            inputDirectory.GetFile("posts/first-post.md").WriteAllText(
-                @"Title: First Post
+            inputDirectory.GetFile("posts/first-post.md")
+                          .WriteAllText(
+                              @"Title: First Post
 Published: 1/1/2016
 Tags: Introduction
 ---
@@ -238,33 +239,35 @@ This is my first post!");
         public IEnumerable<IDocument> Execute(IReadOnlyList<IDocument> inputs, IExecutionContext context)
         {
             var output = new GitCommits().ForEachInputDocument().Execute(inputs, context);
-            return output.AsParallel().Select(x =>
-            {
-                var commits = x.Get<IReadOnlyList<IDocument>>("Commits").Select(c => new
-                               {
-                                   Date = c.Get<DateTimeOffset>("AuthorWhen"),
-                                   Author = c.String("AuthorName"),
-                                   Email = c.String("AuthorEmail"),
-                                   Sha = c.String("Sha")?.Substring(0, 8)
-                               })
-                               .ToList();
+            return output.AsParallel()
+                         .Select(x =>
+                         {
+                             var commits = x.Get<IReadOnlyList<IDocument>>("Commits")
+                                            .Select(c => new
+                                            {
+                                                Date = c.Get<DateTimeOffset>("AuthorWhen"),
+                                                Author = c.String("AuthorName"),
+                                                Email = c.String("AuthorEmail"),
+                                                Sha = c.String("Sha")?.Substring(0, 8)
+                                            })
+                                            .ToList();
 
-                var numberOfChanges = commits.Count;
-                var lastCommit = commits.FirstOrDefault();
-                var firstCommit = commits.LastOrDefault();
+                             var numberOfChanges = commits.Count;
+                             var lastCommit = commits.FirstOrDefault();
+                             var firstCommit = commits.LastOrDefault();
 
-                var metaData = new Dictionary<string, object>
-                {
-                    {"Changes", numberOfChanges},
-                    {"LastChange", lastCommit?.Date},
-                    {"FirstChange", firstCommit?.Date},
-                    {"LastSha", lastCommit?.Sha},
-                    {"FirstSha", firstCommit?.Sha},
-                    {DocumentKeys.Published, firstCommit?.Date.DateTime}
-                };
+                             var metaData = new Dictionary<string, object>
+                             {
+                                 {"Changes", numberOfChanges},
+                                 {"LastChange", lastCommit?.Date},
+                                 {"FirstChange", firstCommit?.Date},
+                                 {"LastSha", lastCommit?.Sha},
+                                 {"FirstSha", firstCommit?.Sha},
+                                 {DocumentKeys.Published, firstCommit?.Date.DateTime}
+                             };
 
-                return context.GetDocument(x, metaData.ToList());
-            });
+                             return context.GetDocument(x, metaData.ToList());
+                         });
         }
     }
 }
