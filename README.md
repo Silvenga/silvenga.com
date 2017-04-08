@@ -1,5 +1,6 @@
 # Blog
 
+[![Build status](https://img.shields.io/appveyor/ci/Silvenga/silvenga-com.svg?maxAge=2592000&style=flat-square)](https://ci.appveyor.com/project/Silvenga/silvenga-com)
 
 ## TODO
 
@@ -16,7 +17,7 @@
 - [X] Add back Piwik
 - [ ] Fix sidebar overlapping larger images
 - [X] Sitemap - root has multiple slashes (should there be a slash)
-- [ ] Setup Git tagging of each page.
+- [X] Setup Git tagging of each page.
 
 ## Notes
 
