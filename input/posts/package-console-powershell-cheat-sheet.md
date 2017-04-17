@@ -10,6 +10,11 @@ A cheat sheet of all the cool things that knowing PowerShell can help with when 
 Get-Package -ProjectName {From Project} | Install-Package -ProjectName {Target Project} -IgnoreDependencies
 ```
 
+> Same as above, but if you care about versions
+```
+Get-Package -ProjectName {From Project} | % { Install-Package -ProjectName {Target Project} -IgnoreDependencies -Version $_.Version.ToString() $_.Id }
+```
+
 > Batch install packages
 
 ```
