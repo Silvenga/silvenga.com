@@ -59,5 +59,7 @@ namespace Wyam.SlightBlog
         /// <scope>Global</scope>
         /// <type><see cref="bool"/></type>
         public const string ValidateLinksAsError = nameof(ValidateLinksAsError);
+
+        public static string GithubBasePath = nameof(GithubBasePath);
     }
 }

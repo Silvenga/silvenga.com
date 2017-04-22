@@ -30,6 +30,7 @@ namespace Wyam.SlightBlog
             engine.Settings[MetaKeys.PostsPath] = new DirectoryPath("posts");
             engine.Settings[MetaKeys.PagesPath] = new DirectoryPath("pages");
             engine.Settings[MetaKeys.ThemePath] = new DirectoryPath("theme");
+            engine.Settings[MetaKeys.GithubBasePath] = "https://github.com/Silvenga/silvenga.com/tree/master/";
 
             engine.Pipelines.Add(PipelineKeys.Posts,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
@@ -256,6 +257,11 @@ This is my first post!");
                              var lastCommit = commits.FirstOrDefault();
                              var firstCommit = commits.LastOrDefault();
 
+                             var relativePathSegments = x.Source.Segments.Reverse()
+                                                         .Take(x.Source.Segments.Length - context.FileSystem.RootPath.Segments.Length)
+                                                         .Reverse();
+                             var githubUrl = context.String(MetaKeys.GithubBasePath) + string.Join("/", relativePathSegments);
+
                              var metaData = new Dictionary<string, object>
                              {
                                  {"Changes", numberOfChanges},
@@ -263,6 +269,7 @@ This is my first post!");
                                  {"FirstChange", firstCommit?.Date},
                                  {"LastSha", lastCommit?.Sha},
                                  {"FirstSha", firstCommit?.Sha},
+                                 {"GithubUrl", githubUrl},
                                  {DocumentKeys.Published, firstCommit?.Date.DateTime}
                              };
 
