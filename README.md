@@ -20,7 +20,7 @@
 - [X] Setup Git tagging of each page.
 - [ ] GitHub links on each page.
 - [ ] Is there a better comment system...
-- [ ] Update markdown extensions.
+- [X] Update markdown extensions.
 
 ## Future TODO
 

@@ -1,4 +1,4 @@
-Title: Convert Windowss 2016 Eval to Retail
+Title: Convert Windows 2016 Eval to Retail
 ---
 
 ![](/content/images/2017/dism.png)
