@@ -13,7 +13,7 @@
                 @Model.String(MetaKeys.Title)
             </h1>
             <span class="article-git left">
-                Commit @(Model.Get<string>("LastSha").ToUpper()) from @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get<int>("Changes")) @editText total
+                Commit <a href="@(Model.Get<string>("LastCommitLink"))">@(Model.Get<string>("LastSha").ToUpper())</a> from @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get<int>("Changes")) @editText total
             </span>
         </div>
         <div class="article-container">

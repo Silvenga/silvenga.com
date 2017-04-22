@@ -172,7 +172,7 @@ button:focus {
         text-align: center;
         margin-bottom: 3em;
     }
-    .img {
+    .icon-container {
         width: 32px;
         height: 32px;
         filter: grayscale(100%);
@@ -214,8 +214,7 @@ button:focus {
     .index-element {
         padding-top: 1em;
         font-size: 1.1em;
-        padding-bottom: 1em;
-        //border-bottom: 1px solid #eee;
+        padding-bottom: 1em; //border-bottom: 1px solid #eee;
         @media @tablet {
             text-align: center;
         }
@@ -256,8 +255,7 @@ button:focus {
             background: @link;
         }
         &:hover {
-            color: @link-hover;
-            // border-bottom: 1px solid @link-hover;
+            color: @link-hover; // border-bottom: 1px solid @link-hover;
         }
         &:hover::after,
         &:focus::after {
@@ -320,7 +318,6 @@ button:focus {
             }
         }
         .article-git {
-            font-size: 0.8em;
             @media @phone {
                 text-align: center;
                 float: inherit;
@@ -331,8 +328,7 @@ button:focus {
     .article-container {
         background-color: white;
         border-radius: 3px;
-        margin-bottom: 1em;
-        // overflow: auto;
+        margin-bottom: 1em; // overflow: auto;
         font-size: 1.2em;
         .article-content {
             word-wrap: break-word;

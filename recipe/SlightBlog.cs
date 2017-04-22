@@ -30,7 +30,7 @@ namespace Wyam.SlightBlog
             engine.Settings[MetaKeys.PostsPath] = new DirectoryPath("posts");
             engine.Settings[MetaKeys.PagesPath] = new DirectoryPath("pages");
             engine.Settings[MetaKeys.ThemePath] = new DirectoryPath("theme");
-            engine.Settings[MetaKeys.GithubBasePath] = "https://github.com/Silvenga/silvenga.com/tree/master/";
+            engine.Settings[MetaKeys.GithubBasePath] = "https://github.com/Silvenga/silvenga.com"; // No slash
 
             engine.Pipelines.Add(PipelineKeys.Posts,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
@@ -260,7 +260,8 @@ This is my first post!");
                              var relativePathSegments = x.Source.Segments.Reverse()
                                                          .Take(x.Source.Segments.Length - context.FileSystem.RootPath.Segments.Length)
                                                          .Reverse();
-                             var githubUrl = context.String(MetaKeys.GithubBasePath) + string.Join("/", relativePathSegments);
+                             var githubFileUrl = context.String(MetaKeys.GithubBasePath) + "/tree/master/" + string.Join(" / ", relativePathSegments);
+                             var githubCommitUrl = context.String(MetaKeys.GithubBasePath) + "/commit/" + lastCommit?.Sha;
 
                              var metaData = new Dictionary<string, object>
                              {
@@ -268,8 +269,9 @@ This is my first post!");
                                  {"LastChange", lastCommit?.Date},
                                  {"FirstChange", firstCommit?.Date},
                                  {"LastSha", lastCommit?.Sha},
+                                 {"LastCommitLink", githubCommitUrl},
                                  {"FirstSha", firstCommit?.Sha},
-                                 {"GithubUrl", githubUrl},
+                                 {"GithubUrl", githubFileUrl},
                                  {DocumentKeys.Published, firstCommit?.Date.DateTime}
                              };
 

@@ -14,8 +14,9 @@
                     var editText = changes == 1 ? "edit" : "edits";
                 }
                 @(Model.Get<DateTime>(DocumentKeys.Published).ToString("MMMM dd, yyyy"))
-                <span class="article-git right">
-                    Commit @(Model.Get<string>("LastSha").ToUpper()) from @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get<int>("Changes"))     @editText total
+
+                <span class="right article-git">
+                        Commit <a href="@(Model.Get<string>("LastCommitLink"))">@(Model.Get<string>("LastSha").ToUpper())</a> from @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get<int>("Changes")) @editText total
                 </span>
             </div>
         </div>
