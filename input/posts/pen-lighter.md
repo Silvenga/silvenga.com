@@ -2,13 +2,13 @@ Title: Silvenga's Penlighter
 Published: 14 Mar 14
 ---
 
-![](/content/images/2014/Mar/tablet_use_bamboo.jpg)
+![](content/images/2014/Mar/tablet_use_bamboo.jpg)
 
 Tablets PC's have been out for years. And now with the release of Windows 8 (now 8.1) laptops with touch screens are on the rise; and for good reason - functionality can be added without reducing usability. My Thinkpad W520 (a very nice laptop) unfortunately does not have a touch screen. So a couple of months ago I purchased my first graphic tablet like this one:
 
 I was amazed at my new found abilities, and to my advantage I now take all my notes paperless. Although the transition was practically painless, there were several issues using a touch screen that's not actually connected to the screen. My largest issue being that the mouse disappears on depending on the program. Right is an example of Microsoft OneNote, my note taking program:
 
-![](/content/images/2014/Jun/2014-06-21_21-27-47.png)
+![](content/images/2014/Jun/2014-06-21_21-27-47.png)
 
 In case you can't see, my mouse is in the middle of the circle. My issue was losing the mouse whenever I looked away from the screen.
 
@@ -16,7 +16,7 @@ I started off using [Pen Attention](http://www.math.uaa.alaska.edu/~afkjm/PenAtt
 
 So one night I sat down and re-wrote my own version from scratch with speed and usability in mind. My project worked so well I've decided to release the program under the MIT licence ([link](/mit)). Here is a shot of the mouse running my version:
 
-![](/content/images/2014/Jun/2014-06-21_21-29-09.png)
+![](content/images/2014/Jun/2014-06-21_21-29-09.png)
 
 The program runs in the tray. Just right click to access the settings. It is completely portable (stick it on a thumb drive), saves settings to a file in the root of the program, fast, and efficient. I behold Silvenga's Pen Lighter. 
 

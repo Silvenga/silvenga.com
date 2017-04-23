@@ -2,7 +2,7 @@ Title: OpenVPN Sheathing
 Published: 18 Apr 14
 ---
 
-![OpenVPN Logo](/content/images/2016/10/openvpntech_logo1.png)
+![OpenVPN Logo](content/images/2016/10/openvpntech_logo1.png)
 
 [OpenVPN](http://openvpn.net/index.php/open-source/245-community-open-source-software-overview.html) is soon becoming the standard for bypassing Internet censorship - and for good reason. OpenVPN is secure, Open Source, and extremely easy to use. Unfortunately, many censoring ISP's are determined to prevent and block OpenVPN. Possibly the only sure way to block OpenVPN tunnels is a method called [DPI (Deep packet inspection)](https://en.wikipedia.org/wiki/Deep_packet_inspection). What is troubling for many individuals is the fact the DPI works and is now widely used. Although how DPI detects OpenVPN traffic is important I will not talk about it today. 
 
@@ -132,7 +132,7 @@ And we're all set, done with the server side configuration.
 
 ### Client 
 
-![Windows sTunnel Options](/content/images/2014/Apr/2014-04-18_19-31-44.png)
+![Windows sTunnel Options](content/images/2014/Apr/2014-04-18_19-31-44.png)
 
 Download the Windows sTunnel software.
 

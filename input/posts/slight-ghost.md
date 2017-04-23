@@ -2,7 +2,7 @@ Title: Ghost Scaffolding
 Published: 16 Dec 14
 ---
 
-![](/content/images/2014/12/ghost_logo-2.jpg)
+![](content/images/2014/12/ghost_logo-2.jpg)
 
 ## Introduction 
 

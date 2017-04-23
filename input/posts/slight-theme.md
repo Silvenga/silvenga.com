@@ -4,7 +4,7 @@ Published: 21 Mar 14
 
 ## Introduction
 
-![](/content/images/2014/09/2014-09-28_11-35-03.png)
+![](content/images/2014/09/2014-09-28_11-35-03.png)
 
 A minimal theme, powered by Ghost. Live demo: (https://silvenga.com) (using the dev branch).
 

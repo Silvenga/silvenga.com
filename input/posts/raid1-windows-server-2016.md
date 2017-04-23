@@ -5,7 +5,7 @@ Title: Install Windows Server 2016 using Software RAID1
 
 Most Windows installers if not all modern versions have a command line option that can be accessed when using the GUI installer (from anywhere from what I can tell). This functionality can be accessed with `SHIFT + F10` and looks like:
 
-![](/content/images/2017/command-line.png)
+![](content/images/2017/command-line.png)
 
 From here we can access `diskpart`. From Microsoft's Technet, "DiskPart is a text-mode command interpreter [that] enables you to manage objects (disks, partitions, or volumes) by using scripts or direct input at a command prompt."
 
@@ -51,7 +51,7 @@ DISKPART> convert dynamic
 
 `list disk` should look like this now:
 
-![](/content/images/2017/dynamic-disks.png)
+![](content/images/2017/dynamic-disks.png)
 
 ## Prepare Mirrors
 
@@ -74,7 +74,7 @@ DISKPART> create volume mirror disk=0,1
 DISKPART> format quick fs=ntfs
 ```
 
-![](/content/images/2017/formatted-volumes.png)
+![](content/images/2017/formatted-volumes.png)
 
 Using `list volume` we should see the list of volumes that we created. Note that the volume numbers may be different.
 
@@ -132,7 +132,7 @@ DISKPART> select volume 0
 DISKPART> retain
 ```
 
-![](/content/images/2017/installed.png)
+![](content/images/2017/installed.png)
 
 At this point you can install Windows as normal to one of the mirror partitions.
 
@@ -140,7 +140,7 @@ At this point you can install Windows as normal to one of the mirror partitions.
 
 Testing more with HyperV, I discovered that formating the mirrors using Windows setup was required to get a booting OS. I remember doing this before as the IPMI device I was using kept on crashing during installation - forcing me to restart the Windows installation.
 
-![](/content/images/2017/formatting-drives.gif)
+![](content/images/2017/formatting-drives.gif)
 
 ## Considerations
 

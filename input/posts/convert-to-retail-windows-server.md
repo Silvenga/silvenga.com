@@ -1,7 +1,7 @@
 Title: Convert Windows 2016 Eval to Retail
 ---
 
-![](/content/images/2017/dism.png)
+![](content/images/2017/dism.png)
 
 Using your retail key with the ISO's downloaded from Microsoft's "Evaluation Center" should be easy right? You paid for a license so you should be able to just activate a trial... Turns out it's not that simple. You actually need to change your server edition from ServerBlahEvalEdition to whatever edition you have a key for using `dism`.
 
@@ -20,7 +20,7 @@ From what I gather the `Set-Edition` option can be either of the following:
 - `ServerDatacenter`
 - `ServerStandard`
 
-![](/content/images/2017/dism-cleanup.png)
+![](content/images/2017/dism-cleanup.png)
 
 The command takes a good 10 minutes to run (looks like it stalls), then asks to reboot to cleanup. Afterwards, you should be activated and ready. 
 
