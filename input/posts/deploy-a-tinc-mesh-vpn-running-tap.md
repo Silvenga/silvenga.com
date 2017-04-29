@@ -2,7 +2,7 @@ Title: Deploy a Tinc Mesh VPN Running TAP
 Published: 25 Jul 14
 ---
 
-![Mesh Network](content/images/2014/Jul/generalMesh.gif)
+![Mesh Network](/content/images/2014/Jul/generalMesh.gif)
 
 I've used OpenVPN for several years now. The software is secure, stable, and has a great community - a prime example of Open Source at its best. OpenVPN is easily the best VPN software available. However, I recently moved to Tinc an Open Source alternative VPN. If OpenVPN was working great, why would I change to a completely new network?
 

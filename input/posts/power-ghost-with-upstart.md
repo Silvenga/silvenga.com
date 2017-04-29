@@ -2,7 +2,7 @@ Title: Power Ghost with Upstart
 Published: 27 Mar 14
 ---
 
-![Upstart Logo](content/images/2014/Mar/upstart80.png)
+![Upstart Logo](/content/images/2014/Mar/upstart80.png)
 
 ### Introduction
 

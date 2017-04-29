@@ -4,7 +4,7 @@ Published: 22 Jun 14
 
 I hate slow websites. A month or so ago I had to log onto Delta.com. I was largely unimpressed with the speed in which it loaded. I could wait for seconds until text would appear. I would wait even longer for the site to become responsive. 
 
-![Slow Site](content/images/2014/Jun/slow-website.jpg)
+![Slow Site](/content/images/2014/Jun/slow-website.jpg)
 
 This is what I hate about browsing the Internet. A user should not have to wait for a page to download. So I made it my life mission to optimise this blog. I am currently averaging 600ms from start to ready. This is largely impressive (top 5% of load times) for a dynamic site such as my own.
 
