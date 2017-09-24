@@ -19,9 +19,18 @@ From what I gather the `Set-Edition` option can be either of the following:
 
 - `ServerDatacenter`
 - `ServerStandard`
+- `ServerDatacenterCor`
+- `ServerStandardCor`
 
 ![](/content/images/2017/dism-cleanup.png)
 
 The command takes a good 10 minutes to run (looks like it stalls), then asks to reboot to cleanup. Afterwards, you should be activated and ready. 
+
+For extra credit, you can activate VM's running on a Datacenter host by using AVMA keys (Automatic Virtual Machine Activation). The commands would look like this:
+
+```
+DISM /Online /Set-Edition:ServerDatacenterCor /AcceptEula /ProductKey:TMJ3Y-NTRTM-FJYXT-T22BY-CWG3J
+DISM /Online /Set-Edition:ServerStandardCor /AcceptEula /ProductKey:C3RCX-M6NRP-6CXC9-TW2F2-4RHYD
+```
 
 Have Fun!
