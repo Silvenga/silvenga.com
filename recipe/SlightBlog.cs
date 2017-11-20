@@ -131,23 +131,23 @@ namespace Wyam.SlightBlog
                 new WriteFiles()
             );
 
-            engine.Pipelines.Add(PipelineKeys.RenderJs,
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/js/*.js"),
-                new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
-                new Combine(),
-                new MinifyJs(),
-                new WriteFiles((doc, ctx) => "min.js")
-            );
+            //engine.Pipelines.Add(PipelineKeys.RenderJs,
+            //    new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/js/*.js"),
+            //    new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
+            //    new Combine(),
+            //    new MinifyJs(),
+            //    new WriteFiles((doc, ctx) => "min.js")
+            //);
 
-            engine.Pipelines.Add(PipelineKeys.RenderCss,
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/less/*.less"),
-                new Less.Less(),
-                new Concat(new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/css/*.css")),
-                new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
-                new Combine(),
-                new MinifyCss(),
-                new WriteFiles((doc, ctx) => "min.css")
-            );
+            //engine.Pipelines.Add(PipelineKeys.RenderCss,
+            //    new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/less/*.less"),
+            //    new Less.Less(),
+            //    new Concat(new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/css/*.css")),
+            //    new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
+            //    new Combine(),
+            //    new MinifyCss(),
+            //    new WriteFiles((doc, ctx) => "min.css")
+            //);
 
             engine.Pipelines.Add("Sitemap",
                 new Documents(PipelineKeys.WriteContent),
@@ -168,30 +168,30 @@ namespace Wyam.SlightBlog
                 new WriteFiles((doc, ctx) => "sitemap.xml")
             );
 
-            engine.Pipelines.Add(PipelineKeys.ValidateLinks,
-                new If(ctx => ctx.Get<bool>(MetaKeys.ValidateAbsoluteLinks) || ctx.Get<bool>(MetaKeys.ValidateRelativeLinks),
-                    new Documents(PipelineKeys.RenderPages),
-                    new Concat(
-                        new Documents(PipelineKeys.RenderPosts)
-                    ),
-                    new Concat(
-                        new Documents(PipelineKeys.FoundationContent)
-                    ),
-                    new Where((doc, ctx) =>
-                    {
-                        var destinationPath = doc.FilePath(Keys.DestinationFilePath);
-                        return destinationPath != null
-                               && (destinationPath.Extension == ".html" || destinationPath.Extension == ".htm");
-                    }),
-                    new Execute(ctx =>
-                        new ValidateLinks()
-                            .ValidateAbsoluteLinks(ctx.Get<bool>(MetaKeys.ValidateAbsoluteLinks))
-                            .ValidateRelativeLinks(ctx.Get<bool>(MetaKeys.ValidateRelativeLinks))
-                            .AsError(ctx.Get<bool>(MetaKeys.ValidateLinksAsError)
-                            )
-                    )
-                )
-            );
+            //engine.Pipelines.Add(PipelineKeys.ValidateLinks,
+            //    new If(ctx => ctx.Get<bool>(MetaKeys.ValidateAbsoluteLinks) || ctx.Get<bool>(MetaKeys.ValidateRelativeLinks),
+            //        new Documents(PipelineKeys.RenderPages),
+            //        new Concat(
+            //            new Documents(PipelineKeys.RenderPosts)
+            //        ),
+            //        new Concat(
+            //            new Documents(PipelineKeys.FoundationContent)
+            //        ),
+            //        new Where((doc, ctx) =>
+            //        {
+            //            var destinationPath = doc.FilePath(Keys.DestinationFilePath);
+            //            return destinationPath != null
+            //                   && (destinationPath.Extension == ".html" || destinationPath.Extension == ".htm");
+            //        }),
+            //        new Execute(ctx =>
+            //            new ValidateLinks()
+            //                .ValidateAbsoluteLinks(ctx.Get<bool>(MetaKeys.ValidateAbsoluteLinks))
+            //                .ValidateRelativeLinks(ctx.Get<bool>(MetaKeys.ValidateRelativeLinks))
+            //                .AsError(ctx.Get<bool>(MetaKeys.ValidateLinksAsError)
+            //                )
+            //        )
+            //    )
+            //);
         }
 
         private object SemiFlatten(IDocument doc, IExecutionContext ctx, string directoryPathKey)
