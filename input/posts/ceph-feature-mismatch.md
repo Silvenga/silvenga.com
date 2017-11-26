@@ -1,6 +1,10 @@
 Title: Ceph Feature Missmatch with Kubernetes
 ---
 
+^^^
+![](/content/images/2017/kubernetes-plus-ceph.png)
+^^^ Source: [habrahabr.ru](https://habrahabr.ru/company/flant/blog/329666/)
+
 I needed a better backing storage system for my Kubernetes cluster - I am done with NFS (so many problems). In the end I decided I'll go for a Ceph cluster after being rather impressed by the feature set.
 
 So I got a Luminous Ceph cluster deployed and everything was working (after fighting with the beta external storage features, no more custom Kube Controllers, yay!). Then I tried to actually get a test deployment up, but I kept on seeing the following errors on my nodes:
