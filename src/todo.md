@@ -8,3 +8,4 @@
 - [ ] Selector coloring.
 - [ ] Link decorations.
 - [ ] Cleanup Wyam recipe.
+- [ ] Link to github repo from commit hash.
