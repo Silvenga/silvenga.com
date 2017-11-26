@@ -11,7 +11,8 @@
         </a>
         <hr>
         <div>
-            Created on <date>@(doc.DateTime(DocumentKeys.Published).ToString("MMM d, yyyy"))</date>, last commit <span class="text-uppercase">@doc.String("LastSha")</span>.
+            Created on <date>@(doc.DateTime(DocumentKeys.Published).ToString("MMM d, yyyy"))</date>, 
+            last commit <span class="text-uppercase">@doc.String("LastSha")</span> on <date>@(doc.Get<DateTimeOffset>("LastChange").ToString("MMM d, yyyy"))</date>.
         </div>
 
     </section>
