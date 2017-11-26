@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon --watch webpack.config.js --exec webpack-dev-server --progress",
-    "build": "webpack --config webpack.prod.config.js --progress --bail"
+    "build": "webpack --config webpack.prod.config.js --bail"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.32",
