@@ -13,6 +13,20 @@
         @include media-breakpoint-up(sm) {
             justify-content: flex-end;
         }
+        a {
+            color: $link-color;
+            text-decoration: none !important;
+            transition: all .3s ease-in;
+            &:hover {
+                transition: all .3s ease-out;
+                box-shadow: 0 -1px 0 0 white inset, 0 -2px 0 0 $link-hover-color inset;
+            }
+            &::selection {
+                color: white;
+                background: $link-color;
+                text-shadow: none;
+            }
+        }
     }
 }
 
@@ -73,4 +87,24 @@
     hr {
         padding-bottom: 2rem;
     }
+    .heart {
+        color: #deabab;
+    }
+}
+
+.s-index {
+    section {
+        max-width: 780px;
+        width: 100%;
+        padding-top: 2em;
+        border-left-color: rgba(0, 0, 0, 0.1);
+        border-left-style: solid;
+        border-left-width: 1px;
+        hr {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+    margin-top: 2rem;
+    margin-bottom: 4rem;
 }
