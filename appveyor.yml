@@ -5,6 +5,7 @@ branches:
 environment:
   access_token:
     secure: ifCELELzfwOyMxc0ThQaEIEi7xfAuUTLEkwxI4GYY4ZIkKN2bCm53893RaKOcMGO
+test: off
 
 install:
   - git submodule update --init --recursive
