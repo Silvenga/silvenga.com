@@ -1,0 +1,9 @@
+// See - ../node_modules/typeface-open-sans/index.css
+$base-path: "../../node_modules/typeface-open-sans/files";
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300;
+    src: local('Open Sans Light '), local('Open Sans-Light'), url($base-path + '/open-sans-latin-300.woff2') format('woff2'), url($base-path + '/open-sans-latin-300.woff') format('woff');
+}

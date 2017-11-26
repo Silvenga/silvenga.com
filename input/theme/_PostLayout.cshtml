@@ -1,38 +1,50 @@
-@{
-    Layout = "/theme/_Layout.cshtml";
-}
+@{ Layout = "/theme/_Layout.cshtml"; } 
+@{ var changes = Model.Get<int>("Changes"); } 
+@{ var editText = changes == 1 ? "edit" : "edits"; }
+@{ var lastSha = Model.Get<string>("LastSha").ToUpper(); }
+@{ var lastChange = Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy"); }
 
-<article class="article">
-    <div class="main-container">
-        <div class="article-header">
-            <h1 class="article-title">
-                @Model.String(MetaKeys.Title)
-            </h1>
-            <div class="article-date">
-                @{
-                    var changes = Model.Get<int>("Changes");
-                    var editText = changes == 1 ? "edit" : "edits";
-                }
-                @(Model.Get<DateTime>(DocumentKeys.Published).ToString("MMMM dd, yyyy"))
 
-                <span class="right article-git">
-                        Commit <a href="@(Model.Get<string>("LastCommitLink"))">@(Model.Get<string>("LastSha").ToUpper())</a> from @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get<int>("Changes")) @editText total
-                </span>
-            </div>
-        </div>
-        <div class="article-container">
-            <div class="article-content flow">
-                @RenderBody()
-            </div>
-            <!--{{#if @@enableDisques}}
-            <div class="article-comments">
-                <div id="disqus_thread"></div>
-            </div>
-            <script>
-                // Use for the first page load, afterwards everything can be handled in js.
-                var disqus_identifier = '{{post.id}}';
-            </script>
-            {{/if}}-->
+<article class="s-content pt-4 m-4 flex-column align-items-stretch">
+
+    <div class="flex-column d-flex justify-content-center align-items-center">
+        <div class="s-title">
+            <h2 class="display-4 text-center">@Model.String(MetaKeys.Title)</h2>
+            <hr>
         </div>
     </div>
-</article>           
+
+    <div class="justify-content-center mt-2">
+        <div class="s-article d-flex flex-column align-items-center">
+            @RenderBody()
+        </div>
+    </div>
+
+</article>
+
+    <!-- <article class="article">
+        <div class="main-container">
+            <div class="article-header">
+                <h1 class="article-title">
+                    @Model.String(MetaKeys.Title)
+                </h1>
+                <div class="article-date">
+                    @(Model.Get
+                    <DateTime>(DocumentKeys.Published).ToString("MMMM dd, yyyy"))
+
+                        <span class="right article-git">
+                            Commit
+                            <a href="@(Model.Get<string>("LastCommitLink"))">@(Model.Get
+                                <string>("LastSha").ToUpper())</a> from @(Model.Get
+                            <DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get
+                                <int>("Changes")) @editText total
+                        </span>
+                </div>
+            </div>
+            <div class="article-container">
+                <div class="article-content flow">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </article> -->

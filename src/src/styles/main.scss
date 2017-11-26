@@ -1,3 +1,76 @@
-body {
-    background-color: gray;
+@import "./bootstrap.scss";
+// https://gist.github.com/anschaef/d7552885c0e1f127cf8830d3bbf6e4b1
+.s-nav {
+    font-size: 1.5em;
+    .s-nav-left {
+        justify-content: center;
+        @include media-breakpoint-up(sm) {
+            justify-content: flex-start;
+        }
+    }
+    .s-nav-right {
+        justify-content: center;
+        @include media-breakpoint-up(sm) {
+            justify-content: flex-end;
+        }
+    }
+}
+
+.s-content {
+    .s-title {
+        max-width: 780px;
+        width: 100%;
+    }
+    .s-article {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        pre {
+            background-color: #f8f9fa;
+            border-radius: 0.15rem;
+            border-color: darken($color: #f8f9fa, $amount: 10%);
+            border-style: solid;
+            border-width: 1px;
+            padding: 10px;
+        }
+        code {
+            color: inherit;
+        }
+        &>* {
+            width: 100%;
+            max-width: 780px;
+        }
+        .img-fluid {
+            display: block;
+            margin: 0 auto; // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 0.15rem;
+            border-color: darken($color: #f8f9fa, $amount: 10%);
+            border-width: 1px;
+            border-style: solid;
+        }
+        blockquote {
+            background: #f8f9fa;
+            border-left: 5px solid darken($color: #f8f9fa, $amount: 10%);
+            margin: 1.5em 10px;
+            padding: 0.5em 10px;
+        }
+        blockquote p {
+            display: inline;
+        }
+        .s-gist {
+            width: 100%;
+        }
+    }
+}
+
+.s-footer {
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    padding-bottom: 2rem;
+    hr {
+        padding-bottom: 2rem;
+    }
 }
