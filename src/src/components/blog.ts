@@ -1,5 +1,6 @@
 import { GistHelper } from "./gists/gist-helper";
 import { Piwik } from "./piwik";
+import Lightense from "lightense-images";
 
 export class Blog {
 
@@ -18,5 +19,14 @@ export class Blog {
     public pageLoaded(): void {
         console.log("Page is loaded.");
         this._gistHelper.findAndLoadGists();
+        this.attachLightense();
+    }
+
+    private attachLightense() {
+        let images = document.querySelectorAll(".s-article img");
+        for (let image of images) {
+            image.setAttribute("data-background", "rgba(255, 255, 255, 0.6)")
+        }
+        Lightense(images);
     }
 }
