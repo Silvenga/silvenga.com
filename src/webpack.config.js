@@ -8,11 +8,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
         main: ["./src/main.ts", "./src/styles/main.scss"],
-        fonts: "./src/styles/fonts.scss",
         'gist-loader': "./src/components/gists/gist-loader"
     },
     output: {
-        path: path.resolve("dist"),
+        path: path.resolve("../dist"),
         filename: "[name].js",
         chunkFilename: "[name].js"
     },
@@ -41,15 +40,9 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
-                        {
-                            loader: "css-loader", options: {
-                                sourceMap: true
-                            }
-                        }, {
-                            loader: "sass-loader", options: {
-                                sourceMap: true
-                            }
-                        }
+                        { loader: 'css-loader', options: { importLoaders: 1 } },
+                        'postcss-loader',
+                        'sass-loader'
                     ]
                 })
             },
@@ -59,18 +52,27 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('[name].css'),
         new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, 'staging/**/*.html')),
+            paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
+            minimize: true
         }),
         new CopyWebpackPlugin([
             {
-                context: "staging",
+                context: "../output",
                 from: '**/*'
             }
         ]),
         new HtmlWebpackPlugin({
             filename: 'gist-loader.html',
             template: './src/components/gists/gist-loader.html',
-            inject: false
+            inject: false,
+            minify: {
+                removeAttributeQuotes: true,
+                collapseWhitespace: true,
+                html5: true,
+                minifyCSS: true,
+                removeComments: true,
+                removeEmptyAttributes: true,
+            },
         })
     ],
     node: {
@@ -79,8 +81,5 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, "./dummy"),
         port: 9000
-    },
-    watchOptions: {
-        poll: 200
     }
 }
