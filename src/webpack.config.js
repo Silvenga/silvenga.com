@@ -29,7 +29,11 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['@babel/preset-env']
+                            presets: ['@babel/preset-env'
+                                // , {
+                                //     "useBuiltIns": "usage"
+                                // }
+                            ]
                         }
                     },
                     'ts-loader'
@@ -59,6 +63,13 @@ module.exports = {
             {
                 context: "../output",
                 from: '**/*'
+            }
+        ]),
+        new CopyWebpackPlugin([
+            {
+                context: "../output",
+                from: '404/index.html',
+                to: '404.html'
             }
         ]),
         new HtmlWebpackPlugin({
