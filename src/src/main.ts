@@ -7,4 +7,5 @@ import { Blog } from './components/blog';
 // import "bootstrap.native/dist/bootstrap-native-v4.js"
 
 let blog = new Blog();
+blog.siteLoaded();
 blog.pageLoaded();
