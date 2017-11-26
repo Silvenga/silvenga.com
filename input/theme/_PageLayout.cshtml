@@ -1,25 +1,28 @@
-@{
-    Layout = "/theme/_Layout.cshtml";
-}
+@{ Layout = "/theme/_Layout.cshtml"; } 
+@{ var changes = Model.Get<int>("Changes"); } 
+@{ var lastSha = Model.String("LastSha"); }
+@{ var lastChange = Model.Get<DateTimeOffset>("LastChange").ToString("MMMM dd, yyyy"); }
 
-<article class="article">
-    <div class="main-container">
-        <div class="article-header">
-            @{
-                var changes = Model.Get<int>("Changes");
-                var editText = changes == 1 ? "edit" : "edits";
-            }
-            <h1 class="article-title">
-                @Model.String(MetaKeys.Title)
-            </h1>
-            <span class="article-git left">
-                Commit <a href="@(Model.Get<string>("LastCommitLink"))">@(Model.Get<string>("LastSha").ToUpper())</a> from @(Model.Get<DateTimeOffset>("LastChange").ToString("MM-dd-yyyy")) - @(Model.Get<int>("Changes")) @editText total
-            </span>
-        </div>
-        <div class="article-container">
-            <div class="article-content flow">
-                @RenderBody()
+<article class="s-content pt-4 m-4 flex-column align-items-stretch">
+
+    <div class="flex-column d-flex justify-content-center align-items-center">
+        <div class="s-title">
+            <h2 class="display-4 text-center">@Model.String(MetaKeys.Title)</h2>
+            <div class="text-center">
+                Created on <date>@Model.DateTime(DocumentKeys.Published).ToString("MMMM dd, yyyy")</date>.
+                
             </div>
+            <div class="text-center">
+                Last commit <span class="text-uppercase">@lastSha</span> on <date>@lastChange</date> - @changes total changes.
+            </div>
+            <hr>
         </div>
     </div>
+
+    <div class="justify-content-center mt-2">
+        <div class="s-article d-flex flex-column align-items-center">
+            @RenderBody()
+        </div>
+    </div>
+
 </article>
