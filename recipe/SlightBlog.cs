@@ -131,24 +131,6 @@ namespace Wyam.SlightBlog
                 new WriteFiles()
             );
 
-            //engine.Pipelines.Add(PipelineKeys.RenderJs,
-            //    new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/js/*.js"),
-            //    new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
-            //    new Combine(),
-            //    new MinifyJs(),
-            //    new WriteFiles((doc, ctx) => "min.js")
-            //);
-
-            //engine.Pipelines.Add(PipelineKeys.RenderCss,
-            //    new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/less/*.less"),
-            //    new Less.Less(),
-            //    new Concat(new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/css/*.css")),
-            //    new OrderBy((doc, ctx) => doc.FilePath(Keys.SourceFileName)),
-            //    new Combine(),
-            //    new MinifyCss(),
-            //    new WriteFiles((doc, ctx) => "min.css")
-            //);
-
             engine.Pipelines.Add("Sitemap",
                 new Documents(PipelineKeys.WriteContent),
                 new Meta("SitemapItem", (doc, ctx) =>
