@@ -75,7 +75,7 @@ namespace Wyam.SlightBlog
             engine.Pipelines.Add(PipelineKeys.RenderPosts,
                 new Documents(PipelineKeys.Posts),
                 new Razor.Razor()
-                    .WithLayout((doc, ctx) => $"/{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/_PostLayout.cshtml"),
+                    .WithLayout((doc, ctx) => $"/{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/_PageLayout.cshtml"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) =>
                 {
                     var slug = doc.Get(DocumentKeys.Slug, doc.FilePath(Keys.SourceFileName).FileNameWithoutExtension.FullPath);
@@ -260,7 +260,7 @@ This is my first post!");
                              var relativePathSegments = x.Source.Segments.Reverse()
                                                          .Take(x.Source.Segments.Length - context.FileSystem.RootPath.Segments.Length)
                                                          .Reverse();
-                             var githubFileUrl = context.String(MetaKeys.GithubBasePath) + "/tree/master/" + string.Join(" / ", relativePathSegments);
+                             var githubFileUrl = context.String(MetaKeys.GithubBasePath) + "/tree/master/" + string.Join("/", relativePathSegments);
                              var githubCommitUrl = context.String(MetaKeys.GithubBasePath) + "/commit/" + lastCommit?.Sha;
 
                              var metaData = new Dictionary<string, object>
