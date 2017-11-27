@@ -12,7 +12,7 @@
         <hr>
         <div>
             Created on <date>@(doc.DateTime(DocumentKeys.Published).ToString("MMM d, yyyy"))</date>, 
-            last commit <span class="text-uppercase">@doc.String("LastSha")</span> on <date>@(doc.Get<DateTimeOffset>("LastChange").ToString("MMM d, yyyy"))</date>.
+            last commit <a href='@doc.String("LastCommitLink")' class="text-uppercase">@doc.String("LastSha")</a> on <date>@(doc.Get<DateTimeOffset>("LastChange").ToString("MMM d, yyyy"))</date>.
         </div>
 
     </section>

@@ -2,6 +2,7 @@
 @{ var changes = Model.Get<int>("Changes"); } 
 @{ var lastSha = Model.String("LastSha"); }
 @{ var lastChange = Model.Get<DateTimeOffset>("LastChange").ToString("MMMM dd, yyyy"); }
+@{ var commitLink = Model.String("LastCommitLink"); }
 
 <article class="s-content pt-4 m-4 flex-column align-items-stretch">
 
@@ -13,7 +14,7 @@
                 
             </div>
             <div class="text-center">
-                Last commit <span class="text-uppercase">@lastSha</span> on <date>@lastChange</date> - @changes total changes.
+                Last commit <a class="text-uppercase" href="@commitLink">@lastSha</a> on <date>@lastChange</date> - @changes total changes.
             </div>
             <hr>
         </div>
