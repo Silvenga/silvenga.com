@@ -26,16 +26,7 @@ module.exports = {
             {
                 test: /\.ts$/,
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'
-                                // , {
-                                //     "useBuiltIns": "usage"
-                                // }
-                            ]
-                        }
-                    },
+                    'babel-loader',
                     'ts-loader'
                 ],
             },
