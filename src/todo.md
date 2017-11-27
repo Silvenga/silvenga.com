@@ -1,11 +1,11 @@
 - [ ] Changes vs change.
-- [ ] Pages need styling.
+- [X] Pages need styling.
 - [ ] Ajax page loading.
 - [ ] Hash cache breaking.
 - [ ] NPM packages cleanup
-- [ ] CLeanup old files.
-- [ ] Image popups.
+- [ ] Cleanup old files.
+- [X] Image popups.
 - [ ] Selector coloring.
 - [ ] Link decorations.
 - [ ] Cleanup Wyam recipe.
-- [ ] Link to github repo from commit hash.
+- [X] Link to github repo from commit hash.
