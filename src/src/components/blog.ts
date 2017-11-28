@@ -22,13 +22,14 @@ export class Blog {
     public siteLoaded(): void {
         console.log("Site is ready.");
         this._piwik.attach();
-
         this._ajaxLoader.loadCompleted(() => this.pageLoaded());
+        this._ajaxLoader.loadCompleted((_: string, position: number) => {
+            window.scrollTo(0, position)
+        });
     }
 
     public pageLoaded(): void {
         console.log("Page is ready.");
-
         this._gistHelper.findAndLoadGists();
         this._lightenseLoader.attachHandlers();
         this._ajaxLoader.attachHandlers();

@@ -1,10 +1,10 @@
 import unfetch from "unfetch";
 
-export type onCompleted = (newLocal: string) => void;
+export type OnCompleted = (newLocal: string, position: number) => void;
 
 export class AjaxLoader {
 
-    private _onCompletedCallbacks: onCompleted[] = [];
+    private _onCompletedCallbacks: OnCompleted[] = [];
 
     public attachHandlers(): void {
 
@@ -15,16 +15,19 @@ export class AjaxLoader {
         }
 
         window.onpopstate = (event: PopStateEvent) => {
-            console.log(event);
+
             let state = event.state as HistoryState;
             let newLocal: string;
+            let newPosition: number;
             if (state != null && state.newLocal != null) {
                 newLocal = state.newLocal;
+                newPosition = state.position;
             } else {
                 let newWindow = event.currentTarget as Window;
                 newLocal = newWindow.location.pathname;
+                newPosition = 0;
             }
-            this.loadRemote(newLocal);
+            this.loadRemote(newLocal, newPosition);
         }
 
         var aTags = document.querySelectorAll("a");
@@ -33,13 +36,13 @@ export class AjaxLoader {
         }
     }
 
-    public loadCompleted(callback: (newLocal: string) => void) {
+    public loadCompleted(callback: OnCompleted) {
         this._onCompletedCallbacks.push(callback);
     }
 
-    private onLoadCompleted(newLocal: string) {
+    private onLoadCompleted(newLocal: string, position: number) {
         for (let callback of this._onCompletedCallbacks) {
-            callback(newLocal);
+            callback(newLocal, position);
         }
     }
 
@@ -61,8 +64,13 @@ export class AjaxLoader {
 
         event.preventDefault();
         let remoteUrl = element.href;
+
+        this.saveCurrentState();
+
         return this.loadRemote(remoteUrl)
-            .then(x => history.pushState(new HistoryState(remoteUrl), null, remoteUrl));
+            .then(x => {
+                history.pushState(new HistoryState(remoteUrl, 0), null, remoteUrl)
+            });
     }
 
     private replaceElement(local: Element, remote: Element): void {
@@ -76,7 +84,7 @@ export class AjaxLoader {
         return html;
     }
 
-    public async loadRemote(remoteUrl: string): Promise<void> {
+    public async loadRemote(remoteUrl: string, position: number = 0): Promise<void> {
 
         console.log(`Ajax navigation to ${remoteUrl} in progress.`);
 
@@ -93,9 +101,16 @@ export class AjaxLoader {
         this.replaceElement(localTitle, remoteTitle);
         this.replaceElement(localAjaxContainer, remoteAjaxContainer);
 
-        this.onLoadCompleted(remoteUrl);
+        this.onLoadCompleted(remoteUrl, position);
 
         console.log(`Ajax navigation completed.`);
+    }
+
+    private saveCurrentState() {
+
+        let currentPosition = window.pageYOffset;
+        let currentPath = window.location.pathname;
+        history.replaceState(new HistoryState(currentPath, currentPosition), null);
     }
 }
 
@@ -103,7 +118,10 @@ class HistoryState {
 
     public newLocal: string;
 
-    constructor(newLocal: string) {
+    public position: number;
+
+    constructor(newLocal: string, position: number) {
         this.newLocal = newLocal;
+        this.position = position;
     }
 }
