@@ -1,4 +1,4 @@
-import unfetch from "unfetch";
+import unfetch from 'unfetch';
 
 export type OnCompleted = (newLocal: string, position: number) => void;
 

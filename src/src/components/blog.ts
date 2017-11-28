@@ -1,9 +1,7 @@
-import { GistHelper } from "./gists/gist-helper";
-import { Piwik } from "./piwik";
-
-import unfetch from "unfetch";
-import { AjaxLoader } from "./ajax-loader";
-import { LightenseLoader } from "./lightense-loader";
+import { AjaxLoader } from './ajax-loader';
+import { GistHelper } from './gists/gist-helper';
+import { LightenseLoader } from './lightense-loader';
+import { Piwik } from './piwik';
 
 export class Blog {
 
