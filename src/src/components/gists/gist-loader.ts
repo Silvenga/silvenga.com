@@ -14,7 +14,7 @@ function getParams(query: string): { [key: string]: string } {
         }, {});
 };
 
-let params = getParams(document.location.search);
+let params = getParams(document.location.hash);
 let gistId = params[dataGistIdKey];
 
 if (gistId == null) {

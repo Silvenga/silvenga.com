@@ -12,7 +12,7 @@ export class GistHelper {
         let gistId = element.getAttribute(dataGistIdKey);
 
         var iframe = document.createElement("iframe");
-        iframe.src = `/gist-loader.html?${dataGistIdKey}=${gistId}`;
+        iframe.src = `/gist-loader.html#${dataGistIdKey}=${gistId}`;
         iframe.frameBorder = '0';
         iframe.scrolling = 'no';
         iframe.className = "s-gist";
