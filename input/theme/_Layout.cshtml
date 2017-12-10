@@ -1,10 +1,11 @@
 @{ 
 	string Title = Model.String(MetaKeys.Title);
     string Description = Model.String("Description");
+    string Twitter = Model.String("Twitter");
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
     <meta http-equiv="content-language" content="en-us">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -15,6 +16,15 @@
 
     <title>@Title</title>
     <meta name="description" content="@Description">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@Title">
+    <meta property="og:description" content="@Description">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@Twitter">
+    <meta name="twitter:creator" content="@Twitter">
 
     <link rel="stylesheet" href='@Context.GetLink("/main.css")'>
 </head>

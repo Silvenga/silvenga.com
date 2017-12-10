@@ -34,6 +34,11 @@ namespace Wyam.SlightBlog
             engine.Settings[MetaKeys.ThemePath] = new DirectoryPath("theme");
             engine.Settings[MetaKeys.GithubBasePath] = "https://github.com/Silvenga/silvenga.com"; // No slash
 
+            engine.Settings["Host"] = "https://silvenga.com"; // No slash
+            engine.Settings["WebsiteName"] = "Silvenga.com";
+
+            engine.Settings["Twitter"] = "@Silvenga";
+
             engine.Pipelines.Add(PipelineKeys.Posts,
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
                 new GitMeta(),
