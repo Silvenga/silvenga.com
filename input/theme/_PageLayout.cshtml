@@ -9,8 +9,13 @@
 {
   "@@context" : "http://schema.org",
   "@@type" : "Article",
-  "name" : "@Model.String("Title")",
-  "datePublished" : "@publishDate.ToString("o")"
+  "headline" : "@Model.String("Title")",
+  "datePublished" : "@publishDate.ToString("o")",
+  "dateModified": "@lastChange.ToString("o")",
+  "author": {
+      "name": "Mark Lopez"
+  },
+  "description": "@Model.String("Description")"
 }
 </script>
 
@@ -20,8 +25,7 @@
         <div class="s-title">
             <h1 class="display-4 text-center">@Model.String(MetaKeys.Title)</h1>
             <div class="text-center">
-                Created on <time datetime='@publishDate.ToString("o")'>@publishDate.ToString("MMMM dd, yyyy")</time>.
-                
+                Created on <time datetime='@publishDate.ToString("o")'>@publishDate.ToString("MMMM dd, yyyy")</time>.                
             </div>
             <div class="text-center">
                 Last commit <a class="text-uppercase" href="@commitLink">@lastSha</a> on <time datetime='@lastChange.ToString("o")'>@lastChange.ToString("MMMM dd, yyyy")</time> - @changes total changes.
