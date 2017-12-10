@@ -1,5 +1,6 @@
 Title: Silvenga's Penlighter
 Published: 14 Mar 14
+Description: I present a solution to disappearing mice, a PenLighter!
 ---
 
 ![](/content/images/2014/Mar/tablet_use_bamboo.jpg)

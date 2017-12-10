@@ -1,5 +1,6 @@
-Title: "[WIP] OpenVPN Obfuscating"
+Title: Notes on OpenVPN Obfuscating
 Published: 24 Jan 15
+Description: Some notes on how to setup OpenVPN obfuscation using Obfproxy.
 ---
 
 > This is a work in progress. I would very much like to make a GUI for the windows version of obfsproxy, and a better wrapper for Ubuntu. 

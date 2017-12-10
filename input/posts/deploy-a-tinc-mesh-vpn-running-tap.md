@@ -1,5 +1,6 @@
 Title: Deploy a Tinc Mesh VPN Running TAP
 Published: 25 Jul 14
+Description: Yet another how-to on setting up a mesh network using Tinc (in TAP mode).
 ---
 
 ![Mesh Network](/content/images/2014/Jul/generalMesh.gif)

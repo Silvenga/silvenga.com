@@ -1,4 +1,5 @@
 Title: A Humble Disclaimer
+Description: Everysite needs a disclaimer, this is, humbly mine.
 ---
 
 This is my domain. Thusly so, the information and my opinions under this domain ([silvenga.com](https://silvenga.com)) are provided as is with no warranties.

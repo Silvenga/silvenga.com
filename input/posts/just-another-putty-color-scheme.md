@@ -1,5 +1,6 @@
 Title: Just Another Putty Color Scheme
 Published: 23 Aug 14
+Description: Just another color scheme for Putty, designed based on my personal preferences.
 ---
 
 ![Screenshot of the new colors](/content/images/2014/Aug/2014-08-23_19-51-12.png)

@@ -22,10 +22,12 @@ namespace Wyam.SlightBlog
 {
     public class SlightBlog : IRecipe
     {
+        public static Action<string> Warn = (string message) => Common.Tracing.Trace.Warning(message);
+
         public void Apply(IEngine engine)
         {
             // Global metadata defaults
-            engine.Settings[MetaKeys.Title] = "My Blog";
+            engine.Settings[MetaKeys.Title] = "Silvenga.com";
             engine.Settings[MetaKeys.MarkdownExtensions] = "advanced+bootstrap";
             engine.Settings[MetaKeys.PostsPath] = new DirectoryPath("posts");
             engine.Settings[MetaKeys.PagesPath] = new DirectoryPath("pages");
@@ -41,17 +43,18 @@ namespace Wyam.SlightBlog
                 {
                     if (!doc.ContainsKey(DocumentKeys.Published) || doc.Get(DocumentKeys.Published) == null)
                     {
-                        Common.Tracing.Trace.Warning($"Skipping {doc.Source} due to not having {DocumentKeys.Published} metadata");
+                        Warn($"Skipping {doc.Source} due to not having {DocumentKeys.Published} metadata");
                         return false;
                     }
                     if (doc.Get<DateTime>(DocumentKeys.Published) > DateTime.Now)
                     {
-                        Common.Tracing.Trace.Warning(
+                        Warn(
                             $"Skipping {doc.Source} due to having {DocumentKeys.Published} metadata of {doc.Get<DateTime>(DocumentKeys.Published)} in the future (current date and time is {DateTime.Now})");
                         return false;
                     }
                     return true;
-                })
+                }),
+                ValidateMetadata()
             );
 
             engine.Pipelines.Add(PipelineKeys.Pages,
@@ -63,7 +66,8 @@ namespace Wyam.SlightBlog
                     new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.cshtml"),
                     new FrontMatter(new Yaml.Yaml())
                 ),
-                OrderByPublishDate()
+                OrderByPublishDate(),
+               ValidateMetadata()
             );
 
             engine.Pipelines.Add(PipelineKeys.Foundation,
@@ -190,6 +194,37 @@ namespace Wyam.SlightBlog
             return $"{baseDirectory}/{slashed}/index.html";
         }
 
+        private IModule ValidateMetadata()
+        {
+            return new Execute((doc, ctx) =>
+            {
+                var source = doc.Source;
+                var title = doc.String("Title");
+                var description = doc.String("Description");
+
+                if (title == null)
+                {
+                    Warn($"The title should exist for {source}.");
+                }
+                else if (title.Length > 55)
+                {
+                    Warn($"The title should be no longer then 55 charactors for {source}.");
+                }
+
+
+                if (description == null)
+                {
+                    Warn($"The description should exist for {source}.");
+                }
+                else if (description.Length > 150)
+                {
+                    Warn($"The description should be no longer then 150 charactors for {source}.");
+                }
+
+                return null;
+            });
+        }
+
         private IModule OrderByPublishDate()
         {
             return new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published))
@@ -231,7 +266,7 @@ This is my first post!");
                                                 Date = c.Get<DateTimeOffset>("AuthorWhen"),
                                                 Author = c.String("AuthorName"),
                                                 Email = c.String("AuthorEmail"),
-                                                Sha = c.String("Sha")?.Substring(0, 8)
+                                                Sha = c.String("Sha")?.Substring(0, 8),
                                             })
                                             .ToList();
 

@@ -1,5 +1,6 @@
 Title: Lazy View - A jQuery Plugin
-Published: 22 Jun 14 
+Published: 22 Jun 14
+Description: Let content flow in via another jQuery plugin.
 ---
 
 I hate slow websites. A month or so ago I had to log onto Delta.com. I was largely unimpressed with the speed in which it loaded. I could wait for seconds until text would appear. I would wait even longer for the site to become responsive. 

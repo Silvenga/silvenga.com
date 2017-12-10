@@ -1,5 +1,6 @@
 Title: OpenVPN Sheathing
 Published: 18 Apr 14
+Description: Sheathing OpenVPN traffic through a SSL tunnel using STunnel.
 ---
 
 ![OpenVPN Logo](/content/images/2016/10/openvpntech_logo1.png)

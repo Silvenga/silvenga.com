@@ -1,5 +1,6 @@
 Title: The Perfect Singleton Implementation in Java
 Published: 01 May 14
+Description: Randomly, a Java singleton implmentation.
 ---
 
 For the longest time I've read books describing ways to implement the Singleton pattern. Many of these used some type of thread synchronization and was generally hacky. I've found the perfect solution and alternative. 

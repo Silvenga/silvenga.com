@@ -1,5 +1,6 @@
 Title: Ghost Scaffolding
 Published: 16 Dec 14
+Description: A different take on how to host a Ghost instance, while using NPM as an upgrade manager.
 ---
 
 ![](/content/images/2014/12/ghost_logo-2.jpg)

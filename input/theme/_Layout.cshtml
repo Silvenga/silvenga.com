@@ -1,19 +1,21 @@
 @{ 
-	string Title = Model.String(MetaKeys.Title); 
-    if (Title == "My Blog"){
-        Title = "Silvenga";
-    }
+	string Title = Model.String(MetaKeys.Title);
+    string Description = Model.String("Description");
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@Title</title>
     <meta http-equiv="content-language" content="en-us">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content="Wyam" />
+    <meta name="generator" content="Wyam + Webpack" />
+
+    <title>@Title</title>
+    <meta name="description" content="@Description">
+
     <link rel="stylesheet" href='@Context.GetLink("/main.css")'>
 </head>
 <body>

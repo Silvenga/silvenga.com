@@ -1,4 +1,5 @@
 Title: Projects
+Description: A list of projects of mine.
 ---
 
 I write code because I find it fun - I love experimenting with new and emerging technologies. Below are projects of mine that I've used as use cases for exploring some of the new technologies that I'm interested in. 

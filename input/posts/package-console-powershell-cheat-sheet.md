@@ -1,5 +1,6 @@
 Title: Package Console Powershell Cheat Sheet
 Published: 19 Aug 16
+Description: A personal cheat sheet on using PowerShell commands via the Package Console.
 ---
 
 A cheat sheet of all the cool things that knowing PowerShell can help with when dealing with Visual Studio's Package Console. 

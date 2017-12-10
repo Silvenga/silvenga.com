@@ -1,4 +1,5 @@
 Title: Keybase
+Description: A keybase verification.
 ---
 
 I hereby claim:

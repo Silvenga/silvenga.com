@@ -1,4 +1,5 @@
 Title: About
+Description: About myself, Silvenga!
 ---
 
 ## Who am I?
