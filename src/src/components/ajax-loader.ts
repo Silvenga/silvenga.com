@@ -93,12 +93,15 @@ export class AjaxLoader {
         let remote = this.createFragment(text);
 
         let remoteTitle = remote.querySelector("title");
+        let remoteDesciption = remote.querySelector('meta[name="description"]');
         let remoteAjaxContainer = remote.getElementById("ajax-container");
 
         let localTitle = document.querySelector("title");
+        let localDesciption = document.querySelector('meta[name="description"]');
         let localAjaxContainer = document.getElementById("ajax-container");
 
         this.replaceElement(localTitle, remoteTitle);
+        this.replaceElement(localDesciption, remoteDesciption);
         this.replaceElement(localAjaxContainer, remoteAjaxContainer);
 
         this.onLoadCompleted(remoteUrl, position);
