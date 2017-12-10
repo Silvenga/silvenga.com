@@ -1,7 +1,8 @@
 @{ Layout = "/theme/_Layout.cshtml"; } 
+@{ var publishDate = Model.DateTime(DocumentKeys.Published); }
 @{ var changes = Model.Get<int>("Changes"); } 
 @{ var lastSha = Model.String("LastSha"); }
-@{ var lastChange = Model.Get<DateTimeOffset>("LastChange").ToString("MMMM dd, yyyy"); }
+@{ var lastChange = Model.Get<DateTimeOffset>("LastChange"); }
 @{ var commitLink = Model.String("LastCommitLink"); }
 
 <article class="s-content pt-4 m-4 flex-column align-items-stretch">
@@ -10,11 +11,11 @@
         <div class="s-title">
             <h2 class="display-4 text-center">@Model.String(MetaKeys.Title)</h2>
             <div class="text-center">
-                Created on <date>@Model.DateTime(DocumentKeys.Published).ToString("MMMM dd, yyyy")</date>.
+                Created on <time datetime='@publishDate.ToString("o")'>@publishDate.ToString("MMMM dd, yyyy")</time>.
                 
             </div>
             <div class="text-center">
-                Last commit <a class="text-uppercase" href="@commitLink">@lastSha</a> on <date>@lastChange</date> - @changes total changes.
+                Last commit <a class="text-uppercase" href="@commitLink">@lastSha</a> on <time datetime='@lastChange.ToString("o")'>@lastChange.ToString("MMMM dd, yyyy")</time> - @changes total changes.
             </div>
             <hr>
         </div>
