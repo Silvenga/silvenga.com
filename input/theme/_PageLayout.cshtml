@@ -5,6 +5,15 @@
 @{ var lastChange = Model.Get<DateTimeOffset>("LastChange"); }
 @{ var commitLink = Model.String("LastCommitLink"); }
 
+<script type="application/ld+json">
+{
+  "@@context" : "http://schema.org",
+  "@@type" : "Article",
+  "name" : "@Model.String("Title")",
+  "datePublished" : "@publishDate.ToString("o")"
+}
+</script>
+
 <article class="s-content pt-4 m-4 flex-column align-items-stretch">
 
     <div class="flex-column d-flex justify-content-center align-items-center">
