@@ -9,7 +9,7 @@
 
     <div class="flex-column d-flex justify-content-center align-items-center">
         <div class="s-title">
-            <h2 class="display-4 text-center">@Model.String(MetaKeys.Title)</h2>
+            <h1 class="display-4 text-center">@Model.String(MetaKeys.Title)</h1>
             <div class="text-center">
                 Created on <time datetime='@publishDate.ToString("o")'>@publishDate.ToString("MMMM dd, yyyy")</time>.
                 
@@ -22,9 +22,9 @@
     </div>
 
     <div class="justify-content-center mt-2">
-        <div class="s-article d-flex flex-column align-items-center">
+        <main class="s-article d-flex flex-column align-items-center" role="main">
             @RenderBody()
-        </div>
+        </main>
     </div>
 
 </article>
