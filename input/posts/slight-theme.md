@@ -5,7 +5,7 @@ Description: A Ghost blog theme.
 
 ## Introduction
 
-![](/content/images/2014/09/2014-09-28_11-35-03.png)
+![Picture of theme on my blog.](/content/images/2014/09/2014-09-28_11-35-03.png)
 
 A minimal theme, powered by Ghost. Live demo: (https://silvenga.com) (using the dev branch).
 

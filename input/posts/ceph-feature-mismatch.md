@@ -3,7 +3,7 @@ Description: Getting Ceph to place nice with Kubernetes.
 ---
 
 ^^^
-![](/content/images/2017/kubernetes-plus-ceph.png)
+![Kubernetes + Ceph](/content/images/2017/kubernetes-plus-ceph.png)
 ^^^ Source: [habrahabr.ru](https://habrahabr.ru/company/flant/blog/329666/)
 
 I needed a better backing storage system for my Kubernetes cluster - I am done with NFS (so many problems). In the end I decided I'll go for a Ceph cluster after being rather impressed by the feature set.
