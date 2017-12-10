@@ -10,11 +10,11 @@ Description: Yet another weblog for the masses.
     var lastChange = doc.Get<DateTimeOffset>("LastChange");
     <section class="px-4">
         <a href="@Context.GetLink(doc)/">
-            <h2>@doc.String(MetaKeys.Title)</h2>
+            <div class="entry-title">@doc.String(MetaKeys.Title)</div>
         </a>
-        <div>@doc.String("Description")</div> 
+        <div class="entry-description">@doc.String("Description")</div> 
         <hr>
-        <div class="text-muted">
+        <div class="text-muted ">
             Created on <time datetime='@publishDate.ToString("o")'>@publishDate.ToString("MMM d, yyyy")</time>, 
             last commit <a href='@doc.String("LastCommitLink")' class="text-uppercase">@doc.String("LastSha")</a> on <time datetime='@lastChange.ToString("o")'>@lastChange.ToString("MMM d, yyyy")</time>.
         </div>
