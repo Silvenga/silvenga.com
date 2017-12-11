@@ -1,5 +1,7 @@
 declare var window: any;
 
+const PiwikHost: string = "https://piwik.silvenga.com/";
+
 export class Piwik {
 
     constructor() {
@@ -13,13 +15,15 @@ export class Piwik {
     public attach() {
         window._paq.push(['enableHeartBeatTimer']);
         window._paq.push(['enableLinkTracking']);
-        (function () {
-            var u = "https://piwik.silvenga.com/";
-            window._paq.push(['setTrackerUrl', u + 'piwik.php']);
-            window._paq.push(['setSiteId', '3']);
-            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
-        })();
+        window._paq.push(['setTrackerUrl', PiwikHost + 'piwik.php']);
+        window._paq.push(['setSiteId', '3']);
+
+        let scriptTag = document.createElement('script')
+        scriptTag.async = true;
+        scriptTag.defer = true; scriptTag.src = PiwikHost + 'piwik.js';
+
+        let currentScriptTag = document.getElementsByTagName('script')[0];
+        currentScriptTag.parentNode.insertBefore(scriptTag, currentScriptTag);
     }
 
     public trackPageLoad(url: string, title: string, responseTime: number) {
