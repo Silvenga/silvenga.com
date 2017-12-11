@@ -8,4 +8,4 @@ import { Blog } from './components/blog';
 
 let blog = new Blog();
 blog.siteLoaded();
-blog.pageLoaded();
+blog.pageLoaded(document.location.href, document.title, 0, 0);

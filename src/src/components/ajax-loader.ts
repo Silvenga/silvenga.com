@@ -1,6 +1,7 @@
 import unfetch from 'unfetch';
+import { Timer } from './timer';
 
-export type OnCompleted = (newLocal: string, position: number) => void;
+export type OnCompleted = (url: string, title: string, scrollPosition: number, generationTime: number) => void;
 
 export class AjaxLoader {
 
@@ -40,9 +41,9 @@ export class AjaxLoader {
         this._onCompletedCallbacks.push(callback);
     }
 
-    private onLoadCompleted(newLocal: string, position: number) {
+    private onLoadCompleted(newUrl: string, newTitle: string, scrollPosition: number, generationTime: number) {
         for (let callback of this._onCompletedCallbacks) {
-            callback(newLocal, position);
+            callback(newUrl, newTitle, scrollPosition, generationTime);
         }
     }
 
@@ -88,7 +89,10 @@ export class AjaxLoader {
 
         console.log(`Ajax navigation to ${remoteUrl} in progress.`);
 
+        let timer = new Timer();
+        timer.start();
         let response: Response = await unfetch(remoteUrl);
+        let responseTime = timer.stop();
         let text = await response.text();
         let remote = this.createFragment(text);
 
@@ -104,9 +108,11 @@ export class AjaxLoader {
         this.replaceElement(localDesciption, remoteDesciption);
         this.replaceElement(localAjaxContainer, remoteAjaxContainer);
 
-        this.onLoadCompleted(remoteUrl, position);
+        let remoteTitleStr = remoteTitle.text;
 
-        console.log(`Ajax navigation completed.`);
+        this.onLoadCompleted(remoteUrl, remoteTitleStr, position, responseTime);
+
+        console.log(`Ajax navigation completed in ${responseTime}.`);
     }
 
     private saveCurrentState() {
