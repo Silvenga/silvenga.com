@@ -1,9 +1,9 @@
 - [ ] Changes vs change.
 - [X] Pages need styling.
-- [ ] Ajax page loading.
+- [X] Ajax page loading.
 - [ ] Hash cache breaking.
 - [ ] NPM packages cleanup
-- [ ] Cleanup old files.
+- [X] Cleanup old files.
 - [X] Image popups.
 - [ ] Selector coloring.
 - [ ] Link decorations.
