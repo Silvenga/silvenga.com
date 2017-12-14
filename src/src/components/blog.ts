@@ -22,6 +22,7 @@ export class Blog {
 
     private _onSiteLoaded: SiteLoaded[] = [
         () => console.log("Site is ready."),
+        () => this._ajaxLoader.attachGlobalHandlers(),
         () => this._piwik.attach(),
         () => this._ajaxLoader.loadCompleted((url, title, scrollPosition, responseTime) => this.pageLoaded(url, title, scrollPosition, responseTime)),
         () => this._ajaxLoader.loadCompleted((url, title, scrollPosition) => {

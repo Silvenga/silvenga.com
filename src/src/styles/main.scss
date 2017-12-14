@@ -29,6 +29,16 @@
             }
         }
     }
+    &#loading-bar::after {
+        content: " ";
+        border-style: solid;
+        border-color: #868e96;
+        border-width: 0;
+        position: absolute;
+        left: 0;
+        width: 0;
+        transition: width 1s;
+    }
 }
 
 .s-content {

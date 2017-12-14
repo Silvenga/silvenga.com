@@ -7,10 +7,9 @@ export class AjaxLoader {
 
     private _onCompletedCallbacks: OnCompleted[] = [];
 
-    public attachHandlers(): void {
+    public attachGlobalHandlers(): void {
 
-        let historyApiSupported = window.history != null && window.history.pushState != null;
-        if (!historyApiSupported) {
+        if (!this.supported) {
             console.log("History API is not supported. No ajax loading will be used.");
             return;
         }
@@ -31,6 +30,15 @@ export class AjaxLoader {
             this.loadRemote(newLocal, newPosition);
         }
 
+        this.addStyles();
+    }
+
+    public attachHandlers(): void {
+
+        if (!this.supported) {
+            return;
+        }
+
         var aTags = document.querySelectorAll("a");
         for (let aTag of aTags) {
             this.attachHandler(aTag);
@@ -45,6 +53,10 @@ export class AjaxLoader {
         for (let callback of this._onCompletedCallbacks) {
             callback(newUrl, newTitle, scrollPosition, generationTime);
         }
+    }
+
+    public get supported() {
+        return window.history != null && window.history.pushState != null;
     }
 
     private attachHandler(aTag: HTMLAnchorElement): void {
@@ -91,7 +103,9 @@ export class AjaxLoader {
 
         let timer = new Timer();
         timer.start();
+        this.startLoading();
         let response: Response = await unfetch(remoteUrl);
+        this.stopLoading();
         let responseTime = timer.stop();
         let text = await response.text();
         let remote = this.createFragment(text);
@@ -120,6 +134,31 @@ export class AjaxLoader {
         let currentPosition = window.pageYOffset;
         let currentPath = window.location.pathname;
         history.replaceState(new HistoryState(currentPath, currentPosition), null);
+    }
+
+    private addStyles() {
+
+        const styleText = `
+            .s-nav#loading-bar.loading::after { 
+                width: 100%;
+                border-width: 1px;
+            }
+        `;
+
+        let styleTag = document.createElement('style');
+        styleTag.appendChild(document.createTextNode(styleText));
+
+        document.head.appendChild(styleTag);
+    }
+
+    private startLoading() {
+        let loadingBar = document.getElementById("loading-bar");
+        loadingBar.classList.add("loading");
+    }
+
+    private stopLoading() {
+        let loadingBar = document.getElementById("loading-bar");
+        loadingBar.classList.remove("loading");
     }
 }
 
