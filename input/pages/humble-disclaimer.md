@@ -16,4 +16,8 @@ All the writing of my own I release under the [Creative Commons Attribution-Shar
 
 I will never share personal information with third parties nor do I store any information about your visits other than to analyze your browsing experiences through the use of cookies. I use [Piwik](https://piwik.org/privacy/) to perform web analytics, thusly I maintain complete control over any collected information. If the reader has allergies to nuts or milk they can turn off the use of cookies at anytime by changing the specific browser settings.
 
-This disclaimer is subject to change without notice and was last updated on December 16, 2014. The reason for change was for grammar corrections. 
+This disclaimer is subject to change without notice and was last updated on December 16, 2014. The reason for change was for grammar corrections.
+
+## Attributions
+
+The favicon is from the works of `text align left` by Thomas Helbig from the [Noun Project](https://thenounproject.com/search/?q=text&i=120364).

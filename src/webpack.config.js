@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
     entry: {
@@ -75,7 +76,24 @@ module.exports = {
                 removeComments: true,
                 removeEmptyAttributes: true,
             },
-        })
+        }),
+        new FaviconsWebpackPlugin(
+            {
+                logo: './src/assets/noun_120364_cc.svg',
+                icons: {
+                    android: false,
+                    appleIcon: false,
+                    appleStartup: false,
+                    coast: false,
+                    favicons: true,
+                    firefox: false,
+                    opengraph: false,
+                    twitter: false,
+                    yandex: false,
+                    windows: false
+                },
+                prefix: './'
+            })
     ],
     node: {
         fs: 'empty'
