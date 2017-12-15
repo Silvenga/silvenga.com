@@ -1,0 +1,12 @@
+@mixin link() {
+    a {
+        color: $link-color;
+        text-decoration: none !important;
+        transition: all .2s ease-in;
+        &:hover {
+            color: $link-hover-color !important;
+            transition: all .2s ease-out;
+            box-shadow: 0 -1px 0 0 $white inset, 0 -2px 0 0 $link-hover-color inset;
+        }
+    }
+}

@@ -9,9 +9,11 @@ Description: Yet another weblog for the masses.
     var publishDate = doc.DateTime(DocumentKeys.Published);
     var lastChange = doc.Get<DateTimeOffset>("LastChange");
     <section class="px-4">
-        <a href="@Context.GetLink(doc)/">
-            <div class="entry-title">@doc.String(MetaKeys.Title)</div>
-        </a>
+        <div class="entry-title">
+            <a href="@Context.GetLink(doc)/">
+                @doc.String(MetaKeys.Title)
+            </a>
+        </div>
         <div class="entry-description">@doc.String("Description")</div> 
         <hr>
         <div class="text-muted ">
