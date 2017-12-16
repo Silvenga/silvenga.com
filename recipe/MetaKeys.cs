@@ -34,6 +34,7 @@ namespace Wyam.SlightBlog
         /// <scope>Global</scope>
         /// <type><see cref="string"/></type>
         public const string MarkdownExtensions = nameof(MarkdownExtensions);
+        public const string MarkdownExternalExtensions = nameof(MarkdownExternalExtensions);
 
         /// <summary>
         /// Set to <c>true</c> (the default value is <c>false</c>) to

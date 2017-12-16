@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using recipe.MarkdigExtensions.CodeHeader;
 using Wyam.Common.Configuration;
 using Wyam.Common.Documents;
 using Wyam.Common.Execution;
@@ -29,6 +29,9 @@ namespace Wyam.SlightBlog
             // Global metadata defaults
             engine.Settings[MetaKeys.Title] = "Silvenga.com";
             engine.Settings[MetaKeys.MarkdownExtensions] = "advanced+bootstrap";
+            engine.Settings[MetaKeys.MarkdownExternalExtensions] = new List<Type> {
+                typeof(CodeHeaderExtension)
+            };
             engine.Settings[MetaKeys.PostsPath] = new DirectoryPath("posts");
             engine.Settings[MetaKeys.PagesPath] = new DirectoryPath("pages");
             engine.Settings[MetaKeys.ThemePath] = new DirectoryPath("theme");
@@ -43,7 +46,10 @@ namespace Wyam.SlightBlog
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/*.md"),
                 new GitMeta(),
                 new FrontMatter(new Yaml.Yaml()),
-                new Execute(ctx => new Markdown.Markdown().UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))),
+                new Execute(ctx => new Markdown.Markdown()
+                    .UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))
+                    .UseExtensions(ctx.Settings[MetaKeys.MarkdownExternalExtensions] as IEnumerable<Type>)
+                ),
                 new Where((doc, ctx) =>
                 {
                     if (!doc.ContainsKey(DocumentKeys.Published) || doc.Get(DocumentKeys.Published) == null)
@@ -66,7 +72,10 @@ namespace Wyam.SlightBlog
                 new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.md"),
                 new GitMeta(),
                 new FrontMatter(new Yaml.Yaml()),
-                new Execute(ctx => new Markdown.Markdown().UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))),
+                new Execute(ctx => new Markdown.Markdown()
+                    .UseConfiguration(ctx.String(MetaKeys.MarkdownExtensions))
+                    .UseExtensions(ctx.Settings[MetaKeys.MarkdownExternalExtensions] as IEnumerable<Type>)
+                ),
                 new Concat(
                     new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/*.cshtml"),
                     new FrontMatter(new Yaml.Yaml())
