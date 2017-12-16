@@ -33,6 +33,17 @@
         .s-gist {
             width: 100%;
         }
+        figure {
+            background-color: lighten($color: $gray-100, $amount: 1%);
+            padding: 0.5rem;
+            border-radius: 0.15rem;
+            border-color: $border-color;
+            border-width: 1px;
+            border-style: solid;
+            .figure-caption {
+                color: inherit;
+            }
+        }
     }
     pre {
         background-color: $gray-100;
