@@ -14,14 +14,14 @@ Think `parted` if you're coming from Linux - but with a lot more functionality. 
 
 To use Diskpart, invoke it from the command line using:
 
-```
+```bat
 X:\Sources> diskpart
 DISKPART> 
 ```
 
 You can list all the disks available as so:
 
-```
+```bat
 X:\Sources> diskpart
 DISKPART> list disk
 
@@ -38,13 +38,13 @@ In the above example we have two disks, we will put both of these into our RAID1
 Any mirror setup requires disks to be in dynamic mode - this is basically LVM under Linux. Dynamic disks can be used for a multitude of purposes like disk spanning, mirroring, striping, etc. Although, be careful, there's no going back from dynamic without formatting the disks completely. 
 
 Let's clean each disk before converting them, this uninitialize the disks without a partition scheme. After this disk is empty we enable dynamic mode.
-```
+```bat
 DISKPART> select disk 0
 DISKPART> clean
 DISKPART> convert dynamic
 ```
 And do the same thing with the second disk.
-```
+```bat
 DISKPART> select disk 1
 DISKPART> clean
 DISKPART> convert dynamic
@@ -60,7 +60,7 @@ At this point we can create our RAID1 "partitions". I use "partitions" in quotes
 
 Windows requires two partitions when in MBR mode (EFI requires 3, which I won't go into). One which is normally called `System Reserved` and the main OS partition normally without a name (`C:/`). Both of these partitions need to be created manually as the normal Windows installer cannot.
 
-```
+```bat
 DISKPART> select disk 0
 DISKPART> create volume mirror disk=0,1 size=500
 DISKPART> format quick fs=ntfs label="System Reserved"
@@ -69,7 +69,7 @@ DISKPART> format quick fs=ntfs label="System Reserved"
 These commands create a mirrored volume using disk `0` and `1` with a size of `500mb` (default size under Windows 2016). Then it formats the newly created (and automatically selected) volume using `ntfs` as the filesystem and "System Reserved" as the volume label.
 
 Then we can create the OS partition using similar commands: 
-```
+```bat
 DISKPART> select disk 0
 DISKPART> create volume mirror disk=0,1
 DISKPART> format quick fs=ntfs
@@ -84,21 +84,21 @@ Using `list volume` we should see the list of volumes that we created. Note that
 In the above setup, each volume represents a single logical "partition", but in reality each of these volumes spans two physical drives. These volumes are great under Windows, but not so useful to the BIOS attempting to bootstrap a OS. To make it possible for the BIOS to start Windows we need to create real partitions for each of our mirror volumes. 
 
 First let's use `detail disk` to make sure we target the correct volumes.
-```
+```bat
 DISKPART> select disk 0
 DISKPART> detail disk
 ```
 
 In the picture, `volume 0` is our `System Recovery` volume and `volume 1` is our OS volume, different configurations may be different.
 
-```
+```bat
 DISKPART> select disk 0
 DISKPART> select volume 1
 DISKPART> retain
 ```
 This creates a real partition for volume 0 (System Recovery) on disk 0. Use `list partition` to find to again make sure to target the correct partition.
 
-```
+```bat
 DISKPART> select disk 0
 DISKPART> list partition
 ```
@@ -106,14 +106,14 @@ DISKPART> list partition
 Our `System Recovery` partition is `500 MB`, in this example, this partition is `partition 1`.
 
 To mark the newly created, real partition to be the boot partition we can use the following:
-```
+```bat
 DISKPART> select disk 0
 DISKPART> select partition 2
 DISKPART> active
 ```
 We need to do the same thing on the other drive too, as so:
 
-```
+```bat
 DISKPART> select disk 1
 DISKPART> select volume 1
 DISKPART> retain
@@ -124,7 +124,7 @@ DISKPART> active
 
 We also need a partition for the OS drive (required by the installer). This can be done using the same commands:
 
-```
+```bat
 DISKPART> select disk 0
 DISKPART> select volume 0
 DISKPART> retain

@@ -27,9 +27,11 @@ Make sure to modify the path variable to point to your Ghost installation folder
 
 To start and stop is done with the following self explanatory commands. 
 
-`service ghost stop`
-`service ghost start`
-`service ghost restart` 
+```bash
+service ghost stop
+service ghost start
+service ghost restart
+```
 
 ### Explanation 
 

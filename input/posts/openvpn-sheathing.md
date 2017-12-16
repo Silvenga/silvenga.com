@@ -31,7 +31,7 @@ Our server will act as a relay point (although you can relay to localhost if you
 
 Let's first install sTunnel through `apt-get`.
 
-```
+```bash
 sudo apt-get update            # always a good idea
 sudo apt-get upgrade           # let's start fresh
 sudo apt-get install stunnel4  # 4 is the newest version as of 4/2014
@@ -41,7 +41,7 @@ sudo apt-get install stunnel4  # 4 is the newest version as of 4/2014
 
 We are using a HTTPS tunnel so let's generate some HTTPS certificates (self signed). 
 
-```
+```bash
 # let's work in our tmp directory
 cd /tmp/
 
@@ -58,7 +58,7 @@ You should get something like this:
 
 > *You can answer `.` (period) to all the questions except the `Common Name` which should be your hostname, public IP address, or DNS name of the server.*
 
-```
+```bash
 # openssl req -new -x509 -key stunnel.key -out stunnel.crt -days 1826
 You are about to be asked to enter information that will be incorporated
 into your certificate request.
@@ -78,20 +78,20 @@ Email Address []:.
 
 We now have both the certificate and its key. For convenience let's combine the two files into one. 
 
-```
+```bash
 # Concatenate the key and the certificate into the file /etc/stunnel/stunnel.pem
 cat stunnel.key stunnel.crt > /etc/stunnel/stunnel.pem
 ```
 
 Cool, our certificate is ready. Clean up our current directory.
 
-```
+```bash
 rm stunnel.crt stunnel.key
 ```
 
 Move to our sTunnel configuration directory and create a configuration file. 
 
-```
+```bash
 cd /etc/stunnel/      # Default on Ubuntu
 touch stunnel.conf    # We like touching files :P
 nano stunnel.conf     # Or your favorite editor 
@@ -122,7 +122,7 @@ connect = us-florida.privateinternetaccess.com:443
 
 Enable and start sTunnel.
 
-```
+```bash
 nano /etc/default/stunnel4
 # Change ENABLED=0 to ENABLED=1
 
@@ -143,7 +143,6 @@ Install the software with default options.
 
 Start the software (search for `stunnel gui`) and edit the configuration with  `Configuration > Edit Configuration`. Copy and paste the following to the end of the file. Make sure to edit `remote-server.example.com` to be your server address.
 
-
 ```
 [openvpn-localhost]
 # Set sTunnel to be in client mode (defaults to server)
@@ -157,7 +156,6 @@ connect = remote-server.example.com:8443
 client = yes
 accept = 127.0.0.1:1198
 connect =  remote-server.example.com:1198
-
 ```
 
 Reload the configuration by `Configuration > Reload Configuration`. 

@@ -37,7 +37,7 @@ To claim this, I am signing this object:
 
 with the aforementioned key, yielding the PGP signature:
 
-```
+```gpg
 -----BEGIN PGP MESSAGE-----
 
 yML7AnicbZF7TBRnF8Z3WUCgCktruTS2yBBdUle+uV/WUirtokRjagVjrX4wO/Pu

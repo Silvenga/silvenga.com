@@ -29,7 +29,7 @@ If you can't find the correct packages from Ubuntu's Repo's checkout Debain's. M
 
 
 
-```
+```bash
 # I like a clean workspace
 cd /tmp
 
@@ -56,7 +56,7 @@ First we need a "network name", this name separates nodes, and allows for multip
 
 First we need to create a "network" configuration directory. For Tinc this is done by creating a folder in `/etc/tinc/`.
 
-```
+```bash
 cd /etc/tinc
 sudo mkdir master
 sudo mkdir master/hosts
@@ -90,14 +90,14 @@ ConnectTo = mccain
 This one is for Obama, make sure to `name` the other server differently (Mccain). 
 
 #### tinc-up
-```
+```bash
 #!/bin/sh 
 ifconfig $INTERFACE 10.6.0.1 netmask 255.255.0.0
 ```
 Obama will have `10.6.0.1` as its address. Setup Mccain to something different (`10.6.0.2` would work). Make sure to include `#!/bin/sh`, else Tinc might have issues. 
 
 #### tinc-down
-```
+```bash
 #!/bin/sh 
 ifconfig $INTERFACE down
 ```
@@ -106,7 +106,7 @@ Although not strictly required, this allows us to clean up after we shut down Ti
 
 We need to allow Tinc to execute these last two files. 
 
-```
+```bash
 sudo chmod +x tinc-*
 ```
 Now we need to make host files. These files point Tinc to each other, and allows direct connections. These files are safe and required to share around. 
@@ -130,14 +130,14 @@ After generating keys, make sure to share the updated host file for the local no
 ## Running Tinc
 
 After we share the host files around we can start Tinc. 
-```
+```bash
 sudo tincd -n master
 ``` 
 
 `-n <network name>` is used to specify a particular (you can multiple networks on the same server).
 
 To kill Tinc use `-k`. 
-```
+```bash
 sudo tincd -n master -k
 ```
 
@@ -145,7 +145,7 @@ If there are no issues we can set Tinc to run on startup (and to obey the servic
 
 Simple command:
 
-```
+```bash
 sudo echo "master" >> nets.boot
 ```
 

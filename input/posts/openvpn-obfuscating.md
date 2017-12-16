@@ -10,7 +10,7 @@ Description: Some notes on how to setup OpenVPN obfuscation using Obfproxy.
 ## Server (Ubuntu 14.04 LTS)
 
 `obfsproxy` is included in the default Ubuntu Trusty repos now (although a bit out of date). It contains the pluggable transport `obfs3`.  
-```
+```bash
 apt-get install obfsproxy
 
 # Default OVPN port: 1194
@@ -32,7 +32,7 @@ Signature via "Mark Lopez (Authority) 4096R/FEF78709"
 https://store.silvenga.com/external/obfsproxy/obfsproxy-win-4.0.3.zip.asc
 https://store.silvenga.com/external/obfsproxy/obfsproxy-win-5.0.2.zip.asc
 
-```
+```bash
 # Connect via socksv5 127.0.0.1:2194
 #  with host server:8443
 

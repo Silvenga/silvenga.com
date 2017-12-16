@@ -9,7 +9,7 @@ For this tutorial I assume the use of Apache 2.2 running on Ubuntu 12.04 LTS. I 
 
 Lets start of with a clean slate. I personally make sure all my packages are updated and current. Good practice and can prevent issues in the future. 
 
-```
+```bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get autoremove
@@ -17,7 +17,7 @@ sudo apt-get autoremove
 
 Now we are going to need to activate some Apache modules. These should be install (not enabled) by default. 
 
-```
+```bash
 # Enable to mods if not already enabled
 # We use a2enmod as the modern way to enable mods (as opposed to creating symlinks)
 sudo a2enmod cache disk_cache rewrite proxy proxy_balancer proxy_http
@@ -30,11 +30,11 @@ The mod `cache` provides the basic framework for any type of caching and does ve
 
 Now lets find what ports Ghost is using. I would use this command if I wasn't sure what port to check. 
 
-```
+```bash
 sudo netstat -tlpn | grep node
 ```
 For me this returns two programs that use Node.js:
-```
+```bash
 # netstat -tlpn | grep node
 tcp  0  0  127.0.0.1:2368  0.0.0.0:*  LISTEN  1275/node
 tcp  0  0  127.0.0.1:6633  0.0.0.0:*  LISTEN  1252/node
@@ -46,14 +46,14 @@ Lets get configuring Apache. Now there are many ways to do this. I personally li
 
 If this file does not already exist, lets create a `vhost.conf` file. 
 
-```
+```bash
 cd /etc/apache2
 sudo touch vhosts.conf # We like touching files
 nano vhosts.conf # or your favorite text editor (you vi guys...)
 ```
 Copy and paste the following, I'll explain it next. 
 
-```
+```file-/etc/apache2/vhosts.conf
 <VirtualHost *:80>
 
 	ServerName			silvenga.com	
@@ -87,20 +87,20 @@ For disk caching we need to specify a local location for the cache (`CacheRoot `
 
 After we have this we need to tell Apache there is a unorthodox configuration file.  
 
-```
+```bash
 cd /etc/apache2
 # Open Apache's main config. 
 nano apache2.conf
 ```
 And add the following lines:
-```
+```/etc/apache2/apache2.conf
 # Virtual hosts
 Include /etc/apache2/vhosts.conf
 ```
 
 To make sure that Apache can cache to the folder we gave, we should create it and set the correct permissions.
 
-```
+```bash
 sudo mkdir /var/www/cache
 
 # I assume the Apache is using the default user "www-data"
@@ -108,7 +108,7 @@ sudo chown www-data:www-data /var/www/cache
 ``` 
 We should be all good. Let's restart and test out configuration. 
 
-```
+```bash
 sudo service apache2 restart
 ```
 Done! Lets take a look and see if Apache is working correctly. Goto your domain listed in the `vhost.conf` file on the default port 80.
