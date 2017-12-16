@@ -13,11 +13,14 @@ namespace MarkdigExtensions.CodeHeader
         {
             { "ps1", "PowerShell" },
             { "ps", "PowerShell" },
-            { "cmd", "Command Line" },
+            { "cmd", "Windows Command Line" },
+            { "bat", "Windows Command Line" },
             { "bash", "Bash" },
             { "js", "JavaScript" },
             { "ts", "TypeScript" },
             { "log", "Logs" },
+            { "json", "JSON" },
+            { "gpg", "GPG Key" },
         };
 
         protected override void Write(HtmlRenderer renderer, CodeBlock obj)
@@ -40,6 +43,12 @@ namespace MarkdigExtensions.CodeHeader
                 {
                     language = CodeLanguageMap[info];
                 }
+                else if (info != null && info.StartsWith("file-"))
+                {
+                    var file = info.Substring("file-".Length);
+                    language = file;
+                }
+
                 var copyId = Guid.NewGuid().ToString("N");
 
                 renderer.Write("<div class=\"code-header\">");
