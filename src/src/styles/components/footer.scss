@@ -1,0 +1,14 @@
+.s-footer {
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    padding-bottom: 2rem;
+    hr {
+        padding-bottom: 2rem;
+    }
+    .heart {
+        color: #deabab;
+    }
+    @include link();
+}

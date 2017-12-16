@@ -1,0 +1,21 @@
+.s-index {
+    section {
+        max-width: 780px;
+        width: 100%;
+        padding-top: 2em;
+        padding-bottom: 1em;
+        border-left-color: rgba(0, 0, 0, 0.1);
+        border-left-style: solid;
+        border-left-width: 1px;
+        hr {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .entry-title {
+            font-size: 2.0rem;
+        }
+    }
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    @include link();
+}
