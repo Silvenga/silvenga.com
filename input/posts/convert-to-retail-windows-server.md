@@ -18,10 +18,12 @@ DISM /Online /Set-Edition:ServerDatacenter /ProductKey:<key for blah> /AcceptEul
 
 From what I gather the `Set-Edition` option can be either of the following:
 
-- `ServerDatacenter`
-- `ServerStandard`
-- `ServerDatacenterCor`
-- `ServerStandardCor`
+```
+ServerDatacenter
+ServerStandard
+ServerDatacenterCor
+ServerStandardCor
+```
 
 ![DISM running cleanup during reboot.](/content/images/2017/dism-cleanup.png)
 
