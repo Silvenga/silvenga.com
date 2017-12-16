@@ -11,7 +11,7 @@
             width: 100%;
             max-width: 780px;
         }
-        .img-fluid {
+        img {
             display: block;
             margin: 0 auto;
             padding: 0.5rem;
@@ -34,7 +34,7 @@
             width: 100%;
         }
         figure {
-            background-color: lighten($color: $gray-100, $amount: 1%);
+            background-color: $gray-100;
             padding: 0.5rem;
             border-radius: 0.15rem;
             border-color: $border-color;
@@ -42,6 +42,13 @@
             border-style: solid;
             .figure-caption {
                 color: inherit;
+            }
+            img {
+                padding: 0;
+                border: 0;
+            }
+            pre{
+                margin-bottom: 0.5rem;
             }
         }
     }
