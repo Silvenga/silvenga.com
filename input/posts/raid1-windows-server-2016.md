@@ -29,7 +29,6 @@ DISKPART> list disk
   --------  -------------  -------  -------  ---  ---
   Disk 1    Online          127 GB    127 B        
   Disk 2    Online          127 GB    127 B        
-
 ```
 In the above example we have two disks, we will put both of these into our RAID1. As can be seen above, `diskpart` is base 0.
 
@@ -64,8 +63,8 @@ Windows requires two partitions when in MBR mode (EFI requires 3, which I won't 
 DISKPART> select disk 0
 DISKPART> create volume mirror disk=0,1 size=500
 DISKPART> format quick fs=ntfs label="System Reserved"
-
 ```
+
 These commands create a mirrored volume using disk `0` and `1` with a size of `500mb` (default size under Windows 2016). Then it formats the newly created (and automatically selected) volume using `ntfs` as the filesystem and "System Reserved" as the volume label.
 
 Then we can create the OS partition using similar commands: 
