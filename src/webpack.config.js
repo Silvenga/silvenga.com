@@ -79,7 +79,7 @@ module.exports = {
         }),
         new FaviconsWebpackPlugin(
             {
-                logo: './src/assets/noun_120364_cc.svg',
+                logo: './src/assets/logo.svg',
                 icons: {
                     android: false,
                     appleIcon: false,
