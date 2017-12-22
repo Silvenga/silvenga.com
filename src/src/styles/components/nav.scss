@@ -24,4 +24,12 @@
         width: 0;
         transition: width 1s;
     }
+    .logo {
+        height: 30px;
+        width: 30px;
+        background: url('../../assets/logo.svg') no-repeat;
+        display: inline-flex;
+        padding-bottom: 6px;
+        filter: opacity(50%)
+    }
 }

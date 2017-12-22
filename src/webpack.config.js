@@ -36,13 +36,16 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
-                        { loader: 'css-loader', options: { importLoaders: 1 } },
-                        'postcss-loader',
-                        'sass-loader'
+                        { loader: 'css-loader?sourceMap', options: { importLoaders: 1 } },
+                        'postcss-loader?sourceMap',
+                        'resolve-url-loader',
+                        'sass-loader?sourceMap'
                     ]
                 })
             },
-            { test: /\.(jpg|png|gif|woff2|woff)$/, use: ["file-loader"] }
+            { test: /\.(jpg|png|gif|woff2|woff)$/, use: ["file-loader"] },
+            { test: /\.(svg)$/, use: ["url-loader"] },
+
         ]
     },
     plugins: [
@@ -55,13 +58,15 @@ module.exports = {
             {
                 context: "../output",
                 from: '**/*'
-            }
-        ]),
-        new CopyWebpackPlugin([
+            },
             {
                 context: "../output",
                 from: '404/index.html',
                 to: '404.html'
+            },
+            {
+                from: './src/assets/logo.svg',
+                to: 'logo.svg'
             }
         ]),
         new HtmlWebpackPlugin({

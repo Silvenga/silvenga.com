@@ -36,10 +36,13 @@
     <link rel="stylesheet" href='@Context.GetLink("/main.css")'>
 </head>
 <body>
-    <header class="container-fluid s-nav"id="loading-bar" role="banner">
+    <header class="container-fluid s-nav" id="loading-bar" role="banner">
         <nav class="navbar row" role="navigation">
             <div class="nav col-sm d-flex s-nav-left p-0">
-                <a class="nav-item nav-link" href='@Context.GetLink("/")'>Silvenga's Blog <sub>(beta)</sub></a>
+                <a class="nav-item nav-link" href='@Context.GetLink("/")'>
+                    <span class="logo"></span>
+                    Silvenga's Blog <sub>(beta)</sub>
+                </a>
             </div>
             <div class="nav col-sm s-nav-right  p-0">
                 <a class="nav-item nav-link" href='@Context.GetLink("/projects")/'>Projects</a>
