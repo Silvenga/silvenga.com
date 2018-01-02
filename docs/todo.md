@@ -5,7 +5,8 @@
 - [ ] NPM packages cleanup
 - [X] Cleanup old files.
 - [X] Image popups.
-- [ ] Selector coloring.
-- [ ] Link decorations.
+- [X] Selector coloring.
+- [X] Link decorations.
 - [ ] Cleanup Wyam recipe.
 - [X] Link to github repo from commit hash.
+- [ ] Ctrl+Click links not working.
