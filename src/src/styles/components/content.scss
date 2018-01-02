@@ -34,20 +34,31 @@
             width: 100%;
         }
         figure {
-            background-color: $gray-100;
-            padding: 0.5rem;
-            border-radius: 0.15rem;
-            border-color: $border-color;
-            border-width: 1px;
-            border-style: solid;
             .figure-caption {
                 color: inherit;
+                padding: 0.5rem;
+                padding-top: 8px;
+                background-color: $gray-100;
+                border-radius: 0.15rem;
+                border-color: $border-color;
+                border-width: 1px;
+                border-style: solid;
+                border-top-width: 0;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
             }
-            img {
-                padding: 0;
-                border: 0;
+            p {
+                margin-bottom: 0;
             }
-            pre{
+            p>img {
+                border-bottom: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            div>img {
+                padding-bottom: 7px;
+            }
+            pre {
                 margin-bottom: 0.5rem;
             }
         }
