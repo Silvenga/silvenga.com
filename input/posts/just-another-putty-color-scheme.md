@@ -9,6 +9,6 @@ Putty is the single best SSH client for Windows. Unfortunately, Putty also has t
 
 The hardest issue was the color black couldn't be pure black, white couldn't be pure white. I needed colors that worked in any situation. Not to mention developers do their best work at 1 o'clock in the morning so naturally the theme needed to look good on dimmed screens and couldn't use the universal color: white. This is what I came up with and I dare say the colors look nice. I call it Slight. 
 
-Putty themes can be easily imported into the Windows registry. Slight can be download directly from [here](https://gist.github.com/Silvenga/13d2f20d807b4a5c3ce3/raw/slight-putty-theme.reg) or from the source below. 
+Putty themes can be easily imported into the Windows registry. Slight can be download directly from [here](https://gist.github.com/Silvenga/13d2f20d807b4a5c3ce3/raw/slight-putty-theme.reg) or from the source below. Note that you can change the default theme for all new sessions by changing `Slight` to `Default%20Settings`.
 
 <code data-gist-id="13d2f20d807b4a5c3ce3"></code>
