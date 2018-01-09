@@ -38,7 +38,6 @@ namespace recipe.MarkdigExtensions.ImagePlaceholders
                         outerContainer.AddClass("img-container-outer");
                         outerContainer.AddProperty("data-real-path", image.RealPath);
                         outerContainer.AddProperty("style", $"max-width: {System.Math.Min(image.Width, MaxWidth)}px;");
-
                         renderer.Write("<div");
                         renderer.WriteAttributes(outerContainer);
                         renderer.Write(">");

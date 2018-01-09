@@ -126,19 +126,19 @@ namespace Wyam.SlightBlog
             );
 
             engine.Pipelines.Add(PipelineKeys.FoundationContent,
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/{{**,!js,!less,!css}}/*{{!.cshtml,!.md,}}"),
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.ThemePath).FullPath}/{{**,!js,!less,!css}}/*{{!.cshtml,!.md,!.afdesign}}"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.ThemePath)),
                 new WriteFiles()
             );
 
             engine.Pipelines.Add(PipelineKeys.PostContent,
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/**/*{{!.cshtml,!.md,}}"),
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PostsPath).FullPath}/**/*{{!.cshtml,!.md,!.afdesign}}"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.PostsPath)),
                 new WriteFiles()
             );
 
             engine.Pipelines.Add("PageContent",
-                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/**/*{{!.cshtml,!.md,}}"),
+                new ReadFiles(ctx => $"{ctx.DirectoryPath(MetaKeys.PagesPath).FullPath}/**/*{{!.cshtml,!.md,!.afdesign}}"),
                 new Meta(Keys.RelativeFilePath, (doc, ctx) => SemiFlatten(doc, ctx, MetaKeys.PagesPath)),
                 new WriteFiles()
             );
