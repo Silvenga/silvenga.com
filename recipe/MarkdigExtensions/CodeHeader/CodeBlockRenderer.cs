@@ -19,8 +19,11 @@ namespace MarkdigExtensions.CodeHeader
             { "js", "JavaScript" },
             { "ts", "TypeScript" },
             { "log", "Logs" },
+            { "logs", "Logs" },
             { "json", "JSON" },
             { "gpg", "GPG Key" },
+            { "term", "Terminal" },
+            { "dockerfile", "Dockerfile" },
         };
 
         protected override void Write(HtmlRenderer renderer, CodeBlock obj)
