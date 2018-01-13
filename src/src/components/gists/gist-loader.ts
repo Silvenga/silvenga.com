@@ -6,13 +6,13 @@ function getParams(query: string): { [key: string]: string } {
         return {};
     }
     return (/^[?#]/.test(query) ? query.slice(1) : query)
-        .split('&')
-        .reduce((params, param) => {
-            let [key, value] = param.split('=');
-            params[key] = value ? decodeURIComponent(value.replace(/\+/g, ' ')) : '';
-            return params;
+        .split("&")
+        .reduce((result, param) => {
+            let [key, value] = param.split("=");
+            result[key] = value ? decodeURIComponent(value.replace(/\+/g, " ")) : "";
+            return result;
         }, {});
-};
+}
 
 let params = getParams(document.location.hash);
 let gistId = params[dataGistIdKey];

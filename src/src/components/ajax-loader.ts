@@ -1,5 +1,5 @@
-import unfetch from 'unfetch';
-import { Timer } from './timer';
+import unfetch from "unfetch";
+import { Timer } from "./timer";
 
 export type OnCompleted = (url: string, title: string, scrollPosition: number, generationTime: number) => void;
 
@@ -28,7 +28,7 @@ export class AjaxLoader {
                 newPosition = 0;
             }
             this.loadRemote(newLocal, newPosition);
-        }
+        };
 
         this.addStyles();
     }
@@ -39,7 +39,7 @@ export class AjaxLoader {
             return;
         }
 
-        var aTags = document.querySelectorAll("a");
+        let aTags = document.querySelectorAll("a");
         for (let aTag of aTags) {
             this.attachHandler(aTag);
         }
@@ -66,9 +66,9 @@ export class AjaxLoader {
             return;
         }
 
-        var _self: AjaxLoader = this;
+        let self: AjaxLoader = this;
         aTag.addEventListener("click", function (this: HTMLAnchorElement, event: MouseEvent) {
-            _self.linkHandlerCallback(this, event)
+            self.linkHandlerCallback(this, event);
         });
         aTag.setAttribute("data-ajax-ready", "true");
     }
@@ -85,7 +85,7 @@ export class AjaxLoader {
     }
 
     private createFragment(text: string): DocumentFragment {
-        var template = document.createElement('template');
+        let template = document.createElement("template");
         template.innerHTML = text;
         let html = template.content;
         return html;
@@ -134,13 +134,13 @@ export class AjaxLoader {
     private addStyles() {
 
         const styleText = `
-            .s-nav#loading-bar.loading::after { 
+            .s-nav#loading-bar.loading::after {
                 width: 100%;
                 border-width: 1px;
             }
         `;
 
-        let styleTag = document.createElement('style');
+        let styleTag = document.createElement("style");
         styleTag.appendChild(document.createTextNode(styleText));
 
         document.head.appendChild(styleTag);

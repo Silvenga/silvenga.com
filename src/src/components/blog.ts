@@ -1,15 +1,15 @@
-import { Clipboard } from './clipboard';
-import { AjaxLoader } from './ajax-loader';
-import { GistHelper } from './gists/gist-helper';
-import { LightenseLoader } from './lightense-loader';
-import { Piwik } from './piwik';
+import { Clipboard } from "./clipboard";
+import { AjaxLoader } from "./ajax-loader";
+import { GistHelper } from "./gists/gist-helper";
+import { LightenseLoader } from "./lightense-loader";
+import { Piwik } from "./piwik";
 
 type PageLoaded = (pageUrl: string, title: string, scrollPosition: number, responseTime: number) => void;
 type SiteLoaded = () => void;
 
 export class Blog {
 
-    private _gistHelper: GistHelper = new GistHelper();;
+    private _gistHelper: GistHelper = new GistHelper();
     private _piwik: Piwik = new Piwik();
     private _ajaxLoader: AjaxLoader = new AjaxLoader();
     private _lightenseLoader: LightenseLoader = new LightenseLoader();
@@ -21,7 +21,7 @@ export class Blog {
         () => this._piwik.attach(),
         () => this._ajaxLoader.loadCompleted((url, title, scrollPosition, responseTime) => this.pageLoaded(url, title, scrollPosition, responseTime)),
         () => this._ajaxLoader.loadCompleted((url, title, scrollPosition) => {
-            window.scrollTo(0, scrollPosition)
+            window.scrollTo(0, scrollPosition);
         })
     ];
 

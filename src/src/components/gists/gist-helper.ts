@@ -11,10 +11,10 @@ export class GistHelper {
     private loadGistForElement(element: Element): void {
         let gistId = element.getAttribute(dataGistIdKey);
 
-        var iframe = document.createElement("iframe");
+        let iframe = document.createElement("iframe");
         iframe.src = `/gist-loader.html#${dataGistIdKey}=${gistId}`;
-        iframe.frameBorder = '0';
-        iframe.scrolling = 'no';
+        iframe.frameBorder = "0";
+        iframe.scrolling = "no";
         iframe.className = "s-gist";
         iframe.onload = this.gistLoadedCallback;
 
@@ -24,6 +24,6 @@ export class GistHelper {
     }
 
     private gistLoadedCallback(this: HTMLIFrameElement, event: Event): any {
-        this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
+        this.style.height = this.contentWindow.document.body.scrollHeight + "px";
     }
 }

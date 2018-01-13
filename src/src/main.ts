@@ -1,4 +1,4 @@
-import { Blog } from './components/blog';
+import { Blog } from "./components/blog";
 // import "./styles/main.scss"
 
 // import "bootstrap.native/lib/V4/utils-init" // Required in next release
