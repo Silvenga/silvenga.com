@@ -32,7 +32,7 @@
     <link rel="preconnect" href="https://piwik.silvenga.com">
     <link rel="preload" href='https://piwik.silvenga.com/piwik.js' as="script">
 
-    <link rel="preload" href='@Context.GetLink("main.js")' as="script">
+    <link rel="preload" href='@Context.GetLink("/main.js")' as="script">
     <link rel="stylesheet" href='@Context.GetLink("/main.css")'>
 </head>
 <body>
@@ -44,9 +44,10 @@
                     Silvenga's Blog <sub>(beta)</sub>
                 </a>
             </div>
-            <div class="nav col-sm s-nav-right  p-0">
+            <div class="nav col-sm s-nav-right p-0">
                 <a class="nav-item nav-link" href='@Context.GetLink("/projects")/'>Projects</a>
                 <a class="nav-item nav-link" href='@Context.GetLink("/about")/'>About</a>
+                <a class="nav-item nav-link" href='https://github.com/Silvenga'><span class="github"></a>
             </div>
         </nav>
     </header>
