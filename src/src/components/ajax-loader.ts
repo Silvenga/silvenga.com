@@ -73,21 +73,15 @@ export class AjaxLoader {
         aTag.setAttribute("data-ajax-ready", "true");
     }
 
-    private linkHandlerCallback(element: HTMLAnchorElement, event: MouseEvent): Promise<void> {
+    private async linkHandlerCallback(element: HTMLAnchorElement, event: MouseEvent): Promise<void> {
 
         event.preventDefault();
         let remoteUrl = element.href;
 
         this.saveCurrentState();
 
-        return this.loadRemote(remoteUrl)
-            .then(x => {
-                history.pushState(new HistoryState(remoteUrl, 0), null, remoteUrl)
-            });
-    }
-
-    private replaceElement(local: Element, remote: Element): void {
-        local.parentElement.replaceChild(remote, local);
+        await this.loadRemote(remoteUrl);
+        history.pushState(new HistoryState(remoteUrl, 0), null, remoteUrl);
     }
 
     private createFragment(text: string): DocumentFragment {
@@ -110,23 +104,24 @@ export class AjaxLoader {
         let text = await response.text();
         let remote = this.createFragment(text);
 
-        let remoteTitle = remote.querySelector("title");
-        let remoteDesciption = remote.querySelector('meta[name="description"]');
-        let remoteAjaxContainer = remote.getElementById("ajax-container");
+        this.copyElementTo(x => x.querySelector("title"), document, remote);
+        this.copyElementTo(x => x.querySelector('meta[name="description"]'), document, remote);
+        this.copyElementTo(x => x.getElementById("ajax-container"), document, remote);
 
-        let localTitle = document.querySelector("title");
-        let localDesciption = document.querySelector('meta[name="description"]');
-        let localAjaxContainer = document.getElementById("ajax-container");
-
-        this.replaceElement(localTitle, remoteTitle);
-        this.replaceElement(localDesciption, remoteDesciption);
-        this.replaceElement(localAjaxContainer, remoteAjaxContainer);
-
-        let remoteTitleStr = remoteTitle.text;
-
+        let remoteTitleStr = document.querySelector("title").text;
         this.onLoadCompleted(remoteUrl, remoteTitleStr, position, responseTime);
 
         console.log(`Ajax navigation completed in ${responseTime}.`);
+    }
+
+    private copyElementTo(selector: (doc: DocumentFragment) => HTMLElement, local: DocumentFragment, remote: DocumentFragment) {
+        let remoteElement = selector(remote);
+        let localElement = selector(local);
+        this.replaceElement(localElement, remoteElement);
+    }
+
+    private replaceElement(local: Element, remote: Element): void {
+        local.parentElement.replaceChild(remote, local);
     }
 
     private saveCurrentState() {

@@ -32,7 +32,7 @@ export class Blog {
     }
 
     private _onPageLoaded: PageLoaded[] = [
-        (url, title, position) => console.log(`Page [${url}: ${title}] is ready.`),
+        (url, title, position) => console.log(`Page [${url}] - [${title}] is ready.`),
         () => this._gistHelper.findAndLoadGists(),
         () => this._lightenseLoader.attachHandlers(),
         () => this._ajaxLoader.attachHandlers(),
