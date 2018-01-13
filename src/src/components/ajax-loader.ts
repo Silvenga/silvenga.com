@@ -163,7 +163,7 @@ class HistoryState {
 
     public position: number;
 
-    constructor(newLocal: string, position: number) {
+    public constructor(newLocal: string, position: number) {
         this.newLocal = newLocal;
         this.position = position;
     }

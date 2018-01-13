@@ -4,7 +4,7 @@ const PiwikHost: string = "https://piwik.silvenga.com/";
 
 export class Piwik {
 
-    constructor() {
+    public constructor() {
         window._paq = window._paq || [];
     }
 

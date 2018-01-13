@@ -17,6 +17,12 @@
             ]
         },
         "trailing-comma": false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "member-access": {
+            "options": [
+                "check-accessor",
+                "check-constructor"
+            ]
+        }
     }
 }
