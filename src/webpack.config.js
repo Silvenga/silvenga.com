@@ -63,10 +63,6 @@ module.exports = {
                 context: "../output",
                 from: '404/index.html',
                 to: '404.html'
-            },
-            {
-                from: './src/assets/logo.svg',
-                to: 'logo.svg'
             }
         ]),
         new HtmlWebpackPlugin({

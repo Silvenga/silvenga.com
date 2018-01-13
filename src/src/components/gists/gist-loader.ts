@@ -1,4 +1,4 @@
-import { dataGistIdKey } from "./gist-helper";
+const dataGistIdKey: string = "data-gist-id";
 
 // https://stackoverflow.com/a/3855394/2001966
 function getParams(query: string): { [key: string]: string } {
