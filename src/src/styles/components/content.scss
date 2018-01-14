@@ -2,6 +2,8 @@
     font-size: 1.15rem;
     line-height: 1.6;
     $border-color: darken($color: $gray-100, $amount: 10%);
+    $content-margin-top: 1rem;
+    $content-margin-bottom: 2rem;
     .s-title {
         max-width: 780px;
         width: 100%;
@@ -11,15 +13,19 @@
             width: 100%;
             max-width: 780px;
         }
-        .img-container {
-            position: relative;
-            height: 0;
-            &>.img-container-inner {
-                width: 100%;
-                height: 100%;
-                display: block;
-                position: absolute;
-                top: 0;
+        .img-container-outer {
+            margin-top: $content-margin-top;
+            margin-bottom: $content-margin-bottom;
+            .img-container {
+                position: relative;
+                height: 0;
+                &>.img-container-inner {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                }
             }
         }
         img {
@@ -32,19 +38,9 @@
             border-width: 1px;
             border-style: solid;
         }
-        blockquote {
-            background: $gray-100;
-            border-left: 5px solid $border-color;
-            margin: 1.5rem 0.5rem;
-            padding: 0.5rem;
-            p {
-                display: inline;
-            }
-        }
-        .s-gist {
-            width: 100%;
-        }
         figure {
+            margin-top: $content-margin-top;
+            margin-bottom: $content-margin-bottom;
             .figure-caption {
                 color: inherit;
                 padding: 0.5rem;
@@ -70,55 +66,74 @@
                 padding-bottom: 7px;
             }
             pre {
+                margin-top: 0;
                 margin-bottom: 0;
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }
-        }
-    }
-    pre {
-        background-color: $gray-100;
-        border-bottom-left-radius: 0.15rem;
-        border-bottom-right-radius: 0.15rem;
-        border-color: $border-color;
-        border-style: solid;
-        border-width: 1px;
-        padding: 1rem;
-        code {
-            color: inherit;
-        }
-    }
-    .code-header {
-        font-size: 0.9rem;
-        background-color: darken($color: $gray-100, $amount: 2%);
-        border-top-left-radius: 0.15rem;
-        border-top-right-radius: 0.15rem;
-        border-color: $border-color;
-        border-style: solid;
-        border-width: 1px;
-        border-bottom: 0;
-        display: flex;
-        .language {
-            padding-left: 1rem;
-            padding-top: 0.2rem;
-            padding-bottom: 0.2rem;
-            border-right: 1px $border-color solid;
-            flex-grow: 1;
-        }
-        .copy {
-            padding-right: 1rem;
-            padding-left: 1rem;
-            background: transparent;
-            border: 0 solid;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            line-height: normal;
-            &:hover {
-                background-color: darken($color: $gray-100, $amount: 5%);
+            .img-container-outer {
+                margin-top: 0;
+                margin-bottom: 0;
             }
-            &:focus {
-                outline: 5px auto -webkit-focus-ring-color;
+        }
+        blockquote {
+            background: $gray-100;
+            border-left: 5px solid $border-color;
+            margin: 1.5rem 0.5rem;
+            padding: 0.5rem;
+            p {
+                display: inline;
+            }
+        }
+        .s-gist {
+            width: 100%;
+        }
+        .code-header {
+            margin-top: $content-margin-top;
+            font-size: 0.9rem;
+            background-color: darken($color: $gray-100, $amount: 2%);
+            border-top-left-radius: 0.15rem;
+            border-top-right-radius: 0.15rem;
+            border-color: $border-color;
+            border-style: solid;
+            border-width: 1px;
+            border-bottom: 0;
+            display: flex;
+            .language {
+                padding-left: 1rem;
+                padding-top: 0.2rem;
+                padding-bottom: 0.2rem;
+                border-right: 1px $border-color solid;
+                flex-grow: 1;
+            }
+            .copy {
+                padding-right: 1rem;
+                padding-left: 1rem;
+                background: transparent;
+                border: 0 solid;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                line-height: normal;
+                &:hover {
+                    background-color: darken($color: $gray-100, $amount: 5%);
+                }
+                &:focus {
+                    outline: 5px auto -webkit-focus-ring-color;
+                }
+            }
+        }
+        pre {
+            margin-bottom: $content-margin-bottom;
+            background-color: $gray-100;
+            border-bottom-left-radius: 0.15rem;
+            border-bottom-right-radius: 0.15rem;
+            border-color: $border-color;
+            border-style: solid;
+            border-width: 1px;
+            padding: 1rem;
+            code {
+                color: inherit;
             }
         }
     }
