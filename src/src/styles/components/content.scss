@@ -2,8 +2,8 @@
     font-size: 1.15rem;
     line-height: 1.6;
     $border-color: darken($color: $gray-100, $amount: 10%);
-    $content-margin-top: 1rem;
-    $content-margin-bottom: 2rem;
+    $content-margin-top: 0.5rem;
+    $content-margin-bottom: 1rem + $content-margin-top;
     .s-title {
         max-width: 780px;
         width: 100%;
