@@ -3,7 +3,6 @@
     "rules": {
         "member-ordering": false,
         "prefer-const": false,
-        "no-console": false,
         "arrow-parens": false,
         "max-line-length": false,
         "max-classes-per-file": false,

@@ -1,5 +1,6 @@
 import unfetch from "unfetch";
 import { Timer } from "./timer";
+import { logger } from "./logger";
 
 export type OnCompleted = (url: string, title: string, scrollPosition: number, generationTime: number) => void;
 
@@ -10,7 +11,7 @@ export class AjaxLoader {
     public attachGlobalHandlers(): void {
 
         if (!this.supported) {
-            console.log("History API is not supported. No ajax loading will be used.");
+            logger.info("History API is not supported. No ajax loading will be used.");
             return;
         }
 

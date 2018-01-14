@@ -1,4 +1,5 @@
-const dataGistIdKey: string = "data-gist-id";
+import { dataGistIdKey } from "./gist-constants";
+import { logger } from "../logger";
 
 // https://stackoverflow.com/a/3855394/2001966
 function getParams(query: string): { [key: string]: string } {
@@ -24,4 +25,4 @@ if (gistId == null) {
 let scriptSrc = `<script src="https://gist.github.com/${gistId}.js"></script>`;
 document.write(scriptSrc);
 
-console.log("Gist loader active for gist:", gistId);
+logger.info("Gist loader active for gist:", gistId);

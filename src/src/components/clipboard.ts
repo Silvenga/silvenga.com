@@ -1,3 +1,5 @@
+import { logger } from "./logger";
+
 export class Clipboard {
 
     public attachCopyEvents() {
@@ -40,7 +42,7 @@ export class Clipboard {
             let result = document.execCommand("copy");
             success = result;
         } catch (e) {
-            console.warn("Failed to copy:", e);
+            logger.warn("Failed to copy:", e);
         }
 
         document.body.removeChild(textArea);

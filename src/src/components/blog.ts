@@ -3,6 +3,7 @@ import { AjaxLoader } from "./ajax-loader";
 import { GistHelper } from "./gists/gist-helper";
 import { LightenseLoader } from "./lightense-loader";
 import { Piwik } from "./piwik";
+import { logger } from "./logger";
 
 type PageLoaded = (pageUrl: string, title: string, scrollPosition: number, responseTime: number) => void;
 type SiteLoaded = () => void;
@@ -16,7 +17,7 @@ export class Blog {
     private _clipboard: Clipboard = new Clipboard();
 
     private _onSiteLoaded: SiteLoaded[] = [
-        () => console.log("Site is ready."),
+        () => logger.info("Site is ready."),
         () => this._ajaxLoader.attachGlobalHandlers(),
         () => this._piwik.attach(),
         () => this._ajaxLoader.loadCompleted((url, title, scrollPosition, responseTime) => this.pageLoaded(url, title, scrollPosition, responseTime)),
@@ -32,7 +33,7 @@ export class Blog {
     }
 
     private _onPageLoaded: PageLoaded[] = [
-        (url, title, position) => console.log(`Page [${url}] - [${title}] is ready.`),
+        (url, title, position) => logger.info(`Page [${url}] - [${title}] is ready.`),
         () => this._gistHelper.findAndLoadGists(),
         () => this._lightenseLoader.attachHandlers(),
         () => this._ajaxLoader.attachHandlers(),

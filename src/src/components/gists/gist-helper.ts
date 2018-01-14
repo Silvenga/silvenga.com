@@ -1,4 +1,5 @@
-export const dataGistIdKey: string = "data-gist-id";
+import { dataGistIdKey } from "./gist-constants";
+import { logger } from "../logger";
 
 export class GistHelper {
     public findAndLoadGists(): void {
@@ -20,7 +21,7 @@ export class GistHelper {
 
         element.parentNode.replaceChild(iframe, element);
 
-        console.log(`Loading gist:`, gistId);
+        logger.info(`Loading gist:`, gistId);
     }
 
     private gistLoadedCallback(this: HTMLIFrameElement, event: Event): any {
