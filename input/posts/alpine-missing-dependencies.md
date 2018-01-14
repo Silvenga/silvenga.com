@@ -4,7 +4,7 @@ Description: Missing dependencies when upgrading some Alpine package.
 
 ![Alpine + Docker = Awsome](/content/images/2018/docker+alpine.png)
 
-I have a lot of Docker images using Alpine Linux as a base. This is awesome when trying to get the most streamlined images possible. 24MB for a complete image is amazing!
+I have a lot of Docker images using Alpine Linux as a base. This is awesome when trying to get the most streamlined images possible - 24MB for a complete image is amazing!
 
 ```log
 # docker images
@@ -12,7 +12,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 tordocker_tor       latest              199b9631b0fd        5 minutes ago       24.2MB
 ```
 
-Soooo, lately, I've been seeing a lot of packages that I try upgrading are now broken with my Dockerfiles (even the same version is of working images fails now). Below is an extremely simple of the Dockerfile I use for my TOR relay node.
+Soooo, lately, I've been seeing a lot of packages that I try upgrading are now broken with my Dockerfiles (even the same version is of working images fails now). Below is an extremely simple example of the Dockerfile I use for my TOR relay node.
 
 ```Dockerfile
 FROM alpine:3.6
@@ -27,7 +27,7 @@ ADD torrc.template.ini torrc.template.ini
 CMD ["/bin/sh", "entry.sh"]
 ```
 
-This Docker image does not build correctly complaining about missing dependencies - in fact, `apk` is complaining about not have libraries normally found in OpenSSL (`libcrypto.so` and `libssl.so`).
+This Docker image does not build correctly, complaining about missing dependencies - in fact, `apk` is complaining about not have libraries normally found in OpenSSL (`libcrypto.so` and `libssl.so`).
 
 ```log
 ERROR: unsatisfiable constraints:
@@ -70,7 +70,7 @@ ERROR: unsatisfiable constraints:
 
 Hmmm... no effect - well that sucks. 
 
-So, after I spent a little more time looking into this problem (basically going through the changes on source control). I discovered that many Alpine maintainer are recompiling their projects to target LibreSSL. With that knowledge I went searching for where LibreSSL was hiding these days in the Alpine repositories - and alas I found the missing libraries in the `edge/main` repository.
+So, after I spent a little more time looking into this problem (basically going through the changes on source control). I discovered that many Alpine maintainers are recompiling their projects to target LibreSSL. With that knowledge I went searching for where LibreSSL was hiding these days in the Alpine repositories - and alas I found the missing libraries in the `edge/main` repository.
 
 Below is a fixed Dockerfile:
 
