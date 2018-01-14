@@ -1,12 +1,12 @@
 .s-content {
+    font-size: 1.15rem;
+    line-height: 1.6;
     $border-color: darken($color: $gray-100, $amount: 10%);
     .s-title {
         max-width: 780px;
         width: 100%;
     }
     .s-article {
-        font-size: 1.15rem;
-        line-height: 1.6;
         &>* {
             width: 100%;
             max-width: 780px;
@@ -20,7 +20,6 @@
                 display: block;
                 position: absolute;
                 top: 0;
-                &>img {}
             }
         }
         img {

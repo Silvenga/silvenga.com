@@ -4,7 +4,7 @@ Description: Yet another weblog for the masses.
 @{ Layout = "/theme/_Layout.cshtml"; }
 
 <div class="s-index d-flex flex-column align-items-center">
-@foreach(var doc in Documents[PipelineKeys.RenderPosts])
+@foreach(var doc in Documents[PipelineKeys.RenderPosts].Where(x => x.Get<DateTimeOffset?>("Archived") == null))
 {
     var publishDate = doc.DateTime(DocumentKeys.Published);
     var lastChange = doc.Get<DateTimeOffset>("LastChange");
