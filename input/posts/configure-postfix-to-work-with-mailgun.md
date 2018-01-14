@@ -1,6 +1,7 @@
 Title: Configure Postfix to Work with MailGun
 Published: 06 May 14
-Description: Using MailGun and a script to get there faster. 
+Description: Using MailGun and a script to get there faster.
+Archived: 01/13/2018
 ---
 
 ![Mail Gun Logo](/content/images/2014/May/mailgun_logo.png)

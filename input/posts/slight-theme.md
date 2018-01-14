@@ -1,6 +1,7 @@
 Title: Slight Theme
 Published: 21 Mar 14
 Description: A Ghost blog theme.
+Archived: 01/13/2018
 ---
 
 ## Introduction
