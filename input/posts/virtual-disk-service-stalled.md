@@ -6,8 +6,6 @@ I had this really odd problem that's been plaguing me for months on a newly inst
 
 ## All the Issues!
 
-> They don't make bugs like Bunny anymore. - Olav Mjelde.
-
 At first I noticed that I was having issues connecting to the Windows SNMP (Simple Network Management Protocol) service which I use to monitor all my servers. My SNMP monitoring system would timeout connecting to the service 99% of the time. This was very odd, and the patterns didn't present in a way that would scream networking issues. I checked all the common causes (VPN issues, monitoring host, DNS, etc), but came up empty. Attempting to restart the service resulted it hanging until I rebooted. Not really caring, I continued on thinking it was network related - my VPN always had Window issues (architecture portable != OS portable).
 
 ![Task Manager](/content/images/2017/7/task-manager.png)
@@ -17,8 +15,6 @@ Later I noticed that Windows Updates were taking forever, so wanting to know the
 Oddly all these issues basically revolved around disk issues, time to check that part of the system? Now, I'm running this particular server in a software RAID-1 (it's a cheap server) using the same method I wrote about [here](https://silvenga.com/raid1-windows-server-2016/). This is definitely not a standard solution in the Windows land, but I've tested this method in my testbed, and have never any had issues. I truly didn't believe this to be the problem, but I fired up Disk Management just to poke around. The message `Connecting to Virtual Disk Service...` greeted me and wouldn't leave (yes, the Virtual Disk service was enabled and running, I restarted it to make sure). 
 
 ## The Ultimate Solution
-
-> Hardware: the parts of a computer that can be kicked.  - Jeff Pesis
 
 This is when the pieces started to fit together - something that the Virtual Disk service accessed was having issues. I bet if I waited long enough, whatever thing that was stalling the service would timeout. I opted to test this by opening the Task Manager and waiting for the IO stats to display. Behold, my patience was rewarded! Now to isolate the root cause...
 
