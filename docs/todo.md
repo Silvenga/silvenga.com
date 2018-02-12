@@ -10,3 +10,4 @@
 - [ ] Cleanup Wyam recipe.
 - [X] Link to github repo from commit hash.
 - [ ] Ctrl+Click links not working.
+- [ ] Promise support missing in IE10
