@@ -5,7 +5,7 @@ Published: 4/14/18
 
 In early October of 2017, researchers announced, publicly, a cryptographic vulnerability in the RSA generation algorithms found within practically every TPM, using Infineon's RSA library. This vulnerability would effectively allow an attacker to easily guess the private key component of the RSA key stored within the TPM - rendering the protections and insurances granted by the TPM useless. Turns out, many TPM's actually use Infineon's technologies, meaning many TPM's are vulnerability - including all Asus and Gigabyte TPM's (that I know of). 
 
-> dl;dr - TPM broke, I sad, TPM need fix.
+> tl;dr - TPM broke, I sad, TPM need fix.
 
 Since the point of TPM's is to perform key protection inside hardware, a software fix is impossible. This is so difficult to mitigate that Window's just resorts to emitting a warning in the Event Logs like the one below:
 
@@ -62,7 +62,7 @@ Tools
 Readme.txt
 ```
 
-The important files ones are these:
+The important files are these:
 
 ```
 Firmware\* <- containing the TPM firmwares.
@@ -167,7 +167,7 @@ Sad panda, it turns out we need to disable the TPM module in the BIOS/UEFI befor
 
 ^^^
 ![Post Screen](/content/images/2018/post-screen.png)
-^^^ Window Server Core reboots way to fast, had reboot multiple times to get what button to press.
+^^^ Window Server Core reboots way too fast, had to reboot multiple times to get what button to press.
 
 ![Asus UEFI Screen](/content/images/2018/asus-uefi.png)
 
@@ -226,7 +226,7 @@ cd '.\9665FW update package_1.1\workspace\'
        TPM Firmware Update completed successfully.
 ```
 
-And it work!
+And it works!
 
 ## Wrapping Things Up
 
@@ -243,7 +243,7 @@ And since this vulnerability is for RSA key generation, it's best to reset all g
 After getting back into Windows, I'm greeted with a lovely success message.
 
 ```ps1
-> Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI select Message
+> Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI | select Message
 
 The TPM was successfully provisioned and is now ready for use.
 The TBS device identifier has been generated.
