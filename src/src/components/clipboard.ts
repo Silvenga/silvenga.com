@@ -15,8 +15,12 @@ export class Clipboard {
 
     private copyTarget(copyId: string) {
         let target = document.querySelector(`[data-copy-target="${copyId}"]`);
+        let parent = target.parentElement;
+
+        parent.classList.remove("copy-pending");
         let content = target.textContent;
         this.copyText(content);
+        parent.classList.add("copy-pending");
     }
 
     private copyText(text: string): boolean {

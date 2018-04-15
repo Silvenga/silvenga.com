@@ -149,8 +149,13 @@
             border-style: solid;
             border-width: 1px;
             padding: 1rem;
+            box-shadow: 0 0 10px 1px darken($color: $border-color, $amount: 5%);
             code {
                 color: inherit;
+            }
+            &.copy-pending {
+                box-shadow: inherit;
+                transition: box-shadow 600ms ease-out;
             }
         }
     }

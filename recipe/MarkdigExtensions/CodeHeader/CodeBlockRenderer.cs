@@ -68,7 +68,7 @@ namespace MarkdigExtensions.CodeHeader
                 renderer.Write("    </button>");
                 renderer.Write("</div>");
 
-                renderer.Write($"<pre class=\"lang-{languageClass}\"");
+                renderer.Write($"<pre class=\"lang-{languageClass} copy-pending\"");
 
                 renderer.Write($"><code data-copy-target=\"{copyId}\"");
 
