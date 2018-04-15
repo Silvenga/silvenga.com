@@ -13,6 +13,7 @@ namespace MarkdigExtensions.CodeHeader
         {
             { "ps1", "PowerShell" },
             { "ps", "PowerShell" },
+            { "powershell", "PowerShell" },
             { "cmd", "Windows Command Line" },
             { "bat", "Windows Command Line" },
             { "bash", "Bash" },
