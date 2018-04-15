@@ -112,8 +112,8 @@
                 flex-grow: 1;
             }
             .copy {
-                padding-right: 1rem;
-                padding-left: 1rem;
+                padding-right: 0.8rem;
+                padding-left: 0.8rem;
                 background: transparent;
                 border: 0 solid;
                 cursor: pointer;
@@ -126,6 +126,18 @@
                 &:focus {
                     outline: 5px auto -webkit-focus-ring-color;
                 }
+                .copy-icon {
+                    background-image: url(./../../assets/copy.svg);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    width: 11px;
+                    height: 14px;
+                    margin-right: 5px;
+                    opacity: 0.40;
+                }
+            }
+            &.lang-output {
+                margin-top: -1rem;
             }
         }
         pre {

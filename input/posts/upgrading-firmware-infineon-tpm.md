@@ -10,12 +10,14 @@ In early October of 2017, researchers announced, publicly, a cryptographic vulne
 Since the point of TPM's is to perform key protection inside hardware, a software fix is impossible. This is so difficult to mitigate that Window's just resorts to emitting a warning in the Event Logs like the one below:
 
 ```ps1
-> Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI -EntryType Error | select Message
-
+Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI -EntryType Error | select Message
+```
+```output
 The Trusted Platform Module (TPM) firmware on this PC has a known security problem. 
 Please contact your PC manufacturer to find out if an update is available. 
 For more information please go to https://go.microsoft.com/fwlink/?linkid=852572
 ```
+
 Now, 6 months later and over a year since Infineon was notified of this issue, Asus and Gigabyte have yet to release updates for their TPM's. Although, I'm not particularly surprised considering most consumers would likely brick their machine's when trying to update (or not need to update to begin with). Thankfully, many enterprise-centered company's use these Infineon based TPM's, meaning we, the consumers, can piggyback off of enterprise clients shouting for a fix.
 
 In this case, it turns out that the Asus and Gigabyte TPM's are effectively the same one's found in some Supermicro servers, and of course, Supermicro had to release firmware updates - updates that we can use.
@@ -25,8 +27,9 @@ In this case, it turns out that the Asus and Gigabyte TPM's are effectively the 
 Before I get started, I want to make sure the TPM is working in my device. I can ask Window's about it via the `Get-TPM` command.
 
 ```ps1
-> Get-Tpm
-
+Get-Tpm
+```
+```output
 TpmPresent          : True
 TpmReady            : False
 ManufacturerId      : 1229346816
@@ -54,8 +57,9 @@ cd '.\9665FW update package_1.1\'
 Looking through the files extracted files, there are two directories:
 
 ```ps1
-> ls | select Name
-
+ls | select Name
+```
+```output
 Firmware
 Tools
 9665.nsh
@@ -80,8 +84,9 @@ cp .\Tools\WinPE\Bin\x64\* .\workspace\
 Now `.\workspace` contains the following files:
 
 ```ps1
-> ls | select Name
-
+ls | select Name
+```
+```output
 License_FW_Images.pdf
 TPM12_4.40.119.0_to_TPM12_4.43.257.0.BIN
 TPM12_4.40.119.0_to_TPM20_5.62.3126.0.BIN
@@ -112,8 +117,9 @@ Now to upgrading the firmware!
 Let's make sure `TPMFactoryUpd.exe` detects the TPM.
 
 ```ps1
-> .\TPMFactoryUpd.exe -info
-
+.\TPMFactoryUpd.exe -info
+```
+```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
   **********************************************************************
@@ -130,8 +136,9 @@ Let's make sure `TPMFactoryUpd.exe` detects the TPM.
 And it does, sweet! Now to run the upgrade.
 
 ```ps1
-> .\TPMFactoryUpd.exe -update config-file -config TPM20_latest.cfg
-
+.\TPMFactoryUpd.exe -update config-file -config TPM20_latest.cfg
+```
+```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
   **********************************************************************
@@ -178,8 +185,9 @@ Now to disable the TPM.
 After booting back into Windows, it looks like disabling the TPM fixes the `Empty Buffer` problem: 
 
 ```ps1
-> .\TPMFactoryUpd.exe -info
-
+.\TPMFactoryUpd.exe -info
+```
+```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
   **********************************************************************
@@ -198,7 +206,8 @@ Now I can try to update the TPM again.
 ```ps1
 cd '.\9665FW update package_1.1\workspace\'
 .\TPMFactoryUpd.exe -update config-file -config TPM20_latest.cfg
-
+```
+```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
   **********************************************************************
@@ -243,8 +252,9 @@ And since this vulnerability is for RSA key generation, it's best to reset all g
 After getting back into Windows, I'm greeted with a lovely success message.
 
 ```ps1
-> Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI | select Message
-
+Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI | select Message
+```
+```output
 The TPM was successfully provisioned and is now ready for use.
 The TBS device identifier has been generated.
 The Ownership of the Trusted Platform Module (TPM) hardware on this computer was successfully taken (TPM TakeOwnership command) by the system.
@@ -253,8 +263,9 @@ The Ownership of the Trusted Platform Module (TPM) hardware on this computer was
 And as a final check, it looks like the `ManufacturerVersion` was updated to `5.62`.
 
 ```ps1
-> Get-Tpm
-
+Get-Tpm
+```
+```output
 TpmPresent          : True
 TpmReady            : True
 ManufacturerId      : 1229346816

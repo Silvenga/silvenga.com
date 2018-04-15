@@ -9,22 +9,24 @@ namespace MarkdigExtensions.CodeHeader
 {
     public class CodeHeaderRenderer : HtmlObjectRenderer<CodeBlock>
     {
-        public readonly Dictionary<string, string> CodeLanguageMap = new Dictionary<string, string>
+        public readonly Dictionary<string, (string Human, string Class)> CodeLanguageMap = new Dictionary<string, (string Human, string Class)>
         {
-            { "ps1", "PowerShell" },
-            { "ps", "PowerShell" },
-            { "powershell", "PowerShell" },
-            { "cmd", "Windows Command Line" },
-            { "bat", "Windows Command Line" },
-            { "bash", "Bash" },
-            { "js", "JavaScript" },
-            { "ts", "TypeScript" },
-            { "log", "Logs" },
-            { "logs", "Logs" },
-            { "json", "JSON" },
-            { "gpg", "GPG Key" },
-            { "term", "Terminal" },
-            { "dockerfile", "Dockerfile" },
+            { "ps1", ("PowerShell", "powershell") },
+            { "ps", ("PowerShell", "powershell") },
+            { "powershell", ("PowerShell", "powershell") },
+            { "cmd", ("Windows Command Line", "cmd") },
+            { "bat", ("Windows Command Line", "cmd") },
+            { "bash", ("Bash", "bash") },
+            { "js", ("JavaScript", "js") },
+            { "ts", ("TypeScript", "ts") },
+            { "log", ("Logs", "logs") },
+            { "logs", ("Logs", "logs") },
+            { "json", ("JSON", "json") },
+            { "gpg", ("GPG Key", "gpg") },
+            { "term", ("Terminal", "cli") },
+            { "cli", ("Terminal", "cli") },
+            { "dockerfile", ("Dockerfile", "dockerfile") },
+            { "output", ("Output", "output") },
         };
 
         protected override void Write(HtmlRenderer renderer, CodeBlock obj)
@@ -41,28 +43,32 @@ namespace MarkdigExtensions.CodeHeader
                 //     </button>
                 // </div>
 
-                var language = "Code";
+                var languageHuman = "Code";
+                var languageClass = "code";
                 var info = (obj as FencedCodeBlock)?.Info;
                 if (info != null && CodeLanguageMap.ContainsKey(info))
                 {
-                    language = CodeLanguageMap[info];
+                    languageHuman = CodeLanguageMap[info].Human;
+                    languageClass = CodeLanguageMap[info].Class;
                 }
                 else if (info != null && info.StartsWith("file-"))
                 {
                     var file = info.Substring("file-".Length);
-                    language = file;
+                    languageHuman = file;
+                    languageClass = "file";
                 }
 
                 var copyId = Guid.NewGuid().ToString("N");
 
-                renderer.Write("<div class=\"code-header\">");
-                renderer.Write($"   <span class=\"language\">{language}</span>");
+                renderer.Write($"<div class=\"code-header lang-{languageClass}\">");
+                renderer.Write($"   <span class=\"language\">{languageHuman}</span>");
                 renderer.Write($"   <button class=\"copy\" data-copy-id=\"{copyId}\">");
+                renderer.Write("        <i class=\"copy-icon\"></i>");
                 renderer.Write("        <span>Copy</span>");
                 renderer.Write("    </button>");
                 renderer.Write("</div>");
 
-                renderer.Write("<pre");
+                renderer.Write($"<pre class=\"lang-{languageClass}\"");
 
                 renderer.Write($"><code data-copy-target=\"{copyId}\"");
 
