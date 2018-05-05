@@ -29,7 +29,6 @@ namespace recipe.MarkdigExtensions.ImagePlaceholders
                 {
                     var image = resolvedImages.Single();
 
-
                     if (image.Width > MaxWidth || true)
                     {
                         var ratioPercent = image.Height / (decimal)image.Width * 100;
