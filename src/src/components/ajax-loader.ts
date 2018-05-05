@@ -112,7 +112,7 @@ export class AjaxLoader {
         let remoteTitleStr = document.querySelector("title").text;
         this.onLoadCompleted(remoteUrl, remoteTitleStr, position, responseTime);
 
-        console.log(`Ajax navigation completed in ${responseTime}.`);
+        console.log(`Ajax navigation completed in ${responseTime}ms.`);
     }
 
     private copyElementTo(selector: (doc: DocumentFragment) => HTMLElement, local: DocumentFragment, remote: DocumentFragment) {
