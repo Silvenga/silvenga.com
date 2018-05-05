@@ -36,6 +36,8 @@ namespace recipe.MarkdigExtensions.ImagePlaceholders
                         var outerContainer = new HtmlAttributes();
                         outerContainer.AddClass("img-container-outer");
                         outerContainer.AddProperty("data-real-path", image.RealPath);
+                        outerContainer.AddProperty("data-real-width", image.Width.ToString());
+                        outerContainer.AddProperty("data-real-height", image.Height.ToString());
                         outerContainer.AddProperty("style", $"max-width: {System.Math.Min(image.Width, MaxWidth)}px;");
 
                         renderer.Write("<div");
@@ -50,6 +52,11 @@ namespace recipe.MarkdigExtensions.ImagePlaceholders
                             renderer.Write(">");
                             {
                                 renderer.Write("<p class=\"img-container-inner\">");
+                                var imgAttributes = new HtmlAttributes();
+                                imgAttributes.AddProperty("data-src", link.Url);
+                                imgAttributes.AddClass("img-fluid");
+                                link.SetAttributes(imgAttributes);
+                                link.Url = null;
                                 base.Write(renderer, link);
                                 renderer.Write("</p>");
                             }

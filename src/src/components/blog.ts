@@ -4,6 +4,7 @@ import { GistHelper } from "./gists/gist-helper";
 import { LightenseLoader } from "./lightense-loader";
 import { Piwik } from "./piwik";
 import { logger } from "./logger";
+import { ImageLoader } from "./image-loader";
 
 type PageLoaded = (pageUrl: string, title: string, scrollPosition: number, responseTime: number) => void;
 type SiteLoaded = () => void;
@@ -15,6 +16,7 @@ export class Blog {
     private _ajaxLoader: AjaxLoader = new AjaxLoader();
     private _lightenseLoader: LightenseLoader = new LightenseLoader();
     private _clipboard: Clipboard = new Clipboard();
+    private _imageLoader: ImageLoader = new ImageLoader();
 
     private _onSiteLoaded: SiteLoaded[] = [
         () => logger.info("Site is ready."),
@@ -38,6 +40,7 @@ export class Blog {
         () => this._lightenseLoader.attachHandlers(),
         () => this._ajaxLoader.attachHandlers(),
         () => this._clipboard.attachCopyEvents(),
+        () => this._imageLoader.attachHandlers(),
         (url, title, position, responseTime) => this._piwik.trackPageLoad(url, title, responseTime)
     ];
 

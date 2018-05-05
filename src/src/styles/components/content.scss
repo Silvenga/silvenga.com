@@ -37,6 +37,14 @@
         img {
             display: block;
             margin: 0 auto;
+            &:not([src]) {
+                visibility: hidden;
+            }
+            &[data-src],
+            &[data-srcset] {
+                display: block;
+                min-height: 1px;
+            }
         }
         figure {
             margin-top: $content-margin-top;
