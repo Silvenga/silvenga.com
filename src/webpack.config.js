@@ -14,12 +14,13 @@ module.exports = {
     output: {
         path: path.resolve("../dist"),
         filename: "[name].js",
-        chunkFilename: "[name].js"
+        chunkFilename: "[name].js",
+        publicPath: "/"
     },
 
     resolve: {
         extensions: [".ts", ".js"],
-        modules: ["src", "node_modules"].map(x => path.resolve(x)),
+        modules: ["src", "node_modules"].map(x => path.resolve(x))
     },
     devtool: "source-maps",
     module: {
@@ -45,7 +46,52 @@ module.exports = {
             },
             { test: /\.(jpg|png|gif|woff2|woff)$/, use: ["file-loader"] },
             { test: /\.(svg)$/, use: ["url-loader"] },
-
+            {
+                test: /\.html$/,
+                include: [
+                    path.resolve("../output"),
+                ],
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name(file) {
+                                var parent = path.basename(path.dirname(file)) + "/";
+                                if (parent == "output/") {
+                                    parent = "";
+                                }
+                                if (parent == "404/") {
+                                    return '404.html';
+                                }
+                                return parent + '[name].[ext]';
+                            }
+                        }
+                    },
+                    'extract-loader',
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            attrs: [':data-src'],
+                            root: "..",
+                            minimize: true
+                        }
+                    },
+                ]
+            },
+            {
+                test: /\.(txt|xml)$/,
+                include: [
+                    path.resolve("../output"),
+                ],
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]'
+                        }
+                    }
+                ]
+            },
         ]
     },
     plugins: [
@@ -54,17 +100,6 @@ module.exports = {
             paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
             minimize: true
         }),
-        new CopyWebpackPlugin([
-            {
-                context: "../output",
-                from: '**/*'
-            },
-            {
-                context: "../output",
-                from: '404/index.html',
-                to: '404.html'
-            }
-        ]),
         new HtmlWebpackPlugin({
             filename: 'gist-loader.html',
             template: './src/components/gists/gist-loader.html',
