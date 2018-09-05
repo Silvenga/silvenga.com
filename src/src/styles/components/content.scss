@@ -151,13 +151,62 @@
             border-style: solid;
             border-width: 1px;
             padding: 1rem;
-            box-shadow: 0 0 10px 1px darken($color: $border-color, $amount: 5%);
             code {
                 color: inherit;
             }
-            &.copy-pending {
-                box-shadow: inherit;
-                transition: box-shadow 600ms ease-out;
+        }
+        .copy {
+            // Amazing work found here https://chrisbracco.com/a-simple-css-tooltip/
+            position: relative;
+            $duration: 200ms;
+            $width: 80px;
+            &[data-tooltip] {
+                &:before {
+                    transition: opacity $duration ease-in-out, visibility $duration ease-in-out;
+                    opacity: 0;
+                    visibility: hidden;
+                    position: absolute;
+                    bottom: 150%;
+                    left: 50%;
+                    margin-bottom: -5px;
+                    margin-left: $width / -2;
+                    padding: 7px;
+                    width: $width;
+                    border-radius: 3px;
+                    background-color: #000;
+                    background-color: hsla(0, 0%, 20%, 0.9);
+                    color: #fff;
+                    content: attr(data-tooltip);
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 1.2;
+                    outline: 0;
+                }
+                &:after {
+                    transition: opacity $duration ease-in-out, visibility $duration ease-in-out;
+                    opacity: 0;
+                    visibility: hidden;
+                    position: absolute;
+                    top: -10px;
+                    left: 50%;
+                    margin-left: -5px;
+                    width: 0;
+                    border-top: 5px solid #000;
+                    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+                    border-right: 5px solid transparent;
+                    border-left: 5px solid transparent;
+                    content: " ";
+                    font-size: 0;
+                    line-height: 0;
+                }
+                &.show:before {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                &.show:after {
+                    opacity: 1;
+                    visibility: visible;
+                }
             }
         }
     }

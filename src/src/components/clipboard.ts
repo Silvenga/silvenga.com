@@ -8,19 +8,25 @@ export class Clipboard {
             let copyId = copyButton.getAttribute("data-copy-id");
             copyButton.onclick = (ev: MouseEvent) => {
                 this.copyTarget(copyId);
-                copyButton.blur();
+                this.displayTooltip(copyButton);
             };
         }
     }
 
+    private async displayTooltip(copyButton: HTMLElement) {
+        copyButton.blur();
+        copyButton.setAttribute("data-tooltip", "Copied!");
+        copyButton.classList.add("show");
+        await this.delay(500);
+        copyButton.classList.remove("show");
+        await this.delay(300);
+        copyButton.removeAttribute("data-tooltip");
+    }
+
     private copyTarget(copyId: string) {
         let target = document.querySelector(`[data-copy-target="${copyId}"]`);
-        let parent = target.parentElement;
-
-        parent.classList.remove("copy-pending");
         let content = target.textContent;
         this.copyText(content);
-        parent.classList.add("copy-pending");
     }
 
     private copyText(text: string): boolean {
@@ -51,5 +57,9 @@ export class Clipboard {
 
         document.body.removeChild(textArea);
         return success;
+    }
+
+    private async delay(delayMs: number) {
+        return new Promise(res => setTimeout(res, delayMs));
     }
 }
