@@ -38,7 +38,7 @@ export class Piwik {
     private handleOnScroll() {
         let bottomOfPage = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
         if (bottomOfPage) {
-            this.trackEvent("Page", "Scoll", "Bottom");
+            this.trackEvent("Page", "Scroll", "Bottom");
         }
     }
 
