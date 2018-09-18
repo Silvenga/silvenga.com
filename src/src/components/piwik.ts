@@ -24,6 +24,8 @@ export class Piwik {
 
         let currentScriptTag = document.getElementsByTagName("script")[0];
         currentScriptTag.parentNode.insertBefore(scriptTag, currentScriptTag);
+
+        window.onscroll = () => this.handleOnScroll();
     }
 
     public trackPageLoad(url: string, title: string, responseTime: number) {
@@ -31,5 +33,23 @@ export class Piwik {
         this.eventQueue.push(["setDocumentTitle", title]);
         this.eventQueue.push(["setGenerationTimeMs", responseTime]);
         this.eventQueue.push(["trackPageView"]);
+    }
+
+    private handleOnScroll() {
+        let bottomOfPage = (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight;
+        if (bottomOfPage) {
+            this.trackEvent("Page", "Scoll", "Bottom");
+        }
+    }
+
+    private trackEvent(category: string, action: string, name: string = null, value: number = null) {
+        let event: Array<string | number> = ["trackEvent", category, action];
+        if (name) {
+            event.push(name);
+            if (value) {
+                event.push(value);
+            }
+        }
+        this.eventQueue.push(event);
     }
 }
