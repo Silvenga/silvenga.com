@@ -1,11 +1,11 @@
 export class Logger {
     public info(message: any, ...params: any[]) {
         // tslint:disable-next-line:no-console
-        console.log(message, params);
+        console.log(message, ...params);
     }
     public warn(message: any, ...params: any[]) {
         // tslint:disable-next-line:no-console
-        console.warn(message, params);
+        console.warn(message, ...params);
     }
 }
 
