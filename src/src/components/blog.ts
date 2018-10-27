@@ -5,6 +5,7 @@ import { LightenseLoader } from "./lightense-loader";
 import { Piwik } from "./piwik";
 import { logger } from "./logger";
 import { ImageLoader } from "./image-loader";
+import { Comments } from "./gists/comments";
 
 type PageLoaded = (pageUrl: string, title: string, scrollPosition: number, responseTime: number) => void;
 type SiteLoaded = () => void;
@@ -17,6 +18,7 @@ export class Blog {
     private _lightenseLoader: LightenseLoader = new LightenseLoader();
     private _clipboard: Clipboard = new Clipboard();
     private _imageLoader: ImageLoader = new ImageLoader();
+    private _comments: Comments = new Comments();
 
     private _onSiteLoaded: SiteLoaded[] = [
         () => logger.info("Site is ready."),
@@ -41,6 +43,7 @@ export class Blog {
         () => this._ajaxLoader.attachHandlers(),
         () => this._clipboard.attachCopyEvents(),
         () => this._imageLoader.attachHandlers(),
+        () => this._comments.attach(),
         (url, title, position, responseTime) => this._piwik.trackPageLoad(url, title, responseTime)
     ];
 

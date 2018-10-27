@@ -94,7 +94,7 @@ export class AjaxLoader {
 
     public async loadRemote(remoteUrl: string, position: number = 0): Promise<void> {
 
-        console.log(`Ajax navigation to ${remoteUrl} in progress.`);
+        logger.info(`Ajax navigation to ${remoteUrl} in progress.`);
 
         let timer = new Timer();
         timer.start();
@@ -112,7 +112,7 @@ export class AjaxLoader {
         let remoteTitleStr = document.querySelector("title").text;
         this.onLoadCompleted(remoteUrl, remoteTitleStr, position, responseTime);
 
-        console.log(`Ajax navigation completed in ${responseTime}ms.`);
+        logger.info(`Ajax navigation completed in ${responseTime.toFixed(2)}ms.`);
     }
 
     private copyElementTo(selector: (doc: DocumentFragment) => HTMLElement, local: DocumentFragment, remote: DocumentFragment) {

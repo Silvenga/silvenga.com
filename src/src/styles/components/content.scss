@@ -210,5 +210,10 @@
             }
         }
     }
+    .s-comments {
+        .utterances {
+            max-width: 780px;
+        }
+    }
     @include link();
 }
