@@ -1,12 +1,13 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const Base = require('./webpack.config');
+const base = require('./webpack.config');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 
-module.exports = merge(Base, {
+module.exports = merge(base, {
     devtool: 'source-map',
+    mode: 'production',
     plugins: [
-        new UglifyJsPlugin({
-            sourceMap: true
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
         })
     ],
 });

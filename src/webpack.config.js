@@ -1,10 +1,9 @@
 const path = require("path");
 const glob = require("glob");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: {
@@ -17,14 +16,14 @@ module.exports = {
         chunkFilename: "[name].js",
         publicPath: "/"
     },
-
+    mode: "development",
     resolve: {
         extensions: [".ts", ".js"],
         modules: ["src", "node_modules"].map(x => path.resolve(x))
     },
     devtool: "source-maps",
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.ts$/,
                 use: [
@@ -34,18 +33,22 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        { loader: 'css-loader?sourceMap', options: { importLoaders: 1 } },
-                        'postcss-loader?sourceMap',
-                        'resolve-url-loader',
-                        'sass-loader?sourceMap'
-                    ]
-                })
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    { loader: 'css-loader?sourceMap', options: { importLoaders: 1 } },
+                    'postcss-loader?sourceMap',
+                    'resolve-url-loader',
+                    'sass-loader?sourceMap'
+                ]
             },
-            { test: /\.(jpg|png|gif|woff2|woff)$/, use: ["file-loader"] },
-            { test: /\.(svg)$/, use: ["url-loader"] },
+            {
+                test: /\.(jpg|png|gif|woff2|woff)$/,
+                use: ["file-loader"]
+            },
+            {
+                test: /\.(svg)$/,
+                use: ["url-loader"]
+            },
             {
                 test: /\.html$/,
                 include: [
@@ -95,7 +98,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].css'),
+        new MiniCssExtractPlugin({
+            filename: "[name].css",
+        }),
         new PurifyCSSPlugin({
             paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
             minimize: true
