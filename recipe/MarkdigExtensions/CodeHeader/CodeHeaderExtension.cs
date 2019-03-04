@@ -1,9 +1,8 @@
 using Markdig;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
-using MarkdigExtensions.CodeHeader;
 
-namespace recipe.MarkdigExtensions.CodeHeader
+namespace Wyam.SlightBlog.MarkdigExtensions.CodeHeader
 {
     public class CodeHeaderExtension : IMarkdownExtension
     {

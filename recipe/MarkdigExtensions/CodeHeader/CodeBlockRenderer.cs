@@ -1,32 +1,31 @@
 using System;
 using System.Collections.Generic;
-using Markdig.Parsers;
 using Markdig.Renderers;
 using Markdig.Renderers.Html;
 using Markdig.Syntax;
 
-namespace MarkdigExtensions.CodeHeader
+namespace Wyam.SlightBlog.MarkdigExtensions.CodeHeader
 {
     public class CodeHeaderRenderer : HtmlObjectRenderer<CodeBlock>
     {
         public readonly Dictionary<string, (string Human, string Class)> CodeLanguageMap = new Dictionary<string, (string Human, string Class)>
         {
-            { "ps1", ("PowerShell", "powershell") },
-            { "ps", ("PowerShell", "powershell") },
-            { "powershell", ("PowerShell", "powershell") },
-            { "cmd", ("Windows Command Line", "cmd") },
-            { "bat", ("Windows Command Line", "cmd") },
-            { "bash", ("Bash", "bash") },
-            { "js", ("JavaScript", "js") },
-            { "ts", ("TypeScript", "ts") },
-            { "log", ("Logs", "logs") },
-            { "logs", ("Logs", "logs") },
-            { "json", ("JSON", "json") },
-            { "gpg", ("GPG Key", "gpg") },
-            { "term", ("Terminal", "cli") },
-            { "cli", ("Terminal", "cli") },
-            { "dockerfile", ("Dockerfile", "dockerfile") },
-            { "output", ("Output", "output") },
+            {"ps1", ("PowerShell", "powershell")},
+            {"ps", ("PowerShell", "powershell")},
+            {"powershell", ("PowerShell", "powershell")},
+            {"cmd", ("Windows Command Line", "cmd")},
+            {"bat", ("Windows Command Line", "cmd")},
+            {"bash", ("Bash", "bash")},
+            {"js", ("JavaScript", "js")},
+            {"ts", ("TypeScript", "ts")},
+            {"log", ("Logs", "logs")},
+            {"logs", ("Logs", "logs")},
+            {"json", ("JSON", "json")},
+            {"gpg", ("GPG Key", "gpg")},
+            {"term", ("Terminal", "cli")},
+            {"cli", ("Terminal", "cli")},
+            {"dockerfile", ("Dockerfile", "dockerfile")},
+            {"output", ("Output", "output")},
         };
 
         protected override void Write(HtmlRenderer renderer, CodeBlock obj)
@@ -35,7 +34,6 @@ namespace MarkdigExtensions.CodeHeader
 
             if (renderer.EnableHtmlForBlock)
             {
-
                 // <div class=\"code-header\">
                 //     <span class=\"language\">PowerShell</span>
                 //     <button class=\"copy\">

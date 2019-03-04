@@ -1,6 +1,4 @@
-﻿using Wyam.Common.Modules;
-
-namespace Wyam.SlightBlog
+﻿namespace Wyam.SlightBlog
 {
     public static class PipelineKeys
     {

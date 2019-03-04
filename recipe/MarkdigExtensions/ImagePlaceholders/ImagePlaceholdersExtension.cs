@@ -1,14 +1,9 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Markdig;
 using Markdig.Renderers;
-using Markdig.Renderers.Html;
 using Markdig.Renderers.Html.Inlines;
-using Markdig.Syntax;
-using Markdig.Syntax.Inlines;
 
-namespace recipe.MarkdigExtensions.ImagePlaceholders
+namespace Wyam.SlightBlog.MarkdigExtensions.ImagePlaceholders
 {
     public class ImagePlaceholdersExtension : IMarkdownExtension
     {
@@ -26,7 +21,7 @@ namespace recipe.MarkdigExtensions.ImagePlaceholders
                 if (!htmlRenderer.ObjectRenderers.Contains<ImagePlaceholdersRenderer>())
                 {
                     htmlRenderer.ObjectRenderers
-                        .Replace<LinkInlineRenderer>(new ImagePlaceholdersRenderer(BaseContentPaths));
+                                .Replace<LinkInlineRenderer>(new ImagePlaceholdersRenderer(BaseContentPaths));
                 }
             }
         }

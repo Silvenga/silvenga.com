@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using recipe.MarkdigExtensions.CodeHeader;
-using recipe.MarkdigExtensions.ImagePlaceholders;
 using Wyam.Common.Configuration;
 using Wyam.Common.Documents;
 using Wyam.Common.Execution;
@@ -16,14 +14,14 @@ using Wyam.Core.Modules.Extensibility;
 using Wyam.Core.Modules.IO;
 using Wyam.Core.Modules.Metadata;
 using Wyam.Git;
-using Wyam.Html;
-using Wyam.Minification;
+using Wyam.SlightBlog.MarkdigExtensions.CodeHeader;
+using Wyam.SlightBlog.MarkdigExtensions.ImagePlaceholders;
 
 namespace Wyam.SlightBlog
 {
     public class SlightBlog : IRecipe
     {
-        public static Action<string> Warn = (string message) => Common.Tracing.Trace.Warning(message);
+        public static Action<string> Warn = message => Common.Tracing.Trace.Warning(message);
 
         public void Apply(IEngine engine)
         {
@@ -54,12 +52,14 @@ namespace Wyam.SlightBlog
                         Warn($"Skipping {doc.Source} due to not having {DocumentKeys.Published} metadata");
                         return false;
                     }
+
                     if (doc.Get<DateTime>(DocumentKeys.Published) > DateTime.Now)
                     {
                         Warn(
                             $"Skipping {doc.Source} due to having {DocumentKeys.Published} metadata of {doc.Get<DateTime>(DocumentKeys.Published)} in the future (current date and time is {DateTime.Now})");
                         return false;
                     }
+
                     return true;
                 }),
                 ValidateMetadata()
@@ -75,7 +75,7 @@ namespace Wyam.SlightBlog
                     new FrontMatter(new Yaml.Yaml())
                 ),
                 OrderByPublishDate(),
-               ValidateMetadata()
+                ValidateMetadata()
             );
 
             engine.Pipelines.Add(PipelineKeys.Foundation,
@@ -156,6 +156,7 @@ namespace Wyam.SlightBlog
                     {
                         link += "/";
                     }
+
                     return new SitemapItem(link);
                 }),
                 new Sitemap(),
@@ -219,7 +220,6 @@ namespace Wyam.SlightBlog
                     Warn($"The title should be no longer then 55 charactors for {source}.");
                 }
 
-
                 if (description == null)
                 {
                     Warn($"The description should exist for {source}.");
@@ -236,8 +236,8 @@ namespace Wyam.SlightBlog
         private IModule OrderByPublishDate()
         {
             return new OrderBy((doc, ctx) => doc.Get<DateTime>(DocumentKeys.Published))
-                .Descending()
-                .ThenBy((doc, ctx) => doc.FilePath(Keys.SourceFileName));
+                   .Descending()
+                   .ThenBy((doc, ctx) => doc.FilePath(Keys.SourceFileName));
         }
 
         private IModule Markdown()
@@ -247,7 +247,7 @@ namespace Wyam.SlightBlog
                     .UseConfiguration("advanced+bootstrap")
                     .UseExtension<CodeHeaderExtension>()
                     .UseExtension<ImagePlaceholdersExtension>()
-                );
+            );
         }
 
         public void Scaffold(IFile configFile, IDirectory inputDirectory)
