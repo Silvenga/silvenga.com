@@ -11,9 +11,14 @@
     "start-prod": "nodemon --watch webpack.prod.config.js --exec webpack-dev-server --progress",
     "build": "webpack --config webpack.prod.config.js --bail"
   },
+  "resolutions": {
+    "//": "https://github.com/babel/babel/issues/9759",
+    "semver": "^5.5.0"
+  },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/runtime-corejs3": "^7.4.2",
     "@types/webpack-env": "^1.13.8",
     "babel-loader": "8.0.5",
     "copy-webpack-plugin": "^5.0.0",
@@ -45,16 +50,13 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "bootstrap": "4.0.0-beta.3",
-    "bootstrap.native": "^2.0.21",
-    "core-js": "^2.5.3",
-    "jquery": "^3.2.1",
-    "lightense-images": "^1.0.4",
-    "popper.js": "^1.12.9",
-    "regenerator-runtime": "^0.11.1",
-    "tslib": "^1.8.1",
-    "typeface-open-sans": "^0.0.45",
-    "unfetch": "^3.0.0",
+    "bootstrap": "4.3.1",
+    "jquery": "^3.3.1",
+    "lightense-images": "^1.0.8",
+    "popper.js": "^1.14.7",
+    "tslib": "^1.9.3",
+    "typeface-open-sans": "^0.0.54",
+    "unfetch": "^4.1.0",
     "vanilla-lazyload": "^8.7.1"
   }
 }
