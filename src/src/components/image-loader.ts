@@ -1,4 +1,4 @@
-import LazyLoad from "vanilla-lazyload/src/lazyload.js";
+import LazyLoad from "vanilla-lazyload/dist/lazyload.esm.js";
 
 export class ImageLoader {
 

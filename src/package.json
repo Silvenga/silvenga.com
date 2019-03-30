@@ -57,6 +57,6 @@
     "tslib": "^1.9.3",
     "typeface-open-sans": "^0.0.54",
     "unfetch": "^4.1.0",
-    "vanilla-lazyload": "^8.7.1"
+    "vanilla-lazyload": "^11.0.6"
   }
 }
