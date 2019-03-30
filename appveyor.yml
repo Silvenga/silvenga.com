@@ -13,12 +13,7 @@ install:
   - git submodule update --init --recursive
   - mkdir ..\Wyam
   - mkdir ..\output
-  # - "curl -s https://raw.githubusercontent.com/Wyamio/Wyam/master/RELEASE -o ..\\Wyam\\wyamversion.txt"
-  # - set /P WYAMVERSION=< ..\Wyam\wyamversion.txt
-  # - echo %WYAMVERSION%
-  - "curl -L -s https://github.com/Wyamio/Wyam/releases/download/v1.1.0/Wyam-v1.1.0.zip -o ..\\Wyam\\Wyam.zip"
-  - 7z x ..\Wyam\Wyam.zip -o..\Wyam -r
-  - ps: Install-Product node LTS
+  - dotnet tool install -g Wyam.Tool --version 2.2.4
 build_script:
 - ps: |
     cd recipe
@@ -26,7 +21,7 @@ build_script:
     dotnet build
     cd ..
 - ps: |
-    ..\Wyam\wyam
+    wyam
 - |
     cd src
     yarn
