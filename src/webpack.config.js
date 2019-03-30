@@ -1,6 +1,6 @@
 const path = require("path");
 const glob = require("glob");
-const PurifyCSSPlugin = require('purifycss-webpack');
+const PurgecssPlugin = require('purgecss-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -101,10 +101,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
         }),
-        // new PurifyCSSPlugin({
-        //     paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
-        //     minimize: true
-        // }),
+        new PurgecssPlugin({
+            paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
+        }),
         new HtmlWebpackPlugin({
             filename: 'gist-loader.html',
             template: './src/components/gists/gist-loader.html',
