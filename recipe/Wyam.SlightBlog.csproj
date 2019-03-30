@@ -3,16 +3,15 @@
     <TargetFramework>net462</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Wyam.Common" Version="2.2.3">
-    </PackageReference>
-    <PackageReference Include="Wyam.Core" version="2.2.3" />
+    <PackageReference Include="Wyam.Common" Version="2.2.4" />
+    <PackageReference Include="Wyam.Core" version="2.2.4" />
     <PackageReference Include="Wyam.Git" version="1.0.0" />
-    <PackageReference Include="Wyam.Html" version="2.2.3" />
-    <PackageReference Include="Wyam.Less" version="2.2.3" />
-    <PackageReference Include="Wyam.Markdown" version="2.2.3" />
-    <PackageReference Include="Wyam.Minification" version="2.2.3" />
-    <PackageReference Include="Wyam.Razor" version="2.2.3" />
-    <PackageReference Include="Wyam.Yaml" version="2.2.3" />
+    <PackageReference Include="Wyam.Html" version="2.2.4" />
+    <PackageReference Include="Wyam.Less" version="2.2.4" />
+    <PackageReference Include="Wyam.Markdown" version="2.2.4" />
+    <PackageReference Include="Wyam.Minification" version="2.2.4" />
+    <PackageReference Include="Wyam.Razor" version="2.2.4" />
+    <PackageReference Include="Wyam.Yaml" version="2.2.4" />
     <PackageReference Include="SixLabors.ImageSharp" version="1.0.0-beta0006" />
   </ItemGroup>
 </Project>

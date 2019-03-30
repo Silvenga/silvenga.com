@@ -8,7 +8,7 @@ namespace Wyam.SlightBlog.MarkdigExtensions.CodeHeader
 {
     public class CodeHeaderRenderer : HtmlObjectRenderer<CodeBlock>
     {
-        public readonly Dictionary<string, (string Human, string Class)> CodeLanguageMap = new Dictionary<string, (string Human, string Class)>
+        private readonly Dictionary<string, (string Human, string Class)> CodeLanguageMap = new Dictionary<string, (string Human, string Class)>
         {
             {"ps1", ("PowerShell", "powershell")},
             {"ps", ("PowerShell", "powershell")},

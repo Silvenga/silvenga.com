@@ -15,8 +15,7 @@ namespace Wyam.SlightBlog.MarkdigExtensions.ImagePlaceholders
 
         public void Setup(MarkdownPipeline pipeline, IMarkdownRenderer renderer)
         {
-            var htmlRenderer = renderer as HtmlRenderer;
-            if (htmlRenderer != null)
+            if (renderer is HtmlRenderer htmlRenderer)
             {
                 if (!htmlRenderer.ObjectRenderers.Contains<ImagePlaceholdersRenderer>())
                 {
