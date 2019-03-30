@@ -17,7 +17,6 @@ install:
 build_script:
 - ps: |
     cd recipe
-    dotnet restore
     dotnet build
     cd ..
 - ps: |

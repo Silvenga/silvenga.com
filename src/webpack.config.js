@@ -101,10 +101,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].css",
         }),
-        new PurifyCSSPlugin({
-            paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
-            minimize: true
-        }),
+        // new PurifyCSSPlugin({
+        //     paths: glob.sync(path.join(__dirname, '../output/**/*.html')),
+        //     minimize: true
+        // }),
         new HtmlWebpackPlugin({
             filename: 'gist-loader.html',
             template: './src/components/gists/gist-loader.html',
