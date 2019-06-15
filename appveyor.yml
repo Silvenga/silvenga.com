@@ -29,7 +29,7 @@ build_script:
 after_build:
 - xcopy dist ..\dist\ /E
 
-on_success:
+deploy_script:
   - git config --global credential.helper store
   - git config --global user.email "appveyor@silvenga.com"
   - git config --global user.name "Appveyor CI"
