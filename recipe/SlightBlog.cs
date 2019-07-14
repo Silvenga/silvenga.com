@@ -13,7 +13,7 @@ using Wyam.Core.Modules.Control;
 using Wyam.Core.Modules.Extensibility;
 using Wyam.Core.Modules.IO;
 using Wyam.Core.Modules.Metadata;
-using Wyam.Git;
+using Wyam.SlightBlog.Git;
 using Wyam.SlightBlog.MarkdigExtensions.CodeHeader;
 using Wyam.SlightBlog.MarkdigExtensions.ImagePlaceholders;
 
@@ -36,6 +36,8 @@ namespace Wyam.SlightBlog
             engine.Settings["WebsiteName"] = "Silvenga.com";
 
             engine.Settings["Twitter"] = "@Silvenga";
+
+            SetupNativePaths.SetupGit();
 
             ImagePlaceholdersExtension.BaseContentPaths.Add("input/posts");
             ImagePlaceholdersExtension.BaseContentPaths.Add("input/pages");
@@ -300,14 +302,14 @@ This is my first post!");
 
                              var metaData = new Dictionary<string, object>
                              {
-                                 {"Changes", numberOfChanges},
-                                 {"LastChange", lastCommit?.Date},
-                                 {"FirstChange", firstCommit?.Date},
-                                 {"LastSha", lastCommit?.Sha},
-                                 {"LastCommitLink", githubCommitUrl},
-                                 {"FirstSha", firstCommit?.Sha},
-                                 {"GithubUrl", githubFileUrl},
-                                 {DocumentKeys.Published, firstCommit?.Date.DateTime}
+                                 { "Changes", numberOfChanges },
+                                 { "LastChange", lastCommit?.Date },
+                                 { "FirstChange", firstCommit?.Date },
+                                 { "LastSha", lastCommit?.Sha },
+                                 { "LastCommitLink", githubCommitUrl },
+                                 { "FirstSha", firstCommit?.Sha },
+                                 { "GithubUrl", githubFileUrl },
+                                 { DocumentKeys.Published, firstCommit?.Date.DateTime }
                              };
 
                              return context.GetDocument(x, metaData.ToList());

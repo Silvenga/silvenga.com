@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="LibGit2Sharp" Version="0.26.0" />
     <PackageReference Include="Wyam.Common" Version="2.2.4" />
     <PackageReference Include="Wyam.Core" version="2.2.4" />
-    <PackageReference Include="Wyam.Git" version="1.0.0" />
     <PackageReference Include="Wyam.Html" version="2.2.4" />
     <PackageReference Include="Wyam.Less" version="2.2.4" />
     <PackageReference Include="Wyam.Markdown" version="2.2.4" />

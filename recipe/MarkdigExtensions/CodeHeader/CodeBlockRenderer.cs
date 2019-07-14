@@ -8,7 +8,7 @@ namespace Wyam.SlightBlog.MarkdigExtensions.CodeHeader
 {
     public class CodeHeaderRenderer : HtmlObjectRenderer<CodeBlock>
     {
-        private readonly Dictionary<string, (string Human, string Class)> CodeLanguageMap = new Dictionary<string, (string Human, string Class)>
+        private readonly Dictionary<string, (string Human, string Class)> _codeLanguageMap = new Dictionary<string, (string Human, string Class)>
         {
             {"ps1", ("PowerShell", "powershell")},
             {"ps", ("PowerShell", "powershell")},
@@ -44,10 +44,10 @@ namespace Wyam.SlightBlog.MarkdigExtensions.CodeHeader
                 var languageHuman = "Code";
                 var languageClass = "code";
                 var info = (obj as FencedCodeBlock)?.Info;
-                if (info != null && CodeLanguageMap.ContainsKey(info))
+                if (info != null && _codeLanguageMap.ContainsKey(info))
                 {
-                    languageHuman = CodeLanguageMap[info].Human;
-                    languageClass = CodeLanguageMap[info].Class;
+                    languageHuman = _codeLanguageMap[info].Human;
+                    languageClass = _codeLanguageMap[info].Class;
                 }
                 else if (info != null && info.StartsWith("file-"))
                 {
