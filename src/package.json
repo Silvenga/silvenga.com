@@ -51,12 +51,12 @@
   },
   "dependencies": {
     "bootstrap": "4.3.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "lightense-images": "^1.0.8",
-    "popper.js": "^1.14.7",
-    "tslib": "^1.9.3",
+    "popper.js": "^1.15.0",
+    "tslib": "^1.10.0",
     "typeface-open-sans": "^0.0.54",
     "unfetch": "^4.1.0",
-    "vanilla-lazyload": "^11.0.6"
+    "vanilla-lazyload": "^12.0.0"
   }
 }
