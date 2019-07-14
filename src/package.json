@@ -11,10 +11,6 @@
     "start-prod": "nodemon --watch webpack.prod.config.js --exec webpack-dev-server --progress",
     "build": "webpack --config webpack.prod.config.js --bail"
   },
-  "resolutions": {
-    "//": "https://github.com/babel/babel/issues/9759",
-    "semver": "^5.5.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
