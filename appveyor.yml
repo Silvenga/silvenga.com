@@ -17,7 +17,7 @@ install:
 build_script:
 - ps: |
     cd recipe
-    dotnet build
+    dotnet publish
     cd ..
 - ps: |
     wyam

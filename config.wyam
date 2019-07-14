@@ -1,7 +1,7 @@
 #recipe SlightBlog
 
 
-#assembly recipe\bin\Debug\net462\Wyam.SlightBlog.dll
+#assembly recipe\bin\Debug\netcoreapp2.1\publish\Wyam.SlightBlog.dll
 
 Settings[Keys.Host] = "silvenga.com";
 Settings[Keys.LinksUseHttps] = true;
