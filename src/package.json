@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "bootstrap": "4.3.1",
+    "core-js": "^3.1.4",
     "jquery": "^3.4.1",
     "lightense-images": "^1.0.8",
     "popper.js": "^1.15.0",
