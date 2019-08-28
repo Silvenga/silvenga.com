@@ -22,9 +22,12 @@ jobs:
         cd recipe
         dotnet publish
         cd ..
+      env:
+        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
     - name: Build Markup
-      shell: pwsh
       run: wyam
+      env:
+        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
     - name: Build Site
       shell: pwsh
       run: |
