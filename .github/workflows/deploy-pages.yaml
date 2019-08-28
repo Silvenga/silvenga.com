@@ -1,0 +1,41 @@
+name: Deploy Site
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.1.801
+    - name: Setup
+      shell: pwsh
+      run: dotnet tool install -g Wyam.Tool --version 2.2.4
+    - name: Build Wyam Recipe
+      shell: pwsh
+      run: |
+        cd recipe
+        dotnet publish
+        cd ..
+    - name: Build Markup
+      shell: pwsh
+      run: wyam
+    - name: Build Site
+      shell: pwsh
+      run: |
+        cd src
+        yarn
+        yarn build
+        cd ..
+    - name: Deploy Github Pages
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.DEPLOYMENT_ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: dist
+        CNAME: silvenga.com
+        COMMIT_EMAIL: github@silvenga.com
+        COMMIT_NAME: Github Actions
