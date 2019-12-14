@@ -1,6 +1,6 @@
 declare var window: any;
 
-const PiwikHost: string = "https://piwik.silvenga.com/";
+const PiwikHost: string = "https://matomo.silvenga.com/";
 
 export class Piwik {
 
@@ -16,7 +16,7 @@ export class Piwik {
         window._paq.push(["enableHeartBeatTimer"]);
         window._paq.push(["enableLinkTracking"]);
         window._paq.push(["setTrackerUrl", PiwikHost + "piwik.php"]);
-        window._paq.push(["setSiteId", "3"]);
+        window._paq.push(["setSiteId", "1"]);
 
         let scriptTag = document.createElement("script");
         scriptTag.async = true;
