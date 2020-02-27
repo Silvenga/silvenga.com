@@ -46,12 +46,12 @@ SelfTest            : {}
 
 ## Getting the Firmware
 
-Everything looks good! Now to get the firmware. I found a compatible version on [Supermicro's driver FTP site](ftp://ftp.supermicro.com/driver/TPM/).
+Everything looks good! Now to get the firmware. I found a compatible version on [Supermicro's driver site](https://www.supermicro.com/wftp/driver/TPM/) ([Driver FTP](ftp://ftp.supermicro.com/driver/TPM)).
 
 ```ps1
-Invoke-WebRequest -Uri ftp://ftp.supermicro.com/driver/TPM/9665FW%20update%20package_1.1.zip -OutFile '9665FW update package_1.1.zip' -UseBasicParsing
-Expand-Archive '.\9665FW update package_1.1.zip' -DestinationPath .
-cd '.\9665FW update package_1.1\'
+Invoke-WebRequest -Uri https://www.supermicro.com/wftp/driver/TPM/9665FW%20update%20package_1.5.zip -OutFile '9665FW update package_1.5.zip' -UseBasicParsing
+Expand-Archive '.\9665FW update package_1.5.zip' -DestinationPath .
+cd '.\9665FW update package_1.5\'
 ```
 
 Looking through the files extracted files, there are two directories:
