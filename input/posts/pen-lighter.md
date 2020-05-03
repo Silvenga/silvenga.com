@@ -23,11 +23,10 @@ The program runs in the tray. Just right click to access the settings. It is com
 
 Just download and run in Windows 8 (< 8 requires .Net Framework 4.5 to be installed, [link](http://www.microsoft.com/en-us/download/details.aspx?id=30653)).
 
-[Download Silvenga's Penlighter](http://store.silvenga.com/blog/Silvenga's%20Pen%20Lighter.exe)
+[Download Silvenga's Penlighter (v1.0.0)](https://github.com/Silvenga/Slight.PenLighter/releases/tag/v1.0.0)
 
-[Download Silvenga's Penlighter Beta v1](http://store.silvenga.com/blog/PenLighter.Beta.v1.exe) (Fixes offset bug on some computers)
+[Download Silvenga's Penlighter (v1.1.0-beta1)](https://github.com/Silvenga/Slight.PenLighter/releases/tag/v1.1.0-beta1) (Fixes offset bug on some computers)
 
-[Download Silvenga's Penlighter Beta v2](http://store.silvenga.com/blog/PenLighter.Beta.v2.exe) (Fixes offset bug with multiple monitors using different DPI settings on Windows 8.1)
+[Download Silvenga's Penlighter (v1.1.0-beta2)](https://github.com/Silvenga/Slight.PenLighter/releases/tag/v1.1.0-beta2) (Fixes offset bug with multiple monitors using different DPI settings on Windows 8.1)
 
-#### [Fork Penlighter on Github](https://github.com/Silvenga/SlightPenLighter).
-
+#### [Fork Penlighter on Github](https://github.com/Silvenga/Slight.PenLighter).
