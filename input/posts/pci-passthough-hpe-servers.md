@@ -4,7 +4,7 @@ Description: Getting iLO to play nice with Hyper-V Discrete Device Assignment
 
 ## The Problem
 
-On my Gen8 HPE Proliants, I run a hyperconvergence, hybrid OS infrastructure, mixing the best of Windows and Linux. My hypervisor of choice is Hyper-V, mainly so I can get TPM protected full disk encryption (which, incredibly, every Linux distro is still lacking!) to allow unattended rolling cluster updates. Anything I can do to reduce the amount of required maintenance, since everyone is applying security updates monthly, right?
+On my Gen8 HPE Proliants, I run a hyperconvergence, hybrid OS infrastructure, mixing the best of Windows and Linux. My hypervisor of choice is Hyper-V, mainly so I can get TPM protected, full disk encryption (which, incredibly, every Linux distro is still lacking!) to allow unattended rolling cluster updates. Anything I can do to reduce the amount of required maintenance, since everyone is applying security updates monthly, right?
 
 Lately I've been building out my NAS, a 75TiB raw Ceph cluster (unattended rolling reboots is a theme here :D), and I've been doing disk level passthrough of my disks to my Ceph nodes. Anyone familiar with Hyper-V can likely see the problem - Ceph really likes to see the real disk, and Hyper-V's disk abstraction hides a lot of data (IMO, this is the correct implementation, but that's another topic). Everything from write caching to SMART data is just not exposed to the guest VM's. 
 
@@ -16,9 +16,9 @@ Why, yes. That would be awesome!
 
 ## The Solution?
 
-Hyper-V is a type 1 hypervisor, meaning the hypervisor runs directly on hardware, with the management OS running in a VM. The management OS executes within the root partition, and gets special treatment like full access to most resources, this includes disks, network adapters, and PCI cards. When you perform disk level passthrough, you have to unmount the disk from the management OS (e.g. offline the disk in Windows terminology). Effectively, the SATA/SAS controller is still shared with the management OS, which means the guest VM's cannot take full control.
+Hyper-V is a type-1 hypervisor, meaning the hypervisor runs directly on hardware, with the management OS running in a VM. The management OS executes within the root partition and gets special treatment like full access to most resources, this includes disks, network adapters, and PCI cards. When you perform disk level passthrough, you have to unmount the disk from the management OS (e.g., offline the disk in Windows terminology). Effectively, the SATA/SAS controller is still shared with the management OS, which means the guest VM's cannot take full control.
 
-Of course, there are a lot of things that can't be effectively shared between multiple OS's, like graphics cards or wifi cards. For these cases, type 1 hypervisors normally have some kind of pci passthrough feature, allowing you to assign a complete device to a single VM.
+Of course, there are a lot of things that can't be effectively shared between multiple OS's, like graphics cards or Wi-Fi cards. For these cases, type-1 hypervisors normally a PCI passthrough feature, allowing you to assign a complete device to a single VM.
 
 Hey, isn't that's called DDA (Discrete Device Assignment) in Hyper-V? Why, yes it is. With DDA I should be able to passthrough my HBA card directly to Ceph. This is super trivial, so let's try that really quick, there's even a little script that shows compatibility!
 
@@ -46,8 +46,8 @@ When the hypervisor attaches a PCI device to a VM, it will setup a translation f
 Basically, the BIOS reserved a portion of memory it controls, that the OS shouldn't touch. This disallows assigning a PCI device to a VM (using DMA).
 
 > Additional reading:
-> https://www.kernel.org/doc/Documentation/Intel-IOMMU.txt
-> https://software.intel.com/content/www/us/en/develop/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices.html
+> - https://www.kernel.org/doc/Documentation/Intel-IOMMU.txt
+> - https://software.intel.com/content/www/us/en/develop/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices.html
 
 ## Why doesn't the BIOS want to share?
 
@@ -72,12 +72,12 @@ I searched for hours for a solution to this. Dozens of posts on forums, and no o
 
 That sounds a lot like the error from Hyper-V...
 
-It turns out, there are a huge amount of BIOS settings not exposed in the BIOS options. One of these settings is around enabling/disabling RMRR on each PCI slot. The only way to modify these settings is by using XML and the conrep interface (a binary that interacts with the BIOS ROM directly).
+It turns out, there are a huge amount of BIOS settings not exposed in the BIOS options. One of these settings is around enabling/disabling RMRR on each PCI slot. The only way to modify these settings is by using XML and the `conrep` interface (a binary that interacts with the BIOS ROM directly).
+
+> Note: I'm doing this in Windows, since a lot of people think this is Linux only.
+> Under Ubuntu, the `hp-scripting-tools` package provides `conrep`.
 
 Let's do that now:
-
-> Doing this in Windows, since a lot of people think this is Linux only.
-> Under Ubuntu, the `hp-scripting-tools` package provides `conrep`.
 
 ```powershell
 # Download and install the tools:
@@ -85,11 +85,12 @@ Start-BitsTransfer https://downloads.hpe.com/pub/softlib2/software1/pubsw-window
 msiexec /i HPEBIOSCmdlets-x64.msi /qn
 ```
 
-```
+After we install the scripting tools, we can use `conrep`.
+
+```powershell
 # Let conrep load the required driver:
 cp "C:\Program Files\Hewlett Packard Enterprise\PowerShell\Modules\HPEBIOSCmdlets\Tools\ConfigurationData\winpe50\hpsstkio\hpsstkio.sys" "C:\Windows\System32\drivers\hpsstkio.sys"
 
-# Profit!
 $conrep = "C:\Program Files\Hewlett Packard Enterprise\PowerShell\Modules\HPEBIOSCmdlets\Tools\ConfigurationData\conrep.exe"
 
 # Save the current settings (-s)
@@ -118,7 +119,6 @@ Less obvious is that there are other schemas you can use to read and modify the 
 Start-BitsTransfer https://downloads.hpe.com/pub/softlib2/software1/pubsw-linux/p1472592088/v95853/conrep_rmrds.xml conrep_rmrds.xml
 cat conrep_rmrds.xml
 ```
-
 ```output
 ...
 This is the input file for CONREP describing Reserved Memory Region Device Scope(RMRDS) entries.
@@ -127,7 +127,9 @@ Endpoints_Excluded = All endpoints in slot should be excluded from Reserved Memo
 ...
 ```
 
-Modifying these settings is as simple as reading the existing settings (using the rmrds schema), modifying the resulting XML, and uploading the XML back the the BIOS ROM.
+Modifying these settings is as simple as reading the existing settings (using the RMRDS schema), modifying the resulting XML, and uploading the XML back the the BIOS ROM. I hope the XML is rather self-explanatory, just switch `Endpoints_Included` to `Endpoints_Excluded` for the PCI slot you want to PCI passthough.
+
+> Note: Disabling RMRR will effectively hide the slot from iLO. Meaning no metrics, no temperature data, no health information.
 
 ```powershell
 & $conrep -s -x conrep_rmrds.xml -f rmrds.xml
