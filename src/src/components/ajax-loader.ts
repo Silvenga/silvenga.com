@@ -99,7 +99,7 @@ export class AjaxLoader {
         let timer = new Timer();
         timer.start();
         this.startLoading();
-        let response: Response = await unfetch(remoteUrl);
+        let response = await unfetch(remoteUrl);
         this.stopLoading();
         let responseTime = timer.stop();
         let text = await response.text();
