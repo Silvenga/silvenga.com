@@ -46,8 +46,8 @@ In .NET, developers may choose to embed non-code as "resource streams" - designe
 
 Minus the boring details, the resource `s.resources` was massive ([extracting code](https://imgur.com/lBOJrd3)). Extracting the "resource streams" produces the following (using the GNU `file` utility to read "magic" headers):
 
-```
-PS > ls | % { file $_.Name }
+```powershell
+ls | % { file $_.Name }
 aida64; PE32 executable for MS Windows (GUI) Intel 80386 32-bit
 aida641; ASCII text, with CRLF line terminators
 GeForce_Bold; TrueType font data
@@ -58,7 +58,7 @@ zh_CN; XML document text
 ```
 
 Downloading the trial of `aida64` (and using the above), the original names aren't a massive leap in logic.
-```
+```powershell
 ls | select name
 
 Name
