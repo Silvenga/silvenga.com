@@ -15,8 +15,8 @@ I'm a software engineer specializing in .NET, my day job is in security which in
 
 There are two version of the KeebMonkey software that I've found, different builds from different locations:
 
-[35inchENG.rar (Alibaba Cloud)](https://kbmscreen.oss-us-east-1.aliyuncs.com/35inchENG.rar)
-[KeebMonkey PC Status Monitor.zip (Digital Ocean)](https://sfo3.digitaloceanspaces.com/drivers/KeebMonkey%20PC%20Status%20Monitor.zip)
+- [35inchENG.rar (Alibaba Cloud)](https://kbmscreen.oss-us-east-1.aliyuncs.com/35inchENG.rar)
+- [KeebMonkey PC Status Monitor.zip (Digital Ocean)](https://sfo3.digitaloceanspaces.com/drivers/KeebMonkey%20PC%20Status%20Monitor.zip)
 
 Both were considered going forward.
 
@@ -48,6 +48,9 @@ Minus the boring details, the resource `s.resources` was massive ([extracting co
 
 ```powershell
 ls | % { file $_.Name }
+```
+
+```output
 aida64; PE32 executable for MS Windows (GUI) Intel 80386 32-bit
 aida641; ASCII text, with CRLF line terminators
 GeForce_Bold; TrueType font data
@@ -60,7 +63,9 @@ zh_CN; XML document text
 Downloading the trial of `aida64` (and using the above), the original names aren't a massive leap in logic.
 ```powershell
 ls | select name
+```
 
+```output
 Name
 ----
 aida64.exe
@@ -71,6 +76,7 @@ kerneld.x64
 pkey.txt
 zh_CN.xml
 ```
+
 I was curious of `pkey`, but a quick Google'ing confirmed my suspicions that it was a license file generated from a product key. Ultimately launching `aida64.exe` (after removing the `aida64.ini` file, since it causes Aida64 to hide itself) results in a non-trial version of Aida64 launching.
 
 ![Aida64 licensed](https://i.imgur.com/O2bkdTu.png)
