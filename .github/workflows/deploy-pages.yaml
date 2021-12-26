@@ -35,6 +35,19 @@ jobs:
         yarn
         yarn build
         cd ..
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download a single artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: dist
     - name: Deploy Github Pages
       uses: JamesIves/github-pages-deploy-action@4.1.8
       with:
