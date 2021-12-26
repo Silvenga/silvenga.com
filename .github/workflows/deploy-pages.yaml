@@ -8,9 +8,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-dotnet@v1.1.0
+    - uses: actions/setup-dotnet@v1.9.0
       with:
-        dotnet-version: 2.1.801
+        dotnet-version: 2.1.x
     - name: Setup
       shell: pwsh
       run: dotnet tool install -g Wyam.Tool --version 2.2.4
