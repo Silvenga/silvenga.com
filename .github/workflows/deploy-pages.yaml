@@ -37,10 +37,8 @@ jobs:
         cd ..
     - name: Deploy Github Pages
       uses: JamesIves/github-pages-deploy-action@4.1.8
-      env:
-        ACCESS_TOKEN: ${{ secrets.DEPLOYMENT_ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
-        CNAME: silvenga.com
-        COMMIT_EMAIL: github@silvenga.com
-        COMMIT_NAME: Github Actions
+      with:
+        branch: gh-pages 
+        folder: dist
+        git-config-email: github@silvenga.com
+        git-config-name: Github Actions
