@@ -100,7 +100,7 @@ Of course, these red flags could mean nothing, I don't personally know enough ab
 
 ### With a Grain of Salt
 
-My personal concussion (with a huge grain of salt):
+My personal conclusion (with a huge grain of salt):
 - The _KeebMonkey PC Status Monitor_ software is purposefully obfuscated, making reverse engineering difficult.
 - The _KeebMonkey PC Status Monitor_ software has a high degree of access to the operating system, nefarious things could be hidden in the software that would be difficult to find.
 - Hidden inside of the _KeebMonkey PC Status Monitor_ software are binaries of Aida64 and a Aida64 product key in violation of FinalWire's (Aida64's developers) licensing agreements that are publicly viewable. The license used with Aida64 is questionable, and may be pirated.
