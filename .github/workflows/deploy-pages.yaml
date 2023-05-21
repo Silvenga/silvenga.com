@@ -37,6 +37,9 @@ jobs:
         yarn
         yarn build
         cd ..
+      env:
+        # https://stackoverflow.com/a/69746937/2001966
+        NODE_OPTIONS: "--openssl-legacy-provider"
     - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       with:
