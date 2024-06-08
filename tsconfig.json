@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "skipLibCheck": false,
+    "jsx": "react-jsx",
+    "jsxImportSource": "jsx-async-runtime",
+    "resolveJsonModule": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules",
+    "_dist"
+  ]
+}

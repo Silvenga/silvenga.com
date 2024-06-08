@@ -1,13 +1,58 @@
 {
   "name": "@silvenga/blog",
   "private": true,
+  "license": "MIT",
   "repository": "git@github.com:Silvenga/silvenga.com",
   "author": "Mark Lopez <m@silvenga.com>",
   "packageManager": "yarn@4.2.2",
+  "type": "module",
+  "browserslist": "> 1%, not dead, Firefox ESR",
   "importSort": {
     ".ts,.tsx": {
       "style": "import-sort-style-module-compact",
       "options": {}
     }
+  },
+  "targets": {
+    "default": {
+      "distDir": "./dist"
+    }
+  },
+  "scripts": {
+    "eleventy": "eleventy",
+    "eleventy:watch": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts --watch",
+    "eleventy:build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
+    "parcel": "parcel",
+    "parcel:start": "parcel --port 9999 --config .parcelrc --cache-dir .cache/parcel .cache/eleventy/**/*.html",
+    "parcel:build": "parcel build --config .prod.parcelrc --cache-dir .cache/parcel .cache/eleventy/**/*.html",
+    "lint": "eslint --max-warnings=0 src",
+    "start": "concurrently \"yarn:eleventy:watch\" \"yarn:parcel:start\" --restart-tries -1",
+    "clean": "rimraf ./dist && rimraf ./.cache",
+    "build": "yarn clean && yarn eleventy:build && yarn parcel:build"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0-alpha.10",
+    "@parcel/compressor-brotli": "2.11.0",
+    "@parcel/packager-raw-url": "2.11.0",
+    "@parcel/reporter-bundle-analyzer": "2.11.0",
+    "@parcel/transformer-inline-string": "2.11.0",
+    "@parcel/transformer-sass": "2.11.0",
+    "@parcel/transformer-webmanifest": "2.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "parcel": "2.11.0",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "parcel-resolver-ignore": "^2.2.0",
+    "rimraf": "^5.0.7",
+    "tsx": "^4.14.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "jsx-async-runtime": "^0.2.1"
   }
 }
