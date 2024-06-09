@@ -1,8 +1,0 @@
-{
-    "files.exclude": {
-        "**/.git": true, // this is a default value
-        "**/.DS_Store": true,
-        "src": true,
-        "recipe": true
-    }
-}

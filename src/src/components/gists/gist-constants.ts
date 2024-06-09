@@ -1,1 +1,0 @@
-export const dataGistIdKey: string = "data-gist-id";
