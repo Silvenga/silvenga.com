@@ -11,11 +11,6 @@
     "skipLibCheck": false,
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-async-runtime",
-    "resolveJsonModule": true,
     "isolatedModules": true
-  },
-  "exclude": [
-    "node_modules",
-    "_dist"
-  ]
+  }
 }

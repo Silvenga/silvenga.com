@@ -1,0 +1,9 @@
+{
+  "title": "Posts",
+  "layout": "layouts/posts.11ty.tsx",
+  "permalink": "posts/{{ page.fileSlug }}/index.html",
+  "tags": [
+    "posts"
+  ],
+  "date": "git Created"
+}

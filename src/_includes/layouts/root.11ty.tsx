@@ -1,10 +1,3 @@
-import { LayoutContext } from "../../_components/eleventy-types";
+import { RootLayout } from "../../_components/layouts/root-layout";
 
-export function render({ content }: LayoutContext) {
-    return (
-        <>
-            test
-            {content}
-        </>
-    );
-}
+export const render = RootLayout;

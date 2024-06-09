@@ -1,9 +1,26 @@
-import { TemplateContext } from "./_components/eleventy-types";
+import { About } from "./_components/about";
+import { Avatar } from "./_components/avatar";
+import { RenderContext, TemplateContext } from "./_components/eleventy-types";
+import { PostsList } from "./_components/posts-list";
 
-export function render(props: TemplateContext) {
+export function render(this: RenderContext, { collections }: TemplateContext) {
     return (
-        <h1>
-            Hello world!
-        </h1>
+        <article>
+            <header className="hero rounded mb-9 border border-gray-300">
+                <div className="hero-content flex-col lg:flex-row">
+                    <Avatar className="self-start mt-3" />
+                    <div className="text-center lg:text-left my-6">
+                        <h1 className="text-5xl font-light mb-2">
+                            Hello there!
+                        </h1>
+                        <p className="mb-6">And welcome to my weblog.</p>
+                        <About />
+                    </div>
+                </div>
+            </header>
+            <section aria-label="Blog posts">
+                <PostsList collection={collections["posts"]} />
+            </section>
+        </article>
     );
 }

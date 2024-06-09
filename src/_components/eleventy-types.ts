@@ -12,7 +12,13 @@ export type PageContext = {
     rawInput: string;
 };
 
-export type PageData = Record<string, unknown>;
+export type PageData =
+    & {
+        tags?: string[]
+    }
+    & Record<string, unknown>;
+
+export type Collection = CollectionItem[];
 
 export type CollectionItem = {
     page: PageContext;
@@ -21,27 +27,52 @@ export type CollectionItem = {
     content: string;
 }
 
-export type TemplateContext = {
-    eleventy: {
-        generator: string;
-        env: {
-            root: string;
-            config: string;
-            source: string;
-            runMode: string;
-        } & Record<string, string>;
-        directories: Record<string, string | undefined>;
-    };
-    pkg: Record<string, unknown>;
-    page: PageContext,
-    collections: {
-        all: CollectionItem[];
-    } & Record<string, CollectionItem[]>;
-}
+export type EleventyContext = {
+    generator: string;
+    env: {
+        root: string;
+        config: string;
+        source: string;
+        runMode: string;
+    } & Record<string, string>;
+    directories: Record<string, string | undefined>;
+};
 
-export type LayoutContext =
-    & TemplateContext
+export type TemplateContext =
+    & {
+        eleventy: EleventyContext;
+        pkg: Record<string, unknown>;
+        page: PageContext,
+        collections: {
+            all: Collection;
+            publicTags: string[] // All non-internal tags.
+        } & Record<string, Collection>;
+    }
     & {
         content: string;
         layout: string;
+        title?: string;
+        description?: string;
+        tags: string[] | undefined;
+        author?: string;
+    }
+    & {
+        site: {
+            name: string;
+            baseUrl: string;
+            defaultAuthor: string;
+        }
     };
+
+export type RenderContext = {
+    eleventy: EleventyContext;
+    page: PageContext,
+    // https://www.11ty.dev/docs/filters/
+    url: (path: string) => string;
+    slugify: (input: string) => string;
+    log: (input: string) => void;
+    inputPathToUrl: (inputPath: string) => string;
+
+    // https://github.com/JKC-Codes/eleventy-plugin-time-to-read
+    timeToRead: (content: string) => string
+};
