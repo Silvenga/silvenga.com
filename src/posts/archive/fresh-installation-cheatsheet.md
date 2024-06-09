@@ -1,5 +1,6 @@
-Title: Fresh Installation Cheatsheet
-Description: A personal cheatsheat for some things to do when installing Windows fresh.
+---
+title: Fresh Installation Cheatsheet
+description: A personal cheatsheat for some things to do when installing Windows fresh.
 ---
 
 ^^^

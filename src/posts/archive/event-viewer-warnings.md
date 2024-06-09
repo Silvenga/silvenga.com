@@ -1,8 +1,9 @@
-Title: WHEA Event Viewer Warnings
-Description: A corrected hardware error has occurred...
+---
+title: WHEA Event Viewer Warnings
+description: A corrected hardware error has occurred...
 ---
 
-I've been trying to debug any problem that makes my daily driver PC unstable. Previously, I debugged a [crash in KeePass](./keepass-crash.md) occurring whenever my machine went into power savings. It turned out the crash was from from an audio driver (this will be important later). 
+I've been trying to debug any problem that makes my daily driver PC unstable. Previously, I debugged a [crash in KeePass](./keepass-crash.md) occurring whenever my machine went into power savings. It turned out the crash was from from an audio driver (this will be important later).
 
 A couple days later, I started seeing the following error, one or two an hour.
 
@@ -22,7 +23,7 @@ But while debugging a DNS issue on my network (which was from a bad Domain Contr
 
 At first Google search, this warning is just informative... which, is fine... doesn't help me though. So I looked a little deeper.
 
-Vendor `ven_8086` is apparently Intel, device `DEV_4C01` is just the Intel Chipset (so not helpful), and the sub-system `SUBSYS_86941043` is the USB controller. A USB controller having an issue, now that's interesting... 
+Vendor `ven_8086` is apparently Intel, device `DEV_4C01` is just the Intel Chipset (so not helpful), and the sub-system `SUBSYS_86941043` is the USB controller. A USB controller having an issue, now that's interesting...
 
 In an attempt to removal as many variables as I could with debugging KeePass crashing from an audio change, I disabled the `USB Audio` feature on my Asus motherboard... Could that be related?
 

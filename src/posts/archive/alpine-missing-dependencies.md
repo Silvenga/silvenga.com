@@ -1,5 +1,6 @@
-Title: Missing Dependencies With Alpine Docker Images
-Description: Missing dependencies when upgrading some Alpine package.
+---
+title: Missing Dependencies With Alpine Docker Images
+description: Missing dependencies when upgrading some Alpine package.
 ---
 
 ![Alpine + Docker = Awsome](/content/images/2018/docker+alpine.png)
@@ -68,7 +69,7 @@ ERROR: unsatisfiable constraints:
     required by: tor-0.3.1.9-r0[so:libssl.so.44] tor-0.3.1.9-r0[so:libssl.so.44] tor-0.3.1.9-r0[so:libssl.so.44] tor-0.3.1.9-r0[so:libssl.so.44] tor-0.3.1.9-r0[so:libssl.so.44]
 ```
 
-Hmmm... no effect - well that sucks. 
+Hmmm... no effect - well that sucks.
 
 So, after I spent a little more time looking into this problem (basically going through the changes on source control). I discovered that many Alpine maintainers are recompiling their projects to target LibreSSL. With that knowledge I went searching for where LibreSSL was hiding these days in the Alpine repositories - and alas I found the missing libraries in the `edge/main` repository.
 

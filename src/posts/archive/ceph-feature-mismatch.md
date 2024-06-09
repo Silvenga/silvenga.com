@@ -1,5 +1,6 @@
-Title: Ceph Feature Missmatch with Kubernetes
-Description: Getting Ceph to place nice with Kubernetes.
+---
+title: Ceph Feature Missmatch with Kubernetes
+description: Getting Ceph to place nice with Kubernetes.
 ---
 
 ^^^

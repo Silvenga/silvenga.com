@@ -1,6 +1,7 @@
-Title: Kicking DnsControl Up a Notch with Typescript
-Published: 2/11/18
-Description: Improving "DNS as Code" with type checking and Intellisense
+---
+title: Kicking DnsControl Up a Notch with Typescript
+date: 2018-11-02
+description: Improving "DNS as Code" with type checking and Intellisense
 ---
 
 I love this new era of infrastructure as code being a DevOps developer. I can apply my knowledge of code, beyond just simple scripts and programs, to fully managing my infrastructure - all from the comfort of VSCode and Git.
@@ -15,13 +16,13 @@ My newest project is the revamping of DNS zones, hopefully moving them back to u
 - Afraid DNS
 - Hurricane Electric (Yes, they provide free DNS services)
 
-Oh, yeah, did I mention I have 32 domains? Needless to say my DNS infrastructure was fragmented - that is until I found DnsControl. 
+Oh, yeah, did I mention I have 32 domains? Needless to say my DNS infrastructure was fragmented - that is until I found DnsControl.
 
 ## DnsControl
 
 DnsControl saved my sanity - as simple as that. Using DnsControl I could create zones in a portable format and synchronize with the different DNS providers I used (almost all of them, I don't have enough golang knowledge to implement a DNSMadeEasy provider). [Craig Peterson](https://blog.serverfault.com/2017/04/11/introducing-dnscontrol-dns-as-code-has-arrived/) calls it "describe once, use anywhere".
 
-So I went reading though the docs preparing to make the switch and I got worried -the docs kept on talking about this custom DSL that was created for DnsControl. I for one hate custom configuration types since I effectively lose IDE support. They called it a Javascript like language - which got me thinking, if I was a lazy developer (which I am), I wouldn't create a custom language if I could piggyback off an existing one. Is this Javascript-like-DSL actually Javascript? 
+So I went reading though the docs preparing to make the switch and I got worried -the docs kept on talking about this custom DSL that was created for DnsControl. I for one hate custom configuration types since I effectively lose IDE support. They called it a Javascript like language - which got me thinking, if I was a lazy developer (which I am), I wouldn't create a custom language if I could piggyback off an existing one. Is this Javascript-like-DSL actually Javascript?
 
 Yes, it turns out that DnsControl is running a golang Javascript runtime internally with custom global functions. This discovery just opened a huge amount of possibilities, what limits could I push with this DSL? After looking a bit further throughout the code I discovered that basically ES5 was supported, with basic module loading support (some might call it a hacked). This didn't worry me so much as I had my sights on something bigger - could I get Webpack to work with this?
 

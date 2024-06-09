@@ -1,9 +1,10 @@
-Title: Upgrading the Firmware on Infineon TPM's
-Description: Upgrading the Infineon TPM firmware on Asus (and friends) motherboards.
-Published: 4/14/18
+---
+title: Upgrading the Firmware on Infineon TPM's
+description: Upgrading the Infineon TPM firmware on Asus (and friends) motherboards.
+date: 2018-04-14
 ---
 
-In early October of 2017, researchers announced, publicly, a cryptographic vulnerability in the RSA generation algorithms found within practically every TPM, using Infineon's RSA library. This vulnerability would effectively allow an attacker to easily guess the private key component of the RSA key stored within the TPM - rendering the protections and insurances granted by the TPM useless. Turns out, many TPM's actually use Infineon's technologies, meaning many TPM's are vulnerability - including all Asus and Gigabyte TPM's (that I know of). 
+In early October of 2017, researchers announced, publicly, a cryptographic vulnerability in the RSA generation algorithms found within practically every TPM, using Infineon's RSA library. This vulnerability would effectively allow an attacker to easily guess the private key component of the RSA key stored within the TPM - rendering the protections and insurances granted by the TPM useless. Turns out, many TPM's actually use Infineon's technologies, meaning many TPM's are vulnerability - including all Asus and Gigabyte TPM's (that I know of).
 
 > tl;dr - TPM broke, I sad, TPM need fix.
 
@@ -13,8 +14,8 @@ Since the point of TPM's is to perform key protection inside hardware, a softwar
 Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI -EntryType Error | select Message
 ```
 ```output
-The Trusted Platform Module (TPM) firmware on this PC has a known security problem. 
-Please contact your PC manufacturer to find out if an update is available. 
+The Trusted Platform Module (TPM) firmware on this PC has a known security problem.
+Please contact your PC manufacturer to find out if an update is available.
 For more information please go to https://go.microsoft.com/fwlink/?linkid=852572
 ```
 
@@ -182,7 +183,7 @@ Now to disable the TPM.
 
 ![Disable TPM](/content/images/2018/disable-tpm.png)
 
-After booting back into Windows, it looks like disabling the TPM fixes the `Empty Buffer` problem: 
+After booting back into Windows, it looks like disabling the TPM fixes the `Empty Buffer` problem:
 
 ```ps1
 .\TPMFactoryUpd.exe -info

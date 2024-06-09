@@ -1,7 +1,8 @@
-Title: Slight Theme
-Published: 21 Mar 14
-Description: A Ghost blog theme.
-Archived: 01/13/2018
+---
+title: Slight Theme
+date: 2014-03-21
+description: A Ghost blog theme.
+archived: 01/13/2018
 ---
 
 ## Introduction
@@ -10,7 +11,7 @@ Archived: 01/13/2018
 
 A minimal theme, powered by Ghost. Live demo: (https://silvenga.com) (using the dev branch).
 
-Created from scratch with inspiration from Ms. Qian’s Crisp theme (http://kathyqian.com/) and Roryg’s Ghostwriter theme (https://github.com/roryg/ghostwriter). 
+Created from scratch with inspiration from Ms. Qian’s Crisp theme (http://kathyqian.com/) and Roryg’s Ghostwriter theme (https://github.com/roryg/ghostwriter).
 
 ## Features
 
@@ -23,11 +24,11 @@ Created from scratch with inspiration from Ms. Qian’s Crisp theme (http://kath
 
 ## Install
 
-To reach optimal size the user must reprocess the code after making any edits. Ensure that NPM is installed and working. 
+To reach optimal size the user must reprocess the code after making any edits. Ensure that NPM is installed and working.
 
-* Run `npm install` to ensure that the development environment is ready. 
-* Modify any settings in `./strings.json`. To disable a feature, set the value to `""`. 
-* Run `grunt` to process the files and create the theme. 
+* Run `npm install` to ensure that the development environment is ready.
+* Modify any settings in `./strings.json`. To disable a feature, set the value to `""`.
+* Run `grunt` to process the files and create the theme.
 * Add the Slight folder to `./content/themes` of your Ghost installation and restart Ghost.
 * Select theme under the administration tools within Ghost.
 
@@ -54,11 +55,11 @@ To reach optimal size the user must reprocess the code after making any edits. E
 
 * Updated for Ghost 0.5.2.
 * Complete code rewrite (CSS, HTML, Javascript).
-* Uses Fluidbox by Terry Mun (http://terrymun.com) to provide seamless lightbox transitions.  
+* Uses Fluidbox by Terry Mun (http://terrymun.com) to provide seamless lightbox transitions.
 * Streamlined grunt processing.
 * Significant speed improvements.
-* Source minification improvements.  
-* Squashed dozens of bugs. 
+* Source minification improvements.
+* Squashed dozens of bugs.
 
 1.0.5 - 6/21/2014
 
@@ -74,10 +75,10 @@ To reach optimal size the user must reprocess the code after making any edits. E
 
 1.0.2 - 6/5/2014
 
-* Javascript issue fixes. 
+* Javascript issue fixes.
 * Page loading is much faster now.
 * Reduction in size.
-* Simple light box for images. 
+* Simple light box for images.
 * Better image handling.
 * Many mobile style fixes.
 * Many screen size fixes.
@@ -85,7 +86,7 @@ To reach optimal size the user must reprocess the code after making any edits. E
 
 1.0.0
 
-* First release. 
+* First release.
 
 ## Download
 
@@ -97,4 +98,4 @@ Ghost 0.5.7 compatibility
 
 ## License
 
-Slight is under the MIT license.  
+Slight is under the MIT license.

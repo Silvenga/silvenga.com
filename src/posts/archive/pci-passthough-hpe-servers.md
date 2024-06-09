@@ -1,16 +1,17 @@
-Title: Hypervisor PCI Passthrough on Modern HPE Servers
-Description: Getting iLO to play nice with Hyper-V Discrete Device Assignment
+---
+title: Hypervisor PCI Passthrough on Modern HPE Servers
+description: Getting iLO to play nice with Hyper-V Discrete Device Assignment
 ---
 
 ## The Problem
 
 On my Gen8 HPE Proliants, I run a hyperconvergence, hybrid OS infrastructure, mixing the best of Windows and Linux. My hypervisor of choice is Hyper-V, mainly so I can get TPM protected, full disk encryption (which, incredibly, every Linux distro is still lacking!) to allow unattended rolling cluster updates. Anything I can do to reduce the amount of required maintenance, since everyone is applying security updates monthly, right?
 
-Lately I've been building out my NAS, a 75TiB raw Ceph cluster (unattended rolling reboots is a theme here :D), and I've been doing disk level passthrough of my disks to my Ceph nodes. Anyone familiar with Hyper-V can likely see the problem - Ceph really likes to see the real disk, and Hyper-V's disk abstraction hides a lot of data (IMO, this is the correct implementation, but that's another topic). Everything from write caching to SMART data is just not exposed to the guest VM's. 
+Lately I've been building out my NAS, a 75TiB raw Ceph cluster (unattended rolling reboots is a theme here :D), and I've been doing disk level passthrough of my disks to my Ceph nodes. Anyone familiar with Hyper-V can likely see the problem - Ceph really likes to see the real disk, and Hyper-V's disk abstraction hides a lot of data (IMO, this is the correct implementation, but that's another topic). Everything from write caching to SMART data is just not exposed to the guest VM's.
 
 The latter, the missing SMART data is my main concern right now. As my spindles age, they are going to start having more and more problems. For example, just last week, two drives started throwing write errors, one of which started dropping off my SAS controller!
 
-Wouldn't it be awesome if I could expose my HBA PCI SAS controller to the Ceph VM? Let the VM handle writes directly, without getting Hyper-V involved? 
+Wouldn't it be awesome if I could expose my HBA PCI SAS controller to the Ceph VM? Let the VM handle writes directly, without getting Hyper-V involved?
 
 Why, yes. That would be awesome!
 
@@ -53,7 +54,7 @@ Basically, the BIOS reserved a portion of memory it controls, that the OS should
 
 So, RMRR only describes the error message. But why is the BIOS setting up RMRR in the first place?
 
-Well, the answer to that came from an observation here at the Spiceworks community:  https://community.spiceworks.com/topic/2250178-passthrough-p420i-to-virtual-machine-on-gen8-hpe  
+Well, the answer to that came from an observation here at the Spiceworks community:  https://community.spiceworks.com/topic/2250178-passthrough-p420i-to-virtual-machine-on-gen8-hpe
 
 Disabling iLO (Integrated Lights-Out, HPE's IPMI) apparently makes PCI passthrough work.
 

@@ -1,10 +1,11 @@
-Title: Lazy View - A jQuery Plugin
-Published: 22 Jun 14
-Description: Let content flow in via another jQuery plugin.
-Archived: 01/13/2018
+---
+title: Lazy View - A jQuery Plugin
+date: 2014-06-22
+description: Let content flow in via another jQuery plugin.
+archived: 01/13/2018
 ---
 
-I hate slow websites. A month or so ago I had to log onto Delta.com. I was largely unimpressed with the speed in which it loaded. I could wait for seconds until text would appear. I would wait even longer for the site to become responsive. 
+I hate slow websites. A month or so ago I had to log onto Delta.com. I was largely unimpressed with the speed in which it loaded. I could wait for seconds until text would appear. I would wait even longer for the site to become responsive.
 
 ![Slow Site](/content/images/2014/Jun/slow-website.jpg)
 
@@ -12,7 +13,7 @@ This is what I hate about browsing the Internet. A user should not have to wait 
 
 I've gotten to the point on this blog's design that I cannot make loading any faster. My next step is to make loading appear faster to the user.
 
-This lead me to create a jQuery plugin that I call Lazy View. With this plugin, elements will fade into view as the user moves around the page. 
+This lead me to create a jQuery plugin that I call Lazy View. With this plugin, elements will fade into view as the user moves around the page.
 
 ## Plugin Usage
 

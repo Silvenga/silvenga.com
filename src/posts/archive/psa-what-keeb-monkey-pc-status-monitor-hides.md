@@ -1,5 +1,6 @@
-Title: PSA - What KeebMonkey PC Status Monitor Hides
-Description: A dive into the KeebMonkey PC Status Monitor software and what is hidden.
+---
+title: PSA - What KeebMonkey PC Status Monitor Hides
+description: A dive into the KeebMonkey PC Status Monitor software and what is hidden.
 ---
 
 ## PSA - What KeebMonkey PC Status Monitor Hides

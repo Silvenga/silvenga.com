@@ -1,15 +1,16 @@
-Title: Notes on OpenVPN Obfuscating
-Published: 24 Jan 15
-Description: Some notes on how to setup OpenVPN obfuscation using Obfproxy.
+---
+title: Notes on OpenVPN Obfuscating
+date: 2015-01-24
+description: Some notes on how to setup OpenVPN obfuscation using Obfproxy.
 ---
 
-> This is a work in progress. I would very much like to make a GUI for the windows version of obfsproxy, and a better wrapper for Ubuntu. 
+> This is a work in progress. I would very much like to make a GUI for the windows version of obfsproxy, and a better wrapper for Ubuntu.
 
-> Below is weekend muse which works, but IMHO rather hackish'ly. 
+> Below is weekend muse which works, but IMHO rather hackish'ly.
 
 ## Server (Ubuntu 14.04 LTS)
 
-`obfsproxy` is included in the default Ubuntu Trusty repos now (although a bit out of date). It contains the pluggable transport `obfs3`.  
+`obfsproxy` is included in the default Ubuntu Trusty repos now (although a bit out of date). It contains the pluggable transport `obfs3`.
 ```bash
 apt-get install obfsproxy
 
@@ -21,7 +22,7 @@ obfsproxy --log-file obfs.log --log-min-severity=info obfs3 --dest=127.0.0.1:119
 
 ## Client (Windows 8.1)
 
-There isn't any recent packages for Windows, but thankfully the binaries are included by default in the `Tor Browser Bundle` (which I ripped from). 
+There isn't any recent packages for Windows, but thankfully the binaries are included by default in the `Tor Browser Bundle` (which I ripped from).
 
 
 Windows binaries:

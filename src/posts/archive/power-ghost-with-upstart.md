@@ -1,31 +1,32 @@
-Title: Power Ghost with Upstart
-Published: 27 Mar 14
-Description: Using Upstart to manage a Ghost instance.
+---
+title: Power Ghost with Upstart
+date: 2014-03-27
+description: Using Upstart to manage a Ghost instance.
 ---
 
 ![Upstart Logo](/content/images/2014/Mar/upstart80.png)
 
 ### Introduction
 
-I hate init scripts. I simply hate them. They are great, highly customisable scripts that are massively used and horrible to create. When I first set up my Ghost blog (migrating from the php Wordpress) I used the provided init scripts to start my Ghost installation. 
+I hate init scripts. I simply hate them. They are great, highly customisable scripts that are massively used and horrible to create. When I first set up my Ghost blog (migrating from the php Wordpress) I used the provided init scripts to start my Ghost installation.
 
-This work well until I started using Node.js for my other projects. Whenever I would make changes to my Ghost installation I would have to restart to recompile those changes. When I used the Ghost init script to restart my blog I would kill every other Node.js process on my server. My API would break in appearingly random times. It took me a while to figure out the problem, but as soon as I did I had to make a solution. 
+This work well until I started using Node.js for my other projects. Whenever I would make changes to my Ghost installation I would have to restart to recompile those changes. When I used the Ghost init script to restart my blog I would kill every other Node.js process on my server. My API would break in appearingly random times. It took me a while to figure out the problem, but as soon as I did I had to make a solution.
 
 Simply the init script was not designed for parallel Node.js use. I was going to rewrite the script, but then realized why should I subject myself to the torture of init scripts when Ubuntu has native support for [Upstart](https://en.wikipedia.org/wiki/Upstart)?
 
-Below is the Ghost init script simplified as an Upstart script. 
+Below is the Ghost init script simplified as an Upstart script.
 
 ### My Solution
 
  <code data-gist-id="9716678"></code>
- 
-### Installation 
 
-Copy the script into the `/etc/init/` directory (where Upstart reads its configurations on startup). Make sure the file is called `ghost.conf`. The script is *not* executed so do not add the execution flag like in a normal init scripts. 
+### Installation
+
+Copy the script into the `/etc/init/` directory (where Upstart reads its configurations on startup). Make sure the file is called `ghost.conf`. The script is *not* executed so do not add the execution flag like in a normal init scripts.
 
 Make sure to modify the path variable to point to your Ghost installation folder. Also ensure that `uid` and `gid` are changed to the correct users that your want Node.js to run under (the current are default for the Apache process in Ubuntu)
 
-To start and stop is done with the following self explanatory commands. 
+To start and stop is done with the following self explanatory commands.
 
 ```bash
 service ghost stop
@@ -33,20 +34,20 @@ service ghost start
 service ghost restart
 ```
 
-### Explanation 
+### Explanation
 
-The first 2 lines are directives of when should Upstart automatically start and stop the script. 
+The first 2 lines are directives of when should Upstart automatically start and stop the script.
 
-Lines `8` and `9` tells upstart to restart Node.js if for some reason it crashes. 
+Lines `8` and `9` tells upstart to restart Node.js if for some reason it crashes.
 
-Line `18` puts Ghost into production mode. 
+Line `18` puts Ghost into production mode.
 
-And line `19` is where Ghost is started and then managed by Upstart. I have Upstart give the process a name and pid file to ensure that there are no conflicts with other Node.js installations. 
+And line `19` is where Ghost is started and then managed by Upstart. I have Upstart give the process a name and pid file to ensure that there are no conflicts with other Node.js installations.
 
 #### Profit!
 
 #### Update
 
-> A reader brought to my attention that Node.js may not be installed in a predictable location. 
+> A reader brought to my attention that Node.js may not be installed in a predictable location.
 If in doubt use `which node` and update the daemon value to that. Thanks Jon ([Link](http://jensencloud.com))!
-> I recomend to install Node.js from the official'ish [repository](https://launchpad.net/~chris-lea/+archive/ubuntu/node.js) as Ubuntu's repos lag behind more often than not. 
+> I recomend to install Node.js from the official'ish [repository](https://launchpad.net/~chris-lea/+archive/ubuntu/node.js) as Ubuntu's repos lag behind more often than not.

@@ -1,6 +1,7 @@
-Title: Silvenga's Penlighter
-Published: 14 Mar 14
-Description: I present a solution to disappearing mice, a PenLighter!
+---
+title: Silvenga's Penlighter
+date: 2014-03-14
+description: I present a solution to disappearing mice, a PenLighter!
 ---
 
 ![A standard drawing tablet.](/content/images/2014/Mar/tablet_use_bamboo.jpg)
@@ -19,7 +20,7 @@ So one night I sat down and re-wrote my own version from scratch with speed and 
 
 ![Cursor with PenLighter.](/content/images/2014/Jun/2014-06-21_21-29-09.png)
 
-The program runs in the tray. Just right click to access the settings. It is completely portable (stick it on a thumb drive), saves settings to a file in the root of the program, fast, and efficient. I behold Silvenga's Pen Lighter. 
+The program runs in the tray. Just right click to access the settings. It is completely portable (stick it on a thumb drive), saves settings to a file in the root of the program, fast, and efficient. I behold Silvenga's Pen Lighter.
 
 Just download and run in Windows 8 (< 8 requires .Net Framework 4.5 to be installed, [link](http://www.microsoft.com/en-us/download/details.aspx?id=30653)).
 

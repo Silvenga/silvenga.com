@@ -1,5 +1,6 @@
-Title: Install Windows Server 2016 using Software RAID1
-Description: How to set-up Windows Server 2016 using software RAID1 - on the system volume.
+---
+title: Install Windows Server 2016 using Software RAID1
+description: How to set-up Windows Server 2016 using software RAID1 - on the system volume.
 ---
 
 ## Setup
@@ -16,7 +17,7 @@ To use Diskpart, invoke it from the command line using:
 
 ```bat
 X:\Sources> diskpart
-DISKPART> 
+DISKPART>
 ```
 
 You can list all the disks available as so:
@@ -27,14 +28,14 @@ DISKPART> list disk
 
   Disk ###  Status         Size     Free     Dyn  Gpt
   --------  -------------  -------  -------  ---  ---
-  Disk 1    Online          127 GB    127 B        
-  Disk 2    Online          127 GB    127 B        
+  Disk 1    Online          127 GB    127 B
+  Disk 2    Online          127 GB    127 B
 ```
 In the above example we have two disks, we will put both of these into our RAID1. As can be seen above, `diskpart` is base 0.
 
 ## Convert Each Disk to Dynamic
 
-Any mirror setup requires disks to be in dynamic mode - this is basically LVM under Linux. Dynamic disks can be used for a multitude of purposes like disk spanning, mirroring, striping, etc. Although, be careful, there's no going back from dynamic without formatting the disks completely. 
+Any mirror setup requires disks to be in dynamic mode - this is basically LVM under Linux. Dynamic disks can be used for a multitude of purposes like disk spanning, mirroring, striping, etc. Although, be careful, there's no going back from dynamic without formatting the disks completely.
 
 Let's clean each disk before converting them, this uninitialize the disks without a partition scheme. After this disk is empty we enable dynamic mode.
 ```bat
@@ -55,7 +56,7 @@ DISKPART> convert dynamic
 
 ## Prepare Mirrors
 
-At this point we can create our RAID1 "partitions". I use "partitions" in quotes as they aren't really partitions (as they mirror data) but the Windows installer must think of them as partitions. Little weird, but kind of makes sense. 
+At this point we can create our RAID1 "partitions". I use "partitions" in quotes as they aren't really partitions (as they mirror data) but the Windows installer must think of them as partitions. Little weird, but kind of makes sense.
 
 Windows requires two partitions when in MBR mode (EFI requires 3, which I won't go into). One which is normally called `System Reserved` and the main OS partition normally without a name (`C:/`). Both of these partitions need to be created manually as the normal Windows installer cannot.
 
@@ -67,7 +68,7 @@ DISKPART> format quick fs=ntfs label="System Reserved"
 
 These commands create a mirrored volume using disk `0` and `1` with a size of `500mb` (default size under Windows 2016). Then it formats the newly created (and automatically selected) volume using `ntfs` as the filesystem and "System Reserved" as the volume label.
 
-Then we can create the OS partition using similar commands: 
+Then we can create the OS partition using similar commands:
 ```bat
 DISKPART> select disk 0
 DISKPART> create volume mirror disk=0,1
@@ -80,7 +81,7 @@ Using `list volume` we should see the list of volumes that we created. Note that
 
 ## Make the Mirrors Usable
 
-In the above setup, each volume represents a single logical "partition", but in reality each of these volumes spans two physical drives. These volumes are great under Windows, but not so useful to the BIOS attempting to bootstrap a OS. To make it possible for the BIOS to start Windows we need to create real partitions for each of our mirror volumes. 
+In the above setup, each volume represents a single logical "partition", but in reality each of these volumes spans two physical drives. These volumes are great under Windows, but not so useful to the BIOS attempting to bootstrap a OS. To make it possible for the BIOS to start Windows we need to create real partitions for each of our mirror volumes.
 
 First let's use `detail disk` to make sure we target the correct volumes.
 ```bat

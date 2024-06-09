@@ -1,5 +1,6 @@
-Title: Convert Windows 2016 Eval to Retail
-Description: How to convert a Windows Server 2016 trial installation to full retail. 
+---
+title: Convert Windows 2016 Eval to Retail
+description: How to convert a Windows Server 2016 trial installation to full retail.
 ---
 
 ![Command line, using DISM to convert to retail.](/content/images/2017/dism.png)
@@ -27,7 +28,7 @@ ServerStandardCor
 
 ![DISM running cleanup during reboot.](/content/images/2017/dism-cleanup.png)
 
-The command takes a good 10 minutes to run (looks like it stalls), then asks to reboot to cleanup. Afterwards, you should be activated and ready. 
+The command takes a good 10 minutes to run (looks like it stalls), then asks to reboot to cleanup. Afterwards, you should be activated and ready.
 
 For extra credit, you can activate VM's running on a Datacenter host by using AVMA keys (Automatic Virtual Machine Activation). The commands would look like this:
 
