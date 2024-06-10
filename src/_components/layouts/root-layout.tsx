@@ -53,13 +53,14 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
 function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateContext, "site"> & { renderContent: RenderContext }): JSX.Element {
     return (
-        <nav className="flex bg-base-100 p-0 mb-9 py-6">
+        <nav className="flex flex-col sm:flex-row sm:items-start items-center bg-base-100 mb-3 sm:mb-9 py-6">
+
             <div className="flex flex-1">
                 <BlogIcon className="h-6 w-6 aspect-square me-3" />
                 <a className="link link-hover text-xl" href="/">{site.name}</a>
             </div>
 
-            <ul className="list-none flex">
+            <ul className="list-none flex sm:mt-0 mt-6">
                 <li className="me-3">
                     <a className="link" href={renderContent.url("/posts/")}>
                         All Posts
@@ -76,6 +77,7 @@ function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateConte
                     </a>
                 </li>
             </ul>
+
         </nav>
     )
 }
@@ -84,7 +86,7 @@ function Footer(): JSX.Element {
     const year = new Date().getFullYear();
     return (
         <footer className="py-9 flex justify-center mt-auto">
-            <div className="">
+            <div className="text-center">
                 Copyright © {year}. Built with <span className="text-[#ad4d4d] dark:text-[#deabab]">&#x2764;&#xfe0e;</span> by <a className="link link-hover" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">Silvenga</a>
             </div>
         </footer>

@@ -1,4 +1,3 @@
-import { DateTime } from "luxon";
 import { About } from "../about";
 import { Avatar } from "../avatar";
 import { RenderContext, TemplateContext } from "../eleventy-types";
@@ -16,11 +15,11 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
     return (
         <article>
             <header className="mb-9">
-                <div className="flex mb-3">
+                <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
                     <ReadableDate dateTime={page.date} />
-                    <span className="mx-3">•</span>
+                    <span className="mx-3 hidden sm:inline-block" aria-hidden>•</span>
                     <div title="Reading time">{this.timeToRead(content)}</div>
-                    <span className="mx-3">•</span>
+                    <span className="mx-3 hidden sm:inline-block" aria-hidden>•</span>
                     <a className="link" href={editLink} rel="noreferrer noopener" target="_blank">Post History</a>
                 </div>
                 <h1 className="font-light text-5xl mb-3">{title}</h1>
