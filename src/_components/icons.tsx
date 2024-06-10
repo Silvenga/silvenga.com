@@ -63,6 +63,8 @@ export function BlogIcon() {
             strokeLinejoin="round"
             strokeMiterlimit="1.414"
             clipRule="evenodd"
+            fill="currentColor"
+            stroke="currentColor"
             viewBox="0 0 256 256">
             <path d="M8 64H160V96H8z"></path>
             <path d="M8 112H248V144H8z"></path>
