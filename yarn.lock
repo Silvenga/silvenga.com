@@ -1375,7 +1375,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/plugin@npm:^2.0.0-beta.1, @parcel/plugin@npm:^2.10.3":
+"@parcel/plugin@npm:2.12.0, @parcel/plugin@npm:^2.0.0-beta.1, @parcel/plugin@npm:^2.10.3":
   version: 2.12.0
   resolution: "@parcel/plugin@npm:2.12.0"
   dependencies:
@@ -1684,14 +1684,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/transformer-sass@npm:2.11.0":
-  version: 2.11.0
-  resolution: "@parcel/transformer-sass@npm:2.11.0"
+"@parcel/transformer-sass@npm:2.12.0":
+  version: 2.12.0
+  resolution: "@parcel/transformer-sass@npm:2.12.0"
   dependencies:
-    "@parcel/plugin": "npm:2.11.0"
+    "@parcel/plugin": "npm:2.12.0"
     "@parcel/source-map": "npm:^2.1.1"
     sass: "npm:^1.38.0"
-  checksum: 10/32afcbefc0313e3d0d2ad941385b2382c5a651f6449a2fc7ddd48762552e2781d5f3495f863618104a342b5dc5374287e0f29b8a7600c10654a4a5ba2522e71a
+  checksum: 10/6d9eb289824c15b4a8674b37b193ae20ed102ac4f61aad07f375753cdc7d7f6decd90e611e6180533e95f7403912933c30176ae8251ad573a4127a25cb408fdf
   languageName: node
   linkType: hard
 
@@ -1982,7 +1982,7 @@ __metadata:
     "@parcel/packager-xml": "npm:2.11.0"
     "@parcel/reporter-bundle-analyzer": "npm:2.11.0"
     "@parcel/transformer-inline-string": "npm:2.11.0"
-    "@parcel/transformer-sass": "npm:2.11.0"
+    "@parcel/transformer-sass": "npm:2.12.0"
     "@parcel/transformer-webmanifest": "npm:2.11.0"
     "@parcel/transformer-xml": "npm:2.11.0"
     "@tailwindcss/typography": "npm:^0.5.13"
