@@ -2,29 +2,29 @@
 permalink: '/atom-posts.xml'
 eleventyExcludeFromCollections: true
 layout: null
+# This doesn't work since images are rewritten later.
+#     <content xml:lang="en" type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ site.baseUrl }}{{ permalink }}">
   <title>{{ site.name }}</title>
-  <subtitle></subtitle>
-  <link href="{{ site.baseUrl }}{{ permalink }}" rel="self"/>
-  <link href="{{ site.baseUrl }}/"/>
-  {% if collections.posts | length %}
-    <updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
-  {% endif %}
+  <link href="{{ site.baseUrl }}{{ permalink }}" rel="self" />
+  <link href="{{ site.baseUrl }}/" />
+  {% if collections.posts | length -%}
+    <updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+  {%- endif %}
   <id>{{ site.baseUrl }}</id>
   <author>
-    <name>{{ site.author.name }}</name>
-    <email>{{ site.author.email }}</email>
+    <name>Mark</name>
+    <email>m@silvenga.com</email>
   </author>
-  {% for post in collections.posts %}
-    {% set absolutePostUrl %}{{ site.baseUrl }}{{ post.url | url }}{% endset %}
-    <entry>
-      <title>{{ post.data.title }}</title>
-      <link href="{{ absolutePostUrl }}" rel="self" type="text/html" />
-      <link href="{{ absolutePostUrl }}" rel="alternate" type="text/html" />
-      <updated>{{ post.date | rssDate }}</updated>
-      <id>{{ absolutePostUrl }}</id>
-    </entry>
-  {% endfor %}
+  {%- for post in collections.posts | reverse %} {%- set absolutePostUrl = post.url | absoluteUrl(site.baseUrl) %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}" />
+    <updated>{{ post.date | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <link href="{{ absolutePostUrl }}" rel="alternate" type="text/html" />
+  </entry>
+  {%- endfor %}
 </feed>

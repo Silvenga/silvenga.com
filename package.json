@@ -61,7 +61,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0-alpha.11",
     "@11ty/eleventy-img": "^5.0.0-beta.4",
-    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.0-beta.7",
     "@parcel/compressor-brotli": "2.11.0",
     "@parcel/optimizer-data-url": "2.11.0",
     "@parcel/packager-raw-url": "2.11.0",
