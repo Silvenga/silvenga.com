@@ -26,7 +26,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy-dev-server@npm:^2.0.0":
+"@11ty/eleventy-dev-server@npm:^2.0.1":
   version: 2.0.1
   resolution: "@11ty/eleventy-dev-server@npm:2.0.1"
   dependencies:
@@ -97,7 +97,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy-utils@npm:^1.0.2":
+"@11ty/eleventy-utils@npm:^1.0.2, @11ty/eleventy-utils@npm:^1.0.3":
   version: 1.0.3
   resolution: "@11ty/eleventy-utils@npm:1.0.3"
   dependencies:
@@ -106,22 +106,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy@npm:^3.0.0-alpha.10":
-  version: 3.0.0-alpha.10
-  resolution: "@11ty/eleventy@npm:3.0.0-alpha.10"
+"@11ty/eleventy@npm:^3.0.0-alpha.11":
+  version: 3.0.0-alpha.11
+  resolution: "@11ty/eleventy@npm:3.0.0-alpha.11"
   dependencies:
     "@11ty/dependency-tree": "npm:^3.0.0"
     "@11ty/dependency-tree-esm": "npm:^1.0.0"
-    "@11ty/eleventy-dev-server": "npm:^2.0.0"
+    "@11ty/eleventy-dev-server": "npm:^2.0.1"
     "@11ty/eleventy-plugin-bundle": "npm:^2.0.2"
-    "@11ty/eleventy-utils": "npm:^1.0.2"
+    "@11ty/eleventy-utils": "npm:^1.0.3"
     "@11ty/lodash-custom": "npm:^4.17.21"
     "@11ty/posthtml-urls": "npm:^1.0.0"
     "@sindresorhus/slugify": "npm:^2.2.1"
     bcp-47-normalize: "npm:^2.3.0"
     chokidar: "npm:^3.6.0"
     cross-spawn: "npm:^7.0.3"
-    debug: "npm:^4.3.4"
+    debug: "npm:^4.3.5"
     dependency-graph: "npm:^1.0.0"
     fast-glob: "npm:^3.3.2"
     graceful-fs: "npm:^4.2.11"
@@ -129,10 +129,10 @@ __metadata:
     is-glob: "npm:^4.0.3"
     iso-639-1: "npm:^3.1.2"
     kleur: "npm:^4.1.5"
-    liquidjs: "npm:^10.12.0"
+    liquidjs: "npm:^10.13.1"
     luxon: "npm:^3.4.4"
     markdown-it: "npm:^14.1.0"
-    micromatch: "npm:^4.0.5"
+    micromatch: "npm:^4.0.7"
     minimist: "npm:^1.2.8"
     moo: "npm:^0.5.2"
     multimatch: "npm:^7.0.0"
@@ -142,11 +142,11 @@ __metadata:
     please-upgrade-node: "npm:^3.2.0"
     posthtml: "npm:^0.16.6"
     recursive-copy: "npm:^2.0.14"
-    semver: "npm:^7.6.0"
+    semver: "npm:^7.6.2"
     slugify: "npm:^1.6.6"
   bin:
     eleventy: cmd.cjs
-  checksum: 10/4aa67ca53d38c4faf8eec93e54ee6dd6ad8f5e81dc09ecc83c616c49425b5c596274a2ee3ac07d22f877991d298d83b5ebb299f0e35d5d01917da0fce37bd70e
+  checksum: 10/3391a55876d71e27ad1c550fe5214b7ce153934d6338abd050729504c2947f283d52ce4c717681d02b87da6dd5e32ae76209d7fc605c115d66bfe2fe2c211093
   languageName: node
   linkType: hard
 
@@ -1972,7 +1972,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@silvenga/blog@workspace:."
   dependencies:
-    "@11ty/eleventy": "npm:^3.0.0-alpha.10"
+    "@11ty/eleventy": "npm:^3.0.0-alpha.11"
     "@11ty/eleventy-img": "npm:^5.0.0-beta.4"
     "@11ty/eleventy-plugin-rss": "npm:^1.2.0"
     "@fontsource-variable/inter": "npm:^5.0.18"
@@ -2008,6 +2008,7 @@ __metadata:
     parcel-reporter-static-files-copy: "npm:^1.5.3"
     parcel-resolver-ignore: "npm:^2.2.0"
     postcss: "npm:^8.4.38"
+    posthtml-doctype: "npm:^1.1.1"
     process: "npm:^0.11.10"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -5268,7 +5269,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"liquidjs@npm:^10.12.0":
+"liquidjs@npm:^10.13.1":
   version: 10.13.1
   resolution: "liquidjs@npm:10.13.1"
   dependencies:
@@ -5463,7 +5464,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
+"micromatch@npm:^4.0.4, micromatch@npm:^4.0.5, micromatch@npm:^4.0.7":
   version: 4.0.7
   resolution: "micromatch@npm:4.0.7"
   dependencies:
@@ -6352,6 +6353,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"posthtml-doctype@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "posthtml-doctype@npm:1.1.1"
+  checksum: 10/c8fd298c28d5913d53a7e8bef98228cc081b13d72f2bb8904d6bc1cb03eaf627faf153819e0b1667bfe04605cae6c0be1c443c5fab36d0d0fdfd71f59bfde439
+  languageName: node
+  linkType: hard
+
 "posthtml-parser@npm:^0.10.1":
   version: 0.10.2
   resolution: "posthtml-parser@npm:0.10.2"
@@ -6860,7 +6868,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.3.5, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.6.0":
+"semver@npm:^7.3.5, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.6.0, semver@npm:^7.6.2":
   version: 7.6.2
   resolution: "semver@npm:7.6.2"
   bin:

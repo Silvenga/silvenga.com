@@ -7,6 +7,7 @@
 import timeToRead from "eleventy-plugin-time-to-read";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import { renderToStaticMarkup } from "react-dom/server";
 import { UserConfig } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
@@ -30,9 +31,16 @@ export default async function (eleventyConfig: UserConfig) {
     eleventyConfig.addPlugin(pluginRss);
 
     // TSX support.
-    eleventyConfig.addExtension(["11ty.ts", "11ty.tsx"], {
+    eleventyConfig.addExtension(["11ty.jsx", "11ty.ts", "11ty.tsx"], {
         key: "11ty.js",
+        compile: function () {
+            return async function (this: any, data: any) {
+                let content = await this.defaultRenderer(data);
+                return renderToStaticMarkup(content);
+            };
+        },
     });
+    eleventyConfig.addTemplateFormats("11ty.ts,11ty.tsx")
 
     // Defaults
     eleventyConfig.addLayoutAlias("root", "layouts/root.11ty.tsx");

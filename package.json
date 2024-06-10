@@ -59,7 +59,7 @@
     "build": "yarn clean && yarn eleventy:build && yarn parcel:build"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0-alpha.10",
+    "@11ty/eleventy": "^3.0.0-alpha.11",
     "@11ty/eleventy-img": "^5.0.0-beta.4",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@parcel/compressor-brotli": "2.11.0",
@@ -94,6 +94,7 @@
     "parcel-reporter-static-files-copy": "^1.5.3",
     "parcel-resolver-ignore": "^2.2.0",
     "postcss": "^8.4.38",
+    "posthtml-doctype": "^1.1.1",
     "process": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
