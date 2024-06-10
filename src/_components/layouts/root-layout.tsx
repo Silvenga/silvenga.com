@@ -4,7 +4,7 @@ import { BlogIcon, GithubIcon, RssIcon } from "../icons";
 // TODO: Favicons
 // TODO: Mermaid
 
-export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy, ...props }: TemplateContext) {
+export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy }: TemplateContext) {
     const canonicalUrl = this.url(site.baseUrl + page.url);
     const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
@@ -15,31 +15,40 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
     return (
         <>
             <html lang="en">
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <head>
+                    <meta charSet="UTF-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-                <title>{pageTitle}</title>
-                <link href="/src/styles.css" type="text/css" rel="stylesheet" />
-                <link href="npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
+                    <title>{pageTitle}</title>
+                    <link href="/src/styles.css" type="text/css" rel="stylesheet" />
+                    <link href="npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
 
-                <link rel="canonical" href={canonicalUrl} />
-                <link rel="alternate" type="application/rss+xml" href={this.url("/atom-posts.xml")} title="RSS Feed" />
+                    <link rel="canonical" href={canonicalUrl} />
+                    <link rel="alternate" type="application/rss+xml" href={this.url("/atom-posts.xml")} title="RSS Feed" />
 
-                <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
-                <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
+                    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+                    <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
 
-                <meta name="generator" content={eleventy.generator} />
-                <meta property="og:title" content={title || site.name} />
-                <meta property="og:site_name" content={site.name} />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={canonicalUrl} />
+                    <meta name="generator" content={eleventy.generator} />
+                    <meta property="og:title" content={title || site.name} />
+                    <meta property="og:site_name" content={site.name} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={canonicalUrl} />
 
-                {!!description && (
-                    <>
-                        <meta name="description" content={description} />
-                        <meta property="og:description" content={description} />
-                    </>
-                )}
+                    {!!description && (
+                        <>
+                            <meta name="description" content={description} />
+                            <meta property="og:description" content={description} />
+                        </>
+                    )}
+
+                    {!!site.umami && (
+                        <script defer
+                            src={site.umami.scriptUrl}
+                            data-website-id={site.umami.websiteId} />
+                    )}
+                </head>
+
                 <body className="container mx-auto w-[100%] max-w-[720px] px-[20px] min-h-svh flex flex-col">
                     <Navbar site={site} renderContent={this} />
 

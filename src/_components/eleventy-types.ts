@@ -60,9 +60,14 @@ export type TemplateContext =
     }
     & {
         site: {
+            // Should match "_data/site.json"
             name: string;
             baseUrl: string;
             defaultAuthor: string;
+            umami?: {
+                scriptUrl: string;
+                websiteId: string;
+            }
         }
     };
 
