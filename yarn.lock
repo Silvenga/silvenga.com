@@ -1170,15 +1170,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/optimizer-data-url@npm:2.11.0":
-  version: 2.11.0
-  resolution: "@parcel/optimizer-data-url@npm:2.11.0"
+"@parcel/optimizer-data-url@npm:2.12.0":
+  version: 2.12.0
+  resolution: "@parcel/optimizer-data-url@npm:2.12.0"
   dependencies:
-    "@parcel/plugin": "npm:2.11.0"
-    "@parcel/utils": "npm:2.11.0"
+    "@parcel/plugin": "npm:2.12.0"
+    "@parcel/utils": "npm:2.12.0"
     isbinaryfile: "npm:^4.0.2"
     mime: "npm:^2.4.4"
-  checksum: 10/47cccef2af9327a6af95b58311d023c4665678ec819b2486dcedaa2e77cee94d01db17a8d1b5b6fc3cf8fd609688b8b67bfa9d94e5c3e7b57a5e836b47a439ef
+  checksum: 10/6166918da7b98d72eff244fa67ca1f463b758a1ebffcc4c1d310fef853c47f4734f7310738e89d9f10ff5cc134783b04b7dd50545921885e85681f5227abb1e1
   languageName: node
   linkType: hard
 
@@ -1376,7 +1376,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/plugin@npm:^2.0.0-beta.1, @parcel/plugin@npm:^2.10.3":
+"@parcel/plugin@npm:2.12.0, @parcel/plugin@npm:^2.0.0-beta.1, @parcel/plugin@npm:^2.10.3":
   version: 2.12.0
   resolution: "@parcel/plugin@npm:2.12.0"
   dependencies:
@@ -1978,7 +1978,7 @@ __metadata:
     "@11ty/eleventy-plugin-rss": "npm:^2.0.0-beta.7"
     "@fontsource-variable/inter": "npm:^5.0.18"
     "@parcel/compressor-brotli": "npm:2.11.0"
-    "@parcel/optimizer-data-url": "npm:2.11.0"
+    "@parcel/optimizer-data-url": "npm:2.12.0"
     "@parcel/packager-raw-url": "npm:2.11.0"
     "@parcel/packager-xml": "npm:2.11.0"
     "@parcel/reporter-bundle-analyzer": "npm:2.11.0"
