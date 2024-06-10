@@ -1375,7 +1375,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/plugin@npm:^2.0.0-beta.1, @parcel/plugin@npm:^2.10.3":
+"@parcel/plugin@npm:2.12.0, @parcel/plugin@npm:^2.0.0-beta.1, @parcel/plugin@npm:^2.10.3":
   version: 2.12.0
   resolution: "@parcel/plugin@npm:2.12.0"
   dependencies:
@@ -1406,14 +1406,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@parcel/reporter-bundle-analyzer@npm:2.11.0":
-  version: 2.11.0
-  resolution: "@parcel/reporter-bundle-analyzer@npm:2.11.0"
+"@parcel/reporter-bundle-analyzer@npm:2.12.0":
+  version: 2.12.0
+  resolution: "@parcel/reporter-bundle-analyzer@npm:2.12.0"
   dependencies:
-    "@parcel/plugin": "npm:2.11.0"
-    "@parcel/utils": "npm:2.11.0"
+    "@parcel/plugin": "npm:2.12.0"
+    "@parcel/utils": "npm:2.12.0"
     nullthrows: "npm:^1.1.1"
-  checksum: 10/ac9046b07d91bc369aa185b7f3292b8ce49ca8705a5825dbdca579360ebe624386db9dcb495bf6f14331dc26db3892c5a95403c1f772fedd2745d2e5cdbffa92
+  checksum: 10/85a3f7e4793da4b78b304885a78006797db5c316bfd210d3e86cc6e1f6642f798432dda21db354d977dd5ed8efb9fe57b643ac8537c1bda70a135e1cecd367de
   languageName: node
   linkType: hard
 
@@ -1980,7 +1980,7 @@ __metadata:
     "@parcel/optimizer-data-url": "npm:2.11.0"
     "@parcel/packager-raw-url": "npm:2.11.0"
     "@parcel/packager-xml": "npm:2.11.0"
-    "@parcel/reporter-bundle-analyzer": "npm:2.11.0"
+    "@parcel/reporter-bundle-analyzer": "npm:2.12.0"
     "@parcel/transformer-inline-string": "npm:2.11.0"
     "@parcel/transformer-sass": "npm:2.11.0"
     "@parcel/transformer-webmanifest": "npm:2.11.0"
