@@ -8,6 +8,10 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
     const canonicalUrl = this.url(site.baseUrl + page.url);
     const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
+    if (!description) {
+        console.warn(`[warning - RootLayout] No description set for page '${page.inputPath}'.`);
+    }
+
     return (
         <>
             <html lang="en">
@@ -86,7 +90,7 @@ function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateConte
                         </a>
                     </li>
                 </ul>
-           </div>
+            </div>
 
             <div className="flex flex-1 mt-3">
                 {/* Shown in < sm */}

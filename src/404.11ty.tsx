@@ -4,7 +4,8 @@ export function data() {
     return {
         title: "Page Not Found",
         permalink: "/404.html",
-        eleventyExcludeFromCollections: true
+        eleventyExcludeFromCollections: true,
+        description: "This page no longer exists, or never existed, or many exist in the future."
     }
 }
 

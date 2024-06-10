@@ -3,6 +3,12 @@ import { Avatar } from "./_components/avatar";
 import { RenderContext, TemplateContext } from "./_components/eleventy-types";
 import { PostsList } from "./_components/posts-list";
 
+export function data() {
+    return {
+        description: "Hello there! Welcome to my weblog, a place where I blog about random tech things and hard to find solutions."
+    }
+}
+
 export function render(this: RenderContext, { collections }: TemplateContext) {
     return (
         <article>
