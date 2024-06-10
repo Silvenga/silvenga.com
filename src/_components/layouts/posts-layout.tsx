@@ -38,9 +38,7 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                     </section>
                 )}
             </header>
-            <div className="prose">
-                {content}
-            </div>
+            <div className="prose mx-auto" dangerouslySetInnerHTML={{ __html: content }} />
             <footer className="mt-9">
                 {author
                     ? <address className="text-center">Written by {author}</address>

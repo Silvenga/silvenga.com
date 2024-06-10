@@ -14,7 +14,8 @@ export type PageContext = {
 
 export type PageData =
     & {
-        tags?: string[]
+        tags?: string[];
+        title?: string;
     }
     & Record<string, unknown>;
 

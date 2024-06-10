@@ -5,17 +5,13 @@ import { GithubIcon } from "../icons";
 // TODO: Mermaid
 // Escaping is weird.
 
-export type RootLayoutProps = {
-    children: JSX.Element;
-} & TemplateContext;
-
-export function RootLayout(this: RenderContext, { title, description, site, children, content, page, ...props }: RootLayoutProps) {
+export function RootLayout(this: RenderContext, { description, site, title, content, page, ...props }: TemplateContext) {
 
     const canonicalUrl = this.url(site.baseUrl + page.url);
+    const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
     return (
         <>
-            {"<!DOCTYPE html>"}
             <html lang="en">
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +19,7 @@ export function RootLayout(this: RenderContext, { title, description, site, chil
                 <link rel="alternate" type="application/rss+xml" href="/posts/posts.rss" title="RSS Feed" />
                 <link href="/src/styles.css" type="text/css" rel="stylesheet" />
 
-                <title>{title && `${title} | `}{site.name}</title>
+                <title>{pageTitle}</title>
 
                 <meta property="og:title" content={title || site.name} />
                 <meta property="og:site_name" content={site.name} />
@@ -40,7 +36,10 @@ export function RootLayout(this: RenderContext, { title, description, site, chil
                     <Header site={site} renderContent={this} />
 
                     <main>
-                        {children || content}
+                        {/* Content can either be a string or a ReactNode */}
+                        {/* If a string, should likely set the HTML directly to avoid escaping. */}
+                        {/* A later me problem. */}
+                        {content}
                     </main>
 
                     <Footer />

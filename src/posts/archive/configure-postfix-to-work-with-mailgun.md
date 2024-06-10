@@ -5,7 +5,7 @@ description: Using MailGun and a script to get there faster.
 Archived: 01/13/2018
 ---
 
-![Mail Gun Logo](/content/images/2014/May/mailgun_logo.png)
+![Mail Gun Logo](/posts/archive/content/images/2014/May/mailgun_logo.png)
 
 MailGun is a relatively new online service that allows us to cheaply (and freely) send and receive emails through dozens of different ways. MailGun is incredibly flexible with an API for developers crafted in programming heaven.
 
@@ -21,9 +21,9 @@ Below is the script:
 
 You need to make sure to create some mail gun credentials and edit the `mgUSERNAME` and `mgPASSWORD` variables.
 
-![Step 1](/content/images/2014/May/mailgun-1-1.png)
+![Step 1](/posts/archive/content/images/2014/May/mailgun-1-1.png)
 
-![Step 2](/content/images/2014/May/mailgun-2-1.png)
+![Step 2](/posts/archive/content/images/2014/May/mailgun-2-1.png)
 
 Also ensure that `testEmail` is correct. This email will be used to test the postfix configurations. The next step is to simply run the script: ```bash ./mg-postfix.sh``` and you're done!
 

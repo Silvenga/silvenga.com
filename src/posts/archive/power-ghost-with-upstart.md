@@ -4,7 +4,7 @@ date: 2014-03-27
 description: Using Upstart to manage a Ghost instance.
 ---
 
-![Upstart Logo](/content/images/2014/Mar/upstart80.png)
+![Upstart Logo](/posts/archive/content/images/2014/Mar/upstart80.png)
 
 ### Introduction
 

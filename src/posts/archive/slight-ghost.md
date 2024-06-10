@@ -5,7 +5,7 @@ description: A different take on how to host a Ghost instance, while using NPM a
 archived: 01/13/2018
 ---
 
-![The Ghost Blog logo.](/content/images/2014/12/ghost_logo-2.jpg)
+![The Ghost Blog logo.](/posts/archive/content/images/2014/12/ghost_logo-2.jpg)
 
 ## Introduction
 

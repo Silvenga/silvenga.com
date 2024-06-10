@@ -25,11 +25,11 @@ I first noticed that the KeebMonkey  software was a .NET Framework style executa
 
 Normally, when decompiled, .NET symbols would look like this (from the BCL):
 
-![Normal](https://i.imgur.com/1HFeEKd.png)
+![Normal](/posts/archive/content/images/2021/1HFeEKd.png)
 
 But the KeebMonkey software looked liked this:
 
-![Obfuscated](https://i.imgur.com/4VMMEzi.png)
+![Obfuscated](/posts/archive/content/images/2021/4VMMEzi.png)
 
 (The Chinese characters are randomly generated and have no meaning)
 
@@ -43,7 +43,7 @@ I looked first at the size of the application. 57 MB (26 MB in newer builds) is 
 
 In .NET, developers may choose to embed non-code as "resource streams" - designed normally to embed small images and sounds. These are the resources found in the KeebMonkey software (no, the names aren't very helpful):
 
-![Resource Streams](https://i.imgur.com/DOL3yDu.png)
+![Resource Streams](/posts/archive/content/images/2021/DOL3yDu.png)
 
 Minus the boring details, the resource `s.resources` was massive ([extracting code](https://imgur.com/lBOJrd3)). Extracting the "resource streams" produces the following (using the GNU `file` utility to read "magic" headers):
 
@@ -80,7 +80,7 @@ zh_CN.xml
 
 I was curious of `pkey`, but a quick Google'ing confirmed my suspicions that it was a license file generated from a product key. Ultimately launching `aida64.exe` (after removing the `aida64.ini` file, since it causes Aida64 to hide itself) results in a non-trial version of Aida64 launching.
 
-![Aida64 licensed](https://i.imgur.com/O2bkdTu.png)
+![Aida64 licensed](/posts/archive/content/images/2021/O2bkdTu.png)
 
 ### Looking Deeper
 
@@ -92,8 +92,8 @@ https://www.aida64.com/licensing
 
 Ignoring the "KeebMonkey's potential breach of FinalWire's license agreements", my next question was if these keys were legitimate in the first place, since Aida64 keys are relatively easy to pirate. Of course, we should assume the license is legitimate, since only FinalWire knows if this key is legitimate. That said, there are some red flags:
 
-- Publicly, Aida64 isn't available with a 5 year maintenance license, [FinalWire's online purchase system doesn't allow for lengths that long](https://imgur.com/cYdjC0J), only lengths of 2 years.
-- Aida64 API [doesn't allow for this license to be renewed](https://i.imgur.com/AjtA4Dj.png) or extend.
+- Publicly, Aida64 isn't available with a 5 year maintenance license, [FinalWire's online purchase system doesn't allow for lengths that long](https://imgur.com/cYdjC0J.png), only lengths of 2 years.
+- Aida64 API [doesn't allow for this license to be renewed](https://imgur.com/AjtA4Dj.png) or extend.
 
 Of course, these red flags could mean nothing, I don't personally know enough about the volume licensing deals with FinalWire.
 

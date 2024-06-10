@@ -3,7 +3,7 @@ title: Missing Dependencies With Alpine Docker Images
 description: Missing dependencies when upgrading some Alpine package.
 ---
 
-![Alpine + Docker = Awsome](/content/images/2018/docker+alpine.png)
+![Alpine + Docker = Awsome](/posts/archive/content/images/2018/docker+alpine.png)
 
 I have a lot of Docker images using Alpine Linux as a base. This is awesome when trying to get the most streamlined images possible - 24MB for a complete image is amazing!
 

@@ -3,7 +3,7 @@ title: Convert Windows 2016 Eval to Retail
 description: How to convert a Windows Server 2016 trial installation to full retail.
 ---
 
-![Command line, using DISM to convert to retail.](/content/images/2017/dism.png)
+![Command line, using DISM to convert to retail.](/posts/archive/content/images/2017/dism.png)
 
 Using your retail key with the ISO's downloaded from Microsoft's "Evaluation Center" should be easy right? You paid for a license so you should be able to just activate a trial... Turns out it's not that simple. You actually need to change your server edition from ServerBlahEvalEdition to whatever edition you have a key for using `dism`.
 
@@ -26,7 +26,7 @@ ServerDatacenterCor
 ServerStandardCor
 ```
 
-![DISM running cleanup during reboot.](/content/images/2017/dism-cleanup.png)
+![DISM running cleanup during reboot.](/posts/archive/content/images/2017/dism-cleanup.png)
 
 The command takes a good 10 minutes to run (looks like it stalls), then asks to reboot to cleanup. Afterwards, you should be activated and ready.
 

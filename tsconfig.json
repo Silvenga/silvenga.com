@@ -10,7 +10,6 @@
     "moduleResolution": "Node",
     "skipLibCheck": false,
     "jsx": "react-jsx",
-    "jsxImportSource": "jsx-async-runtime",
     "isolatedModules": true
   }
 }

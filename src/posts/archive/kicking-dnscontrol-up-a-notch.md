@@ -129,19 +129,19 @@ With this simple setup I got access to a bunch of neat little features. The opti
 
 Auto-completion support:
 
-![Auto-complete support](/content/images/2018/dnscontrol-auto-complete.png)
+![Auto-complete support](/posts/archive/content/images/2018/dnscontrol-auto-complete.png)
 
 Type-checking support:
 
-![Type-checking support](/content/images/2018/dnscontrol-type-checking.png)
+![Type-checking support](/posts/archive/content/images/2018/dnscontrol-type-checking.png)
 
 Module support + static analysis:
 
-![Module support](/content/images/2018/dnscontrol-module-support.png)
+![Module support](/posts/archive/content/images/2018/dnscontrol-module-support.png)
 
 And of couse linting:
 
-![Linting support](/content/images/2018/dnscontrol-linting.png)
+![Linting support](/posts/archive/content/images/2018/dnscontrol-linting.png)
 
 Although, to be honest, being able to use Typescript instead of ES5 is always going to make me happy.
 

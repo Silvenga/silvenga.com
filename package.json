@@ -24,6 +24,9 @@
     "ftp://",
     "/posts/posts.rss"
   ],
+  "alias": {
+    "./img/*": "./.cache/eleventy/img/$1"
+  },
   "@parcel/resolver-default": {
     "packageExports": true
   },
@@ -49,6 +52,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0-alpha.10",
+    "@11ty/eleventy-img": "^5.0.0-beta.4",
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@parcel/compressor-brotli": "2.11.0",
     "@parcel/packager-raw-url": "2.11.0",
@@ -59,8 +63,11 @@
     "@parcel/transformer-webmanifest": "2.11.0",
     "@parcel/transformer-xml": "2.11.0",
     "@tailwindcss/typography": "^0.5.13",
+    "@types/11ty__eleventy-img": "^4",
     "@types/luxon": "^3",
     "@types/markdown-it": "^14",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "clsx": "^2.1.1",
@@ -71,7 +78,6 @@
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "jsx-async-runtime": "^0.2.1",
     "luxon": "^3.4.4",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.0.1",
@@ -85,7 +91,7 @@
     "react-dom": "^18.3.1",
     "rimraf": "^5.0.7",
     "tailwindcss": "^3.4.4",
-    "tsx": "^4.14.0",
+    "tsx": "^4.15.1",
     "typescript": "^5.4.5"
   },
   "dependencies": {

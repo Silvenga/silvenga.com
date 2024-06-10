@@ -9,7 +9,7 @@ I had this really odd problem that's been plaguing me for months on a newly inst
 
 At first I noticed that I was having issues connecting to the Windows SNMP (Simple Network Management Protocol) service which I use to monitor all my servers. My SNMP monitoring system would timeout connecting to the service 99% of the time. This was very odd, and the patterns didn't present in a way that would scream networking issues. I checked all the common causes (VPN issues, monitoring host, DNS, etc), but came up empty. Attempting to restart the service resulted it hanging until I rebooted. Not really caring, I continued on thinking it was network related - my VPN always had Window issues (architecture portable != OS portable).
 
-![Task Manager](/content/images/2017/7/task-manager.png)
+![Task Manager](/posts/archive/content/images/2017/7/task-manager.png)
 
 Later I noticed that Windows Updates were taking forever, so wanting to know the bottleneck, I checked the Resource Monitor. No resource issues that I could find, however, no IO stats were showing either and no disks were shown under the Storage section. To double check this oddity, I enabled IO performance stats within [Task Manager](https://blogs.technet.microsoft.com/canitpro/2013/12/02/step-by-step-enabling-disk-performance-counters-in-windows-server-2012-r2-task-manager/) - this should pull from the same location as the Resource Monitor (IIRC). The Task Manager also failed to get disk information for me - as well as the Server Manager, which I tried later. At this point I was really questioning the integrity of this server, but ran a `fsck` check anyway (I didn't really think it would help, but why not?). After the reboot, nothing came up, this had no impact on my issue.
 
@@ -23,7 +23,7 @@ I remembered back to earlier this year, when installing Windows onto this server
 
 I hypothesized that perhaps one of the IPMI interface's virtual disk drives were causing issues with Windows (like not responding to requests). I tried to check either of the drive's properties using Explorer (This PC), I was rewarded with Explorer freezing and ultimately crashing. Lovely, but at least I was on the right path about the IPMI...
 
-![device manager](/content/images/2017/7/device-manager.png)
+![device manager](/posts/archive/content/images/2017/7/device-manager.png)
 
 Immediately, I opened up the Device Manager and proceeded to disable anything AMI (SuperMicro's vendor). Device Manager did stall, but after a couple of minutes of waiting I was prompted to reboot to complete my modifications - which I proceeded to do smugly.
 

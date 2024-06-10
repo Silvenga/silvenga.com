@@ -4,7 +4,7 @@ date: 2016-08-19
 description: A personal cheat sheet on using PowerShell commands via the Package Console.
 ---
 
-![Visual Studio plus Powershell](/content/images/2017/vs-plus-ps.png)
+![Visual Studio plus Powershell](/posts/archive/content/images/2017/vs-plus-ps.png)
 
 A cheat sheet of all the cool things that knowing PowerShell can help with when dealing with Visual Studio's Package Console.
 

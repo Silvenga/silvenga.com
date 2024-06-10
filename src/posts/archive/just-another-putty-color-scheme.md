@@ -4,7 +4,7 @@ date: 2014-08-23
 description: Just another color scheme for Putty, designed based on my personal preferences.
 ---
 
-![Screenshot of the new colors](/content/images/2014/Aug/2014-08-23_19-51-12.png)
+![Screenshot of the new colors](/posts/archive/content/images/2014/Aug/2014-08-23_19-51-12.png)
 
 Putty is the single best SSH client for Windows. Unfortunately, Putty also has the single worst default color scheme. For example, the default background uses the same color for the black text. Who ever thought that was a good idea? Being the lazy developer that I am, I had to created a custom theme to alleviate these issues.
 

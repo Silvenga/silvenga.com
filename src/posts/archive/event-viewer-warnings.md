@@ -3,7 +3,7 @@ title: WHEA Event Viewer Warnings
 description: A corrected hardware error has occurred...
 ---
 
-I've been trying to debug any problem that makes my daily driver PC unstable. Previously, I debugged a [crash in KeePass](./keepass-crash.md) occurring whenever my machine went into power savings. It turned out the crash was from from an audio driver (this will be important later).
+I've been trying to debug any problem that makes my daily driver PC unstable. Previously, I debugged a [crash in KeePass]({{ "/posts/archive/keepass-crash.md" | inputPathToUrl }}) occurring whenever my machine went into power savings. It turned out the crash was from from an audio driver (this will be important later).
 
 A couple days later, I started seeing the following error, one or two an hour.
 

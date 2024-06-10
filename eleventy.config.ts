@@ -1,33 +1,41 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import timeToRead from "eleventy-plugin-time-to-read";
-import { renderToString } from "jsx-async-runtime";
-import { DateTime } from "luxon";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import { UserConfig } from "@11ty/eleventy";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { CollectionItem } from "./src/_components/eleventy-types";
 
-export default function (eleventyConfig: UserConfig) {
+// import { renderToString } from "jsx-async-runtime";
 
-    eleventyConfig.addPlugin(timeToRead);
+export default async function (eleventyConfig: UserConfig) {
+
+
 
     eleventyConfig.addExtension(["11ty.ts", "11ty.tsx"], {
         key: "11ty.js",
     });
 
-    eleventyConfig.addWatchTarget("./src/_components/**/*.{tsx,ts}");
 
-    eleventyConfig.addTransform("tsx", async (content: any) => {
-        return (await renderToString(content))
-            .replaceAll("className", "class"); // A hack because JSX isn't converting from className to class.
+
+    const { InputPathToUrlTransformPlugin } = await import("@11ty/eleventy");
+    eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+    eleventyConfig.addPlugin(timeToRead);
+    eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+        extensions: "html",
+        formats: ["webp"],
+        urlPath: null,
+        defaultAttributes: {
+            loading: "lazy",
+            decoding: "async",
+        },
     });
-
-    eleventyConfig.addPassthroughCopy("./src/assets");
 
     eleventyConfig.addPlugin(pluginRss);
 
@@ -70,6 +78,7 @@ export default function (eleventyConfig: UserConfig) {
 
     let markdownItOptions: markdownIt.Options = {
         html: true, // Allow HTML tags.
+        linkify: true
     }
 
     let markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
