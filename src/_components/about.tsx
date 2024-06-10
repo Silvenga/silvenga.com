@@ -1,9 +1,8 @@
-import clsx from "clsx";
 import { GithubIcon, MastodonIcon } from "./icons";
 
 export function About({ className }: { className?: string }) {
     return (
-        <div className={clsx("prose dark:prose-invert", className)}>
+        <div className={className}>
             <p className="mb-0">
                 My name is Mark,
             </p>

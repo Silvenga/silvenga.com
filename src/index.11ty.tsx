@@ -19,7 +19,7 @@ export function render(this: RenderContext, { collections }: TemplateContext) {
                         <h1 className="text-5xl font-light mb-2">
                             Hello there!
                         </h1>
-                        <p className="mb-6">And welcome to my weblog.</p>
+                        <p className="mb-3">And welcome to my weblog.</p>
                         <About />
                     </div>
                 </div>
