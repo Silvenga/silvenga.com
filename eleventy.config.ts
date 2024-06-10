@@ -12,8 +12,6 @@ import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { CollectionItem } from "./src/_components/eleventy-types";
 
-// import { renderToString } from "jsx-async-runtime";
-
 export default async function (eleventyConfig: UserConfig) {
 
     // Plugins

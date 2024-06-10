@@ -8,7 +8,6 @@
     "module": "ESNext",
     "target": "ESNext",
     "moduleResolution": "Node",
-    "skipLibCheck": false,
     "jsx": "react-jsx",
     "isolatedModules": true
   }
