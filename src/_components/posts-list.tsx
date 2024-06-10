@@ -6,12 +6,12 @@ import { ReadableDate } from "./readable-date";
 import { groupBy } from "./utilities/group-by";
 
 export type PostsListProps = {
-    collection: Collection;
+    collection?: Collection;
 }
 
 export function PostsList({ collection }: PostsListProps): ReactNode {
 
-    const sortedCollection = collection.toSorted(({ page: { date: a } }, { page: { date: b } }) => a < b ? 1 : a > b ? -1 : 0);
+    const sortedCollection = collection?.toSorted(({ page: { date: a } }, { page: { date: b } }) => a < b ? 1 : a > b ? -1 : 0) ?? [];
     const groupsByYear = groupBy(sortedCollection, x => x.page.date.getFullYear() + "");
     const sortedKeys = Object.keys(groupsByYear).sort((a, b) => a < b ? 1 : -1)
 
