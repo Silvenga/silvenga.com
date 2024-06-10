@@ -36,8 +36,13 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                     </section>
                 )}
                 {!!archived && (
-                    <section aria-label="Post has been archived warning" className="border border-warning rounded p-3 text-center my-9">
-                        This post was archived on {DateTime.fromJSDate(archived).toFormat("LLLL d, yyyy")}. The content may be old and no longer arcuate.
+                    <section aria-label="Post has been archived warning" className="border border-yellow-500 rounded bg-yellow-100 p-3 text-center my-9">
+                        <p>
+                            This post was archived on <ReadableDate className="font-medium" dateTime={archived} />.
+                        </p>
+                        <p>
+                            The content may be old and no longer accurate.
+                        </p>
                     </section>
                 )}
             </header>

@@ -21,3 +21,27 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.github-icon {
+  background: url("data-url:./assets/github-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.mastodon-icon {
+  background: url("data-url:./assets/mastodon-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.rss-icon {
+  background: url("data-url:./assets/rss-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.blog-icon {
+  background: url("data-url:./assets/blog-icon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

@@ -7,6 +7,7 @@ export default {
     // "./src/**/*.{html,js,ts,jsx,tsx}",
     "./.cache/eleventy/**/*.html",
   ],
+  darkMode: "media",
   theme: {
     extend: {
       fontFamily: {
