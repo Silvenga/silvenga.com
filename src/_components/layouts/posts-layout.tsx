@@ -46,6 +46,10 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                 {author
                     ? <address className="text-center">Written by {author}</address>
                     : <AuthorCard />}
+
+                <div className="text-center mt-9">
+                    Written under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer noopener" target="_blank" className="link">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                </div>
             </footer>
         </article>
     );
