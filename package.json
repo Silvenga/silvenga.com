@@ -22,7 +22,7 @@
     "http://",
     "https://",
     "ftp://",
-    "/posts/posts.rss"
+    "/posts/atom.xml"
   ],
   "alias": {
     "./img/*": "./.cache/eleventy/img/$1"
@@ -33,6 +33,10 @@
   "staticFiles": [
     {
       "staticPath": ".cache/eleventy/robots.txt",
+      "staticOutPath": ""
+    },
+    {
+      "staticPath": ".cache/eleventy/.nojekyll",
       "staticOutPath": ""
     }
   ],

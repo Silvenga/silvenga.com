@@ -1,64 +1,47 @@
-name: Deploy Site
+name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
       - master
+  workflow_dispatch: {}
+
 jobs:
   build:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - uses: actions/setup-dotnet@v1.9.0
-      with:
-        dotnet-version: 2.1.x
-    - name: Setup
-      shell: pwsh
-      run: dotnet tool install -g Wyam.Tool --version 2.2.4
-      env:
-        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-    - name: Build Wyam Recipe
-      shell: pwsh
-      run: |
-        cd recipe
-        dotnet publish
-        cd ..
-      env:
-        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-    - name: Build Markup
-      run: wyam
-      env:
-        DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
-    - name: Build Site
-      shell: pwsh
-      run: |
-        cd src
-        yarn
-        yarn build
-        cd ..
-      env:
-        # https://stackoverflow.com/a/69746937/2001966
-        NODE_OPTIONS: "--openssl-legacy-provider"
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: dist
-  publish:
-    needs: build
+    name: Build Docusaurus
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Download Artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: dist
-        path: dist
-    - name: Deploy Github Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.8
-      with:
-        branch: gh-pages 
-        folder: dist
-        git-config-email: github@silvenga.com
-        git-config-name: Github Actions
+      - uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: |
+          corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Build
+        run: |
+          yarn install --immutable
+          yarn build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
