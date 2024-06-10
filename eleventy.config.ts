@@ -16,14 +16,7 @@ import { CollectionItem } from "./src/_components/eleventy-types";
 
 export default async function (eleventyConfig: UserConfig) {
 
-
-
-    eleventyConfig.addExtension(["11ty.ts", "11ty.tsx"], {
-        key: "11ty.js",
-    });
-
-
-
+    // Plugins
     const { InputPathToUrlTransformPlugin } = await import("@11ty/eleventy");
     eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(timeToRead);
@@ -36,12 +29,16 @@ export default async function (eleventyConfig: UserConfig) {
             decoding: "async",
         },
     });
-
     eleventyConfig.addPlugin(pluginRss);
 
+    // TSX support.
+    eleventyConfig.addExtension(["11ty.ts", "11ty.tsx"], {
+        key: "11ty.js",
+    });
+
+    // Defaults
     eleventyConfig.addLayoutAlias("root", "layouts/root.11ty.tsx");
     eleventyConfig.addLayoutAlias("posts", "layouts/posts.11ty.tsx");
-    eleventyConfig.addGlobalData("layout", "root");
 
     // Used by the sitemap.
     eleventyConfig.addFilter("dateToIso", (dateString: string) => {
@@ -94,6 +91,27 @@ export default async function (eleventyConfig: UserConfig) {
     }
 
     eleventyConfig.setLibrary("md", markdownIt(markdownItOptions).use(markdownItAnchor, markdownItAnchorOptions))
+
+    // Global Data
+    eleventyConfig.addGlobalData("layout", "root");
+
+    eleventyConfig.addGlobalData(
+        "eleventyComputed.eleventyExcludeFromCollections",
+        function () {
+            return (data: Record<string, unknown>) => {
+                // Hide drafts.
+                if (data.draft) {
+                    return true;
+                }
+                // Hide archived.
+                if (data.archived) {
+                    return true;
+                }
+
+                return data.eleventyExcludeFromCollections;
+            };
+        }
+    );
 
     return {
         dir: {
