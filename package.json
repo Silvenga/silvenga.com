@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": "git@github.com:Silvenga/silvenga.com",
   "author": "Mark Lopez <m@silvenga.com>",
-  "packageManager": "yarn@4.2.2",
+  "packageManager": "yarn@4.3.0",
   "type": "module",
   "browserslist": "> 1%, not dead, Firefox ESR",
   "importSort": {
