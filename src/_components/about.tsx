@@ -3,7 +3,7 @@ import { GithubIcon, MastodonIcon } from "./icons";
 
 export function About({ className }: { className?: string }) {
     return (
-        <div className={clsx("pose", className)}>
+        <div className={clsx("prose dark:prose-invert", className)}>
             <p className="mb-0">
                 My name is Mark,
             </p>

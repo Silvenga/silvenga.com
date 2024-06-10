@@ -35,18 +35,9 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                         </ul>
                     </section>
                 )}
-                {!!archived && (
-                    <section aria-label="Post has been archived warning" className="border border-yellow-500 rounded bg-yellow-100 p-3 text-center my-9">
-                        <p>
-                            This post was archived on <ReadableDate className="font-medium" dateTime={archived} />.
-                        </p>
-                        <p>
-                            The content may be old and no longer accurate.
-                        </p>
-                    </section>
-                )}
+                {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
-            <div className="prose max-w-[100%]" dangerouslySetInnerHTML={{ __html: content }} />
+            <div className="prose pose dark:prose-invert max-w-[100%]" dangerouslySetInnerHTML={{ __html: content }} />
             <footer className="mt-9">
                 {author
                     ? <address className="text-center">Written by {author}</address>
@@ -67,4 +58,17 @@ function AuthorCard() {
             <About className="lg:basis-2/3" />
         </address>
     )
+}
+
+function ArchivedWarningCard({ archived }: { archived: Date }) {
+    return (
+        <section aria-label="Post has been archived warning" className="border text-black border-yellow-500 rounded bg-yellow-100 p-3 text-center my-9">
+            <p>
+                This post was archived on <ReadableDate className="font-medium" dateTime={archived} />.
+            </p>
+            <p>
+                The content may be old and no longer accurate.
+            </p>
+        </section>
+    );
 }
