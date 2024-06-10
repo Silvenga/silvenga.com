@@ -5,7 +5,7 @@ import { GithubIcon } from "../icons";
 // TODO: Mermaid
 // Escaping is weird.
 
-export function RootLayout(this: RenderContext, { description, site, title, content, page, ...props }: TemplateContext) {
+export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy, ...props }: TemplateContext) {
 
     const canonicalUrl = this.url(site.baseUrl + page.url);
     const pageTitle = title ? `${title} | ${site.name}` : site.name;
@@ -15,6 +15,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
             <html lang="en">
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="generator" content={ eleventy.generator } />
+
                 <link rel="canonical" href={canonicalUrl} />
                 <link rel="alternate" type="application/rss+xml" href="/posts/posts.rss" title="RSS Feed" />
                 <link href="/src/styles.css" type="text/css" rel="stylesheet" />
