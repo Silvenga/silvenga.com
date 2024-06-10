@@ -38,6 +38,10 @@
     {
       "staticPath": ".cache/eleventy/.nojekyll",
       "staticOutPath": ""
+    },
+    {
+      "staticPath": ".cache/eleventy/atom-posts.xml",
+      "staticOutPath": ""
     }
   ],
   "scripts": {
