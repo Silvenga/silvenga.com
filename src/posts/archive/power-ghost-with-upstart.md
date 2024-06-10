@@ -18,7 +18,28 @@ Below is the Ghost init script simplified as an Upstart script.
 
 ### My Solution
 
- <code data-gist-id="9716678"></code>
+```conf
+start on filesystem and started networking
+stop on shutdown
+
+author "Mark Lopez"
+description "Ghost Upstart Job"
+version "0.2"
+
+respawn
+respawn limit 5 30
+
+env name=ghost
+env uid=www-data
+env gid=www-data
+env daemon=/usr/bin/node
+env path=/var/www/ghost/index.js
+
+script
+	export NODE_ENV=production
+	exec start-stop-daemon --start --make-pidfile --pidfile /var/run/$name.pid --name $name -c $uid:$gid -x $daemon $path >> /var/log/upstart/$name.log 2>&1
+end script
+```
 
 ### Installation
 

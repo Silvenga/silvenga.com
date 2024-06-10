@@ -15,7 +15,60 @@ After I integrated MailGun into my programs and web apps I realised there were s
 
 Below is the script:
 
-<code data-gist-id="a8946bc00cd73c51d82c"></code>
+```bash
+#!/bin/bash
+#########################################################
+
+mgUSERNAME="MailGun Username"
+mgPASSWORD="COMPLEX PASSWORD"
+testEmail="user@example.com"
+
+#########################################################
+
+echo "Installing this agent may be dangerous, make sure this is the correct server!"
+echo
+epoch=`date +%s`
+name=`hostname`
+while true; do
+    read -p "Enter the hostname of this server to confirm: '$name': " hn
+    case $hn in
+        $name* ) break;;
+        * ) echo "Not correct, cancelled."; exit;;
+    esac
+done
+
+apt-get update
+apt-get upgrade
+apt-get install postfix mailutils sasl2-bin libsasl2-2 ca-certificates libsasl2-modules
+apt-get purge sendmail*
+
+echo "`hostname`.local" > /etc/postfix/node-name
+
+mv /etc/postfix/main.cf /etc/postfix/main.cf.$epoch.bak
+
+cat > /etc/postfix/main.cf << EOL
+smtpd_banner = Relay $name ESMTP Postfix (Ubuntu)
+biff = no
+myorigin = /etc/postfix/node-name
+mydestination =
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+inet_interfaces = loopback-only
+relayhost = [smtp.mailgun.org]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = static:$mgUSERNAME:$mgPASSWORD
+smtp_sasl_security_options = noanonymous
+smtp_tls_security_level = may
+smtpd_tls_security_level = may
+smtp_tls_note_starttls_offer = yes
+smtpd_tls_CApath = /etc/ssl/certs
+EOL
+
+service postfix reload
+
+echo "Test mail from MailGun" | mail -s "Test Mail" $testEmail
+
+echo "Install Completed."
+```
 
 ## Configuration
 

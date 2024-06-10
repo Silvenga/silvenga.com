@@ -173,9 +173,9 @@ And it does, sweet! Now to run the upgrade.
 
 Sad panda, it turns out we need to disable the TPM module in the BIOS/UEFI before we can flash the firmware update. Time to connect my Spider KVM and boot into the UEFI menu. BTW, [Spiders](https://www.lantronix.com/products/lantronix-spider/) are awesome, but don't pay full price!
 
-^^^
 ![Post Screen](/posts/archive/content/images/2018/post-screen.png)
-^^^ Window Server Core reboots way too fast, had to reboot multiple times to get what button to press.
+
+Window Server Core reboots way too fast, had to reboot multiple times to get what button to press.
 
 ![Asus UEFI Screen](/posts/archive/content/images/2018/asus-uefi.png)
 
@@ -242,9 +242,9 @@ And it works!
 
  A disabled TPM is rather useless, time to boot back into the UEFI menus to enable it.
 
-^^^
+
 ![Enable TPM](/posts/archive/content/images/2018/enable-tpm.png)
-^^^ Looks like the UEFI requires a reboot to update this menu.
+Looks like the UEFI requires a reboot to update this menu.
 
 And since this vulnerability is for RSA key generation, it's best to reset all generated keys. I used a TPM clear to do this, plus a reboot.
 

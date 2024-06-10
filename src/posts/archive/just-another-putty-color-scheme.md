@@ -12,4 +12,30 @@ The hardest issue was the color black couldn't be pure black, white couldn't be 
 
 Putty themes can be easily imported into the Windows registry. Slight can be download directly from [here](https://gist.github.com/Silvenga/13d2f20d807b4a5c3ce3/raw/slight-putty-theme.reg) or from the source below. Note that you can change the default theme for all new sessions by changing `Slight` to `Default%20Settings`.
 
-<code data-gist-id="13d2f20d807b4a5c3ce3"></code>
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Slight]
+"Colour0"="240,240,240"
+"Colour1"="255,255,255"
+"Colour2"="63,63,65"
+"Colour3"="103,103,103"
+"Colour4"="0,0,0"
+"Colour5"="0,255,0"
+"Colour6"="21,23,26"
+"Colour7"="85,85,85"
+"Colour8"="255,79,79"
+"Colour9"="255,85,85"
+"Colour10"="4,202,10"
+"Colour11"="85,255,85"
+"Colour12"="187,187,0"
+"Colour13"="255,255,85"
+"Colour14"="90,108,237"
+"Colour15"="85,85,255"
+"Colour16"="187,0,187"
+"Colour17"="255,85,255"
+"Colour18"="0,187,187"
+"Colour19"="85,255,255"
+"Colour20"="187,187,187"
+"Colour21"="255,255,255"
+```

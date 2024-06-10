@@ -21,7 +21,23 @@ This lead me to create a jQuery plugin that I call Lazy View. With this plugin, 
 
 [Github](https://github.com/Silvenga/jquery-lazyView)
 
-<code data-gist-id="34edb2d98af00bb0f652"></code>
+```html
+!-- This is a jquery plugin - we need jquery > 2.1 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Off load the animations to CSS so we can get hardware acceleration -->
+<link rel="stylesheet" type="text/css" href="jquery.lazyView.min.css" />
+<!-- The lazyView script -->
+<script src="jquery.lazyView.min.js"></script>
+<script>
+   $(document).ready(function() {
+      // Select the HTML portion to lazyView.
+      // To ensure a smooth transition set the element's visibility to hidden
+      // LazyView will make the selected element visible when complete with setup
+      $('body').lazyView();
+   });
+</script>
+```
 
 ## Demo
 

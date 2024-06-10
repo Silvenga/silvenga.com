@@ -3,7 +3,6 @@ title: Fresh Installation Cheatsheet
 description: A personal cheatsheat for some things to do when installing Windows fresh.
 ---
 
-^^^
 ```ps1
 $apps = @(
     "A278AB0D.MarchofEmpires",
@@ -24,4 +23,5 @@ $apps = @(
 
 Get-AppxPackage | Where-Object { $_.Name -in $apps } | Remove-AppxPackage
 ```
-^^^ Remove UWP pre-installed bloat. Note, this needs to run after the apps are installed, else they wont be removed.
+
+Remove UWP pre-installed bloat. Note, this needs to run after the apps are installed, else they wont be removed.
