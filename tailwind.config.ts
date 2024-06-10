@@ -11,7 +11,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter Variable", "sans-serif"],
+        sans: [
+          // Loaded
+          "Inter Variable",
+          // Fallback
+          "Inter", "Roboto", "Helvetica Neue", "Arial Nova", "Nimbus Sans", "Arial", "sans-serif",
+          // Emotes
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+        ],
       },
     },
   },

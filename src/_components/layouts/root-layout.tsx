@@ -17,16 +17,18 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
             <html lang="en">
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta name="generator" content={eleventy.generator} />
+
+                <title>{pageTitle}</title>
+                <link href="/src/styles.css" type="text/css" rel="stylesheet" />
+                <link href="npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
 
                 <link rel="canonical" href={canonicalUrl} />
                 <link rel="alternate" type="application/rss+xml" href={this.url("/atom-posts.xml")} title="RSS Feed" />
-                <link href="/src/styles.css" type="text/css" rel="stylesheet" />
+
                 <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
                 <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
 
-                <title>{pageTitle}</title>
-
+                <meta name="generator" content={eleventy.generator} />
                 <meta property="og:title" content={title || site.name} />
                 <meta property="og:site_name" content={site.name} />
                 <meta property="og:type" content="website" />
