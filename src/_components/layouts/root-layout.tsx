@@ -51,9 +51,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
                 <body className="container mx-auto w-[100%] max-w-[720px] px-[20px] min-h-svh flex flex-col">
                     <Navbar site={site} renderContent={this} />
-
                     <main dangerouslySetInnerHTML={{ __html: content }} />
-
                     <Footer />
                 </body>
             </html>
@@ -98,16 +96,16 @@ function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateConte
                 </ul>
             </div>
 
-            <div className="flex flex-1 mt-3">
+            <ul className="list-none sm:hidden flex flex-1 mt-3">
                 {/* Shown in < sm */}
                 {navLinks.map(x => (
-                    <li key={x.display} className="me-3 sm:hidden block">
+                    <li key={x.display} className="me-3">
                         <a className="link" href={renderContent.url(x.href)}>
                             {x.display}
                         </a>
                     </li>
                 ))}
-            </div>
+            </ul>
 
         </nav>
     )
