@@ -18,6 +18,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                 <link rel="canonical" href={canonicalUrl} />
                 <link rel="alternate" type="application/rss+xml" href="/posts/posts.rss" title="RSS Feed" />
                 <link href="/src/styles.css" type="text/css" rel="stylesheet" />
+                <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
+                <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
 
                 <title>{pageTitle}</title>
 
