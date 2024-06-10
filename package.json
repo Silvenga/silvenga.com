@@ -22,7 +22,7 @@
     "http://",
     "https://",
     "ftp://",
-    "/posts/atom.xml"
+    "/atom-posts.xml"
   ],
   "alias": {
     "./img/*": "./.cache/eleventy/img/$1"
@@ -38,10 +38,6 @@
     {
       "staticPath": ".cache/eleventy/.nojekyll",
       "staticOutPath": ""
-    },
-    {
-      "staticPath": ".cache/eleventy/posts/atom.xml",
-      "staticOutPath": ""
     }
   ],
   "scripts": {
@@ -51,8 +47,8 @@
     "eleventy:watch": "nodemon --watch './src/**/*' --watch eleventy.config.ts --ext '*' --delay 0  --exec yarn eleventy:build",
     "eleventy:build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
     "parcel": "parcel",
-    "parcel:start": "parcel --port 9999 --config .parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml'",
-    "parcel:build": "parcel build --config .prod.parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml'",
+    "parcel:start": "parcel --port 9999 --config .parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/*.xml'",
+    "parcel:build": "parcel build --config .prod.parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/*.xml'",
     "lint": "eslint --max-warnings=0 src",
     "start": "concurrently \"yarn:eleventy:watch\" \"yarn:parcel:start\" --restart-tries -1",
     "clean": "rimraf ./dist && rimraf ./.cache",

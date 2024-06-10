@@ -16,7 +16,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                 <meta name="generator" content={eleventy.generator} />
 
                 <link rel="canonical" href={canonicalUrl} />
-                <link rel="alternate" type="application/rss+xml" href="/posts/atom.xml" title="RSS Feed" />
+                <link rel="alternate" type="application/rss+xml" href={this.url("/atom-posts.xml")} title="RSS Feed" />
                 <link href="/src/styles.css" type="text/css" rel="stylesheet" />
                 <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
                 <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
@@ -66,7 +66,7 @@ function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateConte
                     </a>
                 </li>
                 <li className="me-3">
-                    <a className="link link-hover" href={renderContent.url("/posts/atom.xml")} rel="noreferrer noopener" target="_blank">
+                    <a className="link link-hover" href={renderContent.url("/atom-posts.xml")} rel="noreferrer noopener" target="_blank">
                         <RssIcon className="h-6 w-6 aspect-square" />
                     </a>
                 </li>
