@@ -53,7 +53,7 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
 
 function AuthorCard() {
     return (
-        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left">
+        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800">
             <Avatar className="lg:basis-1/3 ml mb-3" />
             <About className="lg:basis-2/3" />
         </address>

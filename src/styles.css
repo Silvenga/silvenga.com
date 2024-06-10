@@ -47,4 +47,8 @@
     mask: url("data-url:./assets/blog-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
+
+  .prose img {
+    @apply rounded-lg overflow-hidden;
+  }
 }

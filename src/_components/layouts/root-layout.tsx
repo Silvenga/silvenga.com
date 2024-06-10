@@ -85,7 +85,7 @@ function Footer(): JSX.Element {
     return (
         <footer className="py-9 flex justify-center mt-auto">
             <div className="">
-                Copyright © {year}. Built with <span style={{ color: "#deabab" }}>&#x2764;&#xfe0e;</span> by <a className="link link-hover" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">Silvenga</a>
+                Copyright © {year}. Built with <span className="text-[#ad4d4d] dark:text-[#deabab]">&#x2764;&#xfe0e;</span> by <a className="link link-hover" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">Silvenga</a>
             </div>
         </footer>
     )

@@ -6,7 +6,7 @@ import { PostsList } from "./_components/posts-list";
 export function render(this: RenderContext, { collections }: TemplateContext) {
     return (
         <article>
-            <header className="rounded p-6 mb-9 border border-gray-300">
+            <header className="rounded p-6 mb-9 border border-gray-300 dark:bg-gray-800">
                 <div className="flex flex-col lg:flex-row">
                     <Avatar className="self-center lg:self-start mt-3 lg:me-3" />
                     <div className="text-center lg:text-left my-6">
