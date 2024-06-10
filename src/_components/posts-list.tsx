@@ -26,10 +26,10 @@ export function PostsList({ collection }: PostsListProps): ReactNode {
                                 {!!page.url && data.title && (
                                     <li className="mb-1">
                                         <article className="flex">
-                                            <h3 className="grow">
+                                            <h3 className="">
                                                 <a href={page.url} className="link font-medium">{data.title}</a>
                                             </h3>
-                                            <ReadableDate dateTime={page.date} className="italic ms-auto" />
+                                            <ReadableDate dateTime={page.date} className="italic grow text-end text-nowrap ps-3" />
                                         </article>
                                     </li>
                                 )}
