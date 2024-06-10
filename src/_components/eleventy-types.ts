@@ -56,6 +56,7 @@ export type TemplateContext =
         description?: string;
         tags: string[] | undefined;
         author?: string;
+        archived?: Date;
     }
     & {
         site: {

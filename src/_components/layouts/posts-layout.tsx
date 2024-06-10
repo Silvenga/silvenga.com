@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-key */
-
+import { DateTime } from "luxon";
 import { About } from "../about";
 import { Avatar } from "../avatar";
 import { RenderContext, TemplateContext } from "../eleventy-types";
@@ -10,7 +8,7 @@ export type PostsLayoutProps = {
     children: JSX.Element;
 } & TemplateContext;
 
-export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, author, site }: PostsLayoutProps) {
+export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, author, site, archived }: PostsLayoutProps) {
 
     const postTags = tags?.filter(tag => collections.publicTags.find(x => x == tag));
     const editLink = `https://github.com/Silvenga/silvenga.com/blame/master/${page.inputPath}`;
@@ -30,11 +28,16 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                     <section aria-label="Post tag list">
                         <ul className="list-none flex">
                             {postTags.map(tag => (
-                                <li className="me-3 badge badge-outline p-3">
+                                <li key={tag} className="me-3 badge badge-outline p-3">
                                     #{tag}
                                 </li>
                             ))}
                         </ul>
+                    </section>
+                )}
+                {!!archived && (
+                    <section aria-label="Post has been archived warning" className="border border-warning rounded p-3 text-center my-9">
+                        This post was archived on {DateTime.fromJSDate(archived).toFormat("LLLL d, yyyy")}. The content may be old and no longer arcuate.
                     </section>
                 )}
             </header>

@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-key */
-
-import { ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 import { Collection } from "./eleventy-types";
 import { ReadableDate } from "./readable-date";
 import { groupBy } from "./utilities/group-by";
@@ -18,13 +16,13 @@ export function PostsList({ collection }: PostsListProps): ReactNode {
     return (
         <>
             {sortedKeys.map(key => (
-                <section aria-label={`Posts from ${key}`} className="mb-6">
+                <section key={key} aria-label={`Posts from ${key}`} className="mb-6">
                     <header className="mb-3">
                         <h2 className="text-2xl font-light">{key}</h2>
                     </header>
                     <ul className="list-none" aria-label={`Posts from ${key}`}>
                         {groupsByYear[key].map(({ page, data }) => (
-                            <>
+                            <Fragment key={page.inputPath}>
                                 {!!page.url && data.title && (
                                     <li className="mb-1">
                                         <article className="flex">
@@ -35,7 +33,7 @@ export function PostsList({ collection }: PostsListProps): ReactNode {
                                         </article>
                                     </li>
                                 )}
-                            </>
+                            </Fragment>
                         ))}
                     </ul>
                 </section>
