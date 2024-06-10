@@ -1,6 +1,8 @@
 export function GithubIcon({ className }: { className?: string }) {
     return (
         <svg
+            role="img"
+            aria-label="Github icon"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
             stroke="currentColor"
@@ -17,6 +19,8 @@ export function GithubIcon({ className }: { className?: string }) {
 export function MastodonIcon({ className }: { className?: string }) {
     return (
         <svg
+            role="img"
+            aria-label="Mastodon icon"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
             stroke="currentColor"
@@ -34,6 +38,8 @@ export function MastodonIcon({ className }: { className?: string }) {
 export function RssIcon({ className }: { className?: string }) {
     return (
         <svg
+            role="img"
+            aria-label="RSS icon"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
             stroke="currentColor"
@@ -51,6 +57,8 @@ export function RssIcon({ className }: { className?: string }) {
 export function BlogIcon({ className }: { className?: string }) {
     return (
         <svg
+            role="img"
+            aria-label="Blog icon"
             xmlns="http://www.w3.org/2000/svg"
             fillRule="evenodd"
             strokeLinejoin="round"
