@@ -6,6 +6,6 @@ export type AvatarProps = {
 
 export function Avatar({ className }: AvatarProps) {
     return (
-        <img src="/assets/avatar.webp" alt="Silvenga's avatar" className={clsx("max-w-48 h-[192px] aspect-square", className)} />
+        <img src="/assets/avatar.webp" alt="Silvenga's avatar" className={clsx("w-max h-[192px] aspect-square", className)} />
     )
 }

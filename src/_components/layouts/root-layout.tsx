@@ -34,7 +34,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                         <meta property="og:description" content={description} />
                     </>
                 )}
-                <body className="container mx-auto max-w-[72ch] px-[2ch] min-h-svh flex flex-col">
+                <body className="container mx-auto w-max max-w-[720px] px-[20px] min-h-svh flex flex-col">
                     <Navbar site={site} renderContent={this} />
 
                     <main>
@@ -55,9 +55,7 @@ function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateConte
     return (
         <nav className="navbar bg-base-100 p-0 mb-9">
             <div className="flex-1">
-                <div className="h-6 w-6 aspect-square me-3">
-                    <BlogIcon />
-                </div>
+                <BlogIcon className="h-6 w-6 aspect-square me-3" />
                 <a className="link link-hover text-xl" href="/">{site.name}</a>
             </div>
 
@@ -69,16 +67,12 @@ function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateConte
                 </li>
                 <li className="me-3">
                     <a className="link link-hover" href={renderContent.url("/posts/atom.xml")} rel="noreferrer noopener" target="_blank">
-                        <div className="h-6 w-6 aspect-square">
-                            <RssIcon />
-                        </div>
+                        <RssIcon className="h-6 w-6 aspect-square" />
                     </a>
                 </li>
                 <li>
                     <a className="link link-hover" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">
-                        <div className="h-6 w-6 aspect-square">
-                            <GithubIcon />
-                        </div>
+                        <GithubIcon className="h-6 w-6 aspect-square" />
                     </a>
                 </li>
             </ul>

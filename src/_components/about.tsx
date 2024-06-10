@@ -11,14 +11,10 @@ export function About() {
             </p>
             <div aria-label="Social links" className="flex lg:justify-start justify-center">
                 <a href="https://github.com/Silvenga" target="_blank" rel="noreferrer noopener" className="me-3">
-                    <div className="h-6 w-6 aspect-square">
-                        <GithubIcon />
-                    </div>
+                    <GithubIcon className="h-6 w-6 aspect-square" />
                 </a>
                 <a href="https://slvn.social/@silvenga" target="_blank" rel="noreferrer noopener" className="me-3">
-                    <div className="h-6 w-6 aspect-square">
-                        <MastodonIcon />
-                    </div>
+                    <MastodonIcon className="h-6 w-6 aspect-square" />
                 </a>
             </div>
         </div>
