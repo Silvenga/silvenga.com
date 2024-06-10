@@ -15,3 +15,9 @@
     @apply hover:underline;
   }
 }
+
+.avatar {
+  background: url("data-url:./assets/avatar.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

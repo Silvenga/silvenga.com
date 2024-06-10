@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import { GithubIcon, MastodonIcon } from "./icons";
 
-export function About() {
+export function About({ className }: { className?: string }) {
     return (
-        <div className="pose">
+        <div className={clsx("pose", className)}>
             <p className="mb-0">
                 My name is Mark,
             </p>
