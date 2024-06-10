@@ -34,7 +34,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                         <meta property="og:description" content={description} />
                     </>
                 )}
-                <body className="container mx-auto w-max max-w-[720px] px-[20px] min-h-svh flex flex-col">
+                <body className="container mx-auto w-[100%] max-w-[720px] px-[20px] min-h-svh flex flex-col">
                     <Navbar site={site} renderContent={this} />
 
                     <main>
