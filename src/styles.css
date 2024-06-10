@@ -3,3 +3,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .link {
+    @apply underline;
+    @apply font-medium;
+  }
+
+  .link-hover {
+    @apply no-underline;
+    @apply hover:underline;
+  }
+}

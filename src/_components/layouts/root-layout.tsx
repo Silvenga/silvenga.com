@@ -53,8 +53,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
 function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateContext, "site"> & { renderContent: RenderContext }): JSX.Element {
     return (
-        <nav className="navbar bg-base-100 p-0 mb-9">
-            <div className="flex-1">
+        <nav className="flex bg-base-100 p-0 mb-9 py-6">
+            <div className="flex flex-1">
                 <BlogIcon className="h-6 w-6 aspect-square me-3" />
                 <a className="link link-hover text-xl" href="/">{site.name}</a>
             </div>
