@@ -6,6 +6,8 @@ aliases: /ceph-and-deep-scrubs/index.html
 
 [[toc]]
 
+## Introduction
+
 I manage a 192TB Ceph cluster consisting mostly out of spinning rust. It's a weird cluster, lot's of PG's, as the cluster is storing millions and millions of tiny files in radosgw. To ensure all the PG's can be recovered in under a day, the pool's PG's are way higher then traditional recommendations - but that also means deep scrubbing is becoming a bit problematic (lot's of PG's per OSD and spinning rust is slow).
 
 So here's how to correctly configure the deep scrub interval... (it's not documented anywhere)
@@ -20,7 +22,7 @@ Then there's deep scrubbing, which is designed to catch bit-rot (aka, the correc
 
 Thankfully, Ceph has several knobs we can tweak to reduce this impact:
 
-[`osd_deep_scrub_interval`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_deep_scrub_interval "Permalink to this definition")
+### [`osd_deep_scrub_interval`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_deep_scrub_interval "Permalink to this definition")
 
 Default: `604800` (7 days)
 
@@ -28,29 +30,29 @@ This one seems like an obvious first thing to look at, and you would be right. B
 
 The value is the number of seconds before a deep-scrub is mandated (bypasses load restrictions). That said, deep-scrubs will **still** happen before this interval - see `osd_deep_scrub_randomize_ratio`.
 
-[`osd_scrub_min_interval`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_scrub_min_interval "Permalink to this definition")
+### [`osd_scrub_min_interval`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_scrub_min_interval "Permalink to this definition")
 
 Default: `86400` (1 day)
 
-The *normal* interval for normal scrubs and a percentage of deep-scrubs (see `osd_deep_scrub_randomize_ratio`).
+The _normal_ interval for normal scrubs and a percentage of deep-scrubs (see `osd_deep_scrub_randomize_ratio`).
 
 To me, when I see a min/max interval, I think something is going to be randomly executed between those two temporal lines. No, that's not how Ceph uses this option.
 
 Ceph delays normal scrubs (never deep-scrubs) if the load of the node is too high (defaults to 0.5 load, normalized for CPU count), but normally schedules normal scrubs at `random(osd_scrub_min_interval, osd_scrub_min_interval + (osd_scrub_min_interval * osd_scrub_interval_randomize_ratio))`. Which means that considering the default `osd_scrub_min_interval` value of 1 day, normal scrubs will be spread between 1 day and 1.5 days.
 
-[`osd_scrub_max_interval`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_scrub_max_interval "Permalink to this definition")
+### [`osd_scrub_max_interval`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_scrub_max_interval "Permalink to this definition")
 
 Default: `604800` (7 days)
 
 The _mandatory_ interval for normal scrubs. See `osd_scrub_min_interval`.
 
-[`osd_scrub_interval_randomize_ratio`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_scrub_interval_randomize_ratio "Permalink to this definition")
+### [`osd_scrub_interval_randomize_ratio`](https://docs.ceph.com/en/reef/rados/configuration/osd-config-ref/#confval-osd_scrub_interval_randomize_ratio "Permalink to this definition")
 
 Default: `0.5` (50%)
 
 A ratio used to spread out scrubs, between `osd_scrub_min_interval` and `osd_scrub_min_interval * osd_scrub_interval_randomize_ratio`. The option `osd_scrub_max_interval` has no impact to this window of possible times.
 
-[`osd_deep_scrub_randomize_ratio`](https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/configuration_guide/osd_configuration_reference)
+### [`osd_deep_scrub_randomize_ratio`](https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/configuration_guide/osd_configuration_reference)
 
 Default: `0.15` (15%)
 
@@ -60,14 +62,15 @@ Completely not related to `osd_scrub_interval_randomize_ratio` and not documente
 
 You might ask why you would want normal, quick scrubs that normally happen once a week, to magically become deep-scrubs. I definitely did...
 
-It makes sense if you consider what `osd_deep_scrub_interval` means, it means after _this_ value, *mandate* a deep-scrub. So you'll end up in a position where all your deep-scrubs will run at the same time. You'll also notice that there's no version of the `osd_scrub_interval_randomize_ratio` for deep-scrubs. So, at the end of the day, Ceph is using the existing plumping of the normal scrub, to prevent the [thundering herd problem](https://en.wikipedia.org/wiki/Thundering_herd_problem).
+It makes sense if you consider what `osd_deep_scrub_interval` means, it means after _this_ value, _mandate_ a deep-scrub. So you'll end up in a position where all your deep-scrubs will run at the same time. You'll also notice that there's no version of the `osd_scrub_interval_randomize_ratio` for deep-scrubs. So, at the end of the day, Ceph is using the existing plumping of the normal scrub, to prevent the [thundering herd problem](https://en.wikipedia.org/wiki/Thundering_herd_problem).
 
-The default value of 15% will turn 15% of normal scrubs into deep-scrubs. Meaning, with the default `osd_scrub_min_interval`, 15% of the cluster's deep-scrubs will execute each 1.25 days on average. The math gets a little complicated after that (at least for someone who's mostly forgotten statistics), but I *think* the work is generally spread out in my experience.
+The default value of 15% will turn 15% of normal scrubs into deep-scrubs. Meaning, with the default `osd_scrub_min_interval`, 15% of the cluster's deep-scrubs will execute each 1.25 days on average. The math gets a little complicated after that (at least for someone who's mostly forgotten statistics), but I _think_ the work is generally spread out in my experience.
 
 So that means `osd_deep_scrub_interval` **and** the `osd_scrub_min_interval` are important regarding deep-scrubbing.
-## How to set a Deep-Scrub Interval
 
-> Note that this is in the `global` namespace, **not** the `osd` namespace. This is important because the monitors that emit the [PG_NOT_DEEP_SCRUBBED](https://docs.ceph.com/en/quincy/rados/operations/health-checks/#pg-not-deep-scrubbed "Permalink to this heading") warning based on this *OSD* setting, so it needs to match between the `osd` and `mon` namespaces, or just use `global`.
+## How to Set a Deep-Scrub Interval
+
+> Note that this is in the `global` namespace, **not** the `osd` namespace. This is important because the monitors that emit the [PG_NOT_DEEP_SCRUBBED](https://docs.ceph.com/en/quincy/rados/operations/health-checks/#pg-not-deep-scrubbed "Permalink to this heading") warning based on this _OSD_ setting, so it needs to match between the `osd` and `mon` namespaces, or just use `global`.
 
 ```bash
 # Schedule the next normal scrub in between 1-7 days.
