@@ -12,6 +12,7 @@ import { UserConfig } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { CollectionItem } from "./src/_components/eleventy-types";
+import { formatAsRfc822Date } from "./src/_components/utilities/rfc822-date";
 
 export default async function (eleventyConfig: UserConfig) {
 
@@ -49,6 +50,11 @@ export default async function (eleventyConfig: UserConfig) {
     // Used by the sitemap.
     eleventyConfig.addFilter("dateToIso", (dateString: string) => {
         return new Date(dateString).toISOString()
+    });
+
+    // Used by RSS
+    eleventyConfig.addShortcode("nowRfc822", () => {
+        return formatAsRfc822Date(new Date());
     });
 
     // Used to detect which tags are actually valid tags (aka, not a hidden collection).

@@ -1,0 +1,28 @@
+---
+permalink: '/posts/rss.xml'
+eleventyExcludeFromCollections: true
+layout: null
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:base="{{ site.baseUrl }}{{ permalink }}" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.name }}</title>
+    <link>{{ site.baseUrl }}{{ permalink }}</link>
+    <generator>Silvenga.com (Custom)</generator>
+    <atom:link href="{{ permalink | absoluteUrl(site.baseUrl) }}" rel="self" type="application/rss+xml" />
+    <description>An RSS feed for Silvenga's weblog.</description>
+    <lastBuildDate>{% nowRfc822 %}</lastBuildDate>
+    <language>en</language>
+    {%- for post in collections.posts | reverse %}
+    {%- set absolutePostUrl = post.url | absoluteUrl(site.baseUrl) %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ absolutePostUrl }}</link>
+      <description>{{ post.data.description | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
+      <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
+      <dc:creator>Mark (Silvenga)</dc:creator>
+      <guid>{{ absolutePostUrl }}</guid>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>
