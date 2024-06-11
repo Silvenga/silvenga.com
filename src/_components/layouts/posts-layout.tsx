@@ -29,7 +29,7 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                     <section aria-label="Post tag list">
                         <ul className="list-none flex">
                             {postTags.map(tag => (
-                                <li key={tag} className="me-3 badge badge-outline p-3">
+                                <li key={tag} className="me-2 border rounded-full p-2">
                                     #{tag}
                                 </li>
                             ))}
