@@ -5,6 +5,10 @@ date: 2018-04-14
 aliases: /upgrading-firmware-infineon-tpm/index.html
 ---
 
+[[toc]]
+
+## Introduction
+
 In early October of 2017, researchers announced, publicly, a cryptographic vulnerability in the RSA generation algorithms found within practically every TPM, using Infineon's RSA library. This vulnerability would effectively allow an attacker to easily guess the private key component of the RSA key stored within the TPM - rendering the protections and insurances granted by the TPM useless. Turns out, many TPM's actually use Infineon's technologies, meaning many TPM's are vulnerability - including all Asus and Gigabyte TPM's (that I know of).
 
 > tl;dr - TPM broke, I sad, TPM need fix.
@@ -14,6 +18,7 @@ Since the point of TPM's is to perform key protection inside hardware, a softwar
 ```ps1
 Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI -EntryType Error | select Message
 ```
+
 ```output
 The Trusted Platform Module (TPM) firmware on this PC has a known security problem.
 Please contact your PC manufacturer to find out if an update is available.
@@ -31,6 +36,7 @@ Before I get started, I want to make sure the TPM is working in my device. I can
 ```ps1
 Get-Tpm
 ```
+
 ```output
 TpmPresent          : True
 TpmReady            : False
@@ -61,6 +67,7 @@ Looking through the files extracted files, there are two directories:
 ```ps1
 ls | select Name
 ```
+
 ```output
 Firmware
 Tools
@@ -70,7 +77,7 @@ Readme.txt
 
 The important files are these:
 
-```
+```plaintext
 Firmware\* <- containing the TPM firmwares.
 Tools\WinPE\Bin\x64\TPMFactoryUpd.exe <- The actual updater, for Windows.
 ```
@@ -88,6 +95,7 @@ Now `.\workspace` contains the following files:
 ```ps1
 ls | select Name
 ```
+
 ```output
 License_FW_Images.pdf
 TPM12_4.40.119.0_to_TPM12_4.43.257.0.BIN
@@ -121,6 +129,7 @@ Let's make sure `TPMFactoryUpd.exe` detects the TPM.
 ```ps1
 .\TPMFactoryUpd.exe -info
 ```
+
 ```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
@@ -140,6 +149,7 @@ And it does, sweet! Now to run the upgrade.
 ```ps1
 .\TPMFactoryUpd.exe -update config-file -config TPM20_latest.cfg
 ```
+
 ```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
@@ -189,6 +199,7 @@ After booting back into Windows, it looks like disabling the TPM fixes the `Empt
 ```ps1
 .\TPMFactoryUpd.exe -info
 ```
+
 ```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
@@ -209,6 +220,7 @@ Now I can try to update the TPM again.
 cd '.\9665FW update package_1.1\workspace\'
 .\TPMFactoryUpd.exe -update config-file -config TPM20_latest.cfg
 ```
+
 ```output
   **********************************************************************
   *    Infineon Technologies AG   TPMFactoryUpd   Ver 01.01.2212.00    *
@@ -243,8 +255,8 @@ And it works!
 
  A disabled TPM is rather useless, time to boot back into the UEFI menus to enable it.
 
-
 ![Enable TPM](/posts/archive/content/images/2018/enable-tpm.png)
+
 Looks like the UEFI requires a reboot to update this menu.
 
 And since this vulnerability is for RSA key generation, it's best to reset all generated keys. I used a TPM clear to do this, plus a reboot.
@@ -256,6 +268,7 @@ After getting back into Windows, I'm greeted with a lovely success message.
 ```ps1
 Get-EventLog -LogName System -Source Microsoft-Windows-TPM-WMI | select Message
 ```
+
 ```output
 The TPM was successfully provisioned and is now ready for use.
 The TBS device identifier has been generated.
@@ -267,6 +280,7 @@ And as a final check, it looks like the `ManufacturerVersion` was updated to `5.
 ```ps1
 Get-Tpm
 ```
+
 ```output
 TpmPresent          : True
 TpmReady            : True

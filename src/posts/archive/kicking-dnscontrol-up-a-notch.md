@@ -5,6 +5,10 @@ description: Improving "DNS as Code" with type checking and Intellisense
 aliases: /kicking-dnscontrol-up-a-notch/index.html
 ---
 
+[[toc]]
+
+## Introduction
+
 I love this new era of infrastructure as code being a DevOps developer. I can apply my knowledge of code, beyond just simple scripts and programs, to fully managing my infrastructure - all from the comfort of VSCode and Git.
 
 My newest project is the revamping of DNS zones, hopefully moving them back to using code. Historically, I did manage them using code. In fact, I used `nsd` managed by SaltStack (zones automatically created from YAML). This worked for me for years - but I was never really happy with it. My custom templates were fragile and my deployments would randomly break. I ended up switching my primary domains over to other hosted DNS providers because I needed the reliability. Throughout the years, I actually went through a bunch of providers:
@@ -29,7 +33,7 @@ Yes, it turns out that DnsControl is running a golang Javascript runtime interna
 
 ## Webpack + Typescript
 
-Yes, it turns out DnsControl had enough ES5 compatibility for Webpack to do it's magic. This of course ment my next logical step had to be to try Typescript, which worked (of course the definitions for the custom DSL didn't exist, more on that later).
+Yes, it turns out DnsControl had enough ES5 compatibility for Webpack to do it's magic. This of course meant my next logical step had to be to try Typescript, which worked (of course the definitions for the custom DSL didn't exist, more on that later).
 
 Below is my rather standard `webpack.config.js` configuration. I'm also having Webpack manage the `creds.json` file too, for convenience sake.
 
@@ -168,4 +172,3 @@ DnsControl has this line in their docs:
 > Editing zone files is error-prone.
 
 Well, IMHO, writing Javascript is error prone - use Typescript!
-

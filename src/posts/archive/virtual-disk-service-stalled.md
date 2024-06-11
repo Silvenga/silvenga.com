@@ -4,9 +4,13 @@ description: My journey in troubleshooting Virtual Disk Service issues.
 aliases: /virtual-disk-service-stalled/index.html
 ---
 
+[[toc]]
+
+## Introduction
+
 I had this really odd problem that's been plaguing me for months on a newly installed Windows 2016 dedicated machine. Random services and tools either stopped functioning or froze/stalled for minutes at a time. I really thought that I either had a corrupted installation (`sfc` couldn't detect anything) or I configured something  horribly wrong. So, as a last ditch effort before completely re-installing the machine, I finally took some time one night to perform a root cause analysis and to hopefully find a solution. What precedes is that night.
 
-## All the Issues!
+## All the Issues
 
 At first I noticed that I was having issues connecting to the Windows SNMP (Simple Network Management Protocol) service which I use to monitor all my servers. My SNMP monitoring system would timeout connecting to the service 99% of the time. This was very odd, and the patterns didn't present in a way that would scream networking issues. I checked all the common causes (VPN issues, monitoring host, DNS, etc), but came up empty. Attempting to restart the service resulted it hanging until I rebooted. Not really caring, I continued on thinking it was network related - my VPN always had Window issues (architecture portable != OS portable).
 

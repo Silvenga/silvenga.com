@@ -4,6 +4,8 @@ description: Getting iLO to play nice with Hyper-V Discrete Device Assignment
 aliases: /pci-passthough-hpe-servers/index.html
 ---
 
+[[toc]]
+
 ## The Problem
 
 On my Gen8 HPE Proliants, I run a hyperconvergence, hybrid OS infrastructure, mixing the best of Windows and Linux. My hypervisor of choice is Hyper-V, mainly so I can get TPM protected, full disk encryption (which, incredibly, every Linux distro is still lacking!) to allow unattended rolling cluster updates. Anything I can do to reduce the amount of required maintenance, since everyone is applying security updates monthly, right?
@@ -28,6 +30,7 @@ Hey, isn't that's called DDA (Discrete Device Assignment) in Hyper-V? Why, yes i
 Start-BitsTransfer https://github.com/MicrosoftDocs/Virtualization-Documentation/raw/live/hyperv-tools/DiscreteDeviceAssignment/SurveyDDA.ps1 SurveyDDA.ps1
 .\SurveyDDA.ps1
 ```
+
 ```output
 Generating a list of PCI Express endpoint devices
 ...
@@ -37,7 +40,7 @@ BIOS requires that this device remain attached to BIOS-owned memory.  Not assign
 
 Uhm... that's annoying...
 
-## What's wrong?
+## What's Wrong?
 
 First things, what does this message even mean?
 
@@ -51,7 +54,7 @@ Basically, the BIOS reserved a portion of memory it controls, that the OS should
 > - https://www.kernel.org/doc/Documentation/Intel-IOMMU.txt
 > - https://software.intel.com/content/www/us/en/develop/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices.html
 
-## Why doesn't the BIOS want to share?
+## Why Doesn't the BIOS want to Share?
 
 So, RMRR only describes the error message. But why is the BIOS setting up RMRR in the first place?
 
@@ -63,7 +66,7 @@ Going deeper, this BIOS controlled RMRR comes from the HPE "Sea of Sensors" foun
 
 But disabling the iLO sucks, I strongly consider that a non-solution to getting SMART stats into my Ceph cluster.
 
-## The real solution!
+## The Real Solution
 
 I searched for hours for a solution to this. Dozens of posts on forums, and no one had a solution. Mostly blame for the hardware, blame of "Sea of Sensors", blame against Hyper-V. No solution!
 
@@ -106,6 +109,7 @@ Here `conrep.xml` is just a schema for the basic settings in the BIOS. Looking a
 ```powershell
 cat C:\existing-settings.xml
 ```
+
 ```output
 <Conrep version="4.7.1.0" originating_platform="ProLiant DL380p Gen8" originating_family="P70" originating_romdate="05/24/2019" originating_processor_manufacturer="Intel">
   <Section name="IMD_ServerName" helptext="LCD Display name for this server"><Line0>GH2</Line0></Section>
@@ -121,6 +125,7 @@ Less obvious is that there are other schemas you can use to read and modify the 
 Start-BitsTransfer https://downloads.hpe.com/pub/softlib2/software1/pubsw-linux/p1472592088/v95853/conrep_rmrds.xml conrep_rmrds.xml
 cat conrep_rmrds.xml
 ```
+
 ```output
 ...
 This is the input file for CONREP describing Reserved Memory Region Device Scope(RMRDS) entries.
@@ -137,6 +142,7 @@ Modifying these settings is as simple as reading the existing settings (using th
 & $conrep -s -x conrep_rmrds.xml -f rmrds.xml
 & $conrep -l -x conrep_rmrds.xml -f rmrds.xml
 ```
+
 Where `-l` means "load".
 
 You can even just modify part of the XML, and upload that, which is easier to automate.
