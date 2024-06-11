@@ -67,6 +67,7 @@ export type TemplateContext =
             umami?: {
                 scriptUrl: string;
                 websiteId: string;
+                domains: string;
             }
         }
     };

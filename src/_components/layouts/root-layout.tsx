@@ -45,7 +45,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     {!!site.umami && (
                         <script defer
                             src={site.umami.scriptUrl}
-                            data-website-id={site.umami.websiteId} />
+                            data-website-id={site.umami.websiteId}
+                            data-domains={site.umami.domains} />
                     )}
                 </head>
 
