@@ -1,6 +1,7 @@
 ---
 title: Fresh Installation Cheatsheet
 description: A personal cheatsheat for some things to do when installing Windows fresh.
+aliases: /fresh-installation-cheatsheet/index.html
 ---
 
 ```ps1

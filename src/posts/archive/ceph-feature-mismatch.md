@@ -1,6 +1,7 @@
 ---
 title: Ceph Feature Missmatch with Kubernetes
 description: Getting Ceph to place nice with Kubernetes.
+aliases: /ceph-feature-mismatch/index.html
 ---
 
 ![Kubernetes + Ceph](/posts/archive/content/images/2017/kubernetes-plus-ceph.png)

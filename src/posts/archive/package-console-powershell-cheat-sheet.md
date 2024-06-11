@@ -2,6 +2,7 @@
 title: Package Console Powershell Cheat Sheet
 date: 2016-08-19
 description: A personal cheat sheet on using PowerShell commands via the Package Console.
+aliases: /package-console-powershell-cheat-sheet/index.html
 ---
 
 ![Visual Studio plus Powershell](/posts/archive/content/images/2017/vs-plus-ps.png)

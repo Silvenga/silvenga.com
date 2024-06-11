@@ -3,6 +3,7 @@ title: Ghost Scaffolding
 date: 2014-12-16
 description: A different take on how to host a Ghost instance, while using NPM as an upgrade manager.
 archived: 2018-01-13
+aliases: /slight-ghost/index.html
 ---
 
 ![The Ghost Blog logo.](/posts/archive/content/images/2014/12/ghost_logo-2.jpg)

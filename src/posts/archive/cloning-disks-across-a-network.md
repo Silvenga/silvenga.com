@@ -1,6 +1,7 @@
 ---
 title: Cloning Disks across a Network
 description: How to clone disks across a network.
+aliases: /cloning-disks-across-a-network/index.html
 ---
 
 I was migrating one dedicated server to dedicated another in a different data center. I immediately reached for [Clonezilla](https://clonezilla.org/), as my general "disk cloner". Turns out that my data center provider limit their KVM network to ~400KiB/s, so actually booting Clonezilla into RAM look over an hour, for each server...

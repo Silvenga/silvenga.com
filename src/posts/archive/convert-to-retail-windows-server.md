@@ -1,6 +1,7 @@
 ---
 title: Convert Windows 2016 Eval to Retail
 description: How to convert a Windows Server 2016 trial installation to full retail.
+aliases: /convert-to-retail-windows-server/index.html
 ---
 
 ![Command line, using DISM to convert to retail.](/posts/archive/content/images/2017/dism.png)

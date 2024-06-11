@@ -3,6 +3,7 @@ title: Slight Theme
 date: 2014-03-21
 description: A Ghost blog theme.
 archived: 2018-01-13
+aliases: /slight-theme/index.html
 ---
 
 ## Introduction

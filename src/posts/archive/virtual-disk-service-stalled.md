@@ -1,6 +1,7 @@
 ---
 title: Virtual Disk Service Stalled
 description: My journey in troubleshooting Virtual Disk Service issues.
+aliases: /virtual-disk-service-stalled/index.html
 ---
 
 I had this really odd problem that's been plaguing me for months on a newly installed Windows 2016 dedicated machine. Random services and tools either stopped functioning or froze/stalled for minutes at a time. I really thought that I either had a corrupted installation (`sfc` couldn't detect anything) or I configured something  horribly wrong. So, as a last ditch effort before completely re-installing the machine, I finally took some time one night to perform a root cause analysis and to hopefully find a solution. What precedes is that night.

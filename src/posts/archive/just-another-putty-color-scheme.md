@@ -2,6 +2,7 @@
 title: Just Another Putty Color Scheme
 date: 2014-08-23
 description: Just another color scheme for Putty, designed based on my personal preferences.
+aliases: /just-another-putty-color-scheme/index.html
 ---
 
 ![Screenshot of the new colors](/posts/archive/content/images/2014/Aug/2014-08-23_19-51-12.png)

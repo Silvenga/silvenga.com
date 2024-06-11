@@ -2,6 +2,7 @@
 title: Power Ghost with Upstart
 date: 2014-03-27
 description: Using Upstart to manage a Ghost instance.
+aliases: /power-ghost-with-upstart/index.html
 ---
 
 ![Upstart Logo](/posts/archive/content/images/2014/Mar/upstart80.png)

@@ -2,6 +2,7 @@
 title: Deploy a Tinc Mesh VPN Running TAP
 date: 2014-07-14
 description: Yet another how-to on setting up a mesh network using Tinc (in TAP mode).
+aliases: /deploy-a-tinc-mesh-vpn-running-tap/index.html
 ---
 
 ![Mesh Network](/posts/archive/content/images/2014/Jul/generalMesh.gif)

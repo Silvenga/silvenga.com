@@ -1,6 +1,7 @@
 ---
 title: KeePass Random Crashing
 description: A red herring to the root cause.
+aliases: /keepass-crash/index.html
 ---
 
 A couple months ago I noticed a really annoying problem, multiple times a day, my password manager KeePass would crash. The first thing I enabled was WER (Windows Error Reporting), so that I could gleam some information from the full memory dumps.

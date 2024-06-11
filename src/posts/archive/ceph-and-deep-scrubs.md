@@ -1,6 +1,7 @@
 ---
 title: Ceph and Deep-Scrubs
 description: How deep-scrubs work, and how to correctly set their interval.
+aliases: /ceph-and-deep-scrubs/index.html
 ---
 
 [[toc]]

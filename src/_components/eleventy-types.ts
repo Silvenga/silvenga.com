@@ -14,8 +14,17 @@ export type PageContext = {
 
 export type PageData =
     & {
+        content: string;
+        layout: string;
+
         tags?: string[];
         title?: string;
+        description?: string;
+        author?: string;
+        archived?: Date;
+        aliases?: string[];
+        canonicalUrl?: string;
+        refreshUrl?: string;
     }
     & Record<string, unknown>;
 
@@ -49,15 +58,7 @@ export type TemplateContext =
             publicTags: string[] // All non-internal tags.
         } & Record<string, Collection>;
     }
-    & {
-        content: string;
-        layout: string;
-        title?: string;
-        description?: string;
-        tags: string[] | undefined;
-        author?: string;
-        archived?: Date;
-    }
+    & PageData
     & {
         site: {
             // Should match "_data/site.json"

@@ -2,6 +2,7 @@
 title: Upgrading the Firmware on Infineon TPM's
 description: Upgrading the Infineon TPM firmware on Asus (and friends) motherboards.
 date: 2018-04-14
+aliases: /upgrading-firmware-infineon-tpm/index.html
 ---
 
 In early October of 2017, researchers announced, publicly, a cryptographic vulnerability in the RSA generation algorithms found within practically every TPM, using Infineon's RSA library. This vulnerability would effectively allow an attacker to easily guess the private key component of the RSA key stored within the TPM - rendering the protections and insurances granted by the TPM useless. Turns out, many TPM's actually use Infineon's technologies, meaning many TPM's are vulnerability - including all Asus and Gigabyte TPM's (that I know of).

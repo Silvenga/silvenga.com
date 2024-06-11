@@ -2,6 +2,7 @@
 title: Silvenga's Penlighter
 date: 2014-03-14
 description: I present a solution to disappearing mice, a PenLighter!
+aliases: /pen-lighter/index.html
 ---
 
 ![A standard drawing tablet.](/posts/archive/content/images/2014/Mar/tablet_use_bamboo.jpg)

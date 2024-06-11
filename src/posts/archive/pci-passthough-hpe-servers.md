@@ -1,6 +1,7 @@
 ---
 title: Hypervisor PCI Passthrough on Modern HPE Servers
 description: Getting iLO to play nice with Hyper-V Discrete Device Assignment
+aliases: /pci-passthough-hpe-servers/index.html
 ---
 
 ## The Problem

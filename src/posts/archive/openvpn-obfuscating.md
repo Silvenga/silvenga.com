@@ -2,6 +2,7 @@
 title: Notes on OpenVPN Obfuscating
 date: 2015-01-24
 description: Some notes on how to setup OpenVPN obfuscation using Obfproxy.
+aliases: /openvpn-obfuscating/index.html
 ---
 
 > This is a work in progress. I would very much like to make a GUI for the windows version of obfsproxy, and a better wrapper for Ubuntu.

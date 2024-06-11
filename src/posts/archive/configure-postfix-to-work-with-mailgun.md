@@ -3,6 +3,7 @@ title: Configure Postfix to Work with MailGun
 date: 2014-05-06
 description: Using MailGun and a script to get there faster.
 archived: 2018-01-13
+aliases: /configure-postfix-to-work-with-mailgun/index.html
 ---
 
 ![Mail Gun Logo](/posts/archive/content/images/2014/May/mailgun_logo.png)

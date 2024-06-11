@@ -1,6 +1,7 @@
 ---
 title: Missing Dependencies With Alpine Docker Images
 description: Missing dependencies when upgrading some Alpine package.
+aliases: /alpine-missing-dependencies/index.html
 ---
 
 ![Alpine + Docker = Awsome](/posts/archive/content/images/2018/docker+alpine.png)

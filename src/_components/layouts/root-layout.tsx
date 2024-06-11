@@ -4,8 +4,9 @@ import { BlogIcon, GithubIcon, RssIcon } from "../icons";
 // TODO: Favicons
 // TODO: Mermaid
 
-export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy }: TemplateContext) {
-    const canonicalUrl = this.url(site.baseUrl + page.url);
+export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy, refreshUrl, ...props }: TemplateContext) {
+
+    const canonicalUrl = this.url(site.baseUrl + (props.canonicalUrl ?? page.url));
     const pageTitle = title ? `${title} | ${site.name}` : site.name;
 
     if (!description) {
@@ -40,6 +41,10 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                             <meta name="description" content={description} />
                             <meta property="og:description" content={description} />
                         </>
+                    )}
+
+                    {!!refreshUrl && (
+                        <meta httpEquiv="Refresh" content={`0; URL=${this.url(site.baseUrl + refreshUrl)}`} />
                     )}
 
                     {!!site.umami && (

@@ -1,6 +1,7 @@
 ---
 title: Install Windows Server 2016 using Software RAID1
 description: How to set-up Windows Server 2016 using software RAID1 - on the system volume.
+aliases: /raid1-windows-server-2016/index.html
 ---
 
 ## Setup

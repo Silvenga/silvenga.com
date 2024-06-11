@@ -1,16 +1,17 @@
 ---
-title: PSA - What KeebMonkey PC Status Monitor Hides
+title: What KeebMonkey PC Status Monitor Hides
 description: A dive into the KeebMonkey PC Status Monitor software and what is hidden.
+aliases: /psa-what-keeb-monkey-pc-status-monitor-hides/index.html
 ---
 
-## PSA - What KeebMonkey PC Status Monitor Hides
+[[toc]]
 
 TLDR: Hidden inside of the _KeebMonkey PC Status Monitor_ software are binaries of Aida64 and a Aida64 product key in violation of FinalWire's (Aida64's developers) licensing agreements. The software is purposefully obfuscated, making reverse engineering difficult. The software has a high degree of access to the operating system, nefarious things could be hidden in the software that would be difficult to find.
 
 I personally will no longer be using this software (which renders the hardware useless, unfortunately) due to the ethical, legal, and security concerns of continuing to use this software. But that's just my opinion, take it with a grain of salt.
 
 ----
-### Reverse Engineering
+## Reverse Engineering
 
 I'm a software engineer specializing in .NET, my day job is in security which involves decompiling libraries. I purchased the [_KeebMonkey PC Status Monitor_](https://www.keebmonkey.com/products/keebmonkey-pc-status-monitor) with the goal of reverse engineering the serial protocol and building custom software for myself (so I didn't need to rely on unsigned, questionable software running with elevated rights).
 
@@ -35,7 +36,7 @@ But the KeebMonkey software looked liked this:
 
 ---
 
-### That's Odd?
+## That's Odd?
 
 My first question is - why is this obfuscated, why make it hard to interoperate with your hardware? To me, since this software is questionable in terms of significant intellectual property to hide from competitors, this was a red flag. I had to look deeper, what could this software be doing (with administrator rights)?
 
@@ -82,7 +83,7 @@ I was curious of `pkey`, but a quick Google'ing confirmed my suspicions that it 
 
 ![Aida64 licensed](/posts/archive/content/images/2021/O2bkdTu.png)
 
-### Looking Deeper
+## Looking Deeper
 
 My first question now, why would KeebMonkey ship a license key to end-users? KeebMonkey would be practically giving end-users Aida64 licenses. Why would Aida64 allow that? The answer is simple, Aida64 doesn't allow this:
 
@@ -99,7 +100,7 @@ Of course, these red flags could mean nothing, I don't personally know enough ab
 
 ---
 
-### With a Grain of Salt
+## With a Grain of Salt
 
 My personal conclusion (with a huge grain of salt):
 - The _KeebMonkey PC Status Monitor_ software is purposefully obfuscated, making reverse engineering difficult.
@@ -108,7 +109,7 @@ My personal conclusion (with a huge grain of salt):
 
 ---
 
-### Bonus
+## Bonus
 
 I noticed the _KeebMonkey PC Status Monitor_ software uses binary serialization to load saved data, would could execute arbitrary code on load. This isn't great, since this renders elevation of privilege attacks trivial (assuming access to the saved files).
 
