@@ -58,6 +58,11 @@
     @apply bg-black dark:bg-white;
   }
 
+  .link-icon {
+    mask: url("data-url:./assets/link-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
+
   .prose img {
     @apply rounded-lg overflow-hidden;
   }

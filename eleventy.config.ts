@@ -7,6 +7,7 @@
 import timeToRead from "eleventy-plugin-time-to-read";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
 import { renderToStaticMarkup } from "react-dom/server";
 import { UserConfig } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
@@ -14,11 +15,11 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import { CollectionItem } from "./src/_components/eleventy-types";
 import { formatAsRfc822Date } from "./src/_components/utilities/rfc822-date";
 
-export default async function (eleventyConfig: UserConfig) {
+export default function (eleventyConfig: UserConfig) {
 
     // Plugins
-    const { InputPathToUrlTransformPlugin } = await import("@11ty/eleventy");
-    eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+    // const { InputPathToUrlTransformPlugin } = await import("@11ty/eleventy");
+    // eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
     eleventyConfig.addPlugin(timeToRead);
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
         extensions: "html",
@@ -95,14 +96,24 @@ export default async function (eleventyConfig: UserConfig) {
         permalink: markdownItAnchor.permalink.linkAfterHeader({
             style: "visually-hidden",
             assistiveText: (title: string) => `Permalink to "${title}"`,
-            visuallyHiddenClass: "hidden",
+            visuallyHiddenClass: "sr-only",
             class: "absolute top-0 left-[-1rem]",
             placement: "before",
             wrapper: ["<div class=\"relative ml-[1rem]\">", "</div>"]
         })
     }
 
-    eleventyConfig.setLibrary("md", markdownIt(markdownItOptions).use(markdownItAnchor, markdownItAnchorOptions))
+    let markdownItTocOptions: Partial<TocOptions> = {
+        containerClass: "toc ms-[-2ch] mb-9 prose",
+        listClass: "list list-none p-0 ps-[2ch]",
+        itemClass: "item p-0",
+        linkClass: "no-underline hover:underline text-lg flex items-center",
+        format: (label) => {
+            return `<span class="link-icon h-[16px] w-[16px] block mr-2" aria-hidden></span> ${label}`
+        }
+    };
+
+    eleventyConfig.setLibrary("md", markdownIt(markdownItOptions).use(markdownItAnchor, markdownItAnchorOptions).use(markdownItTocDoneRight, markdownItTocOptions))
 
     // Global Data
     eleventyConfig.addGlobalData("layout", "root");

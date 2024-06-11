@@ -16,12 +16,12 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
         <article>
             <header className="mb-9">
                 <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
-                    <ReadableDate dateTime={page.date} />
+                    <span className="sr-only">Published on</span> <ReadableDate dateTime={page.date} />
                     <span className="mx-3 hidden sm:inline-block" aria-hidden>•</span>
                     <div className="flex">
-                        <div title="Reading time">{this.timeToRead(content)}</div>
+                        <div><span className="sr-only">Takes approximately</span> {this.timeToRead(content)} <span className="sr-only">minutes to read</span></div>
                         <span className="mx-3" aria-hidden>•</span>
-                        <a className="link" href={editLink} rel="noreferrer noopener" target="_blank">Post History</a>
+                        <a className="link" href={editLink} rel="noreferrer noopener" target="_blank" aria-hidden>Post History</a>
                     </div>
                 </div>
                 <h1 className="font-light text-5xl mb-3">{title}</h1>
