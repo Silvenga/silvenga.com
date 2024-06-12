@@ -4,8 +4,6 @@ description: A dive into the KeebMonkey PC Status Monitor software and what is h
 aliases: /psa-what-keeb-monkey-pc-status-monitor-hides/index.html
 ---
 
-[[toc]]
-
 TLDR: Hidden inside of the _KeebMonkey PC Status Monitor_ software are binaries of Aida64 and a Aida64 product key in violation of FinalWire's (Aida64's developers) licensing agreements. The software is purposefully obfuscated, making reverse engineering difficult. The software has a high degree of access to the operating system, nefarious things could be hidden in the software that would be difficult to find.
 
 I personally will no longer be using this software (which renders the hardware useless, unfortunately) due to the ethical, legal, and security concerns of continuing to use this software. But that's just my opinion, take it with a grain of salt.

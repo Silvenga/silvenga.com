@@ -4,8 +4,6 @@ description: How deep-scrubs work, and how to correctly set their interval.
 aliases: /ceph-and-deep-scrubs/index.html
 ---
 
-[[toc]]
-
 ## Introduction
 
 I manage a 192TB Ceph cluster consisting mostly out of spinning rust. It's a weird cluster, lot's of PG's, as the cluster is storing millions and millions of tiny files in radosgw. To ensure all the PG's can be recovered in under a day, the pool's PG's are way higher then traditional recommendations - but that also means deep scrubbing is becoming a bit problematic (lot's of PG's per OSD and spinning rust is slow).

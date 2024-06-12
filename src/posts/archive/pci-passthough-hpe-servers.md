@@ -4,8 +4,6 @@ description: Getting iLO to play nice with Hyper-V Discrete Device Assignment
 aliases: /pci-passthough-hpe-servers/index.html
 ---
 
-[[toc]]
-
 ## The Problem
 
 On my Gen8 HPE Proliants, I run a hyperconvergence, hybrid OS infrastructure, mixing the best of Windows and Linux. My hypervisor of choice is Hyper-V, mainly so I can get TPM protected, full disk encryption (which, incredibly, every Linux distro is still lacking!) to allow unattended rolling cluster updates. Anything I can do to reduce the amount of required maintenance, since everyone is applying security updates monthly, right?

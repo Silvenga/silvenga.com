@@ -4,8 +4,6 @@ description: How to set-up Windows Server 2016 using software RAID1 - on the sys
 aliases: /raid1-windows-server-2016/index.html
 ---
 
-[[toc]]
-
 ## Setup
 
 Most Windows installers if not all modern versions have a command line option that can be accessed when using the GUI installer (from anywhere from what I can tell). This functionality can be accessed with `SHIFT + F10` and looks like:

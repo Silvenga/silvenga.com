@@ -1,13 +1,11 @@
 ---
-tags: 
+tags:
   - posts
   - linux
   - security
 title: LUKS TPM Unlock
 description: Unlocking full-disk LUKS encryption with a TPM during boot.
 ---
-
-[[toc]]
 
 ## Introduction
 

@@ -5,8 +5,6 @@ description: Improving "DNS as Code" with type checking and Intellisense
 aliases: /kicking-dnscontrol-up-a-notch/index.html
 ---
 
-[[toc]]
-
 ## Introduction
 
 I love this new era of infrastructure as code being a DevOps developer. I can apply my knowledge of code, beyond just simple scripts and programs, to fully managing my infrastructure - all from the comfort of VSCode and Git.
