@@ -50,3 +50,8 @@ declare module "eleventy-plugin-time-to-read" {
     const plugin: any;
     export default plugin;
 }
+
+declare module "tailwind-highlightjs" {
+    const plugin: any;
+    export default plugin;
+}

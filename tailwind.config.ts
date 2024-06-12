@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import Typography from "@tailwindcss/typography";
+import HighlightJs from "tailwind-highlightjs";
 
 export default {
   content: [
@@ -9,6 +10,9 @@ export default {
   ],
   darkMode: "media",
   theme: {
+    hljs: {
+      theme: "github-dark-dimmed",
+    },
     extend: {
       fontFamily: {
         sans: [
@@ -23,6 +27,7 @@ export default {
     },
   },
   plugins: [
-    Typography
+    Typography,
+    HighlightJs
   ],
 } satisfies Config

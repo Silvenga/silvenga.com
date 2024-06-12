@@ -4,9 +4,9 @@ import { CollectionApi, UserConfig } from "@11ty/eleventy";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import { CollectionItem } from "./src/_components/eleventy-types";
+import { buildMarkdownLibrary } from "./src/_components/markdown/builder";
 import { redirectsCollectionFactory } from "./src/_components/redirects-collection";
 import { formatAsRfc822Date } from "./src/_components/utilities/rfc822-date";
-import { buildMarkdownLibrary } from "./src/markdown-it";
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -93,8 +93,6 @@ export default function (eleventyConfig: UserConfig) {
         }
     };
 }
-
-
 
 function publicTagsCollectionFactory(collectionApi: CollectionApi) {
     let tagSet = new Set();

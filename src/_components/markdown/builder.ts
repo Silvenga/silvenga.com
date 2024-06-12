@@ -1,7 +1,10 @@
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import markdownItHighlightjs from "markdown-it-highlightjs";
+import { HighlightOptions } from "markdown-it-highlightjs/types/core";
 import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
 import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
+import { prefixDocument } from "./prefix-document/prefix-document";
 
 export function buildMarkdownLibrary() {
 
@@ -10,9 +13,8 @@ export function buildMarkdownLibrary() {
         linkify: true
     }
 
-    const markdownItTaskListOptions: MarkdownItTaskListOptions = {
-
-    };
+    const markdownItTaskListOptions: MarkdownItTaskListOptions = {};
+    const highlightOptions: HighlightOptions = {};
 
     let markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
         level: 2,// Start at H2.
@@ -23,7 +25,7 @@ export function buildMarkdownLibrary() {
             class: "absolute top-0 left-[-1rem]",
             wrapper: ["<div class=\"relative ml-[1rem]\">", "</div>"]
         })
-    }
+    };
 
     let markdownItTocOptions: Partial<TocOptions> = {
         containerClass: "toc ms-[-2ch] mb-9",
@@ -38,25 +40,8 @@ export function buildMarkdownLibrary() {
     return markdownIt(markdownItOptions)
         .use(prefixDocument, { content: "[[toc]]" })
         .use(tasklist, markdownItTaskListOptions)
+        .use(markdownItHighlightjs, highlightOptions)
         .use(markdownItAnchor, markdownItAnchorOptions)
         .use(markdownItTocDoneRight, markdownItTocOptions);
 }
 
-type PrefixDocumentOptions = {
-    content: string;
-}
-
-function prefixDocument(md: markdownIt, options: PrefixDocumentOptions) {
-
-    const defaultOptions: PrefixDocumentOptions = {
-        content: ""
-    };
-
-    const opts = Object.assign({}, defaultOptions, options);
-
-    const inner = md.render;
-    md.render = (src: string, env: unknown) => {
-        const newSrc = `${opts.content}\n\n${src}`;
-        return inner.call(md, newSrc, env);
-    };
-}
