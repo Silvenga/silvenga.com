@@ -1,5 +1,0 @@
-{
-  "plugins": {
-    "posthtml-doctype": { "doctype": "HTML 5" }
-  }
-}

@@ -1830,6 +1830,7 @@ __metadata:
     parcel-resolver-ignore: "npm:^2.2.0"
     postcss: "npm:^8.4.38"
     posthtml-doctype: "npm:^1.1.1"
+    posthtml-external-link: "npm:^0.1.2"
     process: "npm:^0.11.10"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
@@ -6162,6 +6163,15 @@ __metadata:
   version: 1.1.1
   resolution: "posthtml-doctype@npm:1.1.1"
   checksum: 10/c8fd298c28d5913d53a7e8bef98228cc081b13d72f2bb8904d6bc1cb03eaf627faf153819e0b1667bfe04605cae6c0be1c443c5fab36d0d0fdfd71f59bfde439
+  languageName: node
+  linkType: hard
+
+"posthtml-external-link@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "posthtml-external-link@npm:0.1.2"
+  peerDependencies:
+    posthtml: ^0.16.1
+  checksum: 10/c6e29f7226076d06f13b778cfffbe13065dbd94ecacd4a9feece1d1e9895b430b3e3dd9ebcf420619355244cac059377b27cf6e6f229d1d0b7e38da4b37e1792
   languageName: node
   linkType: hard
 
