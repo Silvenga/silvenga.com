@@ -4,6 +4,7 @@ tags:
 title: Fail2ban Repeat UFW Offenders
 description: A post about a fail2ban jail for repeated UFW nucenses.
 ---
+## The Jail
 
 [Fail2Ban](https://github.com/fail2ban/fail2ban) is a great project, completely recommended for any public facing server. For the likewise, this is a [UFW](https://help.ubuntu.com/community/UFW) jail to block repeated UFW offenders.
 
