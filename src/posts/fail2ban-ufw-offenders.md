@@ -1,6 +1,8 @@
 ---
 tags:
   - posts
+  - fail2ban
+  - ufw
 title: Fail2ban Repeat UFW Offenders
 description: A post about a fail2ban jail for repeated UFW nucenses.
 ---

@@ -39,7 +39,7 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                 {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
             <div className="prose pose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
-            <footer className="mt-9">
+            <footer className="mt-24">
                 {author
                     ? <address className="text-center">Written by {author}</address>
                     : <AuthorCard />}

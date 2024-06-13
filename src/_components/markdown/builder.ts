@@ -28,7 +28,7 @@ export function buildMarkdownLibrary() {
     };
 
     let markdownItTocOptions: Partial<TocOptions> = {
-        containerClass: "toc ms-[-2ch] mb-9",
+        containerClass: "toc ms-[2ch] mb-9",
         listClass: "list list-none p-0 ps-[2ch]",
         itemClass: "item p-0",
         linkClass: "no-underline hover:underline text-lg flex items-center",
