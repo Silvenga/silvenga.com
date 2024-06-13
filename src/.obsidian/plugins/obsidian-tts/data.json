@@ -1,0 +1,20 @@
+{
+  "defaultVoice": "speechSynthesis-",
+  "pitch": 1,
+  "rate": 1,
+  "volume": 1,
+  "speakLinks": false,
+  "speakFrontmatter": false,
+  "speakSyntax": false,
+  "speakTitle": false,
+  "speakCodeblocks": false,
+  "speakEmoji": false,
+  "speakComments": false,
+  "languageVoices": [],
+  "stopPlaybackWhenNoteChanges": true,
+  "services": {
+    "openai": {
+      "key": ""
+    }
+  }
+}
