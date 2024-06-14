@@ -86,15 +86,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy-plugin-rss@npm:^2.0.0-beta.7":
-  version: 2.0.0-beta.7
-  resolution: "@11ty/eleventy-plugin-rss@npm:2.0.0-beta.7"
+"@11ty/eleventy-plugin-rss@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@11ty/eleventy-plugin-rss@npm:2.0.0"
   dependencies:
     "@11ty/eleventy-utils": "npm:^1.0.3"
     "@11ty/posthtml-urls": "npm:1.0.0"
     debug: "npm:^4.3.5"
     posthtml: "npm:^0.16.6"
-  checksum: 10/ce1034fa544f4522980a249bb909552ffc534813ab759d4172f58a045e62536cdfdee67c9a32042ad33c534892b0b97124171764c14fb6436c1eeece527afd9c
+  checksum: 10/0776ce4b193dc7fb56f13f874f060104b511e5dbfb399b01e0c92928509cd9f08df32236cb45638ef2efdb1f4f9bbb6dca3bf86c8b6e07c63498d782f988ea79
   languageName: node
   linkType: hard
 
@@ -1808,7 +1808,7 @@ __metadata:
   dependencies:
     "@11ty/eleventy": "npm:^3.0.0-alpha.11"
     "@11ty/eleventy-img": "npm:^5.0.0-beta.4"
-    "@11ty/eleventy-plugin-rss": "npm:^2.0.0-beta.7"
+    "@11ty/eleventy-plugin-rss": "npm:^2.0.0"
     "@fontsource-variable/inter": "npm:^5.0.18"
     "@mdit/plugin-tasklist": "npm:^0.12.0"
     "@parcel/compressor-brotli": "npm:2.12.0"
