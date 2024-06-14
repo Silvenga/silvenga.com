@@ -6,7 +6,7 @@
   "author": "Mark Lopez <m@silvenga.com>",
   "packageManager": "yarn@4.3.0",
   "type": "module",
-  "browserslist": "> 1%, not dead, Firefox ESR",
+  "browserslist": ">0.5%, last 2 versions, Firefox ESR, not dead, not op_mini all",
   "importSort": {
     ".ts,.tsx": {
       "style": "import-sort-style-module-compact",
