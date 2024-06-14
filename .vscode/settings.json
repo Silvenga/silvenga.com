@@ -1,7 +1,8 @@
 {
-    "cSpell.words": [
-        "clsx",
-        "silvenga",
-        "umami"
-    ]
+  "cSpell.words": [
+    "clsx",
+    "silvenga",
+    "umami"
+  ],
+  "eslint.experimental.useFlatConfig": true
 }

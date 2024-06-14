@@ -1,14 +1,15 @@
+import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
+import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
+
+import { HighlightOptions } from "markdown-it-highlightjs/types/core";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItHighlightjs from "markdown-it-highlightjs";
-import { HighlightOptions } from "markdown-it-highlightjs/types/core";
-import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
-import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
 import { prefixDocument } from "./prefix-document/prefix-document";
 
 export function buildMarkdownLibrary() {
 
-    let markdownItOptions: markdownIt.Options = {
+    const markdownItOptions: markdownIt.Options = {
         html: true, // Allow HTML tags.
         linkify: true
     }
@@ -16,7 +17,7 @@ export function buildMarkdownLibrary() {
     const markdownItTaskListOptions: MarkdownItTaskListOptions = {};
     const highlightOptions: HighlightOptions = {};
 
-    let markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
+    const markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
         level: 2,// Start at H2.
         permalink: markdownItAnchor.permalink.linkAfterHeader({
             style: "visually-hidden",
@@ -27,7 +28,7 @@ export function buildMarkdownLibrary() {
         })
     };
 
-    let markdownItTocOptions: Partial<TocOptions> = {
+    const markdownItTocOptions: Partial<TocOptions> = {
         containerClass: "toc ms-[2ch] mb-9",
         listClass: "list list-none p-0 ps-[2ch]",
         itemClass: "item p-0",
@@ -42,6 +43,9 @@ export function buildMarkdownLibrary() {
         .use(tasklist, markdownItTaskListOptions)
         .use(markdownItHighlightjs, highlightOptions)
         .use(markdownItAnchor, markdownItAnchorOptions)
+
+        // Incorrect typings referencing a different markdownItToc.
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         .use(markdownItTocDoneRight, markdownItTocOptions);
 }
 

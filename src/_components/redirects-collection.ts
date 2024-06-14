@@ -9,7 +9,7 @@ export type RedirectItem = {
 
 export function redirectsCollectionFactory(collectionApi: CollectionApi): RedirectItem[] {
     const redirects: RedirectItem[] = [];
-    for (let canonicalItem of collectionApi.getAll<CollectionItem>()) {
+    for (const canonicalItem of collectionApi.getAll<CollectionItem>()) {
 
         const canonicalPermLink = canonicalItem.page.url;
         if (canonicalPermLink && canonicalItem.data.aliases) {
@@ -19,7 +19,7 @@ export function redirectsCollectionFactory(collectionApi: CollectionApi): Redire
                 ? canonicalItem.data.aliases
                 : [canonicalItem.data.aliases]
 
-            for (let aliasPermLink of aliases) {
+            for (const aliasPermLink of aliases) {
                 redirects.push({
                     aliasPermLink,
                     canonicalPermLink,
