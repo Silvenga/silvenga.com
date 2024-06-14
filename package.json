@@ -78,7 +78,7 @@
     "@types/markdown-it": "^14.1.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.4.0",
     "clsx": "^2.1.1",
     "concurrently": "^8.2.2",
