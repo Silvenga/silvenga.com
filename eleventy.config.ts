@@ -38,7 +38,7 @@ export default function (eleventyConfig: UserConfig) {
         key: "11ty.js",
         compile: function () {
             return async function (this: any, data: any) {
-                let content = await this.defaultRenderer(data);
+                const content = await this.defaultRenderer(data);
                 return renderToStaticMarkup(content);
             };
         },
