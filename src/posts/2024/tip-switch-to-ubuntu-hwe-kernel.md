@@ -27,7 +27,7 @@ Working with HWE kernels of course comes with it's own problems, so the risk nee
 
 > In Ubuntu 22.04 (Ubuntu 24.04 has no HWE kernel as of writing), Canonical moved to a [rolling-release model](https://ubuntu.com/about/release-cycle#ubuntu-kernel-release-cycle) - meaning a shorter support window, but newer kernels overtime. Below illustrates weighing stability/support with getting the newer stuff faster. [Image source](https://ubuntu.com/about/release-cycle).
 
-![](posts/2024/images/example-hwe-support-lifecycle.png)
+![](/posts/2024/images/example-hwe-support-lifecycle.png)
 
 ## Actually Switching to HWE
 
