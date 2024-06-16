@@ -31,3 +31,38 @@ export function BlogIcon({ className }: { className?: string }) {
             className={clsx("blog-icon", className)} />
     );
 }
+
+export function PrintablesIcon({ className }: { className?: string }) {
+    return (
+        <div role="img"
+            aria-label="Printables.com icon"
+            className={clsx("printables-icon", className)} />
+    );
+}
+
+export function HeartIcon({ className, ariaHidden }: { className?: string, ariaHidden?: boolean }) {
+    return (
+        <div role="img"
+            aria-label="Heart icon"
+            aria-hidden={ariaHidden}
+            className={clsx("heart-icon", className)} />
+    );
+}
+
+export function PrinterIcon({ className, ariaHidden }: { className?: string, ariaHidden?: boolean }) {
+    return (
+        <div role="img"
+            aria-label="Traditional printer icon"
+            aria-hidden={ariaHidden}
+            className={clsx("printer-icon", className)} />
+    );
+}
+
+export function ModelIcon({ className, ariaHidden }: { className?: string, ariaHidden?: boolean }) {
+    return (
+        <div role="img"
+            aria-label="3D model icon"
+            aria-hidden={ariaHidden}
+            className={clsx("model-icon", className)} />
+    );
+}

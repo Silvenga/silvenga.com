@@ -63,6 +63,26 @@
     @apply bg-black dark:bg-white;
   }
 
+  .printables-icon {
+    mask: url("data-url:./assets/printables-icon.svg") center/contain no-repeat;
+    @apply bg-white dark:bg-white;
+  }
+
+  .heart-icon {
+    mask: url("data-url:./assets/heart-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
+
+  .printer-icon {
+    mask: url("data-url:./assets/printer-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
+
+  .model-icon {
+    mask: url("data-url:./assets/model-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
+
   .prose img {
     @apply rounded-lg overflow-hidden;
   }

@@ -68,7 +68,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 function Navbar(this: RenderContext, { site, renderContent }: Pick<TemplateContext, "site"> & { renderContent: RenderContext }): JSX.Element {
 
     const navLinks = [
-        { display: "All Posts", href: "/posts/" }
+        { display: "All Posts", href: "/posts/" },
+        { display: "3D Models", href: "/models/" },
     ];
 
     return (

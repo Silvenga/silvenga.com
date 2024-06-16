@@ -25,11 +25,11 @@ export default function (eleventyConfig: UserConfig) {
     eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
         extensions: "html",
         formats: ["webp"],
-        urlPath: null,
         defaultAttributes: {
             loading: "lazy",
             decoding: "async",
         },
+        urlPath: "/img/"
     });
     eleventyConfig.addPlugin(pluginRss);
 
@@ -95,7 +95,7 @@ export default function (eleventyConfig: UserConfig) {
 }
 
 function publicTagsCollectionFactory(collectionApi: CollectionApi) {
-    let tagSet = new Set();
+    const tagSet = new Set();
     collectionApi.getAll<CollectionItem>().forEach(item => {
         if ("tags" in item.data) {
             let tags = item.data.tags ?? [];
