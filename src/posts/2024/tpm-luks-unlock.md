@@ -6,7 +6,6 @@ tags:
 title: LUKS TPM Unlock
 description: Unlocking full-disk LUKS encryption with a TPM during boot.
 ---
-
 ## Introduction
 
 For a long time, it just wasn't practical to run Linux servers with LUKS full-disk encryption (or, at least very fun). Basically, our options were to:
@@ -32,9 +31,9 @@ So how does BitLocker use the TPM to decrypt your disk, and how does it attempt 
 
 1. Hardware initialized - control is given to the UEFI (aka, the BIOS).
 2. UEFI scans for stuff, including any bootable drives. If discovered/configured, control is given to code on these bootable drives.
-3. Bootloader executes (Grub2) and scans for the next stage (`vmlinuz`).
-4. If found, Grub2 validates that the kernel was signed by it's public key. If valid, then the kernel is given control.
-5. The kernel (e.g. `vmlinuz`) loads and everything else gets mounted.
+3. Bootloader executes and scans for the next stage.
+4. If found, the bootloader validates that the kernel was signed by it's public key. If valid, then the kernel is given control.
+5. The kernel loads and everything else gets mounted.
 6. The kernel decrypts the "sealed" master key with the help of the TPM.
 7. The OS is live!
 
@@ -42,13 +41,13 @@ So how does BitLocker use the TPM to decrypt your disk, and how does it attempt 
 
 During the boot process, Secure boot and the TPM (trusted platform module) work together - both are needed for BitLocker to unlock a drive automatically.
 
-**Secure boot** validates that the code UEFI is going to execute (aka, the bootloader) hasn't been modified (aka, via an evil-maid attack). It does this by checking asymmetrical signatures with public keys stored in the UEFI firmware. Typical servers/computers contain the public key of Microsoft (which signs the Windows bootloader). On the Linux side, the bootloader (grub2) is typically signed by a Microsoft donated key - allowing grub to execute in a secure boot environment (without needing custom UEFI firmware) or special hardware vendors.
+**Secure boot** validates that the code UEFI is going to execute (aka, the bootloader) hasn't been modified (aka, via an evil-maid attack). It does this by checking asymmetrical signatures with public keys stored in the UEFI firmware. Typical servers/computers contain the public key of Microsoft (which signs the Windows bootloader). On the Linux side, the bootloader (grub2) is typically signed by a Microsoft donated key - allowing grub2 to execute in a secure boot environment (without needing custom UEFI firmware) or special hardware vendors.
 
 The **TPM** (trusted platform module) is a cryptographic device, it can do many things, but it's mostly used to encrypt/decrypt small pieces of data. The TPM stores the private key, and in-theory, as the TPM can't be easily physically modified, we can typically consider the private key safe (unless a TPM bug exists).
 
 One cool thing about the TPM, it stores data from events occurring during the boot process in the Platform Configuration Registers or **PCR**'s - kind of like a log of boot events. The PCR's store the cryptographic hash of these events, like what kind of hardware was discovered, what firmware is installed, has anything been modified, is secure boot happy about the bootloader, etc.
 
-All of these PCR "**measurements**" (as they are called) are stateless, and are generated during boot determinist - meaning the same configuration will result in the exact same PCR's. Using that knowledge, the TPM can "seal" data using it's private key, and the state of the PCR's. Meaning, the TPM, along with the hardware, the firmware, and the software all effectively **combine** to become the password to decrypt the master decryption key.
+All of these PCR "**measurements**" (as they are called) are stateless, and are generated during boot deterministically - meaning the same configuration will result in the exact same PCR's. Using that knowledge, the TPM can "seal" data using it's private key, and the state of the PCR's. Meaning, the TPM, along with the hardware, the firmware, and the software all effectively **combine** to become the password to decrypt the master decryption key.
 
 This ultimately allows Windows to decrypt itself through the guarantee the system is in the exact same configuration as when the OS was last running. If anything changes in this system configuration, the TPM effective becomes locked, refusing to expose it's secrets to anyone without an electron microscope (for an offline attack).
 
