@@ -86,15 +86,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy-plugin-rss@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@11ty/eleventy-plugin-rss@npm:2.0.0"
+"@11ty/eleventy-plugin-rss@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@11ty/eleventy-plugin-rss@npm:2.0.1"
   dependencies:
     "@11ty/eleventy-utils": "npm:^1.0.3"
     "@11ty/posthtml-urls": "npm:1.0.0"
     debug: "npm:^4.3.5"
     posthtml: "npm:^0.16.6"
-  checksum: 10/0776ce4b193dc7fb56f13f874f060104b511e5dbfb399b01e0c92928509cd9f08df32236cb45638ef2efdb1f4f9bbb6dca3bf86c8b6e07c63498d782f988ea79
+  checksum: 10/c5afac8b30fb327b00111c6e54e7d38542339a0b5e54fa974484dcddba7eb652485067b3f81f1565ee2cfa38e135ba72dfa3af5fcdf5cdd79fb765dbd3ec1b49
   languageName: node
   linkType: hard
 
@@ -1816,7 +1816,7 @@ __metadata:
     "@11ty/eleventy": "npm:^3.0.0-alpha.13"
     "@11ty/eleventy-fetch": "npm:^4.0.1"
     "@11ty/eleventy-img": "npm:^5.0.0-beta.4"
-    "@11ty/eleventy-plugin-rss": "npm:^2.0.0"
+    "@11ty/eleventy-plugin-rss": "npm:^2.0.1"
     "@eslint/js": "npm:^9.5.0"
     "@fontsource-variable/inter": "npm:^5.0.18"
     "@mdit/plugin-tasklist": "npm:^0.12.0"
@@ -1842,14 +1842,14 @@ __metadata:
     eslint: "npm:^9.5.0"
     eslint-define-config: "npm:^2.1.0"
     eslint-plugin-only-warn: "npm:^1.1.0"
-    eslint-plugin-react: "npm:^7.34.2"
+    eslint-plugin-react: "npm:^7.34.3"
     highlight.js: "npm:^11.9.0"
     luxon: "npm:^3.4.4"
     markdown-it: "npm:^14.1.0"
     markdown-it-anchor: "npm:^9.0.1"
     markdown-it-highlightjs: "npm:^4.1.0"
     markdown-it-toc-done-right: "npm:^4.2.0"
-    nodemon: "npm:^3.1.3"
+    nodemon: "npm:^3.1.4"
     parcel: "npm:2.12.0"
     parcel-reporter-static-files-copy: "npm:^1.5.3"
     parcel-resolver-ignore: "npm:^2.2.0"
@@ -1863,7 +1863,7 @@ __metadata:
     rimraf: "npm:^5.0.7"
     tailwind-highlightjs: "npm:^2.0.1"
     tailwindcss: "npm:^3.4.4"
-    tsx: "npm:^4.15.5"
+    tsx: "npm:^4.15.7"
     typescript: "npm:^5.4.5"
     typescript-eslint: "npm:8.0.0-alpha.30"
   languageName: unknown
@@ -2581,7 +2581,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.tosorted@npm:^1.1.3":
+"array.prototype.tosorted@npm:^1.1.4":
   version: 1.1.4
   resolution: "array.prototype.tosorted@npm:1.1.4"
   dependencies:
@@ -3731,15 +3731,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.34.2":
-  version: 7.34.2
-  resolution: "eslint-plugin-react@npm:7.34.2"
+"eslint-plugin-react@npm:^7.34.3":
+  version: 7.34.3
+  resolution: "eslint-plugin-react@npm:7.34.3"
   dependencies:
     array-includes: "npm:^3.1.8"
     array.prototype.findlast: "npm:^1.2.5"
     array.prototype.flatmap: "npm:^1.3.2"
     array.prototype.toreversed: "npm:^1.1.2"
-    array.prototype.tosorted: "npm:^1.1.3"
+    array.prototype.tosorted: "npm:^1.1.4"
     doctrine: "npm:^2.1.0"
     es-iterator-helpers: "npm:^1.0.19"
     estraverse: "npm:^5.3.0"
@@ -3755,7 +3755,7 @@ __metadata:
     string.prototype.matchall: "npm:^4.0.11"
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: 10/6efccc29ad09a45fe1764089199e87b69b63a40152dd40cbbece639c6be4cda4306b58b15ba9b449f639705eb9a08ddc51b58308077c0394537769c455f976b7
+  checksum: 10/f160a5b0a376e520b0cd5e2b6111e91966533708842270e460e2f93a45c80f42dc79232a38a6ccb1a397b1d9deba06f6dc819333d9e1af55d392bf52b20d6c9b
   languageName: node
   linkType: hard
 
@@ -5804,9 +5804,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemon@npm:^3.1.3":
-  version: 3.1.3
-  resolution: "nodemon@npm:3.1.3"
+"nodemon@npm:^3.1.4":
+  version: 3.1.4
+  resolution: "nodemon@npm:3.1.4"
   dependencies:
     chokidar: "npm:^3.5.2"
     debug: "npm:^4"
@@ -5820,7 +5820,7 @@ __metadata:
     undefsafe: "npm:^2.0.5"
   bin:
     nodemon: bin/nodemon.js
-  checksum: 10/ad55e76bb755c07b07c05b1b4ea7aca7bdf71bf8c7bfbf2db95e8ddcc964dde5eab9599c9de0db6899db9f2b98e573220f2d3c0796b41865ae754409e557cf50
+  checksum: 10/2e54d3d7b8522d46b27c2537361c57a1b29ae01d1b67e558d316d284c5fc319b5267a0dcaa10821a6533a4b6ff604ac66d37e192ed4a89e794cb441b7d5a2fe1
   languageName: node
   linkType: hard
 
@@ -7482,9 +7482,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.15.5":
-  version: 4.15.5
-  resolution: "tsx@npm:4.15.5"
+"tsx@npm:^4.15.7":
+  version: 4.15.7
+  resolution: "tsx@npm:4.15.7"
   dependencies:
     esbuild: "npm:~0.21.4"
     fsevents: "npm:~2.3.3"
@@ -7494,7 +7494,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/be196bb1689960e8d4fb775e0fe7bfcea43ebbad6d30adc5ab15f94db91f068b074ed2e0bdd1adb08ae2de91cfc6d06e90da918b23c976c4774e3ff5a171445f
+  checksum: 10/b313d7b07e017bc5c69a8c8bf33c005c2090cf1160df31e9e871bb86bbd4f582fff49849ecaf212f0f79286be98dc48d761ff16181496e88a674c7eec16274b6
   languageName: node
   linkType: hard
 
