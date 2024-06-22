@@ -5,6 +5,7 @@ on:
     branches:
       - master
   workflow_dispatch: {}
+  pull_request: {}
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Fetch all history.
 
       - name: Enable Corepack
         run: |
@@ -28,6 +29,11 @@ jobs:
           yarn install --immutable
           yarn build
 
+      - name: Setup Index Now
+        run: |
+          echo "${{ secrets.INDEXNOW_KEY }}" > "./dist/${{ secrets.INDEXNOW_KEY }}.txt"
+        if: github.ref_name == 'master'
+
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -36,6 +42,7 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: build
+    if: github.ref_name == 'master'
     permissions:
       pages: write
       id-token: write
@@ -47,3 +54,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - uses: bojieyang/indexnow-action@v2
+        with:
+          sitemap-location: https://silvenga.com/sitemap.xml
+          key: ${{ secrets.INDEXNOW_KEY }}
