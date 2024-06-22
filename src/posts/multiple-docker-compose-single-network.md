@@ -2,7 +2,7 @@
 tags:
   - posts
   - docker
-title: "Tip: Multiple Docker Compose's using a Single Network"
+title: "Multiple Docker Compose's in a Single Network"
 description: Using a single Docker network across multiple docker-compose files - and a little about using a DNS resolver container as well.
 ---
 ## Quick Introduction
