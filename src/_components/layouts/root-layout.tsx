@@ -22,7 +22,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
                     <title>{pageTitle}</title>
                     <link href="/src/styles.css" type="text/css" rel="stylesheet" />
-                    <link href="npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" rel="preload" as="font" type="font/woff2" crossOrigin="anonymous" />
+                    <link href="npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" rel="preload" as="font" type="font/woff2" />
 
                     <link rel="canonical" href={canonicalUrl} />
                     <link rel="alternate" type="application/rss+xml" href={this.url("/posts/rss.xml")} title="RSS Feed" />
@@ -51,7 +51,9 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                         <script defer
                             src={site.umami.scriptUrl}
                             data-website-id={site.umami.websiteId}
-                            data-domains={site.umami.domains} />
+                            data-domains={site.umami.domains}
+                            crossOrigin="anonymous"
+                            integrity="" />
                     )}
                 </head>
 
