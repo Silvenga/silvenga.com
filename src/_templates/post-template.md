@@ -1,8 +1,7 @@
 ---
 tags:
   - posts
-title: 
-description: 
-aliases: 
+title: ...
+description: ...
 draft: "true"
 ---

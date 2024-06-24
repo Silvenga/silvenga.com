@@ -1,7 +1,6 @@
 import { RenderContext, TemplateContext } from "../eleventy-types";
 import { BlogIcon, GithubIcon, RssIcon } from "../icons";
 
-// TODO: Favicons
 // TODO: Mermaid
 
 export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy, refreshUrl, ...props }: TemplateContext) {
@@ -11,6 +10,10 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
     if (!description) {
         console.warn(`[warning - RootLayout] No description set for page '${page.inputPath}'.`);
+
+        if (process.env["GITHUB_ACTIONS"] != "true") {
+            console.warn(`::warning file=${page.inputPath},title=HTML Description Missing::No description was rendered, this should be corrected by adding the appropriate front-matter.`)
+        }
     }
 
     return (
@@ -35,6 +38,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     <meta property="og:site_name" content={site.name} />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content={canonicalUrl} />
+                    <meta property="og:locale" content="en_US" />
 
                     {!!description && (
                         <>
