@@ -13,14 +13,15 @@ layout: null
     <description>An RSS feed for Silvenga's weblog.</description>
     <lastBuildDate>{% nowRfc822 %}</lastBuildDate>
     <language>en</language>
+    <docs>https://www.rssboard.org/rss-specification</docs>
     {%- for post in collections.posts | reverse %}
     {%- set absolutePostUrl = post.url | absoluteUrl(site.baseUrl) %}
     <item>
       <title>{{ post.data.title }}</title>
       <link>{{ absolutePostUrl }}</link>
-      <description>{{ post.data.description | htmlToAbsoluteUrls(absolutePostUrl) }}</description>
+      <description>{{ post.data.description }}</description>
       <pubDate>{{ post.date | dateToRfc822 }}</pubDate>
-      <dc:creator>Mark (Silvenga)</dc:creator>
+      <dc:creator>{{ post.data.author }}</dc:creator>
       <guid>{{ absolutePostUrl }}</guid>
     </item>
     {%- endfor %}
