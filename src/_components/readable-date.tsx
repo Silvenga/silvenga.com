@@ -7,6 +7,11 @@ export type ReadableDateProps = {
 
 export function ReadableDate(props: ReadableDateProps) {
     const dateTime = DateTime.fromJSDate(props.dateTime);
+
+    if (!dateTime.isValid) {
+        throw new Error("Failed to handle JS Date, this shouldn't be possible.");
+    }
+
     return (
         <time className={props.className} dateTime={dateTime.toISODate()} title={dateTime.toISODate()}>
             {dateTime.toFormat("LLLL d, yyyy")}
