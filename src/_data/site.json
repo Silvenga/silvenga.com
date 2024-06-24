@@ -1,7 +1,6 @@
 {
   "name": "Silvenga's Blog",
   "baseUrl": "https://silvenga.com",
-  "defaultAuthor": "Mark",
   "umami": {
     "scriptUrl": "https://analytics.service.silvenga.com/script.js",
     "websiteId": "8390d7cc-2653-4611-931c-3ecf713a7e5d",

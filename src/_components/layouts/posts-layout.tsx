@@ -7,7 +7,7 @@ export type PostsLayoutProps = {
     children: JSX.Element;
 } & TemplateContext;
 
-export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, author, archived }: PostsLayoutProps) {
+export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, archived }: PostsLayoutProps) {
 
     const postTags = tags?.filter(tag => collections.publicTags.find(x => x == tag));
     const editLink = `https://github.com/Silvenga/silvenga.com/blame/master/${page.inputPath}`;
@@ -40,9 +40,7 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
             </header>
             <div className="prose pose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
             <footer className="mt-24">
-                {author
-                    ? <address className="text-center">Written by {author}</address>
-                    : <AuthorCard />}
+                <AuthorCard />
                 <div className="text-center mt-9">
                     Written under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer noopener" target="_blank" className="link">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
                 </div>

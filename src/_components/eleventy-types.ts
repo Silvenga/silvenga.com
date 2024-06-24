@@ -25,6 +25,9 @@ export type PageData =
         aliases?: string[];
         canonicalUrl?: string;
         refreshUrl?: string;
+        type?: string;
+        created?: Date;
+        updated?: Date;
     }
     & Record<string, unknown>;
 
@@ -64,7 +67,6 @@ export type TemplateContext =
             // Should match "_data/site.json"
             name: string;
             baseUrl: string;
-            defaultAuthor: string;
             umami?: {
                 scriptUrl: string;
                 websiteId: string;

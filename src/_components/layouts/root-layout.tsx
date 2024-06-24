@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import { RenderContext, TemplateContext } from "../eleventy-types";
 import { BlogIcon, GithubIcon, RssIcon } from "../icons";
 
@@ -15,6 +16,9 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
             console.warn(`::warning file=${page.inputPath},title=HTML Description Missing::No description was rendered, this should be corrected by adding the appropriate front-matter.`)
         }
     }
+
+    const type = getType(props.type);
+    const publicTags = props.tags?.filter(tag => props.collections.publicTags.find(x => x == tag)) ?? [];
 
     return (
         <>
@@ -34,11 +38,28 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
 
                     <meta name="generator" content={eleventy.generator} />
+
                     <meta property="og:title" content={title || site.name} />
-                    <meta property="og:site_name" content={site.name} />
-                    <meta property="og:type" content="website" />
                     <meta property="og:url" content={canonicalUrl} />
+                    <meta property="og:site_name" content={site.name} />
                     <meta property="og:locale" content="en_US" />
+
+                    {type == "website" && (
+                        <>
+                            <meta property="og:type" content="website" />
+                        </>
+                    )}
+                    {type == "article" && (
+                        <>
+                            <meta property="og:type" content="article" />
+                            <meta property="article:published_time" content={getIsoDateOrEmpty(props.created)} />
+                            <meta property="article:modified_time" content={getIsoDateOrEmpty(props.updated)} />
+                            <meta property="article:author" content={props.author} />
+                            {publicTags.map(x => (
+                                <meta key={x} property="article:tag" content={x} />
+                            ))}
+                        </>
+                    )}
 
                     {!!description && (
                         <>
@@ -136,4 +157,22 @@ function Footer(): JSX.Element {
             </div>
         </footer>
     )
+}
+
+function getType(type?: string): "website" | "article" {
+    if (type == "article") {
+        return "article";
+    }
+    return "website";
+}
+
+function getIsoDateOrEmpty(date?: Date): string {
+    if (date === undefined) {
+        return "-";
+    }
+    const dateTime = DateTime.fromJSDate(date);
+    if (!dateTime.isValid) {
+        return "";
+    }
+    return dateTime.toISO();
 }

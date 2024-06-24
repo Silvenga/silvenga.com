@@ -89,3 +89,13 @@ declare module "@11ty/eleventy-fetch" {
     const fetch: EleventyFetch;
     export default fetch;
 }
+
+declare module "@11ty/eleventy/src/Util/DateGitFirstAdded" {
+    function getGitFirstAddedTimeStamp(filePath: string): Date;
+    export default getGitFirstAddedTimeStamp;
+}
+
+declare module "@11ty/eleventy/src/Util/DateGitLastUpdated" {
+    function getGitLastUpdatedTimeStamp(filePath: string): Date;
+    export default getGitLastUpdatedTimeStamp;
+}
