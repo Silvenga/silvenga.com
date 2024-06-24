@@ -2,7 +2,7 @@
 tags:
   - posts
   - 3d-printing
-title: My Journey Through 3D Filament Bags
+title: My Journey Through 3D-Filament Bags
 description: This is my journey through different 3D-printing filament vacuum bags. Please learn from my mistakes.
 ---
 ## Setting the Stage
