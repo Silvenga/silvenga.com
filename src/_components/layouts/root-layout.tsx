@@ -44,6 +44,12 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     <meta property="og:site_name" content={site.name} />
                     <meta property="og:locale" content="en_US" />
 
+                    {/* This one is just weird, parcel refuses to add the hash to the url, so manually done. */}
+                    <meta property="og:image" content="/src/assets/social-card.51bcc36a.webp" />
+                    <meta property="og:image:type" content="image/webp" />
+                    <meta property="og:image:width" content="1200" />
+                    <meta property="og:image:height" content="630" />
+
                     {type == "website" && (
                         <>
                             <meta property="og:type" content="website" />
