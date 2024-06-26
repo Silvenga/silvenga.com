@@ -4,6 +4,5 @@
   "permalink": "posts/{{ page.fileSlug }}/index.html",
   "tags": [
     "posts"
-  ],
-  "date": "git Created"
+  ]
 }

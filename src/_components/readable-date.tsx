@@ -1,11 +1,15 @@
 import { DateTime } from "luxon";
 
 export type ReadableDateProps = {
-    dateTime: Date;
+    dateTime?: Date;
     className?: string;
 }
 
 export function ReadableDate(props: ReadableDateProps) {
+    if (!props.dateTime) {
+        return <span className={props.className}>-</span>
+    }
+
     const dateTime = DateTime.fromJSDate(props.dateTime);
 
     if (!dateTime.isValid) {

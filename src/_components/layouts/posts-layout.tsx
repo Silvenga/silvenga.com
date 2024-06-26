@@ -7,7 +7,7 @@ export type PostsLayoutProps = {
     children: JSX.Element;
 } & TemplateContext;
 
-export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, archived }: PostsLayoutProps) {
+export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, created, updated, archived }: PostsLayoutProps) {
 
     const postTags = tags?.filter(tag => collections.publicTags.find(x => x == tag));
     const editLink = `https://github.com/Silvenga/silvenga.com/blame/master/${page.inputPath}`;
@@ -16,7 +16,7 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
         <article>
             <header className="mb-9">
                 <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
-                    <span className="sr-only">Published on</span> <ReadableDate dateTime={page.date} />
+                    <span className="sr-only">Published on</span> <ReadableDate dateTime={created} />
                     <span className="mx-3 hidden sm:inline-block" aria-hidden>•</span>
                     <div className="flex">
                         <div><span className="sr-only">Takes approximately</span> {this.timeToRead(content)} <span className="sr-only">minutes to read</span></div>

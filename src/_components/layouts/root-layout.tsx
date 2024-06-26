@@ -2,8 +2,6 @@ import { DateTime } from "luxon";
 import { RenderContext, TemplateContext } from "../eleventy-types";
 import { BlogIcon, GithubIcon, RssIcon } from "../icons";
 
-// TODO: Mermaid
-
 export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy, refreshUrl, ...props }: TemplateContext) {
 
     const canonicalUrl = this.url(site.baseUrl + (props.canonicalUrl ?? page.url));
@@ -86,6 +84,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                             crossOrigin="anonymous"
                             integrity="" />
                     )}
+
+                    <script defer src="/src/client.ts" type="module" />
                 </head>
 
                 <body className="container mx-auto w-[100%] max-w-[720px] px-[20px] min-h-svh flex flex-col">
@@ -157,6 +157,9 @@ function Footer(): JSX.Element {
         <footer className="py-9 flex flex-col justify-center items-center mt-auto">
             <div className="text-center">
                 Copyright © {year}. Built with <span className="text-[#ad4d4d] dark:text-[#deabab]">&#x2764;&#xfe0e;</span> by Silvenga
+            </div>
+            <div className="text-center">
+                Metrics gathered by Umami, privacy-focused, analytics. No cookies are saved.
             </div>
             <div className="text-center">
                 <a className="link link-hover" href="https://github.com/Silvenga/silvenga.com" rel="noreferrer noopener" target="_blank">[Source Code]</a>

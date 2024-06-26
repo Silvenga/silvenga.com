@@ -9,8 +9,8 @@ export type PostsListProps = {
 
 export function PostsList({ collection }: PostsListProps): ReactNode {
 
-    const sortedCollection = collection?.toSorted(({ page: { date: a } }, { page: { date: b } }) => a < b ? 1 : a > b ? -1 : 0) ?? [];
-    const groupsByYear = groupBy(sortedCollection, x => x.page.date.getFullYear() + "");
+    const sortedCollection = collection?.toSorted(({ data: { created: a } }, { data: { created: b } }) => a < b ? 1 : a > b ? -1 : 0) ?? [];
+    const groupsByYear = groupBy(sortedCollection, x => x.data.created?.getFullYear() + "");
     const sortedKeys = Object.keys(groupsByYear).sort((a, b) => a < b ? 1 : -1)
 
     return (
@@ -29,7 +29,7 @@ export function PostsList({ collection }: PostsListProps): ReactNode {
                                             <h3 className="">
                                                 <a href={page.url} className="link font-medium">{data.title}</a>
                                             </h3>
-                                            <ReadableDate dateTime={page.date} className="italic grow text-end text-nowrap ps-3" />
+                                            <ReadableDate dateTime={data.created} className="italic grow text-end text-nowrap ps-3" />
                                         </article>
                                     </li>
                                 )}

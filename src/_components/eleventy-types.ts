@@ -26,8 +26,8 @@ export type PageData =
         canonicalUrl?: string;
         refreshUrl?: string;
         type?: string;
-        created?: Date;
-        updated?: Date;
+        created: Date;
+        updated: Date;
     }
     & Record<string, unknown>;
 

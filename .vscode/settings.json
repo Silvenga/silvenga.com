@@ -5,5 +5,8 @@
     "silvenga",
     "umami"
   ],
-  "eslint.experimental.useFlatConfig": true
+  "eslint.experimental.useFlatConfig": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }
