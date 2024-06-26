@@ -1,6 +1,11 @@
 import { throttle } from "@martinstark/throttle-ts";
 import { UmamiClient, buildUmamiClient } from "../clients/umami-client";
 
+// A micro-optimization to reduce bundle size.
+const eventListenerOptions: AddEventListenerOptions = {
+    passive: true // Run events async.
+}
+
 export function attachAnalytics() {
     addEventListener("DOMContentLoaded", () => {
         // Only build umami after the DOM is fully ready.
@@ -13,27 +18,27 @@ export function attachAnalytics() {
         const [onScrollThrottled] = throttle(onScroll, 2_000);
         addEventListener("scroll", () => {
             void onScrollThrottled(umami);
-        }, { passive: true });
+        }, eventListenerOptions);
 
         addEventListener("hashchange", () => {
             void onHashChange(umami);
-        }, { passive: true });
+        }, eventListenerOptions);
 
         addEventListener("visibilitychange", () => {
             void onVisibilityChange(umami);
-        }, { passive: true });
+        }, eventListenerOptions);
 
         addEventListener("click", ({ target }) => {
             void onLinkClick(target, umami);
-        }, { passive: true });
+        }, eventListenerOptions);
 
         addEventListener("contextmenu", ({ target }) => {
             void onLinkClick(target, umami);
-        }, { passive: true });
+        }, eventListenerOptions);
 
         void onReady(umami);
         void onHashChange(umami);
-    }, { passive: true });
+    }, eventListenerOptions);
 }
 
 async function onReady(umami: UmamiClient) {
@@ -66,6 +71,6 @@ async function onLinkClick(target: EventTarget | null, umami: UmamiClient) {
     if (target instanceof HTMLAnchorElement && target.rel.includes("external")) {
         await umami.trackEvent("external-link", {
             href: target.href
-        })
+        });
     }
 }
