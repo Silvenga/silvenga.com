@@ -68,7 +68,7 @@ export type TemplateContext =
             name: string;
             baseUrl: string;
             umami?: {
-                scriptUrl: string;
+                endpoint: string;
                 websiteId: string;
                 domains: string;
             }

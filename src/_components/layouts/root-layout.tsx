@@ -77,16 +77,10 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                         <meta httpEquiv="Refresh" content={`0; URL=${this.url(site.baseUrl + refreshUrl)}`} />
                     )}
 
-                    {!!site.umami && (
-                        <script defer
-                            src={site.umami.scriptUrl}
-                            data-website-id={site.umami.websiteId}
-                            data-domains={site.umami.domains}
-                            crossOrigin="anonymous"
-                            integrity="" />
-                    )}
-
-                    <script defer src="/src/client.ts" type="module" />
+                    <script defer src="/src/client.ts" type="module"
+                        data-umami-website-id={site.umami?.websiteId}
+                        data-umami-domains={site.umami?.domains}
+                        data-umami-endpoint={site.umami?.endpoint} />
                 </head>
 
                 <body className="container mx-auto w-[100%] max-w-[720px] px-[20px] min-h-svh flex flex-col">
