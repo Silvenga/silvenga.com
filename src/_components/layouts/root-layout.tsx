@@ -36,6 +36,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
 
                     <meta name="generator" content={eleventy.generator} />
+                    <meta name="updated-on" content={getIsoDateOrEmpty(props.updated)} />
 
                     <meta property="og:title" content={title || site.name} />
                     <meta property="og:url" content={canonicalUrl} />
@@ -159,7 +160,7 @@ function Footer(): JSX.Element {
                 Copyright © {year}. Built with <span className="text-[#ad4d4d] dark:text-[#deabab]">&#x2764;&#xfe0e;</span> by Silvenga
             </div>
             <div className="text-center">
-                Metrics gathered by Umami, privacy-focused, analytics. No cookies are saved.
+                Metrics gathered by Umami, privacy-focused-analytics. No cookies are saved.
             </div>
             <div className="text-center">
                 <a className="link link-hover" href="https://github.com/Silvenga/silvenga.com" rel="noreferrer noopener" target="_blank">[Source Code]</a>

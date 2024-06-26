@@ -7,7 +7,7 @@ export type PostsLayoutProps = {
     children: JSX.Element;
 } & TemplateContext;
 
-export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, created, updated, archived }: PostsLayoutProps) {
+export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, created, archived }: PostsLayoutProps) {
 
     const postTags = tags?.filter(tag => collections.publicTags.find(x => x == tag));
     const editLink = `https://github.com/Silvenga/silvenga.com/blame/master/${page.inputPath}`;

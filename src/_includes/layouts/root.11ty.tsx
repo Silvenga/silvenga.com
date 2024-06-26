@@ -10,15 +10,17 @@ export function data() {
         eleventyComputed: {
             created: function (this: void, content: TemplateContext): Date {
                 return ifAllowedOrDefault(
-                    () => getGitFirstAddedTimeStamp(content.page.inputPath),
+                    () => content["date"]
+                        ? content.page.date
+                        : getGitFirstAddedTimeStamp(content.page.inputPath)
+                        ?? content.page.date,
                     content.page.date
                 );
             },
             updated: function (this: void, content: TemplateContext): Date {
                 return ifAllowedOrDefault(
-                    () => content["date"]
-                        ? content.page.date
-                        : getGitLastUpdatedTimeStamp(content.page.inputPath),
+                    () => getGitLastUpdatedTimeStamp(content.page.inputPath)
+                        ?? content.created,
                     content.page.date
                 );
             }
