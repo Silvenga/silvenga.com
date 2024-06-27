@@ -15,7 +15,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all history.
-
       - name: Enable Corepack
         run: |
           corepack enable
@@ -23,38 +22,73 @@ jobs:
         with:
           node-version: 20
           cache: yarn
-
       - name: Build
         run: |
           yarn install --immutable
           yarn build
-
       - name: Setup Index Now
         run: |
           echo "${{ secrets.INDEXNOW_KEY }}" > "./dist/${{ secrets.INDEXNOW_KEY }}.txt"
         if: github.ref_name == 'master'
-
-      - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
 
-  deploy:
+  deploy-github-pages:
     name: Deploy to GitHub Pages
     needs: build
     if: github.ref_name == 'master'
+    concurrency: github-pages
     permissions:
       pages: write
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
+  deploy-rabbit-edge:
+    name: Deploy to Rabbit Edge
+    needs: build
+    if: github.ref_name == 'master'
+    concurrency: rabbit-edge
+    environment:
+      name: rabbit-edge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - name: Deploy to Bunny Edge
+        uses: ayeressian/bunnycdn-storage-deploy@v2.2.3
+        with:
+          source: "dist"
+          destination: ""
+          storageZoneName: "${{ secrets.STORAGE_NAME }}"
+          storagePassword: "${{ secrets.STORAGE_PASSWORD }}"
+          accessKey: "${{ secrets.ACCESS_KEY }}"
+          pullZoneId: "${{ secrets.ZONE_ID }}"
+          upload: "true"
+          remove: "true"
+          purgePullZone: "true"
+
+  index-now:
+    name: Update IndexNow
+    needs:
+      - deploy-rabbit-edge
+      - deploy-github-pages
+    if: github.ref_name == 'master'
+    runs-on: ubuntu-latest
+    steps:
       - uses: bojieyang/indexnow-action@v2
         with:
           sitemap-location: https://silvenga.com/sitemap.xml
