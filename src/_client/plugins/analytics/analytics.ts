@@ -8,6 +8,11 @@ const eventListenerOptions: AddEventListenerOptions = {
 
 export function attachAnalytics() {
     addEventListener("DOMContentLoaded", () => {
+
+        if (document.location.search?.includes("no-umami")) {
+            localStorage.setItem("umami.disabled", "1")
+        }
+
         // Only build umami after the DOM is fully ready.
         // To avoid race conditions around things like Title.
         // As always, this assumes all this is running
