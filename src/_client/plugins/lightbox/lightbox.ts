@@ -1,11 +1,11 @@
-const ClassFilter = "prose";
 const BackdropId = "light-box-backdrop";
 const TailwindAnimationTimeoutMs = 0.15 * 100;
 
 export function attachLightBox() {
     addEventListener("DOMContentLoaded", () => {
         addEventListener("click", (event) => {
-            if (event.target instanceof HTMLImageElement && isWithinFilter(event.target)) {
+            if (event.target instanceof HTMLImageElement
+                && event.target.classList.contains("lightbox-subject")) {
                 toggleLightbox(event.target);
             }
         });
@@ -52,7 +52,7 @@ function openLightbox(target: HTMLImageElement) {
         idealHeight / targetBounds.height,
     );
 
-    target.classList.add("lightbox-subject", "open");
+    target.classList.add("open");
     target.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale * 100}%)`;
     target.style.zIndex = "10";
 
@@ -82,17 +82,6 @@ function closeLightbox(target: HTMLImageElement) {
 
 function isLightboxOpen(target: HTMLImageElement) {
     return target.dataset.lightbox == "open";
-}
-
-function isWithinFilter(target: HTMLElement) {
-    // Walk upwards until either the root or a prose.
-    while (target && target instanceof HTMLElement) {
-        if (target.classList.contains(ClassFilter)) {
-            return true;
-        }
-        target = target.parentNode as HTMLElement;
-    }
-    return false;
 }
 
 function openLightboxBackdrop() {

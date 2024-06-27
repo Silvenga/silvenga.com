@@ -1849,6 +1849,7 @@ __metadata:
     markdown-it: "npm:^14.1.0"
     markdown-it-anchor: "npm:^9.0.1"
     markdown-it-highlightjs: "npm:^4.1.0"
+    markdown-it-image-figures: "npm:^2.1.1"
     markdown-it-toc-done-right: "npm:^4.2.0"
     node-cache: "npm:^5.1.2"
     nodemon: "npm:^3.1.4"
@@ -5873,6 +5874,15 @@ __metadata:
   dependencies:
     highlight.js: "npm:^11.9.0"
   checksum: 10/3bb8a3f4d9f1155e0465e489e58bd89c7fa9269b8bddc31469127f51459920048cca8710283be6ff2841bbe9bd5e8a772ae391a6cb92c1ee632229570f60eb92
+  languageName: node
+  linkType: hard
+
+"markdown-it-image-figures@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "markdown-it-image-figures@npm:2.1.1"
+  peerDependencies:
+    markdown-it: "*"
+  checksum: 10/e5f41d63427197d7d66101e484cfbf8b402c6498d47c6ecca4f52114e2630a48f43bbc4fb63e0de143fa6b8259a4d67fbf4ab18e989d702e5f784484c820fd56
   languageName: node
   linkType: hard
 

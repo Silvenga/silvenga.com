@@ -39,10 +39,10 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                 {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
             <div className="prose pose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
-            <footer className="mt-24">
+            <footer className="my-24">
                 <AuthorCard />
-                <div className="text-center mt-9">
-                    Written under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer noopener" target="_blank" className="link">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                <div className="text-center mt-6">
+                    Written under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer noopener" target="_blank" className="link link-hover">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
                 </div>
             </footer>
         </article>

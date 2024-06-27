@@ -1,10 +1,11 @@
-import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
-import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
-
-import { HighlightOptions } from "markdown-it-highlightjs/types/core";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
-import markdownItHighlightjs from "markdown-it-highlightjs";
+import { HighlightOptions } from "markdown-it-highlightjs/types/core";
+import markdownItHighlightjs from "markdown-it-image-figures";
+import markdownItImageFigures from "markdown-it-image-figures";
+import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
+import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
+import { ImageClassesOptions, imageClasses } from "./image-classes/image-classes";
 import { prefixDocument } from "./prefix-document/prefix-document";
 
 export function buildMarkdownLibrary() {
@@ -16,6 +17,13 @@ export function buildMarkdownLibrary() {
 
     const markdownItTaskListOptions: MarkdownItTaskListOptions = {};
     const highlightOptions: HighlightOptions = {};
+
+    const imageClassesOptions: ImageClassesOptions = {
+        classes: ["lightbox-subject"]
+    }
+    const markdownItImageFiguresOptions = {
+        figcaption: true
+    }
 
     const markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
         level: 2,// Start at H2.
@@ -42,6 +50,8 @@ export function buildMarkdownLibrary() {
         .use(prefixDocument, { content: "[[toc]]" })
         .use(tasklist, markdownItTaskListOptions)
         .use(markdownItHighlightjs, highlightOptions)
+        .use(imageClasses, imageClassesOptions)
+        .use(markdownItImageFigures, markdownItImageFiguresOptions)
         .use(markdownItAnchor, markdownItAnchorOptions)
 
         // Incorrect typings referencing a different markdownItToc.
