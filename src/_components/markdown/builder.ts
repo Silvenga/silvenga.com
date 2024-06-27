@@ -1,7 +1,7 @@
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import markdownItHighlightjs from "markdown-it-highlightjs";
 import { HighlightOptions } from "markdown-it-highlightjs/types/core";
-import markdownItHighlightjs from "markdown-it-image-figures";
 import markdownItImageFigures from "markdown-it-image-figures";
 import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
 import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
@@ -23,7 +23,7 @@ export function buildMarkdownLibrary() {
         classes: ["lightbox-subject"]
     }
     const markdownItImageFiguresOptions = {
-        figcaption: true
+        figcaption: "title"
     }
 
     const markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
