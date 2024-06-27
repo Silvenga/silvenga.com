@@ -10,7 +10,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
     if (!description) {
         console.warn(`[warning - RootLayout] No description set for page '${page.inputPath}'.`);
 
-        if (process.env["GITHUB_ACTIONS"] != "true") {
+        if (process.env["GITHUB_ACTIONS"] == "true") {
             console.warn(`::warning file=${page.inputPath},title=HTML Description Missing::No description was rendered, this should be corrected by adding the appropriate front-matter.`)
         }
     }
