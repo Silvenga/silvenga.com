@@ -62,7 +62,7 @@ function Model({ model }: { model: PrintableModel }) {
             </h2>
 
             <div className="flex flex-col-reverse lg:flex-row border-t border-b">
-                <img className="basis-2/5 object-cover w-[100%] h-auto"
+                <img className="basis-2/5 object-cover w-[100%] h-auto lightbox-subject"
                     src={`https://media.printables.com/${model.image.filePath}`}
                     alt="Model preview." />
                 <div className="flex flex-col p-6 basis-3/5 grow-0">
