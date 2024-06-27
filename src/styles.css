@@ -83,17 +83,22 @@
     @apply bg-black dark:bg-white;
   }
 
-  .prose img {
-    @apply rounded;
-    @apply w-auto max-h-96 max-w-96 mx-auto;
-  }
+  .prose {
+    img {
+      @apply rounded w-auto max-h-96 max-w-96 mx-auto;
+    }
 
-  .header-anchor {
-    @apply no-underline hover:underline;
+    figcaption {
+      @apply text-center;
+    }
 
-    &::after {
-      content: "#";
-      @apply hidden hover:inline-block no-underline ms-2 opacity-50;
+    .header-anchor {
+      @apply no-underline hover:underline;
+
+      &::after {
+        content: "#";
+        @apply hidden hover:inline-block no-underline ms-2 opacity-50;
+      }
     }
   }
 }
