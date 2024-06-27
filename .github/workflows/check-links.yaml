@@ -1,0 +1,16 @@
+name: Check Links
+
+on:
+  schedule:
+    - cron: "15 14 * * 3" # Random time each week.
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Check External Links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check links with linkcheck
+        uses: filiph/linkcheck@3.0.0
+        with:
+          arguments: -e https://silvenga.com
