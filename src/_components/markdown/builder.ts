@@ -7,6 +7,7 @@ import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
 import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
 import { ImageClassesOptions, imageClasses } from "./image-classes/image-classes";
 import { prefixDocument } from "./prefix-document/prefix-document";
+import { tocHeader } from "./toc-header/toc-header";
 
 export function buildMarkdownLibrary() {
 
@@ -27,17 +28,13 @@ export function buildMarkdownLibrary() {
 
     const markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
         level: 2,// Start at H2.
-        permalink: markdownItAnchor.permalink.linkAfterHeader({
-            style: "visually-hidden",
-            assistiveText: (title: string) => `Permalink to "${title}"`,
-            visuallyHiddenClass: "sr-only",
-            class: "absolute top-0 left-[-1rem]",
-            wrapper: ["<div class=\"relative ml-[1rem]\">", "</div>"]
+        permalink: markdownItAnchor.permalink.headerLink({
+            class: "header-anchor not-prose"
         })
     };
 
     const markdownItTocOptions: Partial<TocOptions> = {
-        containerClass: "toc ms-[2ch] mb-9",
+        containerClass: "toc",
         listClass: "list list-none p-0 ps-[2ch]",
         itemClass: "item p-0",
         linkClass: "no-underline hover:underline text-lg flex items-center",
@@ -56,6 +53,7 @@ export function buildMarkdownLibrary() {
 
         // Incorrect typings referencing a different markdownItToc.
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        .use(markdownItTocDoneRight, markdownItTocOptions);
+        .use(markdownItTocDoneRight, markdownItTocOptions)
+        .use(tocHeader);
 }
 

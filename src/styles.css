@@ -87,14 +87,20 @@
     @apply rounded;
     @apply w-auto max-h-96 max-w-96 mx-auto;
   }
+
+  .header-anchor {
+    @apply no-underline hover:underline;
+
+    &::after {
+      content: "#";
+      @apply hidden hover:inline-block no-underline ms-2 opacity-50;
+    }
+  }
 }
 
 /* Lightbox Styles */
-.prose img {
-  @apply cursor-pointer;
-}
 img.lightbox-subject {
-  @apply transition-all relative;
+  @apply transition-all relative cursor-pointer;
 
   &.open {
     @apply cursor-zoom-out rounded-none drop-shadow;
