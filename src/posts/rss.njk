@@ -19,7 +19,7 @@ layout: null
     <item>
       <title>{{ post.data.title }}</title>
       <link>{{ absolutePostUrl }}</link>
-      <description>{{ post.data.description }}</description>
+      <description><![CDATA[{{ post.data.description }}]]></description>
       <pubDate>{{ post.data.created | dateToRfc822 }}</pubDate>
       <dc:creator>{{ post.data.author }}</dc:creator>
       <guid>{{ absolutePostUrl }}</guid>
