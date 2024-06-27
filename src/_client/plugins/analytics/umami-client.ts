@@ -1,8 +1,5 @@
 // https://umami.is/docs/api/sending-stats
 
-// Cache this to work around possible ways to load this module when using a dev-server.
-const data = document.currentScript?.dataset;
-
 export type UmamiClient = {
     readonly enabled: boolean;
     readonly trackView: () => Promise<void>;
@@ -43,6 +40,16 @@ function buildContext() {
 
     // This all assumes this is not a single page application.
     // Reduces code substantially, however, this MUST be loaded only as deferred (not async).
+
+    // Merge all script data attributes.
+    let data: Record<string, string | undefined> = {};
+    for (let i = 0; i < document.scripts.length; i++) {
+        const script = document.scripts[i];
+        data = {
+            ...data,
+            ...script.dataset
+        }
+    }
 
     // Settings
     const allowedDomains = data?.umamiDomains?.split(",").map(x => x.trim().toLowerCase()) ?? [];
