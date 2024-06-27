@@ -10,7 +10,7 @@ export type PostsLayoutProps = {
 export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, created, archived }: PostsLayoutProps) {
 
     const postTags = tags?.filter(tag => collections.publicTags.find(x => x == tag));
-    const editLink = `https://github.com/Silvenga/silvenga.com/blame/master/${page.inputPath}`;
+    const editLink = getEditUrl(page.inputPath);
 
     return (
         <article>
@@ -69,4 +69,11 @@ function ArchivedWarningCard({ archived }: { archived: Date }) {
             </p>
         </section>
     );
+}
+
+function getEditUrl(inputPath: string) {
+    if (inputPath.startsWith("./") || inputPath.startsWith(".\\")) {
+        inputPath = inputPath.substring(2);
+    }
+    return `https://github.com/Silvenga/silvenga.com/blame/master/${inputPath}`
 }
