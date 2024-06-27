@@ -39,22 +39,6 @@ jobs:
           path: dist
           if-no-files-found: error
 
-  deploy-github-pages:
-    name: Deploy to GitHub Pages
-    needs: build
-    if: github.ref_name == 'master'
-    concurrency: github-pages
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
   deploy-rabbit-edge:
     name: Deploy to Rabbit Edge
     needs: build
@@ -85,7 +69,6 @@ jobs:
     name: Update IndexNow
     needs:
       - deploy-rabbit-edge
-      - deploy-github-pages
     if: github.ref_name == 'master'
     runs-on: ubuntu-latest
     steps:
