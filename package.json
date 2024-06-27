@@ -21,11 +21,11 @@
   "parcelIgnore": [
     "http://",
     "https://",
-    "ftp://",
-    "/posts/rss.xml"
+    "ftp://"
   ],
   "alias": {
-    "./img/*": "./.cache/eleventy/img/$1"
+    "./img/*": "./.cache/eleventy/img/$1",
+    "./posts/rss.xml": "./.cache/eleventy/posts/rss.xml"
   },
   "@parcel/resolver-default": {
     "packageExports": true
