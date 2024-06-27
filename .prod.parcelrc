@@ -1,11 +1,5 @@
 {
   "extends": "./.parcelrc",
-  "compressors": {
-    "*.{html,css,js,svg}": [
-      "...",
-      "@parcel/compressor-brotli"
-    ]
-  },
   "reporters": [
     "...",
     "parcel-reporter-static-files-copy"
