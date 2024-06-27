@@ -84,8 +84,8 @@
   }
 
   .prose img {
-    @apply rounded drop-shadow;
-    @apply w-auto max-h-72 mx-auto;
+    @apply rounded;
+    @apply w-auto max-h-96 max-w-96 mx-auto;
   }
 }
 
@@ -97,7 +97,7 @@ img.lightbox-subject {
   @apply transition-all relative;
 
   &.open {
-    @apply cursor-zoom-out rounded-none;
+    @apply cursor-zoom-out rounded-none drop-shadow;
   }
 }
 .lightbox-backdrop {
