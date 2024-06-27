@@ -34,14 +34,6 @@
     {
       "staticPath": ".cache/eleventy/robots.txt",
       "staticOutPath": ""
-    },
-    {
-      "staticPath": ".cache/eleventy/.nojekyll",
-      "staticOutPath": ""
-    },
-    {
-      "staticPath": ".cache/eleventy/posts/rss.xml",
-      "staticOutPath": "posts"
     }
   ],
   "scripts": {
@@ -51,8 +43,8 @@
     "eleventy:watch": "cross-env SUPPRESS_GIT=1 nodemon --watch './src/**/*' --watch eleventy.config.ts --ext '*' --ignore './src/_client/**/*' --ignore './src/*.css' --exec yarn eleventy:build",
     "eleventy:build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
     "parcel": "parcel",
-    "parcel:start": "parcel --port 9999 --config .parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml' '.cache/eleventy/posts/rss.xml'",
-    "parcel:build": "parcel build --config .prod.parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml' '.cache/eleventy/posts/rss.xml'",
+    "parcel:start": "parcel --port 9999 --config .parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml'",
+    "parcel:build": "parcel build --config .prod.parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml'",
     "sri-dist": "posthtml -u posthtml-sri --posthtml-sri.basePath=dist/ dist/**/*.html",
     "lint": "eslint --max-warnings=0 src",
     "start": "concurrently \"yarn:eleventy:watch\" \"yarn:parcel:start\" --restart-tries -1",
@@ -96,6 +88,7 @@
     "markdown-it-anchor": "^9.0.1",
     "markdown-it-highlightjs": "^4.1.0",
     "markdown-it-toc-done-right": "^4.2.0",
+    "node-cache": "^5.1.2",
     "nodemon": "^3.1.4",
     "parcel": "2.12.0",
     "parcel-reporter-static-files-copy": "^1.5.3",
