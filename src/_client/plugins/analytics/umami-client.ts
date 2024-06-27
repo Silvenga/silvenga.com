@@ -49,8 +49,6 @@ function buildContext() {
     const websiteId = data?.umamiWebsiteId?.trim();
     const endpoint = data?.umamiEndpoint?.trim();
 
-    console.log({ allowedDomains, websiteId, endpoint, data }, { origin: location.hostname });
-
     // Enabled
     const enabled = !!websiteId
         && !!endpoint
@@ -81,8 +79,6 @@ function buildContext() {
             settings,
             defaultPayload
         };
-    } else {
-        console.log("Analytics disabled.")
     }
 }
 

@@ -1,5 +1,5 @@
 import { throttle } from "@martinstark/throttle-ts";
-import { UmamiClient, buildUmamiClient } from "../clients/umami-client";
+import { UmamiClient, buildUmamiClient } from "./umami-client";
 
 // A micro-optimization to reduce bundle size.
 const eventListenerOptions: AddEventListenerOptions = {

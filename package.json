@@ -48,7 +48,7 @@
     "tailwindcss": "tailwindcss",
     "nodemon": "nodemon",
     "eleventy": "eleventy",
-    "eleventy:watch": "cross-env SUPPRESS_GIT=1 nodemon --watch './src/**/*' --watch eleventy.config.ts --ext '*' --ignore './src/_client/**/*' --exec yarn eleventy:build",
+    "eleventy:watch": "cross-env SUPPRESS_GIT=1 nodemon --watch './src/**/*' --watch eleventy.config.ts --ext '*' --ignore './src/_client/**/*' --ignore './src/*.css' --exec yarn eleventy:build",
     "eleventy:build": "tsx node_modules/@11ty/eleventy/cmd.cjs --config=eleventy.config.ts",
     "parcel": "parcel",
     "parcel:start": "parcel --port 9999 --config .parcelrc --cache-dir .cache/parcel '.cache/eleventy/**/*.html' '.cache/eleventy/**/*.xml' '.cache/eleventy/posts/rss.xml'",

@@ -1,4 +1,5 @@
-import { attachAnalytics } from "./areas/analytics";
+import { attachAnalytics } from "./plugins/analytics/analytics";
+import { attachLightBox } from "./plugins/lightbox/lightbox";
 
 export function main() {
 
@@ -7,4 +8,5 @@ export function main() {
     });
 
     attachAnalytics();
+    attachLightBox();
 }
