@@ -3,6 +3,7 @@ title: Setup Apache to Serve Ghost Blogs
 date: 2014-07-11
 description: Using Apache as a reverse proxy to service a Ghost instance.
 aliases: /setup-apache-to-serve-ghost-blog/index.html
+archived: 2024-06-27
 ---
 
 I recently got a request to write a tutorial on how to set up a pre-existing Ghost blog to be served by Apache (the master web server) under the root domain. To add a twist, I will also show how to use Apache as a caching server for the static content of Ghost.
@@ -115,4 +116,4 @@ sudo service apache2 restart
 ```
 Done! Lets take a look and see if Apache is working correctly. Goto your domain listed in the `vhost.conf` file on the default port 80.
 
-> Update: Forgot the `mod_proxy_http` to provide `mod_proxy_balancer` support for HTTP. Thanks [Jon](http://jensencloud.com)!
+> Update: Forgot the `mod_proxy_http` to provide `mod_proxy_balancer` support for HTTP. Thanks Jon!

@@ -15,8 +15,8 @@ I'm a software engineer specializing in .NET, my day job is in security which in
 
 There are two version of the KeebMonkey software that I've found, different builds from different locations:
 
-- [35inchENG.rar (Alibaba Cloud)](https://kbmscreen.oss-us-east-1.aliyuncs.com/35inchENG.rar)
-- [KeebMonkey PC Status Monitor.zip (Digital Ocean)](https://sfo3.digitaloceanspaces.com/drivers/KeebMonkey%20PC%20Status%20Monitor.zip)
+- [35inchENG.rar (Alibaba Cloud, Archived Link)](http://web.archive.org/web/20220831050108/https://kbmscreen.oss-us-east-1.aliyuncs.com/35inchENG.rar)
+- [KeebMonkey PC Status Monitor.zip (Digital Ocean, Archived Link)](http://web.archive.org/web/20211228000308/https://sfo3.digitaloceanspaces.com/drivers/KeebMonkey%20PC%20Status%20Monitor.zip)
 
 Both were considered going forward.
 

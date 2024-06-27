@@ -25,7 +25,7 @@ This setup process will provide everything you need to setup Tinc using TAP. I a
 
 I'm going to have two servers in this post - Obama and Mccain. They want to talk directly with each other. Neither will be the only a server, or only a client, both will be an equal peer.
 
-To install Tinc I recommend getting the latest version. Right now Ubuntu is lagging behind, so I need to get the latest version though a `.deb`. The following uses 32-bit tinc. If you're running 64-bit use: ([http://mirrors.kernel.org/ubuntu/pool/universe/t/tinc/tinc_1.0.24-2.1_amd64.deb](http://mirrors.kernel.org/ubuntu/pool/universe/t/tinc/tinc_1.0.24-2.1_amd64.deb)).
+To install Tinc I recommend getting the latest version. Right now Ubuntu is lagging behind, so I need to get the latest version though a `.deb`. The following uses 32-bit tinc. If you're running 64-bit use: ~~[http://mirrors.kernel.org/ubuntu/pool/universe/t/tinc/tinc_1.0.24-2.1_amd64.deb](http://mirrors.kernel.org)~~.
 
 If you can't find the correct packages from Ubuntu's Repo's checkout Debain's. Most of these will work without issues.
 

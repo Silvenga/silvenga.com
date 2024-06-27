@@ -3,6 +3,7 @@ title: Silvenga's Penlighter
 date: 2014-03-14
 description: I present a solution to disappearing mice, a PenLighter!
 aliases: /pen-lighter/index.html
+archived: 2024-06-27
 ---
 
 ![A standard drawing tablet.](/posts/archive/content/images/2014/Mar/tablet_use_bamboo.jpg)
@@ -17,13 +18,13 @@ In case you can't see, my mouse is in the middle of the circle. My issue was los
 
 I started off using [Pen Attention](http://www.math.uaa.alaska.edu/~afkjm/PenAttention/). This was the only program that I could find for my uses. Pen Attention basically created a small colored circle around my mouse so I could easily find my pen. A great program, unfortunately I had some issues with lag. When I wrote too fast Pen Attention caused my pen to run roge for a couple of seconds. And when writing notes, this could get quite annoying. The reason I assumed was due to the slightly outdated code (or being written in C++). So no easy solution.
 
-So one night I sat down and re-wrote my own version from scratch with speed and usability in mind. My project worked so well I've decided to release the program under the MIT licence ([link](/mit)). Here is a shot of the mouse running my version:
+So one night I sat down and re-wrote my own version from scratch with speed and usability in mind. My project worked so well I've decided to release the program under the MIT license. Here is a shot of the mouse running my version:
 
 ![Cursor with PenLighter.](/posts/archive/content/images/2014/Jun/2014-06-21_21-29-09.png)
 
 The program runs in the tray. Just right click to access the settings. It is completely portable (stick it on a thumb drive), saves settings to a file in the root of the program, fast, and efficient. I behold Silvenga's Pen Lighter.
 
-Just download and run in Windows 8 (< 8 requires .Net Framework 4.5 to be installed, [link](http://www.microsoft.com/en-us/download/details.aspx?id=30653)).
+Just download and run in Windows 8 (< 8 requires .Net Framework 4.5 to be installed).
 
 [Download Silvenga's Penlighter (v1.0.0)](https://github.com/Silvenga/Slight.PenLighter/releases/tag/v1.0.0)
 
