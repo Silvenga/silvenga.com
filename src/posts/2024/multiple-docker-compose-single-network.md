@@ -34,8 +34,16 @@ What's nice about manually created networks, everything you would expect to work
 
 Now specifying this manually created network is rather straight forward, there's two sections involved that would be set on each Docker Compose projects you have.
 
-1. On the top-level of the `docker-compose.yaml` file, specify the manually created network (again `internal` in this example). To tell docker-compose to suppress the default managing of the network, `external: true` is used.
-2. On the container's themselves, specify the manually created network, and this can be done in two ways:
+**First**, on the top-level of the `docker-compose.yaml` file, specify the manually created network (again `internal` in this example). To tell docker-compose to suppress the default managing of the network, `external: true` is used.
+
+```yaml
+services: {}
+networks:
+  internal:
+    external: true
+```
+
+And **second**, on the container's themselves, specify the manually created network, and this can be done in two ways:
 
 Using YAML list syntax:
 
