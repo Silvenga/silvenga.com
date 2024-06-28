@@ -34,6 +34,8 @@ What's nice about manually created networks, everything you would expect to work
 
 Now specifying this manually created network is rather straight forward, there's two sections involved that would be set on each Docker Compose projects you have.
 
+> If you use the [VS Code Docker extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) - you have access to both syntax checking, auto-complete, and inline-documentation.
+
 **First**, on the top-level of the `docker-compose.yaml` file, specify the manually created network (again `internal` in this example). To tell docker-compose to suppress the default managing of the network, `external: true` is used.
 
 ```yaml
@@ -65,6 +67,54 @@ services:
 ```
 
 Note that here I'm specifying a static IP address for the container. If no address is specified, a dynamic IP address will be assigned based on your IP range when creating the network (still a static IP address, just dynamically assigned by Docker, e.g. DHCP isn't being used here).
+
+There's a lot of options you have access to when using YAML object syntax, for example, `aliases`:
+
+```yaml
+services:
+  container-name:
+    networks:
+      internal:
+        aliases: another-container-name
+```
+
+> Aliases allows you to provide alternative and resolvable names within the network specified. So for example here, containers within the `internal` network will be able to resolve `another-container-name`  and get the IP address of this container.
+
+## The Default Network
+
+So you might notice that when you bring up this Docker Compose, that the default network is still being created by Docker Compose (in this example, `example_default`):
+
+```bash
+docker network ls
+```
+
+```plaintext
+NETWORK ID     NAME                   DRIVER    SCOPE
+a630ed9afd18   bridge                 bridge    local
+fad3332fd852   host                   host      local
+f40395ee9d81   internal               bridge    local
+777234d10d74   none                   null      local
+9cae4069da0e   example_default        bridge    local
+```
+
+Implicitly, the Docker Compose will create a network called `default` as well as set `networks` to `default`
+
+```yaml
+services:
+  container-name:
+    networks:
+      - default
+```
+
+This is neat because this allows you to expose individual containers to the "external" network.
+
+```yaml
+services:
+  container-name:
+    networks:
+      - default
+      - internal
+```
 
 ## An Example
 
@@ -127,7 +177,7 @@ I'm also configuring my warrior container to use the DNS container above (with t
 
 ## Bonus: Traefik
 
-[Traefik](https://doc.traefik.io/traefik/) (Pronounced "Traffic") is a common ingress container for Docker - it can automatically find your containers and act as a reverse proxy for them. This is really cool when you combine Traefik's native Let's Encrypt support and any containers you want to host on the same HTTPS port.
+[Traefik](https://doc.traefik.io/traefik/) (Pronounced "Traffic") is a common ingress container for Docker - it can automatically find your containers and act as a reverse proxy for them. This is really cool when you combine Traefik's native [Let's Encrypt](https://letsencrypt.org/) support and any containers you want to host on the same HTTPS port.
 
 A common problem when using `traefik` occurs when you have multiple Docker Composes, normally each compose project creates an isolated network - so different container projects can't really talk to each other - and this messes up Traefik (since Traefik is also running in a separate network).
 
