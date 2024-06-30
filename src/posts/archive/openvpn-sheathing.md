@@ -3,6 +3,7 @@ title: OpenVPN Sheathing
 date: 2014-04-18
 description: Sheathing OpenVPN traffic through a SSL tunnel using STunnel.
 aliases: /openvpn-sheathing/index.html
+archived: 2024-06-30
 ---
 
 ![OpenVPN Logo](/posts/archive/content/images/2016/10/openvpntech_logo1.png)

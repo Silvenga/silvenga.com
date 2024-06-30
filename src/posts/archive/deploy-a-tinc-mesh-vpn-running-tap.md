@@ -3,6 +3,7 @@ title: Deploy a Tinc Mesh VPN Running TAP
 date: 2014-07-14
 description: Yet another how-to on setting up a mesh network using Tinc (in TAP mode).
 aliases: /deploy-a-tinc-mesh-vpn-running-tap/index.html
+archived: 2024-06-30
 ---
 
 ![Mesh Network](/posts/archive/content/images/2014/Jul/generalMesh.gif)
@@ -13,7 +14,7 @@ The answer is amazingly simple - Tinc is a mesh network. I have servers across t
 
 This sucks. Imagine if the OpenVPN server is in Florida, the two servers who want to talk to each other are located in California. These two servers have less than 1ms latency between them, but to chat they need to send their bits from California through 2,661 miles of (hopefully) glass, to Florida, and then back. If this journey takes 600 ms, that is an 599 ms overhead.
 
- Tinc solves this problem by using the mesh network strategy. In a mesh network, every node (rather than just the server and client) can relay traffic. Each node attempt direct connections to chat with one another. So instead of that 600ms round trip, I can hit < 1ms - a 600% improvement. If thats not a good reason, I don't know what is.
+ Tinc solves this problem by using the mesh network strategy. In a mesh network, every node (rather than just the server and client) can relay traffic. Each node attempt direct connections to chat with one another. So instead of that 600ms round trip, I can hit < 1ms - a 600% improvement. If that's not a good reason, I don't know what is.
 
 In my small network (less than 20 nodes) Tinc is a perfect replacement to OpenVPN. Tinc provides the same security, the same TAP connections, is cross platform (Mac, Linux, Windows, Android), and is pretty stable (no issues so far). Although the documentation is rather lacking (took me a while to compile this tutorial).
 
@@ -28,8 +29,6 @@ I'm going to have two servers in this post - Obama and Mccain. They want to talk
 To install Tinc I recommend getting the latest version. Right now Ubuntu is lagging behind, so I need to get the latest version though a `.deb`. The following uses 32-bit tinc. If you're running 64-bit use: ~~[http://mirrors.kernel.org/ubuntu/pool/universe/t/tinc/tinc_1.0.24-2.1_amd64.deb](http://mirrors.kernel.org)~~.
 
 If you can't find the correct packages from Ubuntu's Repo's checkout Debain's. Most of these will work without issues.
-
-
 
 ```bash
 # I like a clean workspace
@@ -49,7 +48,6 @@ apt-get install -f
 rm tinc_1.0.24-2.1_i386.deb
 ```
 
-
 We should be good with the install. Do this for both servers.
 
 ## Configure Tinc
@@ -67,8 +65,9 @@ cd ./master
 
 Each node must have at least two files, and an optional third - `tinc.conf`, `tinc-up`, and `tinc-down`, respectively. Lets make those now on each node.
 
-#### tinc.conf
-```
+### tinc.conf
+
+```plaintext
 # The name of the node, must be unique for the network
 Name = obama
 
@@ -91,14 +90,17 @@ ConnectTo = mccain
 
 This one is for Obama, make sure to `name` the other server differently (Mccain).
 
-#### tinc-up
+### Tinc-up
+
 ```bash
 #!/bin/sh
 ifconfig $INTERFACE 10.6.0.1 netmask 255.255.0.0
 ```
+
 Obama will have `10.6.0.1` as its address. Setup Mccain to something different (`10.6.0.2` would work). Make sure to include `#!/bin/sh`, else Tinc might have issues.
 
-#### tinc-down
+### Tinc-down
+
 ```bash
 #!/bin/sh
 ifconfig $INTERFACE down
@@ -111,19 +113,23 @@ We need to allow Tinc to execute these last two files.
 ```bash
 sudo chmod +x tinc-*
 ```
+
 Now we need to make host files. These files point Tinc to each other, and allows direct connections. These files are safe and required to share around.
 
 Each node needs to make this locally. The format is simple. Name the host file after the local name give in the tinc.conf file.
 
-#### hosts/obama
-```
+### hosts/obama
+
+```plaintext
 Address = obama.example.com
 Subnet = 10.0.0.0/16
 ```
+
 That's all that is required in TAP switch mode. Routes are discovered automatically. `Address` tells Tinc where to look, luckily we can use a DNS name or IP address. `Subnet` tells Tinc where to automatically discover and is not strictly required. If you use a subnet, make sure that it's correct.
 
 Final step here is to generate private keys for every peer. On each node run this command to automatically do this. The `-k` generates the key for the local peer in the `master` network.
-```
+
+```plaintext
 sudo tincd -n master -K
 ```
 
@@ -132,6 +138,7 @@ After generating keys, make sure to share the updated host file for the local no
 ## Running Tinc
 
 After we share the host files around we can start Tinc.
+
 ```bash
 sudo tincd -n master
 ```
@@ -139,6 +146,7 @@ sudo tincd -n master
 `-n <network name>` is used to specify a particular (you can multiple networks on the same server).
 
 To kill Tinc use `-k`.
+
 ```bash
 sudo tincd -n master -k
 ```

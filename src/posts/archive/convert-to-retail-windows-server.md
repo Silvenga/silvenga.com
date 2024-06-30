@@ -2,6 +2,7 @@
 title: Convert Windows 2016 Eval to Retail
 description: How to convert a Windows Server 2016 trial installation to full retail.
 aliases: /convert-to-retail-windows-server/index.html
+archived: 2024-06-30
 ---
 
 ![Command line, using DISM to convert to retail.](/posts/archive/content/images/2017/dism.png)
@@ -20,7 +21,7 @@ DISM /Online /Set-Edition:ServerDatacenter /ProductKey:<key for blah> /AcceptEul
 
 From what I gather the `Set-Edition` option can be either of the following:
 
-```
+```plaintext
 ServerDatacenter
 ServerStandard
 ServerDatacenterCor
