@@ -53,7 +53,7 @@ I should mention that I use `kustomize` in my GitOps flow, mostly so I can:
 1. Apply non-destructive patches on "[vendored](https://stackoverflow.com/questions/26217488/what-is-vendoring) components" (so anything I take directly from a project), e.g. Helm charts. This helps maintainability and indirectly adds a level of "self-documentation".
 2. Git-diff changes separating from any customizations, e.g. custom labels/annotations, replicas, etc. This offers greater control that I'm used to when writing actual code.
 
-Some things I just don't want the Helm chart to generate, mostly secrets. I like to store encrypted-secrets in the Git-repository itself (e.g. using [`sealed-secrets`](https://github.com/bitnami-labs/sealed-secrets)) - so I secret changes can also be tracked/audited. Of course, this is also a "it depends" situation - a secret vault offers a lot of features that might be preferred (e.g. auto-key-rotation, better access control, etc.).
+Some things I just don't want the Helm chart to generate, mostly secrets. I like to store encrypted-secrets in the Git-repository itself (e.g. using [`sealed-secrets`](https://github.com/bitnami-labs/sealed-secrets)) - so secret changes can also be tracked/audited. Of course, this is also a "it depends" situation - a secret vault offers a lot of features that might be preferred (e.g. auto-key-rotation, better access control, etc.).
 
 With that tangent over, back to Helm.
 
