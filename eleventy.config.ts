@@ -72,13 +72,20 @@ export default function (eleventyConfig: UserConfig) {
         "eleventyComputed.eleventyExcludeFromCollections",
         function () {
             return (data: Record<string, unknown>) => {
-                // Hide drafts.
-                if (data.draft) {
+
+                // Always respect eleventyExcludeFromCollections.
+                if (data.eleventyExcludeFromCollections === true) {
                     return true;
                 }
-                // Hide archived.
-                if (data.archived) {
-                    return true;
+
+                const newExcludeList = Array.isArray(data.eleventyExcludeFromCollections)
+                    ? data.eleventyExcludeFromCollections as string[]
+                    : [];
+
+                // Hide drafts.
+                if (data.draft || data.archived) {
+                    newExcludeList.push("posts");
+                    return newExcludeList;
                 }
 
                 return data.eleventyExcludeFromCollections;
