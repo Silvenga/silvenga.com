@@ -3,7 +3,8 @@ import { PostsList } from "./_components/posts-list";
 
 export function data() {
   return {
-    description: "All posts I've published on this weblog."
+    description: "All posts I've published on this weblog.",
+    permalink: "/posts/index.html",
   }
 }
 

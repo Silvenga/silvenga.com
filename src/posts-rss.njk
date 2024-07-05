@@ -15,6 +15,7 @@ layout: null
     <language>en</language>
     <docs>https://www.rssboard.org/rss-specification</docs>
     {%- for post in collections.posts | reverse %}
+    {%- if not post.data.noIndex == true %}
     {%- set absolutePostUrl = post.url | absoluteUrl(site.baseUrl) %}
     <item>
       <title>{{ post.data.title }}</title>
@@ -24,6 +25,7 @@ layout: null
       <dc:creator>{{ post.data.author }}</dc:creator>
       <guid>{{ absolutePostUrl }}</guid>
     </item>
+    {%- endif -%}
     {%- endfor %}
   </channel>
 </rss>
