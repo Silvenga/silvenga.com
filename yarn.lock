@@ -447,10 +447,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource-variable/inter@npm:^5.0.18":
-  version: 5.0.18
-  resolution: "@fontsource-variable/inter@npm:5.0.18"
-  checksum: 10/d98cdd8d6e491541f206a949499a8b7d202f59d30900c23d5fd22433071da234a1116c77ab45c2bedc2dcc34fd18f9ba0b13854645a1e799fde8d1dbe33a06d1
+"@fontsource-variable/inter@npm:^5.0.19":
+  version: 5.0.19
+  resolution: "@fontsource-variable/inter@npm:5.0.19"
+  checksum: 10/1cd549f8ac2133d781b6f9504a4ae66dc2bcc1a6afcc2ff590673276f9e0aaab540033994010ad72c7dae2d08714467256ea9d649ad7861a58586c1f05e8cfe5
   languageName: node
   linkType: hard
 
@@ -1806,7 +1806,7 @@ __metadata:
     "@11ty/eleventy-img": "npm:^5.0.0-beta.4"
     "@11ty/eleventy-plugin-rss": "npm:^2.0.1"
     "@eslint/js": "npm:^9.6.0"
-    "@fontsource-variable/inter": "npm:^5.0.18"
+    "@fontsource-variable/inter": "npm:^5.0.19"
     "@martinstark/throttle-ts": "npm:^1.3.0"
     "@mdit/plugin-tasklist": "npm:^0.12.0"
     "@parcel/optimizer-data-url": "npm:2.12.0"
@@ -1854,8 +1854,8 @@ __metadata:
     rimraf: "npm:^5.0.7"
     tailwind-highlightjs: "npm:^2.0.1"
     tailwindcss: "npm:^3.4.4"
-    tsx: "npm:^4.16.0"
-    typescript: "npm:^5.5.2"
+    tsx: "npm:^4.16.2"
+    typescript: "npm:^5.5.3"
     typescript-eslint: "npm:8.0.0-alpha.39"
   languageName: unknown
   linkType: soft
@@ -8361,9 +8361,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.16.0":
-  version: 4.16.0
-  resolution: "tsx@npm:4.16.0"
+"tsx@npm:^4.16.2":
+  version: 4.16.2
+  resolution: "tsx@npm:4.16.2"
   dependencies:
     esbuild: "npm:~0.21.5"
     fsevents: "npm:~2.3.3"
@@ -8373,7 +8373,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10/6a81423bd63d80185079d4ac390325066ddc5e7d057a810ba6c7071e8b7535fa6a6bb0fd2494da68e6f61480ec0fb9f1f204f8655f0cfe40480896992748c46d
+  checksum: 10/841ccbace3dc0c42704bb5c4cea47e1f4cd313aa4719fd4531e5ed40bb862b02349c76f7c56c53b64207eebbb1c2ac2e117482aabfbf197a30fbc0b2584b60be
   languageName: node
   linkType: hard
 
@@ -8489,23 +8489,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.2":
-  version: 5.5.2
-  resolution: "typescript@npm:5.5.2"
+"typescript@npm:^5.5.3":
+  version: 5.5.3
+  resolution: "typescript@npm:5.5.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/9118b20f248e76b0dbff8737fef65dfa89d02668d4e633d2c5ceac99033a0ca5e8a1c1a53bc94da68e8f67677a88f318663dde859c9e9a09c1e116415daec2ba
+  checksum: 10/11a867312419ed497929aafd2f1d28b2cd41810a5eb6c6e9e169559112e9ea073d681c121a29102e67cd4478d0a4ae37a306a5800f3717f59c4337e6a9bd5e8d
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.5.2#optional!builtin<compat/typescript>":
-  version: 5.5.2
-  resolution: "typescript@patch:typescript@npm%3A5.5.2#optional!builtin<compat/typescript>::version=5.5.2&hash=379a07"
+"typescript@patch:typescript@npm%3A^5.5.3#optional!builtin<compat/typescript>":
+  version: 5.5.3
+  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/ac3145f65cf9e72ab29f2196e05d5816b355dc1a9195b9f010d285182a12457cfacd068be2dd22c877f88ebc966ac6e0e83f51c8586412b16499a27e3670ff4b
+  checksum: 10/7cf7acb78a80f749b82842f2ffe01e90e7b3e709a6f4268588e0b7599c41dca1059be217f47778fe1a380bfaf60933021ef20d002c426d4d7745e1b36c11467b
   languageName: node
   linkType: hard
 
