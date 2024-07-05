@@ -17,6 +17,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
     const type = getType(props.type);
     const publicTags = props.tags?.filter(tag => props.collections.publicTags.find(x => x == tag)) ?? [];
+    const noIndex = !!props.noIndex;
 
     return (
         <>
@@ -78,6 +79,10 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
                     {!!refreshUrl && (
                         <meta httpEquiv="Refresh" content={`0; URL=${this.url(site.baseUrl + refreshUrl)}`} />
+                    )}
+
+                    {!!noIndex && (
+                        <meta name="robots" content="noindex" />
                     )}
 
                     <script defer src="/src/client.ts" type="module"

@@ -12,6 +12,14 @@ export function render(this: RenderContext, { collections }: TemplateContext) {
     <>
       <h1 className="text-5xl font-light mb-6">All Posts</h1>
       <PostsList collection={collections["posts"]} />
+      <footer className="flex flex-col nt-12 mb-24 text-center">
+        <a href="/posts/archived/" className="link">
+          Archived posts
+        </a>
+        <a href="/posts/drafts/" className="link">
+          Unpublished drafts
+        </a>
+      </footer>
     </>
   )
 }

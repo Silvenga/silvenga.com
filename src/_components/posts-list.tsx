@@ -5,11 +5,23 @@ import { groupBy } from "./utilities/group-by";
 
 export type PostsListProps = {
     collection?: Collection;
+    archived?: boolean;
+    drafts?: boolean;
 }
 
-export function PostsList({ collection }: PostsListProps): ReactNode {
+export function PostsList({ collection, archived, drafts }: PostsListProps): ReactNode {
 
-    const sortedCollection = collection?.toSorted(({ data: { created: a } }, { data: { created: b } }) => a < b ? 1 : a > b ? -1 : 0) ?? [];
+    const filteredCollection = collection?.filter(x => {
+        if (archived) {
+            return !!x.data.archived;
+        }
+        if (drafts) {
+            return !!x.data.draft;
+        }
+        return !x.data.archived && !x.data.draft;
+    })
+
+    const sortedCollection = filteredCollection?.toSorted(({ data: { created: a } }, { data: { created: b } }) => a < b ? 1 : a > b ? -1 : 0) ?? [];
     const groupsByYear = groupBy(sortedCollection, x => x.data.created?.getFullYear() + "");
     const sortedKeys = Object.keys(groupsByYear).sort((a, b) => a < b ? 1 : -1)
 

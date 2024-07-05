@@ -6,7 +6,7 @@ layout: null
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {%- for item in collections.all %}
-    {%- if not item.data.sitemap.ignore == true %}
+    {%- if not item.data.noIndex == true %}
       <url>
         <loc>{{ site.baseUrl }}{{ item.url | url }}</loc>
         <lastmod>{{ item.data.updated | dateToIso }}</lastmod>
