@@ -1,3 +1,4 @@
+import hljs from "highlight.js"
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
 import markdownItHighlightjs from "markdown-it-highlightjs";
@@ -5,6 +6,8 @@ import { HighlightOptions } from "markdown-it-highlightjs/types/core";
 import markdownItImageFigures from "markdown-it-image-figures";
 import markdownItTocDoneRight, { TocOptions } from "markdown-it-toc-done-right";
 import { MarkdownItTaskListOptions, tasklist } from "@mdit/plugin-tasklist";
+import { fences } from "./fences/fences";
+import { hljsFencePlugin } from "./hljs-fence/hljs-fence";
 import { ImageClassesOptions, imageClasses } from "./image-classes/image-classes";
 import { prefixDocument } from "./prefix-document/prefix-document";
 import { tocHeader } from "./toc-header/toc-header";
@@ -17,14 +20,18 @@ export function buildMarkdownLibrary() {
     }
 
     const markdownItTaskListOptions: MarkdownItTaskListOptions = {};
-    const highlightOptions: HighlightOptions = {};
+
+    hljs.addPlugin(hljsFencePlugin);
+    const highlightOptions: HighlightOptions = {
+        hljs: hljs
+    };
 
     const imageClassesOptions: ImageClassesOptions = {
         classes: ["lightbox-subject"]
-    }
+    };
     const markdownItImageFiguresOptions = {
         figcaption: "title"
-    }
+    };
 
     const markdownItAnchorOptions: markdownItAnchor.AnchorOptions = {
         level: 2,// Start at H2.
@@ -47,6 +54,7 @@ export function buildMarkdownLibrary() {
         .use(prefixDocument, { content: "[[toc]]" })
         .use(tasklist, markdownItTaskListOptions)
         .use(markdownItHighlightjs, highlightOptions)
+        .use(fences, { hljs })
         .use(imageClasses, imageClassesOptions)
         .use(markdownItImageFigures, markdownItImageFiguresOptions)
         .use(markdownItAnchor, markdownItAnchorOptions)
