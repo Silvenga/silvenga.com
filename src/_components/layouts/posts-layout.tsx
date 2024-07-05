@@ -7,7 +7,7 @@ export type PostsLayoutProps = {
     children: JSX.Element;
 } & TemplateContext;
 
-export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, created, archived }: PostsLayoutProps) {
+export function PostsLayout(this: RenderContext, { tags, title, content, collections, page, created, updated, archived, draft }: PostsLayoutProps) {
 
     const postTags = tags?.filter(tag => collections.publicTags.find(x => x == tag));
     const editLink = getEditUrl(page.inputPath);
@@ -16,7 +16,17 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
         <article>
             <header className="mb-9">
                 <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
-                    <span className="sr-only">Published on</span> <ReadableDate dateTime={created} />
+                    {!draft
+                        ? (
+                            <>
+                                <span className="sr-only">Published on</span> <ReadableDate dateTime={created} />
+                            </>
+                        )
+                        : (
+                            <>
+                                <span className="font-bold">Unpublished</span>
+                            </>
+                        )}
                     <span className="mx-3 hidden sm:inline-block" aria-hidden>•</span>
                     <div className="flex">
                         <div><span className="sr-only">Takes approximately</span> {this.timeToRead(content)} <span className="sr-only">minutes to read</span></div>
@@ -39,10 +49,19 @@ export function PostsLayout(this: RenderContext, { tags, title, content, collect
                 {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
             <div className="prose pose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
-            <footer className="my-24">
-                <AuthorCard />
-                <div className="text-center mt-6">
-                    Written under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer noopener" target="_blank" className="link link-hover">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            <footer>
+                {!!updated && updated != created && (
+                    <p className="mt-12 text-center">
+                        Updated on <ReadableDate dateTime={updated} />
+                        <span className="mx-3" aria-hidden>•</span>
+                        <a className="link" href={editLink} rel="noreferrer noopener" target="_blank">Post History</a>
+                    </p>
+                )}
+                <div className="my-24">
+                    <AuthorCard />
+                    <div className="text-center mt-6">
+                        Written under the <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noreferrer noopener" target="_blank" className="link link-hover">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </div>
                 </div>
             </footer>
         </article>
