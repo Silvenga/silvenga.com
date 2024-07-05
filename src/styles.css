@@ -93,7 +93,7 @@
     }
 
     .header-anchor {
-      @apply no-underline hover:underline;
+      @apply no-underline hover:underline decoration-dashed decoration-gray-400;
 
       &::after {
         content: "#";
