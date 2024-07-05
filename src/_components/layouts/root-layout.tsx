@@ -38,6 +38,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
                     <meta name="generator" content={eleventy.generator} />
                     <meta name="updated-on" content={getIsoDateOrEmpty(props.updated)} />
+                    <meta name="color-scheme" content="dark light" />
 
                     <meta property="og:title" content={title || site.name} />
                     <meta property="og:url" content={canonicalUrl} />
