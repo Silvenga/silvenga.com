@@ -3,7 +3,7 @@ tags:
   - posts
   - linux
   - ubuntu
-title: "Bypassing the Installer: Manually Installing Ubuntu (or any Debian Distribution)"
+title: "Bypassing the Installer: Manually Installing Ubuntu"
 description: How I install Linux when the installer isn't flexible enough. Also, how I use BTRFS.
 ---
 ## Introduction
