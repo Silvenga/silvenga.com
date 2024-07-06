@@ -18,7 +18,7 @@ For installations, I use the official installers, but switch to a console after 
 
 ### Pre-Checks
 
-First I check for UEFI support on the machine - virtual or otherwise. I do that my checking if the UEFI was discovered by the kernel during boot:
+First I check for UEFI support on the machine - virtual or otherwise. I do that by checking if the UEFI was discovered by the kernel during boot:
 
 ```bash
 ls /sys/firmware/efi
@@ -29,7 +29,7 @@ If a file exists, then UEFI is supported and should be used. This will change ho
 Also, make sure all the needed tooling is installed:
 
 ```bash
-apt-get install debootstrap arch-install-scripts
+apt-get install debootstrap
 ```
 
 ### Prepare the Disk(s)
