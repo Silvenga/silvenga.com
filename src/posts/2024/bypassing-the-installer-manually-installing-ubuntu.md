@@ -29,8 +29,10 @@ If a file exists, then UEFI is supported and should be used. This will change ho
 Also, make sure all the needed tooling is installed:
 
 ```bash
-apt-get install debootstrap
+apt-get install debootstrap arch-install-scripts
 ```
+
+> And yes, it's been pointed out to me the irony of using Arch install helpers to install Ubuntu the Arch way.
 
 ### Prepare the Disk(s)
 
@@ -73,7 +75,7 @@ The first partition will be mounted to `/boot/efi`  and will contain the first-s
 On machines that don't support UEFI (older machines or KVM virtual machines, by default), the command changes:
 
 ```bash
-parted --script --align optimal -- /dev/vda \
+parted --script --align optimal -- /dev/sda \
   mklabel gpt \
   mkpart primary 1MiB 128MiB \
   set 1 bios_grub on \
