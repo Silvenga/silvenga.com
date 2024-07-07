@@ -1,0 +1,8 @@
+{
+  "title": "Posts",
+  "layout": "layouts/posts.11ty.tsx",
+  "permalink": "notes/{{ page.fileSlug }}/index.html",
+  "tags": [
+    "notes"
+  ]
+}
