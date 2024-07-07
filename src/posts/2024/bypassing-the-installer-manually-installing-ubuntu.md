@@ -68,7 +68,7 @@ mkfs.btrfs /dev/sda2
 
 The first partition will be mounted to `/boot/efi`  and will contain the first-stage bootloader.
 
-![The console program ncdu showing the space used by files in /boot/efi, around 6 MiB](/posts/images/efi-partition.png "You don't need much space.")
+![The console program ncdu showing the space used by files in /boot/efi, around 6 MiB](/posts/2024/images/efi-partition.png "You don't need much space.")
 
 **BIOS Boot**
 
