@@ -66,3 +66,11 @@ export function ModelIcon({ className, ariaHidden }: { className?: string, ariaH
             className={clsx("model-icon", className)} />
     );
 }
+
+export function MatrixIcon({ className }: { className?: string }) {
+    return (
+        <div role="img"
+            aria-label="Matrix icon"
+            className={clsx("matrix-icon", className)} />
+    );
+}
