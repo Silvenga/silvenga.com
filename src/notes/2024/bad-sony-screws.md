@@ -9,4 +9,4 @@ My plan is to thread-lock them, but while I'm at that, I'm replacing them with T
 
 ![Two black screws](/notes/2024/images/bad-screws.webp "These were so hard to photograph.")
 
-The one on the left is a M4 x 5mm PH3, pan-head. The right one is a M4 x 6mm PH3, flat-head, 45 degrees.
+The one on the left is a M4 x 5mm PH3, pan-head (maybe 6mm, length doesn't matter that much). The right one is a M4 x 6mm PH3, flat-head, 45 degrees.
