@@ -87,7 +87,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                         <meta name="robots" content="noindex" />
                     )}
 
-                    <script defer src="/src/client.ts" type="module"
+                    <script async src="/src/client.ts" type="module"
                         data-umami-website-id={site.umami?.websiteId}
                         data-umami-domains={site.umami?.domains}
                         data-umami-endpoint={site.umami?.endpoint} />

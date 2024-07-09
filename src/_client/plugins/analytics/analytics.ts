@@ -1,13 +1,14 @@
 import { throttle } from "@martinstark/throttle-ts";
+import { documentOnLoaded } from "../../on-load";
 import { UmamiClient, buildUmamiClient } from "./umami-client";
 
-// A micro-optimization to reduce bundle size.
+// Hoisted as a micro-optimization to reduce uncompressed bundle size.
 const eventListenerOptions: AddEventListenerOptions = {
     passive: true // Run events async.
 }
 
 export function attachAnalytics() {
-    addEventListener("DOMContentLoaded", () => {
+    documentOnLoaded(() => {
 
         if (document.location.search?.includes("no-umami")) {
             localStorage.setItem("umami.disabled", "1")

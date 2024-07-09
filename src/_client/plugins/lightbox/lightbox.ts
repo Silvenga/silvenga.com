@@ -1,8 +1,10 @@
+import { documentOnLoaded } from "../../on-load";
+
 const BackdropId = "light-box-backdrop";
-const TailwindAnimationTimeoutMs = 0.15 * 100;
+const TailwindAnimationTimeoutMs = 0.15 * 1000;
 
 export function attachLightBox() {
-    addEventListener("DOMContentLoaded", () => {
+    documentOnLoaded(() => {
         addEventListener("click", (event) => {
             if (event.target instanceof HTMLImageElement
                 && event.target.classList.contains("lightbox-subject")) {
