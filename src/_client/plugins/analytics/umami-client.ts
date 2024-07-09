@@ -39,7 +39,7 @@ export function buildUmamiClient(): UmamiClient {
 function buildContext() {
 
     // This all assumes this is not a single page application.
-    // Reduces code substantially, however, this MUST be loaded only as deferred (not async).
+    // Reduces code substantially.
 
     // Merge all script data attributes.
     let data: Record<string, string | undefined> = {};
