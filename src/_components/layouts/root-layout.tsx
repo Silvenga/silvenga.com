@@ -28,8 +28,9 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
                     <title>{pageTitle}</title>
-                    <link href="/src/styles.css" type="text/css" rel="stylesheet" />
-                    <link href="npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2" rel="preload" as="font" type="font/woff2" />
+
+                    <style dangerouslySetInnerHTML={{ __html: "@import \"/src/styles-stage-1.css\";" }} />
+                    <link href="/src/styles-stage-2.css" rel="stylesheet preload" as="style" type="text/css" />
 
                     <link rel="canonical" href={canonicalUrl} />
                     <link rel="alternate" type="application/rss+xml" href={this.url("/posts/rss.xml")} title="RSS Feed" />
