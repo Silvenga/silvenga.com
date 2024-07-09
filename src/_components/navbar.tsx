@@ -10,14 +10,12 @@ export function Navbar(this: RenderContext, { site, renderContent }: Pick<Templa
     ];
 
     return (
-        <nav className="mb-0 sm:mb-9 py-6">
-
+        <nav className="mb-0 sm:mb-9 py-6" role="banner">
             <div className="flex flex-1">
                 <div className="flex flex-1">
                     <BlogIcon className="h-6 w-6 aspect-square me-3" />
                     <a className="link link-hover text-xl" href="/">{site.name}</a>
                 </div>
-
                 <ul className="list-none flex">
                     {/* Shown in >= sm */}
                     {navLinks.map(x => (
@@ -39,7 +37,6 @@ export function Navbar(this: RenderContext, { site, renderContent }: Pick<Templa
                     </li>
                 </ul>
             </div>
-
             <ul className="list-none sm:hidden flex flex-1 mt-3">
                 {/* Shown in < sm */}
                 {navLinks.map(x => (
@@ -50,7 +47,6 @@ export function Navbar(this: RenderContext, { site, renderContent }: Pick<Templa
                     </li>
                 ))}
             </ul>
-
         </nav>
     )
 }
