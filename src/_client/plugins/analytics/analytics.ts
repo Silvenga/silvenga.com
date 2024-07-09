@@ -1,5 +1,6 @@
 import { throttle } from "@martinstark/throttle-ts";
 import { documentOnLoaded } from "../../on-load";
+import { CustomActionPayload, CustomEventName } from "./custom-actions";
 import { UmamiClient, buildUmamiClient } from "./umami-client";
 
 // Hoisted as a micro-optimization to reduce uncompressed bundle size.
@@ -42,6 +43,12 @@ export function attachAnalytics() {
             void onLinkClick(target, umami);
         }, eventListenerOptions);
 
+        window.addEventListener(CustomEventName, (e) => {
+            const customEvent = e as CustomEvent<CustomActionPayload>;
+            const payload = customEvent.detail;
+            void onCustomAction(umami, payload);
+        }, eventListenerOptions);
+
         void onReady(umami);
         void onHashChange(umami);
     }, eventListenerOptions);
@@ -79,4 +86,8 @@ async function onLinkClick(target: EventTarget | null, umami: UmamiClient) {
             href: target.href
         });
     }
+}
+
+async function onCustomAction(umami: UmamiClient, data: CustomActionPayload) {
+    await umami.trackEvent(data.name, data.data);
 }
