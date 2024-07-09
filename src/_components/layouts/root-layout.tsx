@@ -29,8 +29,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
                     <title>{pageTitle}</title>
 
-                    <style dangerouslySetInnerHTML={{ __html: "@import \"/src/styles-stage-1.css\";" }} />
-                    <link href="/src/styles-stage-2.css" rel="stylesheet preload" as="style" type="text/css" />
+                    <style dangerouslySetInnerHTML={{ __html: "@import \"/src/styles/styles-stage-1.css\";" }} />
+                    <link href="/src/styles/styles-stage-2.css" rel="stylesheet preload" as="style" type="text/css" />
 
                     <link rel="canonical" href={canonicalUrl} />
                     <link rel="alternate" type="application/rss+xml" href={this.url("/posts/rss.xml")} title="RSS Feed" />

@@ -1,0 +1,63 @@
+/*
+Originally from microtip.
+MIT License
+Copyright (c) 2017 Indrashish Ghosh
+*/
+
+[data-show-copied] {
+  position: relative;
+}
+
+[data-show-copied]::before,
+[data-show-copied]::after {
+  backface-visibility: hidden;
+  will-change: transform;
+  opacity: 1;
+  pointer-events: none;
+  transition: all var(--microtip-transition-duration, .18s) var(--microtip-transition-easing, ease-in-out) var(--microtip-transition-delay, 0s);
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 10;
+  transform-origin: top;
+  bottom: auto;
+  left: auto;
+  right: 100%;
+  top: 50%;
+  transform: translate3d(10px, -50%, 0);
+
+  animation: 1s ease-in 2 alternate forwards copiedToolTipIn;
+}
+
+[data-show-copied]::after {
+  background: rgba(17, 17, 17, .9);
+  @apply rounded text-white;
+  content: "Copied";
+  font-size: 13px;
+  font-weight: normal;
+  padding: .5em 1em;
+  white-space: nowrap;
+  box-sizing: content-box;
+  margin-right: calc(11px + 10px);
+}
+
+[data-show-copied]::before {
+  background-size: 100% auto !important;
+  content: "";
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2212px%22%20height%3D%2236px%22%3E%3Cpath%20fill%3D%22rgba%2817,%2017,%2017,%200.9%29%22%20transform%3D%22rotate%28-90%2018%2018%29%22%20d%3D%22M2.658,0.000%20C-13.615,0.000%2050.938,0.000%2034.662,0.000%20C28.662,0.000%2023.035,12.002%2018.660,12.002%20C14.285,12.002%208.594,0.000%202.658,0.000%20Z%22/%3E%3C/svg%3E") no-repeat;
+  height: 18px;
+  width: 6px;
+  margin-right: calc(5px + 10px);
+  margin-bottom: 0;
+}
+
+@keyframes copiedToolTipIn {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

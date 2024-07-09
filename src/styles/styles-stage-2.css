@@ -1,3 +1,6 @@
+@import "./copied-tooltip.css";
+@import "./lightbox.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,58 +19,58 @@
 
 @layer components {
   .avatar {
-    background: url("data-url:./assets/avatar.webp");
+    background: url("data-url:../assets/avatar.webp");
     background-size: contain;
     background-repeat: no-repeat;
   }
 
   .github-icon {
-    mask: url("data-url:./assets/github-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/github-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .mastodon-icon {
-    mask: url("data-url:./assets/mastodon-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/mastodon-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .rss-icon {
-    mask: url("data-url:./assets/rss-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/rss-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .blog-icon {
-    mask: url("data-url:./assets/blog-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/blog-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .link-icon {
-    mask: url("data-url:./assets/link-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/link-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .printables-icon {
-    mask: url("data-url:./assets/printables-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/printables-icon.svg") center/contain no-repeat;
     @apply bg-white dark:bg-white;
   }
 
   .heart-icon {
-    mask: url("data-url:./assets/heart-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/heart-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .printer-icon {
-    mask: url("data-url:./assets/printer-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/printer-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .model-icon {
-    mask: url("data-url:./assets/model-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/model-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
   .matrix-icon {
-    mask: url("data-url:./assets/matrix-icon.svg") center/contain no-repeat;
+    mask: url("data-url:../assets/matrix-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 
@@ -88,21 +91,5 @@
         @apply hidden hover:inline-block no-underline ms-2 opacity-50;
       }
     }
-  }
-}
-
-/* Lightbox Styles */
-img.lightbox-subject {
-  @apply transition-all relative cursor-pointer;
-
-  &.open {
-    @apply cursor-zoom-out rounded-none drop-shadow;
-  }
-}
-.lightbox-backdrop {
-  @apply fixed top-0 bottom-0 left-0 right-0 pointer-events-none backdrop-blur bg-white/40 dark:bg-black/40 opacity-0 transition-all;
-
-  &.open {
-    @apply pointer-events-auto cursor-zoom-out opacity-100;
   }
 }

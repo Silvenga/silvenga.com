@@ -10,5 +10,5 @@ export function main() {
 
     attachAnalytics();
     attachLightBox();
-    // attachCodeBlocks();
+    attachCodeBlocks();
 }
