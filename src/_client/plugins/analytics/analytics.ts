@@ -78,6 +78,7 @@ async function onVisibilityChange(umami: UmamiClient) {
 
 async function onLinkClick(target: EventTarget | null, umami: UmamiClient) {
     // Walk upwards until either the root or an anchor.
+    // ^ Actually, not sure this is needed, events should bubble.
     while (target && target instanceof Element && !(target instanceof HTMLAnchorElement)) {
         target = target.parentNode as EventTarget;
     }

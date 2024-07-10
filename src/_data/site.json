@@ -3,7 +3,7 @@
   "baseUrl": "https://silvenga.com",
   "umami": {
     "endpoint": "/api/send",
-    "websiteId": "34c88d5b-a79d-41ef-ae6b-e447f7e46553",
-    "domains": "localhost"
+    "websiteId": "8390d7cc-2653-4611-931c-3ecf713a7e5d",
+    "domains": "silvenga.com,www.silvenga.com"
   }
 }
