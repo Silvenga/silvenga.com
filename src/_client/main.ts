@@ -1,6 +1,7 @@
 import { attachAnalytics } from "./plugins/analytics/analytics";
 import { attachCodeBlocks } from "./plugins/code-blocks/code-blocks";
 import { attachLightBox } from "./plugins/lightbox/lightbox";
+import { attachPreload } from "./plugins/preload/preload";
 
 export function main() {
 
@@ -11,4 +12,5 @@ export function main() {
     attachAnalytics();
     attachLightBox();
     attachCodeBlocks();
+    attachPreload();
 }

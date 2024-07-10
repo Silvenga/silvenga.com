@@ -1839,6 +1839,7 @@ __metadata:
     markdown-it-toc-done-right: "npm:^4.2.0"
     node-cache: "npm:^5.1.2"
     nodemon: "npm:^3.1.4"
+    p-throttle: "npm:^6.1.0"
     parcel: "npm:2.12.0"
     parcel-reporter-static-files-copy: "npm:^1.5.3"
     parcel-resolver-ignore: "npm:^2.2.0"
@@ -6644,6 +6645,13 @@ __metadata:
     eventemitter3: "npm:^4.0.4"
     p-timeout: "npm:^3.2.0"
   checksum: 10/60fe227ffce59fbc5b1b081305b61a2f283ff145005853702b7d4d3f99a0176bd21bb126c99a962e51fe1e01cb8aa10f0488b7bbe73b5dc2e84b5cc650b8ffd2
+  languageName: node
+  linkType: hard
+
+"p-throttle@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "p-throttle@npm:6.1.0"
+  checksum: 10/19524a116a536e1b0503df2c881fb54234337b8587751b5faac953690a660e5f647a20b33b2aad444ac7b3eba7b2c9233ab530a36a196745f93f1eba69e21c03
   languageName: node
   linkType: hard
 
