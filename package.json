@@ -79,7 +79,7 @@
     "eslint": "^9.6.0",
     "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-react": "^7.34.3",
-    "highlight.js": "^11.9.0",
+    "highlight.js": "^11.10.0",
     "luxon": "^3.4.4",
     "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^9.0.1",
