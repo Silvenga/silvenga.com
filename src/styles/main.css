@@ -1,11 +1,27 @@
 @import "./copied-tooltip.css";
 @import "./lightbox.css";
 
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: block;
+  font-weight: 100 900;
+  src: local("Inter Variable"),
+       url(data-url:npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html, :host {
+    @apply bg-white dark:bg-gray-900;
+    @apply text-black dark:text-white;
+    @apply antialiased;
+  }
+
   .link {
     @apply underline;
     @apply font-medium;
@@ -17,6 +33,28 @@
   }
 }
 
+@layer components {
+  .prose {
+    img {
+      @apply rounded w-auto max-h-96 max-w-96 mx-auto;
+    }
+
+    figcaption {
+      @apply text-center;
+    }
+
+    .header-anchor {
+      @apply no-underline hover:underline decoration-dashed decoration-gray-400;
+
+      &::after {
+        content: "#";
+        @apply hidden hover:inline-block no-underline ms-2 opacity-50;
+      }
+    }
+  }
+}
+
+/* Icons */
 @layer components {
   .avatar {
     background: url("data-url:../assets/avatar.webp");
@@ -72,24 +110,5 @@
   .matrix-icon {
     mask: url("data-url:../assets/matrix-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
-  }
-
-  .prose {
-    img {
-      @apply rounded w-auto max-h-96 max-w-96 mx-auto;
-    }
-
-    figcaption {
-      @apply text-center;
-    }
-
-    .header-anchor {
-      @apply no-underline hover:underline decoration-dashed decoration-gray-400;
-
-      &::after {
-        content: "#";
-        @apply hidden hover:inline-block no-underline ms-2 opacity-50;
-      }
-    }
   }
 }
