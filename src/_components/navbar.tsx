@@ -12,9 +12,12 @@ export function Navbar(this: RenderContext, { site, renderContent }: Pick<Templa
     return (
         <nav className="mb-0 sm:mb-9 py-6" role="banner">
             <div className="flex flex-1">
-                <div className="flex flex-1  items-center">
-                    <BlogIcon className="h-6 w-6 aspect-square me-3" />
-                    <a className="link link-hover text-xl" href="/">{site.name}</a>
+                <div className="flex flex-1 items-center">
+                    <BlogIcon className="h-6 w-6 me-3" />
+                    <a className="link link-hover text-xl" href="/">
+                        <div className="sr-only">Navigate Home</div>
+                        <span aria-hidden>{site.name}</span>
+                    </a>
                 </div>
                 <ul className="list-none flex">
                     {/* Shown in >= sm */}
@@ -27,12 +30,14 @@ export function Navbar(this: RenderContext, { site, renderContent }: Pick<Templa
                     ))}
                     <li className="ms-3 me-3">
                         <a className="link link-hover" href={renderContent.url("/posts/rss.xml")} rel="noreferrer noopener" target="_blank">
-                            <RssIcon className="h-6 w-6 aspect-square" />
+                            <div className="sr-only">RSS Feed</div>
+                            <RssIcon className="h-6 w-6" aria-hidden />
                         </a>
                     </li>
                     <li>
                         <a className="link link-hover" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">
-                            <GithubIcon className="h-6 w-6 aspect-square" />
+                            <div className="sr-only">GitHub Profile</div>
+                            <GithubIcon className="h-6 w-6" aria-hidden />
                         </a>
                     </li>
                 </ul>
