@@ -126,3 +126,13 @@ export function CcSaIcon({ className, ...props }: IconProps) {
             {...props} />
     );
 }
+
+export function ResumeIcon({ className, ...props }: IconProps) {
+    return (
+        <div role="img"
+            title="Resume"
+            aria-label="Resume icon"
+            className={clsx("resume-icon", className)}
+            {...props} />
+    );
+}

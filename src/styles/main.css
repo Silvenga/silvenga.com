@@ -126,4 +126,9 @@
     mask: url("data-url:../assets/cc-sa-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
+
+  .resume-icon {
+    mask: url("data-url:../assets/resume-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
 }

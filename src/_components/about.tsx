@@ -1,4 +1,4 @@
-import { GithubIcon, MastodonIcon, MatrixIcon } from "./icons";
+import { GithubIcon, MastodonIcon, MatrixIcon, ResumeIcon } from "./icons";
 
 export function About({ className }: { className?: string }) {
     return (
@@ -11,13 +11,16 @@ export function About({ className }: { className?: string }) {
             </p>
             <div className="flex lg:justify-start justify-center">
                 <a href="https://github.com/Silvenga" target="_blank" rel="me noreferrer noopener" className="me-3">
-                    <GithubIcon className="h-6 w-6 aspect-square" />
+                    <GithubIcon className="h-6 w-6" />
                 </a>
                 <a href="https://slvn.social/@silvenga" target="_blank" rel="me noreferrer noopener" className="me-3">
-                    <MastodonIcon className="h-6 w-6 aspect-square" />
+                    <MastodonIcon className="h-6 w-6" />
                 </a>
                 <a href="https://matrix.to/#/@silvenga:slvn.social" target="_blank" rel="me noreferrer noopener" className="me-3">
-                    <MatrixIcon className="h-6 w-6 aspect-square" />
+                    <MatrixIcon className="h-6 w-6" />
+                </a>
+                <a href="https://silvenga.com/resume/" className="me-3">
+                    <ResumeIcon className="h-6 w-6" />
                 </a>
             </div>
         </div>
