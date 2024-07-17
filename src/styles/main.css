@@ -111,4 +111,19 @@
     mask: url("data-url:../assets/matrix-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
+
+  .cc-icon {
+    mask: url("data-url:../assets/cc-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
+
+  .cc-by-icon {
+    mask: url("data-url:../assets/cc-by-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
+
+  .cc-sa-icon {
+    mask: url("data-url:../assets/cc-sa-icon.svg") center/contain no-repeat;
+    @apply bg-black dark:bg-white;
+  }
 }
