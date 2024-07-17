@@ -45,7 +45,6 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                     <meta property="og:url" content={canonicalUrl} />
                     <meta property="og:site_name" content={site.name} />
                     <meta property="og:locale" content="en_US" />
-                    <meta property="og:locale" content="en_US" />
 
                     <meta name="fediverse:creator" content="@silvenga@slvn.social" />
 
