@@ -1,7 +1,6 @@
 import { About } from "../about";
-import { Avatar } from "../avatar";
 import { RenderContext, TemplateContext } from "../eleventy-types";
-import { CcByIcon, CcIcon, CcSaIcon } from "../icons";
+import { Avatar, CcByIcon, CcIcon, CcSaIcon } from "../icons";
 import { ReadableDate } from "../readable-date";
 
 export type PostsLayoutProps = {

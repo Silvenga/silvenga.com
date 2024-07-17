@@ -1,108 +1,128 @@
 import clsx from "clsx";
 
-export function GithubIcon({ className }: { className?: string }) {
+export type IconProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+
+export function Avatar({ className, ...props }: IconProps) {
+    return (
+        <div role="img"
+            aria-label="Silvenga's avatar"
+            className={clsx("avatar max-w-[192px] h-[192px] w-[100%]", className)}
+            {...props} />
+    )
+}
+
+export function GithubIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="GitHub"
             aria-label="Github icon"
-            className={clsx("github-icon", className)} />
+            className={clsx("github-icon", className)}
+            {...props} />
     );
 }
 
-export function MastodonIcon({ className }: { className?: string }) {
+export function MastodonIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="Mastodon"
             aria-label="Mastodon icon"
-            className={clsx("mastodon-icon", className)} />
+            className={clsx("mastodon-icon", className)}
+            {...props} />
     );
 }
 
-export function RssIcon({ className }: { className?: string }) {
+export function RssIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="RSS"
             aria-label="Rss icon"
-            className={clsx("rss-icon", className)} />
+            className={clsx("rss-icon", className)}
+            {...props} />
     );
 }
 
-export function BlogIcon({ className }: { className?: string }) {
+export function BlogIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             aria-label="Blog icon"
-            className={clsx("blog-icon", className)} />
+            className={clsx("blog-icon", className)}
+            {...props} />
     );
 }
 
-export function PrintablesIcon({ className }: { className?: string }) {
+export function PrintablesIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="Printables.com"
             aria-label="Printables.com icon"
-            className={clsx("printables-icon", className)} />
+            className={clsx("printables-icon", className)}
+            {...props} />
     );
 }
 
-export function HeartIcon({ className, ariaHidden }: { className?: string, ariaHidden?: boolean }) {
+export function HeartIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             aria-label="Heart icon"
-            aria-hidden={ariaHidden}
-            className={clsx("heart-icon", className)} />
+            className={clsx("heart-icon", className)}
+            {...props} />
     );
 }
 
-export function PrinterIcon({ className, ariaHidden }: { className?: string, ariaHidden?: boolean }) {
+export function PrinterIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             aria-label="Traditional printer icon"
-            aria-hidden={ariaHidden}
-            className={clsx("printer-icon", className)} />
+            className={clsx("printer-icon", className)}
+            {...props} />
     );
 }
 
-export function ModelIcon({ className, ariaHidden }: { className?: string, ariaHidden?: boolean }) {
+export function ModelIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             aria-label="3D model icon"
-            aria-hidden={ariaHidden}
-            className={clsx("model-icon", className)} />
+            className={clsx("model-icon", className)}
+            {...props} />
     );
 }
 
-export function MatrixIcon({ className }: { className?: string }) {
+export function MatrixIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="Matrix"
             aria-label="Matrix icon"
-            className={clsx("matrix-icon", className)} />
+            className={clsx("matrix-icon", className)}
+            {...props} />
     );
 }
 
-export function CcIcon({ className }: { className?: string }) {
+export function CcIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="Creative Common License"
             aria-label="Creative Commons license icon"
-            className={clsx("cc-icon", className)} />
+            className={clsx("cc-icon", className)}
+            {...props} />
     );
 }
 
-export function CcByIcon({ className }: { className?: string }) {
+export function CcByIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="Creative Common Attribution"
             aria-label="Creative Commons attribution icon"
-            className={clsx("cc-by-icon", className)} />
+            className={clsx("cc-by-icon", className)}
+            {...props} />
     );
 }
 
-export function CcSaIcon({ className }: { className?: string }) {
+export function CcSaIcon({ className, ...props }: IconProps) {
     return (
         <div role="img"
             title="Creative Common Share-Alike"
             aria-label="Creative Commons share-alike icon"
-            className={clsx("cc-sa-icon", className)} />
+            className={clsx("cc-sa-icon", className)}
+            {...props} />
     );
 }

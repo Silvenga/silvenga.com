@@ -13,8 +13,10 @@ export function render(this: RenderContext, { collections }: TemplateContext) {
     <>
       <h1 className="text-5xl font-light mb-6">All Notes</h1>
       <div className="mb-6">
-        <p>This is a collection of random notes, mostly for myself. Maybe they will be useful to someone.</p>
-        <p>If you wonder by, feel free to say hi.</p>
+        <p>
+          This is a collection of random notes, mostly for myself. Maybe they will be useful to someone.
+          These notes aren't indexed by search engines, so if you wonder by, feel free to say hi!
+        </p>
       </div>
       <PostsList collection={collections["notes"]} />
     </>

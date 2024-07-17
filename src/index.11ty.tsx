@@ -1,6 +1,6 @@
 import { About } from "./_components/about";
-import { Avatar } from "./_components/avatar";
 import { RenderContext, TemplateContext } from "./_components/eleventy-types";
+import { Avatar } from "./_components/icons";
 import { PostsList } from "./_components/posts-list";
 
 export function data() {

@@ -83,12 +83,12 @@ function Model({ model }: { model: PrintableModel }) {
 
                 <div className="grow flex justify-end items-center text-gray-500 dark:text-gray-200 text-sm">
                     <div className="flex items-center me-6" title={`${model.likesCount} total likes`}>
-                        <HeartIcon className="me-2 h-4 w-4 bg-gray-500 dark:bg-gray-200" ariaHidden />
+                        <HeartIcon className="me-2 h-4 w-4 bg-gray-500 dark:bg-gray-200" aria-hidden />
                         {model.likesCount}
                         <span className="sr-only"> likes</span>
                     </div>
                     <div className="flex items-center me-6" title={`${model.makesCount} total makes`}>
-                        <PrinterIcon className="me-2 h-4 w-4 bg-gray-500 dark:bg-gray-200" ariaHidden />
+                        <PrinterIcon className="me-2 h-4 w-4 bg-gray-500 dark:bg-gray-200" aria-hidden />
                         {model.makesCount}
                         <span className="sr-only"> makes</span>
                     </div>
