@@ -2,7 +2,7 @@ export function Footer(): JSX.Element {
     const year = new Date().getFullYear();
     return (
         <footer className="py-9 flex flex-col justify-center items-center mt-auto">
-            <div className="text-center">
+            <div className="text-center mt-24">
                 Copyright © {year}. Built with <span className="sr-only">love</span><span className="text-[#ad4d4d] dark:text-[#deabab]" aria-hidden>&#x2764;&#xfe0e;</span> by Silvenga.
             </div>
             <div className="text-center">
