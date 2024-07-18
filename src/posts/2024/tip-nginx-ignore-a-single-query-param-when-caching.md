@@ -37,7 +37,7 @@ Let's break down that scary regex.
 - (Yellow) Just specifying that this regex must eat the whole input, or none of the input.
 - (Green) Group 1 (aka `$1`) - basically eat everything, non-greedily, before our "query parameter to remove". The non-greedy `*?` is mostly a micro-optimization to avoid regex backtracking.
 - (Red) Group 2 (aka `$2`) - basically eat everything after the "query parameter to remove".
-- (Gray) The actual "query parameter to remove" - basically eat the literal `random=`, and then any input that is not `&`. If a `&` is then found afterwards, eat that `&`.
+- (Gray) The actual "query parameter to remove" - basically eat the literal `random=`, and then any input that is not `&`.
 
 So this regex ultimately will produce 2 groups, ignoring the part of the query string we want to ignore.
 
