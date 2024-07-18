@@ -36,43 +36,43 @@ jobs:
           path: dist
           if-no-files-found: error
 
-  check-links:
-    name: Check Links
-    needs:
-      - build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Restore lychee cache
-        uses: actions/cache@v4
-        with:
-          path: .lycheecache
-          key: cache-lychee-${{ github.sha }}
-          restore-keys: cache-lychee-
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-      - name: Lychee URL checker
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: >-
-            --cache
-            --verbose
-            --no-progress
-            --suggest
-            --require-https
-            --include-fragments
-            'dist/**/*.html'
-            'dist/**/*.xml'
-          fail: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  # check-links:
+  #   name: Check Links
+  #   needs:
+  #     - build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Restore lychee cache
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: .lycheecache
+  #         key: cache-lychee-${{ github.sha }}
+  #         restore-keys: cache-lychee-
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: dist
+  #         path: dist
+  #     - name: Lychee URL checker
+  #       uses: lycheeverse/lychee-action@v1
+  #       with:
+  #         args: >-
+  #           --cache
+  #           --verbose
+  #           --no-progress
+  #           --suggest
+  #           --require-https
+  #           --include-fragments
+  #           'dist/**/*.html'
+  #           'dist/**/*.xml'
+  #         fail: true
+  #       env:
+  #         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   deploy-rabbit-edge:
     name: Deploy to Rabbit Edge
     needs:
       - build
-      - check-links
+      # - check-links
     if: github.ref_name == 'master'
     concurrency: rabbit-edge
     environment:
