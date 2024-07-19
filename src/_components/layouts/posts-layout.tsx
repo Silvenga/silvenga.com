@@ -32,7 +32,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                 <h1 className="font-light text-5xl mb-3">{title}</h1>
                 {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
-            <div className="prose pose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
+            <div className="prose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
             <footer className="mt-12">
                 <AuthorCard />
                 <div className="mt-6">
