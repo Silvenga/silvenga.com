@@ -123,7 +123,7 @@ function SideToc({ content }: { content: string }) {
     return (
         <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-72">
             <div className="sticky top-4 max-h-screen overflow-y-auto mb-3">
-                <aside className="prose dark:prose-invert"
+                <aside id="toc-block" className="prose dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: content }} />
                 <div className="hidden xl:block">
                     <hr />

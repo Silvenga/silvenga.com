@@ -10,6 +10,7 @@ import { fences } from "./fences/fences";
 import { hljsFencePlugin } from "./hljs-fence/hljs-fence";
 import { ImageClassesOptions, imageClasses } from "./image-classes/image-classes";
 import { prefixDocument } from "./prefix-document/prefix-document";
+import { sections } from "./sections/sections";
 import { tocHeader } from "./toc-header/toc-header";
 
 export function buildMarkdownLibrary() {
@@ -56,12 +57,14 @@ export function buildMarkdownLibrary() {
         .use(markdownItHighlightjs, highlightOptions)
         .use(fences, { hljs })
         .use(imageClasses, imageClassesOptions)
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         .use(markdownItImageFigures, markdownItImageFiguresOptions)
         .use(markdownItAnchor, markdownItAnchorOptions)
 
         // Incorrect typings referencing a different markdownItToc.
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         .use(markdownItTocDoneRight, markdownItTocOptions)
-        .use(tocHeader);
+        .use(tocHeader)
+        .use(sections);
 }
 
