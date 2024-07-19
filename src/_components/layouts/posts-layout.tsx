@@ -2,6 +2,9 @@ import { About } from "../about";
 import { RenderContext, TemplateContext } from "../eleventy-types";
 import { Avatar, CcByIcon, CcIcon, CcSaIcon } from "../icons";
 import { ReadableDate } from "../readable-date";
+import { extractToc } from "../utilities/extract-toc";
+
+const ContentTopId = "content-top";
 
 export type PostsLayoutProps = {
     children: JSX.Element;
@@ -10,10 +13,11 @@ export type PostsLayoutProps = {
 export function PostsLayout(this: RenderContext, { title, content, page, created, updated, archived, draft }: PostsLayoutProps) {
 
     const editLink = getEditUrl(page.inputPath);
+    const contentParseResult = extractToc(content);
 
     return (
         <article>
-            <header className="mb-9">
+            <header id={ContentTopId} className="mb-9">
                 <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
                     {!draft
                         ? (<>
@@ -24,7 +28,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                         </>)}
                     <span className="mx-3 hidden sm:inline-block" aria-hidden>•</span>
                     <div className="flex">
-                        <div><span className="sr-only">Takes approximately</span> {this.timeToRead(content)} <span className="sr-only">minutes to read</span></div>
+                        <div><span className="sr-only">Takes approximately</span> {this.timeToRead(content)} <span className="sr-only">to read</span></div>
                         <span className="mx-3" aria-hidden>•</span>
                         <a className="link" href={editLink} rel="noreferrer noopener" target="_blank">Post History</a>
                     </div>
@@ -32,7 +36,15 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                 <h1 className="font-light text-5xl mb-3">{title}</h1>
                 {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
-            <div className="prose dark:prose-invert max-w-[100%] prose-pre:p-0" dangerouslySetInnerHTML={{ __html: content }} />
+            {contentParseResult.result == "NoToc" && (
+                <Content content={content} />
+            )}
+            {contentParseResult.result == "HasToc" && (
+                <div className="relative">
+                    <SideToc content={contentParseResult.tocTree} />
+                    <Content content={contentParseResult.remainingTree} />
+                </div>
+            )}
             <footer className="mt-12">
                 <AuthorCard />
                 <div className="mt-6">
@@ -98,4 +110,28 @@ function CreativeCommonsDisclaimer() {
             </div>
         </section>
     );
+}
+
+function Content({ content }: { content: string }) {
+    return (
+        <div className="prose dark:prose-invert prose-pre:p-0"
+            dangerouslySetInnerHTML={{ __html: content }} />
+    )
+}
+
+function SideToc({ content }: { content: string }) {
+    return (
+        <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-72">
+            <div className="sticky top-4 max-h-screen overflow-y-auto mb-3">
+                <aside className="prose dark:prose-invert"
+                    dangerouslySetInnerHTML={{ __html: content }} />
+                <div className="hidden xl:block">
+                    <hr />
+                    <div className="py-4">
+                        <a className="top toc-link" href={`#${ContentTopId}`}>Top</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }

@@ -11,7 +11,7 @@ export function tocHeader(md: markdownIt) {
     md.renderer.rules.tocBody = function (this: void, tokens: Token[], idx: number, options: Options, env: unknown, self: Renderer) {
         const tocBody = inner(tokens, idx, options, env, self);
         if (tocBody) {
-            return `<h2 class="mt-5">Table of Contents</h2>${tocBody}`;
+            return `<h2 class="mt-0">Contents</h2>${tocBody}`;
         }
         return tocBody;
     };

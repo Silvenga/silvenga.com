@@ -19,7 +19,7 @@
   html, :host {
     @apply bg-white dark:bg-gray-900;
     @apply text-black dark:text-white;
-    @apply antialiased;
+    @apply antialiased scroll-smooth;
   }
 
   .link {
@@ -54,6 +54,54 @@
   }
 }
 
+/* TOC */
+@layer components {
+  .toc {
+    @apply mb-3;
+  }
+  .toc-list {
+    @apply list-none p-0 my-0 ms-4;
+  }
+  .toc-item {
+    @apply p-0 my-0;
+  }
+  .toc-link {
+    @apply text-pretty no-underline hover:underline font-medium leading-tight relative inline-block max-w-full;
+  }
+  .toc-label {
+    @apply overflow-x-hidden text-ellipsis max-w-full;
+  }
+
+  /* Icons */
+  .top {
+    @apply ms-4;
+    &.toc-link {
+      @apply opacity-60;
+    }
+    &::after {
+      content: '';
+      mask: url("data-url:../assets/arrow-up.svg") center/contain no-repeat;
+      @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block top-0 -right-4;
+    }
+  }
+  .toc .toc-link {
+    &::before {
+      content: '';
+      mask: url("data-url:../assets/arrow-right.svg") center/contain no-repeat;
+      @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block top-0 -left-4;
+    }
+  }
+
+  /* Only apply to nested. */
+  .toc-list .toc-list .toc-label {
+    @apply opacity-80;
+  }
+  /* Only apply to root list. */
+  .toc > .toc-list {
+    @apply ms-6 xl:ms-4;
+  }
+}
+
 /* Icons */
 @layer components {
   .avatar {
@@ -79,11 +127,6 @@
 
   .blog-icon {
     mask: url("data-url:../assets/blog-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .link-icon {
-    mask: url("data-url:../assets/link-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
 

@@ -42,11 +42,11 @@ export function buildMarkdownLibrary() {
 
     const markdownItTocOptions: Partial<TocOptions> = {
         containerClass: "toc",
-        listClass: "list list-none p-0 ps-[2ch]",
-        itemClass: "item p-0",
-        linkClass: "no-underline hover:underline text-lg flex items-center",
+        listClass: "toc-list",
+        itemClass: "toc-item",
+        linkClass: "toc-link",
         format: (label) => {
-            return `<span class="link-icon h-[16px] w-[16px] block mr-2" aria-hidden></span> ${label}`
+            return `<div class="toc-label">${label}</div>`
         }
     };
 
