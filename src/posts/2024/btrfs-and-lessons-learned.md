@@ -1,15 +1,17 @@
 ---
 tags:
   - posts
+  - linux
+  - btrfs
 title: "BTRFS: Lessons Learned through Blood and Tears"
 description: Lessons I've learned through the years of caring and feeding BTRFS.
-draft: "true"
+date: 2024-07-20
 ---
 ## Short Introduction
 
-I don't try to hide that I love [BTRFS](https://btrfs.readthedocs.io/en/latest/Introduction.html). I've likely stored hundreds of TiB of data on BTRFS over the years, and BTRFS has been with me through disk corruption, disk failures, etc. To put this in context, I've lost multiple arrays due to [mdadm](https://en.wikipedia.org/wiki/Mdadm) bugs, I've lost EXT4 volumes due to crashes, and don't get me started on FAT (_\*shudders\*_).
+I don't try to hide that I love [BTRFS](https://btrfs.readthedocs.io/en/latest/Introduction.html). Over the past 10 years, I've stored hundreds of TiB of data on BTRFS, and BTRFS has been with me through disk corruption, disk failures, etc. To put this in context, in the same time frame, I've lost multiple arrays due to [mdadm](https://en.wikipedia.org/wiki/Mdadm) bugs, I've lost EXT4 volumes due to crashes, and don't get me started on FAT (_\*shudders\*_).
 
-I find BTRFS incredibly stable and I've yet to lose data. It's so stable, I'm starting to move all my systems completely onto BTRFS (from EXT4). That said, it's not all roses and hard drives, BTRFS is a semantically different from what we've used before - this is my write-up of what I've found important over the years.
+I find BTRFS incredibly stable and I've yet to lose data. It's so stable, I'm starting to move all my systems completely onto BTRFS (from EXT4). It's not all roses and hard drives though, BTRFS is a semantically different from what we've used before - this is my write-up of the lessons I've learned caring for BTRFS.
 
 ## What is BTRFS?
 
@@ -17,7 +19,7 @@ BTRFS is in a class that I call: third-generation filesystems. These generations
 
 > I'm conceptually skipping over a lot of history. Imagine there's a generation 0 somewhere.
 
-First we had simple **first-generation** filesystems (compared to modern filesystems at least), like FAT or EXT2. These were great because they standardized disk formats and introduced filesystem staples, a step in the right direction. But there were shortcomings. The glaring was being the lack of atomic write operations (power loss could corrupt data without a great way to reverse back to before the write operation was lost). The filesystem couldn't guarantee consistency.
+First, we had simple **first-generation** filesystems (compared to modern filesystems at least), like FAT or EXT2. These were great because they standardized disk formats and introduced filesystem staples, a step in the right direction. But there were shortcomings. The glaring was being the lack of atomic write operations (power loss could corrupt data without a great way to reverse back to before the write operation was lost). The filesystem couldn't guarantee consistency.
 
 Then came what I call the **second-generation** filesystems, such as [NTFS](https://en.wikipedia.org/wiki/NTFS) or [EXT3/EXT4](https://en.wikipedia.org/wiki/Ext4) - all journaling based filesystems. Journaling was great, since it allowed for atomic-modifications in relative safety (not prefect, but much better). The journal keeps track of modifications, and if something bad happens, the filesystem could use the journal to reconstruct a more consistent state before the error occurred (say, power loss), which is awesome! There's a reason why most SQL databases tend to use some kind of a journal, although, typically much more complex (e.g. a binary log).
 
@@ -41,7 +43,7 @@ And there's a reason, COW naturally makes a lot of cool features possible. For e
 
 But not everything is perfect, like many things, COW has problems. In software engineering, we tend to like making data structures immutable. We like this because of the safety it provides, but it also can make problems regarding performance. BTRFS naturally has the same theoretical problems, as well as completely new problems that filesystems traditionally didn't have before it.
 
-## Lessons Learned
+## 6 Lessons Learned
 
 So here are the lessons!
 
@@ -61,7 +63,8 @@ I can't stress how awesome this is. The last I tried to change the layout of an 
 
 When BTRFS fails, BTRFS tends to fail-safe by entering a read-only mode. At face value, this seems awesome, failing in a data-consistent way, a hallmark of a good system. It can be annoying though. For example, if a BTRFS array, in RAID1 mode, becomes degraded (say a hard drive stops responding), you have one-shot at fixing it. The old BTRFS wiki says this:
 
-> Even if there are no single profile chunks, raid1 volumes if they become degraded may only be mounted read-write once with the options `-o degraded,rw`.  [Source](https://archive.kernel.org/oldwiki/btrfs.wiki.kernel.org/index.php/Gotchas.html#raid1_volumes_only_mountable_once_RW_if_degraded)
+> Even if there are no single profile chunks, raid1 volumes if they become degraded may only be mounted read-write once with the options `-o degraded,rw`.
+> [Source](https://archive.kernel.org/oldwiki/btrfs.wiki.kernel.org/index.php/Gotchas.html#raid1_volumes_only_mountable_once_RW_if_degraded)
 
 Due to this, a server failure involved me copying the read-only data over to a new BTRFS volume, as I accidentally rebooted twice. Annoying is a understatement, especially when you don't have the hard drive spares... Sometimes you just want things to work, regardless of data durability.
 
@@ -232,24 +235,43 @@ Unallocated:
    /dev/mapper/nvme0n1p3_crypt    16.96GiB
 ```
 
-### Different Performance Characteristics
-
-> Lesson #6: BTRFS does a lot of stuff asynchronously.
-
-Systems stalls are annoying, but make sense.
-
-TODO
-
 ### It's not Complete, But That's Okay
 
-> Lesson #7: BTRFS keeps on getting better.
+> Lesson #6: BTRFS is not feature complete, but it keeps on getting better.
 
 What originally drew me to BTRFS was that it was in-tree, which is a blessing and a curse. On one side, you have rock solid stability and a migration path. On the other hand, BTRFS may not be as nimble as other filesystems who work out-of-tree.
 
 > In-tree and out-of-tree is referring to if the code is in Linus Torvalds's repo at-the-end-of-the-figurative-day. There is a out-of-tree BTRFS repo if you want the latest, but I think most of us use the version supplied by the kernel.
 
-The go to example for this is BTRFS RAID5/6 stability, currently ["mostly OK"](https://btrfs.readthedocs.io/en/latest/Status.html) (read, don't store important stuff on it yet). But it might say more that even with the issues with RAID5/6, BTRFS hasn't just nixed the code.
+The go to example for this "development slowness" is BTRFS RAID5/6 stability. Currently it's rated as ["mostly OK"](https://btrfs.readthedocs.io/en/latest/Status.html) (read, don't store important stuff on it yet), but historically, RAID5/6 had fundamental issues that made storing anything with RAID5/6 dangerous. Will RAID5/6 support ever be fully fixed? I don't know, although there are desires from BTRFS developers on a rewrite. It might say more that even with the issues with RAID5/6, BTRFS hasn't just nixed the code.
 
-Over the years, BTRFS continues to make steady progress on new features, while retaining nearly perfect stability (in my experience). The developers are completely honest on what is stable and what is not. All of these things are incredibly healthy for a new generation filesystem - where data durability and trust is king.
+Even though BTRFS development hasn't been quick, BTRFS continues to make steady progress on new features, while retaining, in my experience, nearly perfect stability . The developers are completely honest on what is stable and what is not and the on-disk layout appears to have stabilized. All of these things are incredibly healthy for a new generation filesystem - where data durability and trust is king.
 
-Not only is BTRFS improving over time, but application support is also getting better. It's not uncommon these days for applications to support COW filesystem semantics directly. For example, the .NET runtime can detect that file copying can be done using [reflinks](https://btrfs.readthedocs.io/en/latest/Reflink.html), or shallow copies, which avoid the copy from taking disk space until the copy is modified. .NET isn't alone here, many other open source projects have custom handling for COW too.
+Not only is BTRFS improving over time, but application support is also getting better. It's not uncommon these days for applications to directly support COW filesystem semantics directly. The .NET runtime can detect that file copying can be done using [reflinks](https://btrfs.readthedocs.io/en/latest/Reflink.html), which avoid the copy from taking disk space until the copy is modified. .NET isn't alone here, many other open source projects have custom handling for COW too.
+
+What I found really cool was that Docker/ContainerD have native support for BTRFS (similar to the traditional overlay2 approach):
+
+```bash
+btrfs subvolume list /
+```
+
+```output
+ID 267 gen 1745178 top level 5 path var/lib/docker/btrfs/subvolumes/e1408a5d2caf0fc69d4d470041906468de3cafdffe7bab49bec31e82325ad7a1
+ID 268 gen 1745178 top level 5 path var/lib/docker/btrfs/subvolumes/547ddbb037cb7d963d497223db6b6827b5cc34134d521ae018b8e2fce2672553
+ID 269 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/abbc656e07f9592873a944faa557c7a5af415e6b082a0d36d511c69a1b2761f8
+ID 270 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/b9355aa3005470bae7df10e460d0f6bf262b6f5879d641b74cd4959c4a3a5729
+ID 271 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/294d8221f65141ce2d18a3af44abdeac9732f7b252696e69ee3eb65d597c79e1
+ID 272 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/45f083f43514b3ffb62870cd39fff6ce8acadbbdac31d830f717d729ad8a24ab
+ID 273 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/b851a8b421655a7d5600375e1a8d3e2060f5b9443dbb412e94a851d36bab9339
+ID 274 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/2519d0c093a63974faee413d071390c5673d5db63e926aa905f83309bd9e2b8d-init
+ID 275 gen 1745520 top level 5 path var/lib/docker/btrfs/subvolumes/2519d0c093a63974faee413d071390c5673d5db63e926aa905f83309bd9e2b8d
+ID 300 gen 1745430 top level 5 path var/lib/docker/btrfs/subvolumes/f0c64d63b2417784332903129ff900176b506a01c79c81522a16d59a32c9cfec
+```
+
+## Summary
+
+BTRFS is a member of the next generation of COW filesystems, and is likely to replace XFS and EXT4 as the default. So far, we've seen "official" adoption from the likes of OpenSUSE, Fedora, Mint, and Ubuntu. I also see industry trends valuing immutable distributions (Flatcar Linux) and distributions that support atomic upgrades (e.g. NixOS) benefiting greatly from the features that BTRFS provides.
+
+BTRFS is also incredibly flexible and can run in places that heavier filesystems, like ZFS, just can't. Today, BTRFS looks like a good choice for workstation usage and archival storage. I think tomorrow is bright for BTRFS as adoption improves.
+
+If you haven't messed with BTRFS, now's a good time to do so!
