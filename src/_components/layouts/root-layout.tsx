@@ -92,7 +92,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
                         data-umami-endpoint={site.umami?.endpoint} />
                 </head>
 
-                <body className="container mx-auto w-[100%] max-w-[720px] px-[20px] min-h-svh flex flex-col">
+                <body className="container mx-auto w-[100%] max-w-[720px] px-6 md:p-0 min-h-svh flex flex-col">
                     <Navbar site={site} renderContent={this} />
                     <main dangerouslySetInnerHTML={{ __html: content }} />
                     <Footer />

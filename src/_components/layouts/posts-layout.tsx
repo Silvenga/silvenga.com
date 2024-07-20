@@ -121,7 +121,8 @@ function Content({ content }: { content: string }) {
 
 function SideToc({ content }: { content: string }) {
     return (
-        <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-72">
+        // (xl (1280px) - site width (720px)) / 2 = 280px
+        <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-[280px] xl:ps-6">
             <div className="sticky top-4 max-h-screen overflow-y-auto mb-3">
                 <aside id="toc-block" className="prose dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: content }} />
