@@ -34,6 +34,11 @@
 }
 
 @layer components {
+
+  .title {
+    @apply text-4xl sm:text-5xl font-light;
+  }
+
   .prose {
     img {
       @apply rounded w-auto max-h-96 max-w-96 mx-auto;

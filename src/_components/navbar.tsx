@@ -10,7 +10,7 @@ export function Navbar(this: RenderContext, { site, renderContent }: Pick<Templa
     ];
 
     return (
-        <nav className="mb-0 sm:mb-9 py-6" role="banner">
+        <nav className="mb-3 sm:mb-9 py-6" role="banner">
             <div className="flex flex-1">
                 <div className="flex flex-1 items-center">
                     <BlogIcon className="h-6 w-6 me-3" />

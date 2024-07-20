@@ -12,7 +12,7 @@ export function data() {
 export function render(this: RenderContext, { collections }: TemplateContext) {
   return (
     <>
-      <h1 className="text-5xl font-light mb-6">Archived Posts</h1>
+      <h1 className="title mb-6">Archived Posts</h1>
       <p className="mb-9">These posts are archived and exist.</p>
       <PostsList collection={collections["posts"]} archived />
     </>

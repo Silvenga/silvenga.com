@@ -12,7 +12,7 @@ export function data() {
 export function render(this: RenderContext) {
     return (
         <article className="text-center">
-            <h1 className="text-5xl">404: Not Found</h1>
+            <h1 className="title">404: Not Found</h1>
             <p className="my-9">Nothing is here, <a className="link font-medium" href={this.url("/")}>go home</a>?</p>
         </article>
     );

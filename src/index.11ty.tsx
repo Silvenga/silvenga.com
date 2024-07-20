@@ -16,7 +16,7 @@ export function render(this: RenderContext, { collections }: TemplateContext) {
                 <div className="flex flex-col lg:flex-row">
                     <Avatar className="self-center lg:self-start mt-3 lg:me-3" />
                     <div className="text-center lg:text-left my-6">
-                        <h1 className="text-5xl font-light mb-2">
+                        <h1 className="title mb-2">
                             Hello there!
                         </h1>
                         <p className="mb-3">And welcome to my weblog.</p>

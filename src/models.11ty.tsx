@@ -32,7 +32,7 @@ export function render(this: RenderContext, { printableModels }: TemplateContext
     return (
         <article>
             <header className="mb-9">
-                <h1 className="text-5xl font-light mb-3">3D Models</h1>
+                <h1 className="title mb-3">3D Models</h1>
                 <p>
                     These some of the models I've made over the years as I learn Fusion 360 in my spare time.
                 </p>

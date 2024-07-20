@@ -33,7 +33,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                         <a className="link" href={editLink} rel="noreferrer noopener" target="_blank">Post History</a>
                     </div>
                 </div>
-                <h1 className="font-light text-5xl mb-3">{title}</h1>
+                <h1 className="title mb-3">{title}</h1>
                 {!!archived && <ArchivedWarningCard archived={archived} />}
             </header>
             {contentParseResult.result == "NoToc" && (
