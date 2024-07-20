@@ -151,7 +151,7 @@ btrfs device stats /
 
 If any of these values are non-zero, you likely have a hardware problem. As always, monitor SMART if possible.
 
-> Morgan, from [Doing Stuff](https://doingstuff.dev/), mentioned [kdave/btrfsmaintenance](https://github.com/kdave/btrfsmaintenance), to get new BTRFS users started with a good reference.
+> Morgan, from [Doing Stuff](https://doingstuff.dev/), mentioned [kdave/btrfsmaintenance](https://github.com/kdave/btrfsmaintenance), to get new BTRFS users started with a good reference of what scripts you can have in your maintenance toolbox.
 
 ### COW Exacerbates Fragmentation
 
@@ -200,7 +200,7 @@ It's really common for Linux users to just run something like `df -h` on the com
 
 In traditional filesystems, disk use was measured by the number of bytes on the disk (ignoring sparse  volumes, hard links, junctions, and other shenanigans). With COW systems, there is no longer a direct correlation between between the size of all your files, and actual disk usage. You can have 100TiB of files, all [reflink](https://btrfs.readthedocs.io/en/latest/Reflink.html)'ed together, and only take up 2GiB of actual storage space. And since BTRFS supports compression, you can fit even more bytes onto your disk. I once compressed a 80GiB SQL Server database (running on Linux) using BTRFS compression down to 5GiB (way better than what SQL Server's native page compression was estimating it could do).
 
-Another example, I once had a routine defragmentation eat over 800GiB of the available capacity on execution. This was unexpected, but thankfully, the defragmentation was canceled when that volume reached it's accounting quota (that was also unexpected, but a pleasant surprise. **Seeeee, BTRFS cares**). This wasn't due to reflinks being unmerged, but because recent deletions caused unbalanced disks - which caused BTRFS to artificially lower the available capacity to maintain data safety (I might be wrong here, I didn't spend a huge amount of time debugging this one).
+Another example, I once had a routine defragmentation eat over 800GiB of the available capacity on execution. This was unexpected, but thankfully, the defragmentation was canceled when that volume reached it's accounting quota (that was also unexpected, but a pleasant surprise. **Seeeee, BTRFS cares**). This wasn't due to reflinks being unmerged, but because recent deletions caused unbalanced disks - which caused BTRFS to artificially lower the available capacity to maintain data safety (I might be wrong here, I didn't spend a huge amount of time debugging this one). Running a balance returned free disk-space to what I expected.
 
 So ultimately, a lot of variables go into how much capacity exists and is ultimately used. When in doubt, it's best to ask BTRFS directly:
 
@@ -274,4 +274,4 @@ BTRFS is a member of the next generation of COW filesystems, and is likely to re
 
 BTRFS is also incredibly flexible and can run in places that heavier filesystems, like ZFS, just can't. Today, BTRFS looks like a good choice for workstation usage and archival storage. I think tomorrow is bright for BTRFS as adoption improves.
 
-If you haven't messed with BTRFS, now's a good time to do so!
+If you haven't messed with BTRFS, now's a good time to start!
