@@ -83,7 +83,7 @@ If your data is important, it is your responsibility to setup recurring scrubs a
 I use this as systemd unit:
 
 ```ini
-# /etc/systemd/system/btrfs-scrub@.service 
+# /etc/systemd/system/btrfs-scrub@.service
 
 [Unit]
 Description=Scrub BTRFS filesystem (%i)
@@ -98,7 +98,7 @@ Nice=15
 ```
 
 ```ini
-# /etc/systemd/system/btrfs-scrub@.timer 
+# /etc/systemd/system/btrfs-scrub@.timer
 
 [Unit]
 Description=Trigger BTRFS scrub on filesystem (%i)
@@ -151,7 +151,7 @@ btrfs device stats /
 
 If any of these values are non-zero, you likely have a hardware problem. As always, monitor SMART if possible.
 
-> Morgan ([Doing Stuff](https://doingstuff.dev/)) mentioned [kdave/btrfsmaintenance](https://github.com/kdave/btrfsmaintenance) to get new BTRFS users up with a good reference.
+> Morgan, from [Doing Stuff](https://doingstuff.dev/), mentioned [kdave/btrfsmaintenance](https://github.com/kdave/btrfsmaintenance), to get new BTRFS users started with a good reference.
 
 ### COW Exacerbates Fragmentation
 
