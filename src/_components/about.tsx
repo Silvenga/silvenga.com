@@ -22,7 +22,7 @@ export function About({ className }: { className?: string }) {
                     <div className="sr-only">Matrix Profile</div>
                     <MatrixIcon className="h-6 w-6" aria-hidden />
                 </a>
-                <a href="https://silvenga.com/resume/" className="me-3" target="_blank">
+                <a href="https://silvenga.com/resume/" className="me-3" target="_blank" rel="nofollow">
                     <div className="sr-only">My Resume</div>
                     <ResumeIcon className="h-6 w-6" aria-hidden />
                 </a>

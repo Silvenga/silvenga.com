@@ -92,7 +92,7 @@
   .toc .toc-link {
     &::before {
       content: '';
-      mask: url("data-url:../assets/arrow-right.svg") center/contain no-repeat;
+      mask: url("data-url:../assets/dot-icon.svg") center/contain no-repeat;
       @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block top-0 -left-4;
     }
   }

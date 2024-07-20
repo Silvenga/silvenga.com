@@ -114,15 +114,15 @@ function CreativeCommonsDisclaimer() {
 
 function Content({ content }: { content: string }) {
     return (
-        <div className="prose dark:prose-invert prose-pre:p-0"
+        <div className="prose dark:prose-invert prose-pre:p-0 max-w-none"
             dangerouslySetInnerHTML={{ __html: content }} />
     )
 }
 
 function SideToc({ content }: { content: string }) {
     return (
-        // (xl (1280px) - site width (720px)) / 2 = 280px
-        <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-[280px] xl:ps-6">
+        // (xl (1280px) - site width (680px)) / 2 = 300px
+        <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-[300px] xl:ps-6">
             <div className="sticky top-4 max-h-screen overflow-y-auto mb-3">
                 <aside id="toc-block" className="prose dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: content }} />
