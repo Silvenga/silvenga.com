@@ -54,17 +54,21 @@ function Model({ model }: { model: PrintableModel }) {
     const link = `https://www.printables.com/model/${model.id}-${model.slug}`;
 
     return (
-        <section className="rounded mb-9 border border-gray-300 dark:bg-gray-800 relative">
+        <section className="rounded mb-9 border border-gray-300 dark:bg-gray-800">
 
-            <h2 className="text-3xl font-light p-6 flex items-center">
-                <ModelIcon className="me-3 h-8 w-8" />
-                {model.name}
-            </h2>
+            <header>
+                <h2 className="text-3xl font-light p-6 flex items-center">
+                    <ModelIcon className="me-3 h-8 w-8" />
+                    {model.name}
+                </h2>
+            </header>
 
             <div className="flex flex-col-reverse lg:flex-row border-t border-b">
-                <img className="basis-2/5 object-cover w-[100%] h-auto lightbox-subject"
-                    src={`https://media.printables.com/${model.image.filePath}`}
-                    alt="Model preview." />
+                <div className="basis-2/5">
+                    <img className="object-cover w-[100%] h-auto lightbox-subject"
+                        src={`https://media.printables.com/${model.image.filePath}`}
+                        alt="Model preview." />
+                </div>
                 <div className="flex flex-col p-6 basis-3/5 grow-0">
                     <p className="mb-3 grow">
                         {model.summary}
