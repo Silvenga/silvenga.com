@@ -9,6 +9,9 @@ export type UmamiClient = {
 export function buildUmamiClient(): UmamiClient {
 
     const context = buildContext();
+    if (!context) {
+        console.log("Umami is disabled by policy.");
+    }
 
     const track = async (payload?: Partial<UnamiEventPayload>) => {
         if (context) {
@@ -26,6 +29,8 @@ export function buildUmamiClient(): UmamiClient {
                     "Content-Type": "application/json",
                 }
             });
+        } else {
+            console.log("Umami is disabled and would have sent event ", payload ?? {});
         }
     }
 
