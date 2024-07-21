@@ -10,7 +10,6 @@ export function attachTocScrollSpy() {
                 if (hash) {
                     const id = hash.startsWith("#") ? hash.substring("#".length) : hash;
                     const header = document.getElementById(id);
-                    console.log(header, header?.parentElement);
 
                     if (header && header.parentElement?.tagName == "SECTION") {
                         const target = header.parentElement;
@@ -33,7 +32,6 @@ export function attachTocScrollSpy() {
                         if (ref.visible && !hasActive) {
                             hasActive = true;
                             ref.link.style.textDecoration = "underline";
-                            console.log(ref.id);
                         } else {
                             ref.link.style.textDecoration = "";
                         }

@@ -1,4 +1,3 @@
-import { throttle } from "@martinstark/throttle-ts";
 import { documentOnLoaded } from "../../on-load";
 import { CustomActionPayload, CustomEventName } from "./custom-actions";
 import { UmamiClient, buildUmamiClient } from "./umami-client";
@@ -20,12 +19,6 @@ export function attachAnalytics() {
         // As always, this assumes all this is running
         // with tradition hyperlink navigation.
         const umami = buildUmamiClient();
-
-        // Scroll End has issues in Safari...
-        const [onScrollThrottled] = throttle(onScroll, 2_000);
-        addEventListener("scroll", () => {
-            void onScrollThrottled(umami);
-        }, eventListenerOptions);
 
         addEventListener("hashchange", () => {
             void onHashChange(umami);
@@ -49,6 +42,8 @@ export function attachAnalytics() {
             void onCustomAction(umami, payload);
         }, eventListenerOptions);
 
+        attachPresenceHandler(umami);
+
         void onReady(umami);
         void onHashChange(umami);
     }, eventListenerOptions);
@@ -56,10 +51,6 @@ export function attachAnalytics() {
 
 async function onReady(umami: UmamiClient) {
     await umami.trackView();
-}
-
-async function onScroll(umami: UmamiClient) {
-    await umami.trackEvent("scroll");
 }
 
 async function onHashChange(umami: UmamiClient) {
@@ -91,4 +82,36 @@ async function onLinkClick(target: EventTarget | null, umami: UmamiClient) {
 
 async function onCustomAction(umami: UmamiClient, data: CustomActionPayload) {
     await umami.trackEvent(data.name, data.data);
+}
+
+function attachPresenceHandler(umami: UmamiClient) {
+
+    async function onSessionDurationChanged(umami: UmamiClient) {
+        await umami.trackEvent("presence", {
+            page: window.location.pathname
+        });
+    }
+
+    function createInterval() {
+        return setInterval(() => {
+            void onSessionDurationChanged(umami);
+        }, 60_000)
+    }
+
+    const timerState: { intervalId?: NodeJS.Timeout } = {};
+    timerState.intervalId = createInterval();
+
+    addEventListener("visibilitychange", () => {
+        const hidden = document.visibilityState === "hidden";
+        if (hidden) {
+            if (timerState.intervalId) {
+                clearInterval(timerState.intervalId);
+                timerState.intervalId = undefined;
+            }
+        } else {
+            if (!timerState.intervalId) {
+                timerState.intervalId = createInterval();
+            }
+        }
+    }, eventListenerOptions);
 }
