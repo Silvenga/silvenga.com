@@ -21,7 +21,8 @@
   "parcelIgnore": [
     "http://",
     "https://",
-    "ftp://"
+    "ftp://",
+    "matrix://"
   ],
   "alias": {
     "./img/*": "./.cache/eleventy/img/$1",

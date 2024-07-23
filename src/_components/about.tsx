@@ -18,11 +18,11 @@ export function About({ className }: { className?: string }) {
                     <div className="sr-only">Mastodon Profile</div>
                     <MastodonIcon className="h-6 w-6" aria-hidden />
                 </a>
-                <a href="https://matrix.to/#/@silvenga:slvn.social" target="_blank" rel="me noreferrer noopener" className="me-3">
+                <a href="/matrix" rel="nofollow" className="me-3">
                     <div className="sr-only">Matrix Profile</div>
                     <MatrixIcon className="h-6 w-6" aria-hidden />
                 </a>
-                <a href="https://silvenga.com/resume/" className="me-3" target="_blank" rel="nofollow">
+                <a href="https://silvenga.com/resume/" className="me-3" rel="nofollow">
                     <div className="sr-only">My Resume</div>
                     <ResumeIcon className="h-6 w-6" aria-hidden />
                 </a>
