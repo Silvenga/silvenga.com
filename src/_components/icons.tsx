@@ -136,3 +136,23 @@ export function ResumeIcon({ className, ...props }: IconProps) {
             {...props} />
     );
 }
+
+export function MenuIcon({ className, ...props }: IconProps) {
+    return (
+        <div role="img"
+            title="Menu"
+            aria-label="Menu icon"
+            className={clsx("menu-icon", className)}
+            {...props} />
+    );
+}
+
+export function CloseIcon({ className, ...props }: IconProps) {
+    return (
+        <div role="img"
+            title="Close"
+            aria-label="Close icon"
+            className={clsx("close-icon", className)}
+            {...props} />
+    );
+}

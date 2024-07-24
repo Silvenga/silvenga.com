@@ -184,4 +184,14 @@
     mask: url("data-url:../assets/resume-icon.svg") center/contain no-repeat;
     @apply bg-black dark:bg-white;
   }
+
+  .menu-icon {
+    mask: url("data-url:../assets/menu-icon.svg") center/contain no-repeat;
+    @apply bg-black group-open:bg-gray-500;
+  }
+
+  .close-icon {
+    mask: url("data-url:../assets/close-icon.svg") center/contain no-repeat;
+    @apply bg-black group-open:bg-gray-500 dark:bg-white dark:group-open:bg-white/60;
+  }
 }
