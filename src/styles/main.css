@@ -31,6 +31,11 @@
     @apply no-underline;
     @apply hover:underline;
   }
+
+  .fluid {
+    /* Needed to escape prose overrides on imgs. */
+    @apply max-w-full !important;
+  }
 }
 
 @layer components {

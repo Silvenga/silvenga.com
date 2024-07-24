@@ -69,7 +69,7 @@ function closeLightbox(target: HTMLImageElement) {
         return;
     }
 
-    target.dataset.lightbox = "";
+    delete target.dataset.lightbox;
     target.style.transform = "";
     target.classList.remove("open");
     closeLightboxBackdrop();

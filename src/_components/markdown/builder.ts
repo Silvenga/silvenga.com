@@ -28,7 +28,7 @@ export function buildMarkdownLibrary() {
     };
 
     const imageClassesOptions: ImageClassesOptions = {
-        classes: ["lightbox-subject"]
+        classes: ["lightbox-subject", "fluid"]
     };
     const markdownItImageFiguresOptions = {
         figcaption: "title"
