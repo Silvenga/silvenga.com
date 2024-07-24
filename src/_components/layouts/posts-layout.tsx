@@ -45,7 +45,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                     <Content content={contentParseResult.remainingTree} />
                 </div>
             )}
-            <footer className="mt-12">
+            <footer className="mt-12" aria-label="Post Footer">
                 <AuthorCard />
                 <div className="mt-6">
                     {!!updated && updated != created && (
@@ -62,7 +62,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
 
 function AuthorCard() {
     return (
-        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800">
+        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800" aria-label="About the author">
             <Avatar className="lg:basis-1/3 ml mb-3" />
             <About className="lg:basis-2/3" />
         </address>
