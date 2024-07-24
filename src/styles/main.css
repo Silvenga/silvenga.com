@@ -187,7 +187,7 @@
 
   .menu-icon {
     mask: url("data-url:../assets/menu-icon.svg") center/contain no-repeat;
-    @apply bg-black group-open:bg-gray-500;
+    @apply bg-black dark:bg-white;
   }
 
   .close-icon {
