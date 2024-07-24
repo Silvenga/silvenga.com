@@ -28,27 +28,24 @@ export function PostsList({ collection, archived, drafts }: PostsListProps): Rea
     return (
         <>
             {sortedKeys.map(key => (
-                <section key={key} aria-label={`Posts from ${key}`} className="mb-6">
-                    <header className="mb-3">
-                        <h2 className="text-2xl font-light">{key}</h2>
-                    </header>
-                    <ul className="list-none" aria-label={`Posts from ${key}`}>
+                <Fragment key={key}>
+                    <h2 className="text-2xl font-light mb-3" aria-hidden>{key}</h2>
+                    <ul className="list-none mb-6" aria-label={`Posts from ${key}`}>
                         {groupsByYear[key].map(({ page, data }) => (
                             <Fragment key={page.inputPath}>
-                                {!!page.url && data.title && (
-                                    <li className="mb-1">
-                                        <article className="flex">
-                                            <h3 className="">
-                                                <a href={page.url} className="link font-medium">{data.title}</a>
-                                            </h3>
-                                            <ReadableDate dateTime={data.created} className="italic grow text-end text-nowrap ps-3" />
-                                        </article>
+                                {!!page.url && !!data.title && (
+                                    <li className="mb-1 flex">
+                                        <a href={page.url} className="link font-medium">
+                                            {data.title}
+                                        </a>
+                                        <span className="sr-only">From</span>
+                                        <ReadableDate dateTime={data.created} className="italic grow text-end text-nowrap ps-3" />
                                     </li>
                                 )}
                             </Fragment>
                         ))}
                     </ul>
-                </section>
+                </Fragment>
             ))}
         </>
     )

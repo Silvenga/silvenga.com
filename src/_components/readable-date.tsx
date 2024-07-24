@@ -7,7 +7,7 @@ export type ReadableDateProps = {
 
 export function ReadableDate(props: ReadableDateProps) {
     if (!props.dateTime) {
-        return <span className={props.className}>-</span>
+        return <span className={props.className} aria-label="No Date">-</span>
     }
 
     const dateTime = DateTime.fromJSDate(props.dateTime);

@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { RenderContext, TemplateContext } from "../eleventy-types";
-import { Footer } from "../footer";
-import { Navbar } from "../navbar";
+import { SiteFooter } from "../site-footer";
+import { SiteHeader } from "../site-header";
 
 export function RootLayout(this: RenderContext, { description, site, title, content, page, eleventy, refreshUrl, ...props }: TemplateContext) {
 
@@ -92,9 +92,9 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
             </head>
 
             <body className="container mx-auto w-[100%] max-w-[680px] px-6 md:p-0 min-h-svh flex flex-col">
-                <Navbar site={site} renderContent={this} />
-                <main dangerouslySetInnerHTML={{ __html: content }} />
-                <Footer />
+                <SiteHeader site={site} renderContent={this} />
+                <main id="content" dangerouslySetInnerHTML={{ __html: content }} />
+                <SiteFooter />
             </body>
         </html>
     );

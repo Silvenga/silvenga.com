@@ -16,8 +16,8 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
     const contentParseResult = extractToc(content);
 
     return (
-        <article>
-            <header id={ContentTopId} className="mb-9">
+        <article id={ContentTopId}>
+            <section className="mb-9" aria-label="Post header">
                 <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
                     {!draft
                         ? (<>
@@ -35,7 +35,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                 </div>
                 <h1 className="title mb-3">{title}</h1>
                 {!!archived && <ArchivedWarningCard archived={archived} />}
-            </header>
+            </section>
             {contentParseResult.result == "NoToc" && (
                 <Content content={content} />
             )}
@@ -71,7 +71,7 @@ function AuthorCard() {
 
 function ArchivedWarningCard({ archived }: { archived: Date }) {
     return (
-        <section aria-label="Post has been archived warning" className="border text-black border-yellow-500 rounded bg-yellow-100 p-3 text-center my-9">
+        <section aria-label="Post archived warning" role="status" className="border text-black border-yellow-500 rounded bg-yellow-100 p-3 text-center my-9">
             <p>
                 This post was archived on <ReadableDate className="font-medium" dateTime={archived} />.
             </p>
@@ -91,7 +91,7 @@ function getEditUrl(inputPath: string) {
 
 function CreativeCommonsDisclaimer() {
     return (
-        <section className="flex flex-col items-center">
+        <section className="flex flex-col items-center" aria-label="Creative commons notice">
             <div>
                 <span>Published under the </span>
                 <a href="https://creativecommons.org/licenses/by-sa/4.0/"
@@ -122,17 +122,17 @@ function Content({ content }: { content: string }) {
 function SideToc({ content }: { content: string }) {
     return (
         // (xl (1280px) - site width (680px)) / 2 = 300px
-        <div className="xl:absolute left-full bottom-0 top-0 w-max xl:w-[300px] xl:ps-6">
+        <aside className="xl:absolute left-full bottom-0 top-0 w-max xl:w-[300px] xl:ps-6">
             <div className="sticky top-4 max-h-screen overflow-y-auto mb-3">
-                <aside id="toc-block" className="prose dark:prose-invert"
+                <nav id="toc-block" aria-label="Table of contents" className="prose dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: content }} />
                 <div className="hidden xl:block">
                     <hr />
                     <div className="py-4">
-                        <a className="top toc-link" href={`#${ContentTopId}`}>Top</a>
+                        <a className="top toc-link" href={`#${ContentTopId}`} aria-hidden>Top</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
     )
 }

@@ -12,7 +12,7 @@ export function data() {
 export function render(this: RenderContext, { collections }: TemplateContext) {
     return (
         <article>
-            <header className="rounded p-6 mb-9 border border-gray-300 dark:bg-gray-800">
+            <section className="rounded p-6 mb-9 border border-gray-300 dark:bg-gray-800" aria-label="Author Introduction">
                 <div className="flex flex-col lg:flex-row">
                     <Avatar className="self-center lg:self-start mt-3 lg:me-3" />
                     <div className="text-center lg:text-left my-6">
@@ -23,7 +23,7 @@ export function render(this: RenderContext, { collections }: TemplateContext) {
                         <About />
                     </div>
                 </div>
-            </header>
+            </section>
             <section aria-label="Blog posts">
                 <PostsList collection={collections["posts"]} />
             </section>
