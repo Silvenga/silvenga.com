@@ -92,6 +92,9 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
             </head>
 
             <body className="container mx-auto w-[100%] max-w-[680px] px-6 md:p-0 min-h-svh flex flex-col">
+                <div className="sr-only focus-within:not-sr-only focus-within:absolute top-6 left-6 p-6 z-10">
+                    <a className="p-3 border rounded-md bg-white dark:bg-gray-700" href="#content" aria-hidden>Skip to Content</a>
+                </div>
                 <SiteHeader site={site} renderContent={this} />
                 <main id="content" dangerouslySetInnerHTML={{ __html: content }} />
                 <SiteFooter />
