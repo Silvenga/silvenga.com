@@ -4,8 +4,6 @@ import { Avatar, CcByIcon, CcIcon, CcSaIcon } from "../icons";
 import { ReadableDate } from "../readable-date";
 import { extractToc } from "../utilities/extract-toc";
 
-const ContentTopId = "content-top";
-
 export type PostsLayoutProps = {
     children: JSX.Element;
 } & TemplateContext;
@@ -16,7 +14,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
     const contentParseResult = extractToc(content);
 
     return (
-        <article id={ContentTopId}>
+        <article>
             <section className="mb-9" aria-label="Post header">
                 <div className="flex flex-wrap mb-3 text-nowrap flex-col sm:flex-row">
                     {!draft
@@ -62,7 +60,7 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
 
 function AuthorCard() {
     return (
-        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800" aria-label="About the author">
+        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800" aria-label="About the author" role="region">
             <Avatar className="lg:basis-1/3 ml mb-3" />
             <About className="lg:basis-2/3" />
         </address>
@@ -129,7 +127,7 @@ function SideToc({ content }: { content: string }) {
                 <div className="hidden xl:block">
                     <hr />
                     <div className="py-4">
-                        <a className="top toc-link" href={`#${ContentTopId}`} aria-hidden>Top</a>
+                        <a className="top toc-link" href="#content">Top</a>
                     </div>
                 </div>
             </div>

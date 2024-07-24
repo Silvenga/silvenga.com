@@ -11,7 +11,7 @@ export function SiteHeader(this: RenderContext, { site, renderContent }: Pick<Te
 
     return (
         <header className="mb-3 sm:mb-9 py-6 select-none">
-            <nav className="flex flex-col sm:flex-row">
+            <nav className="flex flex-col sm:flex-row" aria-label="Top Navigation">
                 <div className="flex-1 flex">
                     <div className="flex items-center me-auto">
                         <BlogIcon className="h-6 w-6 me-3" aria-hidden />
