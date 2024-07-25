@@ -1,8 +1,8 @@
 ---
 tags:
   - ceph
-title: Notes on CephFS Metadata Recovery, Learning from Mistakes
-description: My notes after a recent CephFS outage where the MDS journals were corrupted.
+title: Notes on CephFS Metadata Recovery, Learning from Failure
+description: My notes after a recent CephFS outage where the MDS journals were corrupted and needed to be recovered.
 ---
 
 These are notes of a recent CephFS failure and recovery - hopefully useful as a learning example. Of course, consult the Ceph docs and Ceph experts before doing anything. Also, take this all with a grain of salt, as my notes during this process weren't exactly great - I had to stitch together what commands were used, and their likely output, for some. Some information here is likely incorrect too.
