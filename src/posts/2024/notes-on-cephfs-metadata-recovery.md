@@ -175,7 +175,14 @@ cephfs-table-tool all reset session
 }
 ```
 
-Then a reset:
+I believe there was also a reset of the other tables, but I'm not quite sure the order (my notes became out-of-order at some point).
+
+```bash
+cephfs-table-tool all reset snap
+cephfs-table-tool all reset inode
+```
+
+Then a reset of the metadata:
 
 ```bash
 ceph fs reset cephfs --yes-i-really-mean-it
@@ -191,9 +198,9 @@ Nope! Once the daemons were started, they immediately crashed, but this time, th
 [ERR] : MDS abort because newly corrupt dentry to be committed: [dentry #0x1/blah [415,head] auth (dversion lock) pv=748 v=746 ino=0x10001b5fc8f state=1073741824 | inodepin=1 0x55725e85a000]
 ```
 
-While this was definitely concerning, but at least progress was being made. Looking at the logs, the MDS daemon was successfully reading the journal, but now there was inconsistencies.
+While this was definitely concerning, but at least progress was being made. Looking at the logs, the MDS daemon was successfully reading the journal, but now there was inconsistencies. This was more in-line with my experiences with Ceph (vs silent errors from before).
 
-After a lot more debugging and research (including reading the code). It looked like the safest next step was to rebuild the metadata pool. I've done this once in the past to restore a much older version of Ceph (related to a kernel swap bug that caused Ceph to consider objects to be corrupted, incorrectly), but I haven't done this recently.
+After a lot more debugging and research (including reading the code). It looked like the safest next step was to rebuild the metadata pool. I've done this once in the past to restore a much older version of Ceph (related to a kernel swap bug that caused Ceph to consider objects to be corrupted), but I haven't done this recently.
 
 So following the docs, first to reset the metadata pool:
 
@@ -205,7 +212,7 @@ And then the "very long" process of rebuilding the metadata. Doing some testing 
 
 So 24 workers were selected, and the bastion host was scaled up to 16 cores and 8GiB of RAM.
 
-> Each command was ran in a separate tmux session. I wanted the output of each command separately.
+> Each command was ran in a separate `tmux` session. I wanted the output of each command separately.
 
 ```bash
 cephfs-data-scan scan_extents --worker_n 0 --worker_m 24
@@ -239,11 +246,11 @@ cephfs-data-scan scan_extents --worker_n 22 --worker_m 24
 cephfs-data-scan scan_extents --worker_n 23 --worker_m 24
 ```
 
-The process of scanning for extents took about 8 hours with around 3k reads/second hitting the cluster. Ultimately, scaling up the bastion host wasn't needed, each worker was rather light-weight. The bottleneck appeared to be the OSD's, they were at around 50% utilized (IOPS).
+The process of scanning for extents took about 8 hours, with around 3k reads/second hitting the cluster. Ultimately, scaling up the bastion host wasn't needed, each worker was rather light-weight. The bottleneck appeared to be the OSD's, they were at around 50% utilized (IOPS).
 
 A few inconsistencies were reported, but nothing of note or unexpected (forgot to add those warnings to my notes).
 
-The next step was to rebuild the metadata inodes.
+The next step was to rebuild the metadata inodes and insert them into the metadata pool.
 
 ```bash
 cephfs-data-scan scan_inodes --worker_n 0 --worker_m 24
@@ -279,7 +286,9 @@ cephfs-data-scan scan_inodes --worker_n 23 --worker_m 24
 
 > If I recall correctly, this set of commands were significantly faster, taking around an hour.
 
-The next step was even faster, taking maybe 10 minutes, but then scanning for links, crashed:
+After the inode scan completed, it was onto scanning for links. This step was even faster, taking maybe 10 minutes.
+
+But then scanning for links crashed:
 
 ```bash
 cephfs-data-scan scan_links
@@ -324,16 +333,18 @@ _Ooops_, forgot to re-enable CephFS:
 ceph fs set cephfs down false
 ```
 
-After this, a MDS immediately became `active`.
+After this, a MDS immediately became `active` and the damaged error was cleared.
 
 ![Tony stark with a "whew" caption](/posts/2024/images/tony-stark-phew.gif "Whew indead.")
 
-The daemon did report issues:
+The daemon did report issues however:
 
 ```output
+...
 [ERR] : bad backtrace on directory inode 0x4
 [ERR] : unmatched fragstat on 0x1, inode has f(v1 m2024-03-26T15:43:42.419967+0000 2=1+1), dirfrags have f(v0 m2024-03-26T15:43:42.419967+0000 7=0+7)
 [ERR] : inconsistent rstat on inode 0x100, inode has n(v1), directory fragments have n(v0 rc2098-01-01T06:00:00.000000+0000 b2649901515 637=54+583)
+...
 ```
 
 But none of this was unexpected. A scrub was needed to fix back traces and recursive statistics:
@@ -357,14 +368,14 @@ Ultimately, the forward scrub completed after a few minutes.
 
 > Only 8 files (all temp) were relocated to `lost+found`. Woot!
 
-At this point clients were re-enabled and a second MDS daemon was added:
+At this point, the clients were re-enabled, and a second MDS daemon was added as rank `1`:
 
 ```bash
 ceph fs set cephfs refuse_client_session false
 ceph fs set cephfs max_mds 2
 ```
 
-CephFS was mounted on a different node and `ncdu` was used to do some spot-checking.
+The CephFS volume was mounted on a different node and `ncdu` was used to do some spot-checking.
 
 Everything looked to be in-order!
 
@@ -387,9 +398,11 @@ After some analysis of the logs, we think the problem lies in a perfect storm of
 - The active-MDS's were having trouble doing anything, including rebalancing each other. This caused a surge in CephFS clients, and existing clients that couldn't release their caps.
 - A bug, likely from the extreme conditions, allowed a corrupt commit to occur against the MDS journal. This lead to MDS crashes.
 
-While the cluster is now healthy, I think more research and testing around mitigating snapshot trimming impacts is needed. Also, more monitoring of MDS slow requests is needed. I originally assumed these were transient, likely related to not meeting RAM and CPU recommendations, but after more research, some of these slow requests might be hidden symptoms of other issues.
+While the cluster is now healthy, more research and testing around mitigating snapshot trimming impacts is needed. Also, more (better?) monitoring of MDS slow requests needs to be done. I originally assumed these slow requests were transient, likely related to not meeting RAM and CPU recommendations. But after more research, some of these slow requests might be hidden symptoms of other issues.
 
-Either way, while I think this might have been caused by a Ceph bug, I'm impressed that this normally catastrophic failure was fixable, and the fixes executed in under 18 hours. This ultimately increased my trust in Ceph, just a little bit more.
+Either way, while I think this might have been caused by a Ceph bug, I'm impressed that this normally catastrophic failure was fixable, and the fixes executed in under 24 hours.
+
+This experience, although scarry, ultimately increased my trust in Ceph, just a little bit more.
 
 ### Lessons Learned
 
@@ -416,6 +429,8 @@ I have observed that when rebalancing, the relevant MDS ranks can become unrespo
 ```bash
 ceph mds fail cephfs.sm1.esxjag
 ```
+
+Reading the mailing list archives, these experiences don't appear abnormal.
 
 #### Pausing Snapshot Trimming
 
