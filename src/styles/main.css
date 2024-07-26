@@ -61,6 +61,15 @@
         @apply hidden hover:inline-block no-underline ms-2 opacity-50;
       }
     }
+
+  a[rel~=external] {
+    @apply whitespace-pre;
+    &::after {
+        content: '';
+        mask: url("data-url:../assets/external-icon.svg") center/contain no-repeat;
+        @apply bg-black dark:bg-white h-4 w-4 inline-block ms-[4px] relative top-[2px];
+      }
+    }
   }
 }
 
