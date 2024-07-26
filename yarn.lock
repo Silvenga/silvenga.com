@@ -61,19 +61,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@11ty/eleventy-img@npm:^5.0.0-beta.7":
-  version: 5.0.0-beta.7
-  resolution: "@11ty/eleventy-img@npm:5.0.0-beta.7"
+"@11ty/eleventy-img@npm:^5.0.0-beta.8":
+  version: 5.0.0-beta.8
+  resolution: "@11ty/eleventy-img@npm:5.0.0-beta.8"
   dependencies:
     "@11ty/eleventy-fetch": "npm:^4.0.1"
-    "@11ty/eleventy-utils": "npm:^1.0.2"
+    "@11ty/eleventy-utils": "npm:^1.0.3"
     brotli-size: "npm:^4.0.0"
-    debug: "npm:^4.3.4"
-    entities: "npm:^4.5.0"
+    debug: "npm:^4.3.5"
+    entities: "npm:^5.0.0"
     image-size: "npm:^1.1.1"
     p-queue: "npm:^6.6.2"
-    sharp: "npm:^0.33.3"
-  checksum: 10/05b6e1346cb655a1c3214c160c73525f13ab0031d826f2501e8686c74ef5b19bcc543da1f095a5aa0003fb08dee92c7e9754a5de980fb154621fe046c01e30a2
+    sharp: "npm:^0.33.4"
+  checksum: 10/a2195c53488ee708c4aa22ebd81defe6fe0d0a02554376526ba07a61929f8225939aaaf43a05eb46e407e90b757a6d3e782416a143c2faad2a430f0f7ad302ae
   languageName: node
   linkType: hard
 
@@ -1822,7 +1822,7 @@ __metadata:
   dependencies:
     "@11ty/eleventy": "npm:^3.0.0-alpha.17"
     "@11ty/eleventy-fetch": "npm:^4.0.1"
-    "@11ty/eleventy-img": "npm:^5.0.0-beta.7"
+    "@11ty/eleventy-img": "npm:^5.0.0-beta.8"
     "@11ty/eleventy-plugin-rss": "npm:^2.0.2"
     "@eslint/js": "npm:^9.7.0"
     "@fontsource-variable/inter": "npm:^5.0.19"
@@ -3719,10 +3719,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"entities@npm:^4.2.0, entities@npm:^4.4.0, entities@npm:^4.5.0":
+"entities@npm:^4.2.0, entities@npm:^4.4.0":
   version: 4.5.0
   resolution: "entities@npm:4.5.0"
   checksum: 10/ede2a35c9bce1aeccd055a1b445d41c75a14a2bb1cd22e242f20cf04d236cdcd7f9c859eb83f76885327bfae0c25bf03303665ee1ce3d47c5927b98b0e3e3d48
+  languageName: node
+  linkType: hard
+
+"entities@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "entities@npm:5.0.0"
+  checksum: 10/d7d1b855abee681e7570c1357c94986662c890890c30601ddaf59b7b2b63fcc225118e784ffa96f6bea39bfa675252831e32af49b1f7ebe5ceabf89d820f2beb
   languageName: node
   linkType: hard
 
@@ -7775,7 +7782,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.33.3":
+"sharp@npm:^0.33.4":
   version: 0.33.4
   resolution: "sharp@npm:0.33.4"
   dependencies:
