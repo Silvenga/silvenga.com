@@ -86,10 +86,15 @@ async function onCustomAction(umami: UmamiClient, data: CustomActionPayload) {
 
 function attachPresenceHandler(umami: UmamiClient) {
 
+    const state = { presenceEvents: 0 }
+
     async function onSessionDurationChanged(umami: UmamiClient) {
-        await umami.trackEvent("presence", {
-            page: window.location.pathname
-        });
+        if (state.presenceEvents < 30) {
+            await umami.trackEvent("presence", {
+                page: window.location.pathname
+            });
+            state.presenceEvents++;
+        }
     }
 
     function createInterval() {
