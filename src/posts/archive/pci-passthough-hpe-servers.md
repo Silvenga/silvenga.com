@@ -49,14 +49,14 @@ When the hypervisor attaches a PCI device to a VM, it will setup a translation f
 Basically, the BIOS reserved a portion of memory it controls, that the OS shouldn't touch. This disallows assigning a PCI device to a VM (using DMA).
 
 > Additional reading:
-> - https://www.kernel.org/doc/Documentation/Intel-IOMMU.txt
-> - https://software.intel.com/content/www/us/en/develop/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices.html
+> - [Linux Kernel - Intel-IOMMU](https://www.kernel.org/doc/Documentation/Intel-IOMMU.txt)
+> - [~~Intel Development Article~~](https://software.intel.com/content/www/us/en/develop/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices.html) [Archive](http://web.archive.org/web/20200704022043/https://software.intel.com/content/www/us/en/develop/articles/intel-virtualization-technology-for-directed-io-vt-d-enhancing-intel-platforms-for-efficient-virtualization-of-io-devices.html)
 
 ## Why Doesn't the BIOS want to Share?
 
 So, RMRR only describes the error message. But why is the BIOS setting up RMRR in the first place?
 
-Well, the answer to that came from an observation here at the Spiceworks community:  https://community.spiceworks.com/topic/2250178-passthrough-p420i-to-virtual-machine-on-gen8-hpe
+Well, the answer to that came from an observation here at the Spiceworks community: [Passthrough P420i to virtual machine on Gen8 HPE](https://community.spiceworks.com/topic/2250178-passthrough-p420i-to-virtual-machine-on-gen8-hpe)
 
 Disabling iLO (Integrated Lights-Out, HPE's IPMI) apparently makes PCI passthrough work.
 
