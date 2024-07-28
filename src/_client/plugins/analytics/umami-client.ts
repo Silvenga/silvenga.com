@@ -15,9 +15,14 @@ export function buildUmamiClient(): UmamiClient {
 
     const track = async (payload?: Partial<UnamiEventPayload>) => {
         if (context) {
+            const mergedData = {
+                ...payload?.data,
+                ...context.defaultPayload.data
+            };
             const mergedPayload = {
                 ...context.defaultPayload,
-                ...payload
+                ...payload,
+                data: mergedData
             };
             await fetch(context.settings.endpoint, {
                 method: "POST",
@@ -68,7 +73,6 @@ function buildContext() {
         && isUmamiAllowedByPolicy();
 
     if (enabled) {
-        // Default Payload
         const settings = {
             allowedDomains,
             websiteId,
@@ -85,7 +89,10 @@ function buildContext() {
             url: encode(getPathAndSearch(location.href)),
             referrer: document.referrer !== document.location.hostname // Not sure when this would ever be false?
                 ? encode(document.referrer)
-                : ""
+                : "",
+            data: {
+
+            }
         }
         return {
             settings,
