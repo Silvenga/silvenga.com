@@ -3,7 +3,10 @@ title: Kicking DnsControl Up a Notch with Typescript
 date: 2018-11-02
 description: Improving "DNS as Code" with type checking and Intellisense
 aliases: /kicking-dnscontrol-up-a-notch/index.html
+archived: 2024-07-27
 ---
+
+> This post was written years before official types were released. You should use the official types as [documented](https://docs.dnscontrol.org/getting-started/typescript).
 
 ## Introduction
 
