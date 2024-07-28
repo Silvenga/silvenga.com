@@ -75,13 +75,17 @@ async function onLinkClick(target: EventTarget | null, umami: UmamiClient) {
     }
     if (target instanceof HTMLAnchorElement && target.rel.includes("external")) {
         await umami.trackEvent("external-link", {
+            page: window.location.pathname,
             href: target.href
         });
     }
 }
 
 async function onCustomAction(umami: UmamiClient, data: CustomActionPayload) {
-    await umami.trackEvent(data.name, data.data);
+    await umami.trackEvent(data.name, {
+        page: window.location.pathname,
+        ...data.data
+    });
 }
 
 function attachPresenceHandler(umami: UmamiClient) {

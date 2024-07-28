@@ -28,7 +28,10 @@ async function onCopyClick(button: HTMLElement) {
 
             dispatchCustomAction(button, {
                 name: "code-copied",
-                data: { success }
+                data: {
+                    success,
+                    page: `${window.location.pathname}#${codeId}`
+                }
             });
         }
     }

@@ -91,7 +91,7 @@ function buildContext() {
                 ? encode(document.referrer)
                 : "",
             data: {
-
+                prefersDarkMode: !!window?.matchMedia?.("(prefers-color-scheme:dark)")?.matches
             }
         }
         return {
