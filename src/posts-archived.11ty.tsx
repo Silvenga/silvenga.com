@@ -3,6 +3,7 @@ import { PostsList } from "./_components/posts-list";
 
 export function data() {
   return {
+    title: "Archived Posts",
     description: "All posts I've published on this weblog.",
     permalink: "/posts/archived/index.html",
     noIndex: true

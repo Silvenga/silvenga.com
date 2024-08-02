@@ -20,9 +20,7 @@ export function data() {
 }
 
 export function render(this: RenderContext, props: TemplateContext) {
-
     const redirect = props.redirect as RedirectItem;
-
     return (
         <article>
             <h1>{redirect.canonicalItem.data.title} Moved</h1>

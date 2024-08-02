@@ -3,6 +3,7 @@ import { PostsList } from "./_components/posts-list";
 
 export function data() {
   return {
+    title: "Notes",
     description: "Random notes, mostly for myself. Maybe useful to someone.",
     permalink: "/notes/index.html",
   }
