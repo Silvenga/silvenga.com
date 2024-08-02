@@ -15,7 +15,7 @@ export function attachPreload() {
 
         const links = document.getElementsByTagName("a");
         for (const link of links) {
-            if (!link.relList.contains("external")) {
+            if (!link.relList.contains("external") && !link.getAttribute("href")?.startsWith("#")) {
                 link.addEventListener("mouseenter", () => {
                     void preloadLinkThrottled(link.href);
                 }, { passive: true, once: true });
