@@ -5,7 +5,7 @@ import { PrintableModel, getModelById } from "./_components/pritables/client";
 
 export function data() {
     return {
-        title: "Models",
+        title: "3D Models",
         description: "My 3D-Printing models I've made over the years.",
         printablesModelIds: [
             "879617", // Fun-Sized Master Spool (Parametric)
@@ -65,7 +65,7 @@ function Model({ model }: { model: PrintableModel }) {
 
             <div className="flex flex-col-reverse lg:flex-row border-t border-b">
                 <div className="basis-2/5">
-                    <img className="object-cover w-[100%] h-auto lightbox-subject"
+                    <img className="object-cover w-full h-auto lightbox-subject"
                         src={`https://media.printables.com/${model.image.filePath}`}
                         alt="Model preview." />
                 </div>
