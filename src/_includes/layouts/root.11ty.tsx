@@ -1,8 +1,7 @@
-import getGitFirstAddedTimeStamp from "@11ty/eleventy/src/Util/DateGitFirstAdded";
-import getGitLastUpdatedTimeStamp from "@11ty/eleventy/src/Util/DateGitLastUpdated";
 import { TemplateContext } from "../../_components/eleventy-types";
 import { RootLayout } from "../../_components/layouts/root-layout";
 import { ProcessCache } from "../../_components/utilities/cache";
+import { getGitFirstAddedTimeStamp, getGitLastUpdatedTimeStamp } from "../../_components/utilities/git-dates";
 
 export const render = RootLayout;
 

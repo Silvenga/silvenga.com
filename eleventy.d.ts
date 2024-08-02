@@ -89,16 +89,6 @@ declare module "@11ty/eleventy-fetch" {
     export default fetch;
 }
 
-declare module "@11ty/eleventy/src/Util/DateGitFirstAdded" {
-    function getGitFirstAddedTimeStamp(filePath: string): Date;
-    export default getGitFirstAddedTimeStamp;
-}
-
-declare module "@11ty/eleventy/src/Util/DateGitLastUpdated" {
-    function getGitLastUpdatedTimeStamp(filePath: string): Date;
-    export default getGitLastUpdatedTimeStamp;
-}
-
 declare module "markdown-it-image-figures" {
     const plugin: any;
     export default plugin;
