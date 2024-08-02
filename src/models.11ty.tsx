@@ -67,7 +67,9 @@ function Model({ model }: { model: PrintableModel }) {
                 <div className="basis-2/5">
                     <img className="object-cover w-full h-auto lightbox-subject"
                         src={`https://media.printables.com/${model.image.filePath}`}
-                        alt="Model preview." />
+                        alt="Model preview"
+                        {...{ "eleventy:widths": "512" }}
+                    />
                 </div>
                 <div className="flex flex-col p-6 basis-3/5 grow-0">
                     <p className="mb-3 grow">
