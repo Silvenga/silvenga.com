@@ -25,10 +25,13 @@ async function loadMermaid() {
         const mermaid = (await mermaidFetch).default;
         mermaid.initialize({
             startOnLoad: false,
-            darkMode,
+            darkMode, // I question if this actually works...
             sequence: {
                 mirrorActors: false // Don't duplicate top actors to the bottom.
-            }
+            },
+            theme: "neutral",
+            fontFamily: "Inter Variable",
+            altFontFamily: "Inter Regular"
         });
         console.log("Mermaid ready, rendering...");
 
