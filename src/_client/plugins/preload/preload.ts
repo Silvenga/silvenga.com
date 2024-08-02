@@ -3,8 +3,6 @@ import { documentOnLoaded } from "../../on-load";
 
 export function attachPreload() {
     documentOnLoaded(() => {
-
-        // Can likely merge p-throttle and @martinstark/throttle-ts...
         const throttle = pThrottle({
             limit: 8,
             interval: 1000,
@@ -28,7 +26,7 @@ async function preloadLink(link: string) {
     try {
         await fetch(link, {
             method: "GET",
-            cache: "force-cache",
+            cache: "reload",
             mode: "same-origin"
         })
     } catch (error) {
