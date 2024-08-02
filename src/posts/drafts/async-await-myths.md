@@ -4,7 +4,7 @@ tags:
   - javascript
   - typescript
   - dotnet
-title: Why's and What's of Async/Await Programing
+title: Why's and What's of Async/Await Programming
 description: How async/await works, and clickbaity myths so I can justify writing actually useful stuff.
 draft: "true"
 ---
