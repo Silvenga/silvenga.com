@@ -25,7 +25,10 @@ async function loadMermaid() {
         const mermaid = (await mermaidFetch).default;
         mermaid.initialize({
             startOnLoad: false,
-            darkMode
+            darkMode,
+            sequence: {
+                mirrorActors: false // Don't duplicate top actors to the bottom.
+            }
         });
         console.log("Mermaid ready, rendering...");
 
