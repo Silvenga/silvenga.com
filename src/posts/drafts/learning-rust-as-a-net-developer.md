@@ -94,6 +94,11 @@ What's also interesting, Rust's cache is
 
 While not officially supported by Rust, Mozilla has created the ability to share cache between projects, called [`sccache`](https://github.com/mozilla/sccache). This is kind of nice coming from .NET - which shares (and refcopies if possible) NuGet  assemblies between projects, anything compiled is completely isolated.
 
+TODO
+
+- Crates, and crate types.
+    - lib/binary crate
+
 ## Package Management
 
 TODO
@@ -126,8 +131,54 @@ The governance of Rust is interesting, especially with context of the slow movin
 TODO
 
 - Who owns what?
+    - creates.io
 - Licensing.
 - Compare the "pods".
+
+## Memory Management
+
+- Heap?
+- How are vars passed?
+- Are any values directly on the stack?
+- Sharing - multiple references.
+
+## Threading
+
+- Non blocking IO?
+
+## Syntax
+
+- mut/let vs var and const.
+- extension methods via traits?
+- Polymorph?
+- Reflection e.g. knowledge about self?
+- Modules vs namespaces.
+- What is the name of the compile unit?
+- Any duck type conventions? e.g. Dispose, enumerable, etc.
+- Visibility modifiers
+    - Internal by default, scoped to the current module
+- Hoisting
+
+## Generics
+
+## Memory
+
+- Clone vs copy
+
+## Differences to C\#
+
+- The language is file system aware - modules are created
+- importing.
+- Unlike C#, modules can have attributes. Modules are functional units.
+- Closed by default.
+- Separation of data and logic, something we do, but more extreme.
+
+## Problems
+
+- Macos aren't easily discovered (e.g. what inputs they may take).
+    - Has similar complex errors to C++ macos.
+- Documentation isn't great. Maybe a problem with having built-in documentation...
+- Language server is slow.
 
 ## Tips
 
@@ -143,6 +194,12 @@ If you have [Even Better TOML](https://marketplace.visualstudio.com/items?itemNa
 ```
 
 I had to look at the extension code to figure this one out - I don't think it's well known.
+
+### Enable COW For Cargo's Cache
+
+On modern versions of Windows, we now have [DevDrives](https://learn.microsoft.com/en-us/windows/dev-drive/), based on ReFS. As ReFS is a Copy-on-Write (COW) filesystem, we can make use of reflinking to instantly make deep clones of files.
+
+TODO Double check that rust does actual COW.
 
 ## Troubleshooting
 
