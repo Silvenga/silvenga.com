@@ -114,6 +114,6 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.0.20",
     "mermaid": "^10.9.1",
-    "p-throttle": "^6.1.0"
+    "p-throttle": "^6.2.0"
   }
 }
