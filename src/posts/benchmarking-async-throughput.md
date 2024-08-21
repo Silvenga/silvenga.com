@@ -1,9 +1,8 @@
 ---
 tags:
   - posts
-title: Benchmarking Async Throughput
-description: ...
-draft: "true"
+title: Benchmarking .NET Async Throughput
+description: Benchmarking and comparing async vs synchronous code throughput in .NET.
 ---
 ## Introduction
 
@@ -25,15 +24,7 @@ So ultimately, I found consistent results from using a Samsung T7 portable SSD, 
 
 Ultimately, I wanted to avoid as many caches as I could. This includes the OS cache, and any cache in the storage (DRAM cache) - so I'm only focusing on read operations. The benchmark is rather straightforward, but you can also read the [source code](https://github.com/Silvenga/async-throughput-playground).
 
-```mermaid
-flowchart LR
-    A(Locate Files) -->|Queue| B(.NET Channel)
-    B -->|Thread #1| D{Hash}
-    B -->|Thread #2| E{Hash}
-    B -->|Thread #N| F{Hash}
-    D --> G(Async)
-    D --> H(Sync)
-```
+![A flow chart showing the structure of benchmark](/posts/images/async-benchmark-flow-chart.webp)
 
 Basically, I'm creating a thread-safe queue using a .NET Channel. The queue is read as quickly as possible by N workers, which execute the hashing operation in either sync or async mode.
 
