@@ -59,6 +59,7 @@ async function renderDiagram(area: Element, mermaid: typeof import("mermaid").de
                 suppressErrors: true
             })
             diagram.style.opacity = "1";
+            diagram.ariaHidden = "true";
         }
     }
     for (const loading of area.getElementsByClassName("mermaid-loading")) {

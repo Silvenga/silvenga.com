@@ -1,20 +1,21 @@
 import { documentOnLoaded } from "../../on-load";
 
-const BackdropId = "light-box-backdrop";
+const BackdropId = "lightbox-backdrop";
 const TailwindAnimationTimeoutMs = 0.15 * 1000;
 
 export function attachLightBox() {
     documentOnLoaded(() => {
         addEventListener("click", (event) => {
-            if (event.target instanceof HTMLImageElement
+            if (event.target instanceof HTMLElement
                 && event.target.classList.contains("lightbox-subject")) {
+                console.log(event);
                 toggleLightbox(event.target);
             }
         });
     })
 }
 
-function toggleLightbox(target: HTMLImageElement) {
+function toggleLightbox(target: HTMLElement) {
     if (isLightboxOpen(target)) {
         closeLightbox(target);
     } else {
@@ -22,7 +23,7 @@ function toggleLightbox(target: HTMLImageElement) {
     }
 }
 
-function openLightbox(target: HTMLImageElement) {
+function openLightbox(target: HTMLElement) {
     if (isLightboxOpen(target)) {
         return;
     }
@@ -33,12 +34,14 @@ function openLightbox(target: HTMLImageElement) {
 
     const targetBounds = target.getBoundingClientRect();
 
+    // If no width/height attribute exists (added by the image processing pipeline),
+    // then do not attempt to clamp on the in intrinsic size (to support light-boxing non-images).
     const idealWidth = target.hasAttribute("width")
         ? parseInt(target.getAttribute("width")!)
-        : target.width;
+        : Number.MAX_SAFE_INTEGER;
     const idealHeight = target.hasAttribute("height")
         ? parseInt(target.getAttribute("height")!)
-        : target.height;
+        : Number.MAX_SAFE_INTEGER;
 
     const translateX = (viewportWidth / 2) - targetBounds.left - (targetBounds.width / 2);
     const translateY = (viewportHeight / 2) - targetBounds.top - (targetBounds.height / 2);
@@ -64,7 +67,7 @@ function openLightbox(target: HTMLImageElement) {
     addEventListener("resize", () => closeLightbox(target), { once: true, passive: true });
 }
 
-function closeLightbox(target: HTMLImageElement) {
+function closeLightbox(target: HTMLElement) {
     if (!isLightboxOpen(target)) {
         return;
     }
@@ -82,7 +85,7 @@ function closeLightbox(target: HTMLImageElement) {
     }, TailwindAnimationTimeoutMs);
 }
 
-function isLightboxOpen(target: HTMLImageElement) {
+function isLightboxOpen(target: HTMLElement) {
     return target.dataset.lightbox == "open";
 }
 

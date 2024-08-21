@@ -1,5 +1,5 @@
 /* Lightbox Styles */
-img.lightbox-subject {
+.lightbox-subject {
   @apply transition-all relative cursor-pointer;
 
   &.open {
