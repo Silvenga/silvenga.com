@@ -46,7 +46,7 @@ async function loadMermaid() {
 function activateLoading(area: Element) {
     for (const loading of area.getElementsByClassName("mermaid-loading")) {
         if (loading instanceof HTMLElement) {
-            loading.style.display = "inline-flex";
+            loading.style.opacity = "1";
         }
     }
 }
@@ -55,14 +55,15 @@ async function renderDiagram(area: Element, mermaid: typeof import("mermaid").de
     for (const diagram of area.getElementsByClassName("mermaid-diagram")) {
         if (diagram instanceof HTMLElement) {
             await mermaid.run({
-                nodes: [diagram]
+                nodes: [diagram],
+                suppressErrors: true
             })
-            diagram.style.display = "inline-flex";
+            diagram.style.opacity = "1";
         }
     }
     for (const loading of area.getElementsByClassName("mermaid-loading")) {
         if (loading instanceof HTMLElement) {
-            loading.style.display = "";
+            loading.style.opacity = "0";
         }
     }
 }

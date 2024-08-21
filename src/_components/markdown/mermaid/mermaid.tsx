@@ -10,9 +10,9 @@ export function mermaid(md: markdownIt) {
             const info = token.info ? unescapeAll(token.info).trim() : ""
             if (info == "mermaid") {
                 return ReactDOMServer.renderToStaticMarkup(
-                    <div className="mermaid not-prose h-96 w-full my-6 rounded-md dark:bg-gray-50 relative">
-                        <pre className="mermaid-diagram hidden justify-center w-full h-full px-3 p-6">{token.content.trim()}</pre>
-                        <div className="mermaid-loading hidden absolute w-full h-full justify-center items-center p-3">
+                    <div className="mermaid not-prose h-96 w-full my-6 rounded-md dark:bg-gray-50 relative border border-gray-200 select-none">
+                        <pre className="mermaid-diagram opacity-0 absolute w-full h-full flex justify-center px-3 p-6">{token.content.trim()}</pre>
+                        <div className="mermaid-loading opacity-0 absolute w-full h-full flex justify-center items-center p-3">
                             <div className="font-medium text-gray-400">
                                 Rendering Diagram...
                             </div>
