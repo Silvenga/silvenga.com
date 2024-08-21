@@ -43,7 +43,7 @@ Neurons don't contain intelligence or real memory, but when many work in coopera
 
 ## Introducing LLM's
 
-![](posts/drafts/images/llm-diagram.webp)
+![](/posts/drafts/images/llm-diagram.webp)
 
 Large Language Models (LLM's) are artificial neural networks using a [transformer architecture](https://en.wikipedia.org/wiki/Transformer_(deep_learning_architecture)). Abstractly, there are three components that we care about:
 
@@ -144,15 +144,16 @@ Simply changing the case of a word, changes the produced token, which might chan
 
 ### Embeddings
 
-![](posts/drafts/images/embedding-diagram.webp)
+![](/posts/drafts/images/embedding-diagram.webp)
 
 The next step is to map the tokens to their semantic meaning. This is called embedding or vectorization, and can be quite difficult. Many tokens have multiple meanings and tokens can change the meaning of other tokens. The current solution to this problem is mapping tokens into a multi-dimensional space, where concepts are place spatially near similar concepts, with the aid of an embedding model.
 
-![A 2-axis chart showing how close dogs are to cats, and how petting the porcupine is not a common relationship](posts/drafts/images/vector-space.webp "This is the common way to show this space, but in reality, there are 1000's of dimensions.")
+![A 2-axis chart showing how close dogs are to cats, and how petting the porcupine is not a common relationship](/posts/drafts/images/vector-space.webp "This is the common way to show this space, but in reality, there are 1000's of dimensions.")
 
 Each dimension in the embedding model can represent a different concept, like color, sounds, Latin root, etc. Dimensions don't have to be human readable or even well defined.
 
 While the embedding model can be simple lookup table, the embedding model can also be another neural network, trained to produce an
+
 organically generated algorithm. In all likelihood this network will construct completely novel relationships, that might make no sense to humans. I like to think of this as an analog to our "gut feeling" or "intuition". This fuzziness allows LLM's to generate text based on an input emotion, even though the LLM may fail at basic math.
 
 ### Transformation

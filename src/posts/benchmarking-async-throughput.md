@@ -101,7 +101,7 @@ So here's my results, and they are about what I would expect. As the number of t
 
 This is why async/await is awesome for scalability!
 
-![A bar chart comparing async/sync results.](posts/images/bar-graph.webp "Higher number, better.")
+![A bar chart comparing async/sync results.](/posts/images/bar-graph.webp "Higher number, better.")
 
 Effectively, throughput is the number of hashed 16MiB files. Each benchmark is from 10 rounds of hashing 512 files (8GiB per round). I tested this on a Windows 11 desktop machine with an Intel i7-11700K with a Samsung PSSD T7 drive (to ensure I was IO bound). I ran each benchmark twice to confirm my numbers were consistent.
 
