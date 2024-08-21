@@ -102,17 +102,17 @@ This is why async/await is awesome for scalability!
 
 ![A bar chart comparing async/sync results.](/posts/2024/images/bar-graph.webp "Higher number, better.")
 
-Effectively, throughput is the number of hashed 16MiB files. Each benchmark is from 10 rounds of hashing 512 files (8GiB per round). I tested this on a Windows 11 desktop machine with an Intel i7-11700K with a Samsung PSSD T7 drive (to ensure I was IO bound). I ran each benchmark twice to confirm my numbers were consistent.
+Effectively, throughput is the number of hashed 16MiB files. Each benchmark is from 10 rounds of hashing 512 files (8GiB per round). I tested this on a Windows 11 desktop machine with an Intel i7-11700K (16 cores) with a Samsung PSSD T7 drive (to ensure I was IO bound). I ran each benchmark twice to confirm my numbers were consistent.
 
 And finally here's the raw data:
 
-| Workers | Async    | Sync     |     |
-| ------- | -------- | -------- | --- |
-| 16      | 22.17353 | 22.11148 |     |
-| 16      | 22.17236 | 22.10056 |     |
-| 32      | 22.15123 | 19.47368 |     |
-| 32      | 22.18913 | 19.46781 |     |
-| 64      | 22.21379 | 16.50662 |     |
-| 64      | 22.17615 | 16.49358 |     |
-| 128     | 22.22632 | 13.412   |     |
-| 128     | 22.23235 | 13.91639 |     |
+| Workers (Threads) | Attempt | Async Mode       | Sync Mode        | Ratio (Sync/Async) |
+| ----------------- | ------- | ---------------- | ---------------- | -----------------: |
+| 16                | 1       | 22.17353 tasks/s | 22.11148 tasks/s |               1.00 |
+| 16                | 2       | 22.17236 tasks/s | 22.10056 tasks/s |               1.00 |
+| 32                | 1       | 22.15123 tasks/s | 19.47368 tasks/s |               0.88 |
+| 32                | 2       | 22.18913 tasks/s | 19.46781 tasks/s |               0.88 |
+| 64                | 1       | 22.21379 tasks/s | 16.50662 tasks/s |               0.74 |
+| 64                | 2       | 22.17615 tasks/s | 16.49358 tasks/s |               0.74 |
+| 128               | 1       | 22.22632 tasks/s | 13.41200 tasks/s |               0.60 |
+| 128               | 2       | 22.23235 tasks/s | 13.91639 tasks/s |               0.63 |
