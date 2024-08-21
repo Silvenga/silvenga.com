@@ -18,13 +18,21 @@ So, then I looked towards disk IO, making a hashing benchmark. And again, I got 
 
 So ultimately, I found consistent results from using a Samsung T7 portable SSD, which my benchmark maxed out at around 374Mib/s! I'm still amazed how for .NET has come, look at that memory and CPU usage!
 
-![Task manager showing 2.6% CPU usage, 14.6 MiB of RAM usage, and 390.2 MiB/s disk access.](/posts/images/task-mgr-async-throughput.png ".NET is freaking fast.")
+![Task manager showing 2.6% CPU usage, 14.6 MiB of RAM usage, and 390.2 MiB/s disk access.](/posts/2024/images/task-mgr-async-throughput.png ".NET is freaking fast.")
 
 ## Methodology
 
 Ultimately, I wanted to avoid as many caches as I could. This includes the OS cache, and any cache in the storage (DRAM cache) - so I'm only focusing on read operations. The benchmark is rather straightforward, but you can also read the [source code](https://github.com/Silvenga/async-throughput-playground).
 
-![A flow chart showing the structure of benchmark](/posts/images/async-benchmark-flow-chart.webp)
+```mermaid
+flowchart LR
+    A(Locate Files) -->|Queue| B(.NET Channel)
+    B -->|Thread #1| D{Hash}
+    B -->|Thread #2| E{Hash}
+    B -->|Thread #N| F{Hash}
+    D --> G(Async)
+    D --> H(Sync)
+```
 
 Basically, I'm creating a thread-safe queue using a .NET Channel. The queue is read as quickly as possible by N workers, which execute the hashing operation in either sync or async mode.
 
@@ -92,7 +100,7 @@ So here's my results, and they are about what I would expect. As the number of t
 
 This is why async/await is awesome for scalability!
 
-![A bar chart comparing async/sync results.](/posts/images/bar-graph.webp "Higher number, better.")
+![A bar chart comparing async/sync results.](/posts/2024/images/bar-graph.webp "Higher number, better.")
 
 Effectively, throughput is the number of hashed 16MiB files. Each benchmark is from 10 rounds of hashing 512 files (8GiB per round). I tested this on a Windows 11 desktop machine with an Intel i7-11700K with a Samsung PSSD T7 drive (to ensure I was IO bound). I ran each benchmark twice to confirm my numbers were consistent.
 
