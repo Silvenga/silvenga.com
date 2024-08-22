@@ -120,12 +120,11 @@ function Content({ content }: { content: string }) {
 function SideToc({ content }: { content: string }) {
     return (
         // (xl (1280px) - site width (680px)) / 2 = 300px
-        <aside className="xl:absolute left-full bottom-0 top-0 w-max xl:w-[300px] xl:ps-6">
-            <div className="sticky top-4 max-h-screen overflow-y-auto mb-3">
+        <aside className="xl:absolute left-full bottom-0 top-0 w-full xl:w-[300px] xl:ps-6">
+            <div className="sticky top-4 max-h-screen overflow-y-auto overflow-x-hidden mb-3">
                 <nav id="toc-block" aria-label="Table of contents" className="prose dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: content }} />
                 <div className="hidden xl:block">
-                    <hr />
                     <div className="py-4">
                         <a className="top toc-link" href="#content">Top</a>
                     </div>

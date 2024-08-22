@@ -31,9 +31,11 @@ export function attachTocScrollSpy() {
                     for (const ref of references) {
                         if (ref.visible && !hasActive) {
                             hasActive = true;
-                            ref.link.style.textDecoration = "underline";
+                            ref.link.classList.add("active");
+                            ref.link.classList.remove("inactive");
                         } else {
-                            ref.link.style.textDecoration = "";
+                            ref.link.classList.remove("active");
+                            ref.link.classList.add("inactive");
                         }
                     }
                 }, { rootMargin: "10px" });
