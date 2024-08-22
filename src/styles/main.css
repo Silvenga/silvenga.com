@@ -63,8 +63,12 @@
     }
 
   a[rel~=external] {
-    /* TODO Overflows in some view ports. */
-    @apply whitespace-pre;
+    /* Preventing word breaking between text node and ::after */
+    /* inline block appears to be much better vs inline on the containing node, which fixes 90% of cases */
+    /* The last 10% text-wrap: balance seems to handle (breaking is more likely in the middle of a long text node, vs being greedy) */
+    /* Support for balance is iffy, but it's only handling the last 10% of cases, and is strictly not needed. */
+    @apply inline-block;
+    text-wrap: balance;
     &::after {
         content: '';
         mask: url("data-url:../assets/external-icon.svg") center/contain no-repeat;
