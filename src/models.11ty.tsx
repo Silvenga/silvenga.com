@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { RenderContext, TemplateContext } from "./_components/eleventy-types";
 import { HeartIcon, ModelIcon, PrintablesIcon, PrinterIcon } from "./_components/icons";
-import { PrintableModel, getModelById } from "./_components/pritables/client";
+import { PrintableModel, getModelById } from "./_components/printables/client";
 
 export function data() {
     return {
