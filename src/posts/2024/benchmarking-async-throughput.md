@@ -10,9 +10,9 @@ I've been writing a blog post about how async/await works - focusing mostly on t
 
 My first attempt was to use [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet) - but I quickly ran into its single-threaded limitations (async/await tends to be slower when CPU bound, which BenchmarkDotNet would cause). Multi-threading isn't exactly a supported (or really, a great idea).
 
-So then my second try was to load-test a ASP.NET Core API between two physical servers, connected with a 10Gbps link. This didn't work either as I got really inconsistent results (async was maybe 2% faster?). I looked at everything, from ensuring the hypervisor was offloading networking to my network card, to making sure neither client nor server were CPU bound (I was actually memory bound on the client side using [vegeta](https://github.com/tsenart/vegeta)).
+So then my second try was to load-test a ASP\.NET Core API between two physical servers, connected with a 10Gbps link. This didn't work either as I got really inconsistent results (async was maybe 2% faster?). I looked at everything, from ensuring the hypervisor was offloading networking to my network card, to making sure neither client nor server were CPU bound (I was actually memory bound on the client side using [vegeta](https://github.com/tsenart/vegeta)).
 
-After profiling, I discovered ASP.NET Core is basically async throughout - calling synchronous methods just calls the async counterpart, existing only for backwards compatibility at this point. So this wasn't going to work either.
+After profiling, I discovered ASP\.NET Core is basically async throughout - calling synchronous methods just calls the async counterpart, existing only for backwards compatibility at this point. So this wasn't going to work either.
 
 So, then I looked towards disk IO, making a hashing benchmark. And again, I got really inconsistent results. After some debugging (and caffeine) I realized that the OS page cache was causing my benchmark to become CPU bound (completely breaking my attempt to benchmark non-blocking-IO....). After updating my code to clear the OS page cache, I found out I was still CPU bound, although, this time due to a combination of disk encryption and really fast NVMe drives (I use Samsung 980 Pro's in PCIe Gen4 slots).
 
