@@ -1,4 +1,4 @@
-import { documentOnLoaded } from "../on-load";
+import { documentOnLoaded } from "../../on-load";
 
 export function attachTocScrollSpy() {
     documentOnLoaded(() => {
