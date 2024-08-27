@@ -179,15 +179,15 @@
   }
   .toc-link {
     @apply text-pretty no-underline hover:underline font-medium leading-tight relative inline-block max-w-full;
-    @apply ms-[-2px] border-s-2 border-opacity-0 border-gray-400 pe-3 py-1 -my-1 rounded-e w-full;
+    @apply ms-[-2px] border-s-2 border-gray-400 dark:border-gray-100 border-opacity-0 dark:border-opacity-0 pe-3 py-1 -my-1 rounded-e w-full;
 
     padding-inline-start: calc(var(--toc-depth) * 1rem);
 
     &.active {
-      @apply xl:border-opacity-100 xl:bg-gray-50;
+      @apply xl:border-opacity-100 xl:bg-gray-50 dark:xl:bg-gray-800;
     }
     &.inactive {
-      @apply xl:opacity-70;
+      @apply xl:opacity-70 dark:xl:opacity-70;
     }
   }
   .toc-label {
