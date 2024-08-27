@@ -1,3 +1,4 @@
+import { ThemeToggle } from "./dark-mode-toggle";
 import { RenderContext, TemplateContext } from "./eleventy-types";
 import { BlogIcon, CloseIcon, GithubIcon, MenuIcon, RssIcon } from "./icons";
 
@@ -28,14 +29,15 @@ export function SiteHeader(this: RenderContext, { site, renderContent }: Pick<Te
                             </a>
                         </div>
                     ))}
-                    <a className="link link-hover ms-3 me-3" href={renderContent.url("/posts/rss.xml")} rel="noreferrer noopener" target="_blank">
+                    <a className="link link-hover ms-3" href={renderContent.url("/posts/rss.xml")} rel="noreferrer noopener" target="_blank">
                         <div className="sr-only">RSS Feed</div>
                         <RssIcon className="h-6 w-6" aria-hidden />
                     </a>
-                    <a className="link link-hover me-14 sm:me-0" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">
+                    <a className="link link-hover ms-3 me-14 sm:me-0" href="https://github.com/Silvenga" rel="noreferrer noopener" target="_blank">
                         <div className="sr-only">GitHub Profile</div>
                         <GithubIcon className="h-6 w-6" aria-hidden />
                     </a>
+                    <ThemeToggle className="ms-3 hidden sm:block" />
                 </div>
                 <details className="group sm:hidden relative" aria-hidden>
                     {/* CSS only hamburger menu. I had fun with this one. */}
@@ -52,6 +54,7 @@ export function SiteHeader(this: RenderContext, { site, renderContent }: Pick<Te
                                 </a>
                             </div>
                         ))}
+                        <ThemeToggle className="mt-3 self-end" />
                     </div>
                 </details>
             </nav>

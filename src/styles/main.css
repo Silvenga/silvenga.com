@@ -236,9 +236,40 @@
       @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block -left-5 top-0 xl:hidden;
     }
   }
+}
 
-  /* Only apply to root list. */
-  /* .toc > .toc-list {
-    @apply ms-6 xl:ms-4;
-  } */
+/* Theme Toggle */
+@layer components {
+
+  /* There was a point I was actually doing the math for offsets... I gave up... */
+  .theme-toggle {
+    @apply w-[62px] h-[28px] bg-black dark:bg-white -mt-1 rounded-full relative;
+  }
+
+  .toggle-handle {
+    @apply absolute w-[20px] h-[20px] bg-white dark:bg-black rounded-full top-[4px] transition-all mx-[4px];
+  }
+
+  .toggle-handle:is(.dark, .dark *) {
+      @apply translate-x-[33px];
+  }
+  @media (prefers-color-scheme: dark) {
+    .toggle-handle:not(.light, .light *) {
+        @apply translate-x-[33px];
+    }
+  }
+
+  /* Icons */
+  .toggle-icon {
+    @apply absolute top-[5px] w-[18px] h-[18px];
+  }
+  .toggle-start {
+    @apply dark:bg-black bg-white left-[5px];
+    mask: url("data-url:../assets/moon-icon.svg") center/contain no-repeat;
+
+  }
+  .toggle-end {
+    @apply dark:bg-black bg-white right-[5px];
+    mask: url("data-url:../assets/sun-icon.svg") center/contain no-repeat;
+  }
 }
