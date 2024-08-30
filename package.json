@@ -85,7 +85,7 @@
     "highlight.js": "^11.10.0",
     "luxon": "^3.5.0",
     "markdown-it": "^14.1.0",
-    "markdown-it-anchor": "^9.0.1",
+    "markdown-it-anchor": "^9.1.0",
     "markdown-it-highlightjs": "^4.1.0",
     "markdown-it-image-figures": "^2.1.1",
     "markdown-it-toc-done-right": "^4.2.0",

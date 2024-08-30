@@ -1867,7 +1867,7 @@ __metadata:
     highlight.js: "npm:^11.10.0"
     luxon: "npm:^3.5.0"
     markdown-it: "npm:^14.1.0"
-    markdown-it-anchor: "npm:^9.0.1"
+    markdown-it-anchor: "npm:^9.1.0"
     markdown-it-highlightjs: "npm:^4.1.0"
     markdown-it-image-figures: "npm:^2.1.1"
     markdown-it-toc-done-right: "npm:^4.2.0"
@@ -6575,13 +6575,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-it-anchor@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "markdown-it-anchor@npm:9.0.1"
+"markdown-it-anchor@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "markdown-it-anchor@npm:9.1.0"
   peerDependencies:
     "@types/markdown-it": "*"
     markdown-it: "*"
-  checksum: 10/eecf779066b37f75eea8e665564073aaf08fa91e7492f8d6477a55f23f6450b21b58b9b416170b20f803483c264c7d327ff5d32aca8453f7b1ab13a8874df4af
+  checksum: 10/41f366c6a053a2050efea46ca56210e61c7b0a8068efb7a66a183cfb2acf51258aec28627deac531c58a317dca8e1607cbbdcc6d200015be6f4805b41437fcf8
   languageName: node
   linkType: hard
 
