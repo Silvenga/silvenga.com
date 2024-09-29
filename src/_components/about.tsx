@@ -6,11 +6,11 @@ export function About({ className, ...props }: React.DetailedHTMLProps<React.HTM
         <div className={clsx(className)} {...props}>
             <div className="prose dark:prose-invert max-w-none leading-relaxed">
                 <p className="mb-0">
-                    My name is <strong>Mark</strong>, a DevOps fanatic and passionate about crafting beautiful code!
+                    My name is <Emphasize>Mark</Emphasize>, a DevOps fanatic and passionate about crafting beautiful code!
                 </p>
-                <p className="mb-6">
-                    Professionally I'm a software engineer, working with everything from Ceph and Kubernetes to .NET and React.
-                    In my free-time I&apos;m learning CAD and enjoying 3D-printing.
+                <p className="mb-6 mt-3">
+                    Professionally I'm a software engineer, working with everything from <Emphasize>Ceph</Emphasize> and <Emphasize>Kubernetes</Emphasize> to <Emphasize>.NET</Emphasize> and <Emphasize>React</Emphasize>.
+                    In my free-time I&apos;m learning <Emphasize>CAD</Emphasize> and enjoying <Emphasize>3D-printing</Emphasize>.
                 </p>
             </div>
             <SocialLinks />
@@ -38,5 +38,13 @@ function SocialLinks({ className, ...props }: React.DetailedHTMLProps<React.HTML
                 <ResumeIcon className="h-6 w-6" aria-hidden />
             </a>
         </nav>
+    );
+}
+
+function Emphasize({ children, className, ...props }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
+    return (
+        <span className={clsx("text-black dark:text-white", className)} {...props}>
+            {children}
+        </span>
     );
 }
