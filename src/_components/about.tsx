@@ -4,7 +4,7 @@ import { GithubIcon, MastodonIcon, MatrixIcon, ResumeIcon } from "./icons";
 export function About({ className, ...props }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
     return (
         <div className={clsx(className)} {...props}>
-            <div className="prose leading-relaxed">
+            <div className="prose dark:prose-invert max-w-none leading-relaxed">
                 <p className="mb-0">
                     My name is <strong>Mark</strong>, a DevOps fanatic and passionate about crafting beautiful code!
                 </p>
