@@ -61,8 +61,8 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
 function AuthorCard() {
     return (
         <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800" aria-label="About the author" role="region">
-            <Avatar className="lg:basis-1/3 ml mb-3" />
-            <About className="lg:basis-2/3" />
+            <Avatar className="lg:basis-1/3 lg:mb-12 lg:mr-3" />
+            <About className="lg:basis-2/3 my-6" />
         </address>
     )
 }

@@ -16,10 +16,12 @@ export function render(this: RenderContext, { collections }: TemplateContext) {
                 <div className="flex flex-col lg:flex-row">
                     <Avatar className="self-center lg:self-start mt-3 lg:me-3" />
                     <div className="text-center lg:text-left my-6">
-                        <h1 className="title mb-2">
-                            Hello there!
-                        </h1>
-                        <p className="mb-3">And welcome to my weblog.</p>
+                        <div className="prose mb-3">
+                            <h1 className="title mb-1">
+                                Hello there!
+                            </h1>
+                            <p className="mt-0">And welcome to my weblog.</p>
+                        </div>
                         <About />
                     </div>
                 </div>
