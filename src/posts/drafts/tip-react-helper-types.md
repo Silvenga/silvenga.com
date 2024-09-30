@@ -5,6 +5,7 @@ tags:
 title: "Tip: React has Type Helpers"
 description: Using React type helpers to clean up boilerplate code and make code more robust.
 ---
+## Introduction
 
 One of the reasons I much prefer React over Vue is the first class support for TypeScript. Ditto, React ships a bunch of helper types for Typescript users to consume.
 
@@ -135,4 +136,8 @@ function Container({ children, ...props }: PropsWithChildren<ContainerProps>) {
 }
 ```
 
-And that's all folks, cheers!
+## Postfix
+
+Now, I've just talked about the two most common type helpers, but there are few others, e.g. `PropsWithoutRef` and `PropsWithRef` - but those tend to be a bit niche. Either way, try to use these type helpers, both for robustness, and hopefully to reduce boilerplate code when practical.
+
+Cheers!
