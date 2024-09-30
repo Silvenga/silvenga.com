@@ -99,6 +99,12 @@ sequenceDiagram
 
 Context switching takes up a small amount of CPU time, but with a lot of pending operations, context switching can start to add up. This leads to inefficiency, time that could be better spent doing actual work.
 
+### Introducing Non-Blocking-IO
+
+In the example above, whenever a naturally asynchronous operation needs to occur, the program pauses or blocks the thread. 
+
+
+
 ## Myths
 
 ### Async/Await Makes Code Faster
@@ -106,6 +112,8 @@ Context switching takes up a small amount of CPU time, but with a lot of pending
 ### Async/Await Makes Code Run in Parallel
 
 ### Async/Await Is Slow
+
+
 
 ### Green Threads Remove the Benefits of Async/Await
 
