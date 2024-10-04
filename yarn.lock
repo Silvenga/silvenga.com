@@ -1968,7 +1968,7 @@ __metadata:
     markdown-it-highlightjs: "npm:^4.2.0"
     markdown-it-image-figures: "npm:^2.1.1"
     markdown-it-toc-done-right: "npm:^4.2.0"
-    mermaid: "npm:^11.2.1"
+    mermaid: "npm:^11.3.0"
     node-cache: "npm:^5.1.2"
     node-html-parser: "npm:^6.1.13"
     nodemon: "npm:^3.1.7"
@@ -4164,7 +4164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:^3.0.11":
+"dompurify@npm:^3.0.11 <3.1.7":
   version: 3.1.6
   resolution: "dompurify@npm:3.1.6"
   checksum: 10/036844bc9b717b172ba27f5863b56f950289a05d8eebfb702d6953bbf80bd021e480ce4217bd084567186f2d0ada13358ce5556963492cfe402d774e8667f120
@@ -6766,9 +6766,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mermaid@npm:^11.2.1":
-  version: 11.2.1
-  resolution: "mermaid@npm:11.2.1"
+"mermaid@npm:^11.3.0":
+  version: 11.3.0
+  resolution: "mermaid@npm:11.3.0"
   dependencies:
     "@braintree/sanitize-url": "npm:^7.0.1"
     "@iconify/utils": "npm:^2.1.32"
@@ -6780,7 +6780,7 @@ __metadata:
     d3-sankey: "npm:^0.12.3"
     dagre-d3-es: "npm:7.0.10"
     dayjs: "npm:^1.11.10"
-    dompurify: "npm:^3.0.11"
+    dompurify: "npm:^3.0.11 <3.1.7"
     katex: "npm:^0.16.9"
     khroma: "npm:^2.1.0"
     lodash-es: "npm:^4.17.21"
@@ -6789,7 +6789,7 @@ __metadata:
     stylis: "npm:^4.3.1"
     ts-dedent: "npm:^2.2.0"
     uuid: "npm:^9.0.1"
-  checksum: 10/7087516d48373b6b4f76b6c5afca15939af36be9d04d904fb2461aa98ad6c6f11064f16a8c8bbeccbc17ac3f2f21351fc0edb77e23f096bf0622ae7f2f23192e
+  checksum: 10/d90b06ed281ecfa0d28712e6e4063c994d2163296f559eb4d8a3c83ed322c6eaa6304cfec7ce52a2a6a7367c51ea24d7beaadd8aac897a9e6e60e546868d9516
   languageName: node
   linkType: hard
 
