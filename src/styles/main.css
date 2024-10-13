@@ -160,6 +160,15 @@
     mask: url("data-url:../assets/close-icon.svg") center/contain no-repeat;
     @apply bg-black group-open:bg-gray-500 dark:bg-white dark:group-open:bg-white/60;
   }
+
+  .kofi-button-light {
+    background: url("data-url:../assets/kofi-button-light.webp");
+  }
+  .kofi-button {
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 1392/218;
+  }
 }
 
 /* TOC */

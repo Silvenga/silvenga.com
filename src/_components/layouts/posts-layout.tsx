@@ -44,6 +44,12 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                 </div>
             )}
             <footer className="mt-12" aria-label="Post Footer">
+                <section className="flex flex-col justify-center items-center mb-6">
+                    <p className="prose dark:prose-invert text-center mb-2">
+                        Want to support my work? Buy me a coffee?
+                    </p>
+                    <a href="https://ko-fi.com/silvenga" aria-label="Donate on Ko-Fi!" className="h-8 block kofi-button kofi-button-light" role="button"></a>
+                </section>
                 <AuthorCard />
                 <div className="mt-6">
                     {!!updated && updated != created && (
