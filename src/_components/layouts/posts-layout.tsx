@@ -43,15 +43,10 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
                     <Content content={contentParseResult.remainingTree} />
                 </div>
             )}
-            <footer className="mt-12" aria-label="Post Footer">
-                <section className="flex flex-col justify-center items-center mb-6">
-                    <p className="prose dark:prose-invert text-center mb-2">
-                        Want to support my work? Buy me a coffee?
-                    </p>
-                    <a href="https://ko-fi.com/silvenga" aria-label="Donate on Ko-Fi!" className="h-8 block kofi-button kofi-button-light" role="button"></a>
-                </section>
+            <footer className="mt-12 space-y-6" aria-label="Post Footer">
+                <KoFi />
                 <AuthorCard />
-                <div className="mt-6">
+                <div>
                     {!!updated && updated != created && (
                         <p className="mb-1 text-center">
                             Updated on <ReadableDate dateTime={updated} />
@@ -62,6 +57,17 @@ export function PostsLayout(this: RenderContext, { title, content, page, created
             </footer>
         </article>
     );
+}
+
+function KoFi() {
+    return (
+        <section className="flex flex-col justify-center items-center mb-12">
+            <p className="prose dark:prose-invert text-center mb-2">
+                Want to support my work? Buy me a coffee?
+            </p>
+            <a href="https://ko-fi.com/silvenga" aria-label="Donate on Ko-Fi!" className="h-8 block kofi-button kofi-button-light hover:ring-2 ring-black rounded" role="button"></a>
+        </section>
+    )
 }
 
 function AuthorCard() {
