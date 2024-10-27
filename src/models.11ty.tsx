@@ -9,6 +9,13 @@ export function data() {
         description: "My 3D-Printing models I've made over the years.",
         printablesModelIds: [
             "879617", // Fun-Sized Master Spool (Parametric)
+            "1052251", // Ubiquiti Flex Mini Switch Wall Mount (USW-Flex-Mini)
+            "1052232", // Dewalt DCBL722 Leaf Blower Wall Mount
+            "1052178", // Polybox Humidity Sensor Mount (And Desiccant Container Models)
+            "1040506", // Stream Deck MK.2 15-Keys Stand (Parametric)
+            "1036320", // Filament Density Calculation Tool
+            "981906", // Simple DKC-Pro Frame
+            "979223", // USB Maus Case
             "892912", // EIBOS Cyclopes Accessories
             "559194", // Zigbee Door Sensor Mount
             "560184", // CyberPower Surge Protector Mount/Bracket
@@ -22,7 +29,7 @@ export function data() {
                     const model = await getModelById(id);
                     models.push(model);
                 }
-                return models;
+                return models.toSorted((a, b) => b.likesCount - a.likesCount);
             }
         }
     }
