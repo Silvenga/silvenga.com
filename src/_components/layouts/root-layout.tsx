@@ -35,8 +35,8 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
                 <link href="/src/styles/main.css" rel="stylesheet preload" as="style" type="text/css" />
 
-                <link rel="canonical" href={canonicalUrl} />
-                <link rel="alternate" type="application/rss+xml" href={this.url("/posts/rss.xml")} title="RSS Feed" />
+                <link rel="canonical" href={canonicalUrl} integrity="" />
+                <link rel="alternate" type="application/rss+xml" href={this.url("/posts/rss.xml")} title="RSS Feed" integrity="" />
 
                 <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.svg" />
                 <link rel="icon" type="image/png" href="/src/assets/favicon.png" />
