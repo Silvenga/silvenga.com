@@ -29,7 +29,7 @@ export function SiteHeader(this: RenderContext, { site, renderContent }: Pick<Te
                             </a>
                         </div>
                     ))}
-                    <a className="link link-hover ms-3" href={renderContent.url("/posts/rss.xml")} rel="noreferrer noopener" target="_blank">
+                    <a className="link link-hover ms-3 hidden md:inline-block" href={renderContent.url("/posts/rss.xml")} rel="noreferrer noopener" target="_blank">
                         <div className="sr-only">RSS Feed</div>
                         <RssIcon className="h-6 w-6" aria-hidden />
                     </a>
