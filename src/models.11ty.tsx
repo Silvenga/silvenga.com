@@ -1,29 +1,16 @@
 import { DateTime } from "luxon";
 import { RenderContext, TemplateContext } from "./_components/eleventy-types";
 import { HeartIcon, ModelIcon, PrintablesIcon, PrinterIcon } from "./_components/icons";
-import { PrintableModel, getModelById } from "./_components/printables/client";
+import { PrintableModel, getModelById, getUserModelsByUserId } from "./_components/printables/client";
 
 export function data() {
     return {
         title: "3D Models",
         description: "My 3D-Printing models I've made over the years.",
-        printablesModelIds: [
-            "879617", // Fun-Sized Master Spool (Parametric)
-            "1052251", // Ubiquiti Flex Mini Switch Wall Mount (USW-Flex-Mini)
-            "1052232", // Dewalt DCBL722 Leaf Blower Wall Mount
-            "1052178", // Polybox Humidity Sensor Mount (And Desiccant Container Models)
-            "1040506", // Stream Deck MK.2 15-Keys Stand (Parametric)
-            "1036320", // Filament Density Calculation Tool
-            "981906", // Simple DKC-Pro Frame
-            "979223", // USB Maus Case
-            "892912", // EIBOS Cyclopes Accessories
-            "559194", // Zigbee Door Sensor Mount
-            "560184", // CyberPower Surge Protector Mount/Bracket
-            "611393", // Disposable Gloves Dispenser
-            "642336", // YAS - Yet Another Bed Scraper
-        ],
+        printablesUserId: "@Silvenga",
         eleventyComputed: {
-            printableModels: async ({ printablesModelIds }: { printablesModelIds: string[] }) => {
+            printableModels: async ({ printablesUserId }: { printablesUserId: string }) => {
+                const printablesModelIds = await getUserModelsByUserId(printablesUserId);
                 const models: PrintableModel[] = [];
                 for (const id of printablesModelIds) {
                     const model = await getModelById(id);
@@ -44,12 +31,16 @@ export function render(this: RenderContext, { printableModels }: TemplateContext
                     These some of the models I've made over the years as I learn Fusion 360 in my spare time.
                 </p>
             </header>
-            {printableModels.map(x => (
-                <Model key={x.id} model={x} />
-            ))}
-            <footer className="pt-6">
+            <div className="md:w-[calc(680px*2)] md:ms-[calc(680px/-2)]">
+                <div className="w-screen max-w-full mx-auto md:px-3 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {printableModels.map(x => (
+                        <Model key={x.id} model={x} />
+                    ))}
+                </div>
+            </div>
+            <footer className="pt-12">
                 <p className="text-center text-gray-600">
-                    Printable.com statistics updated on {DateTime.utc().toFormat("yyyy-LL-dd")}
+                    Printable.com statistics cached. Last updated on {DateTime.utc().toFormat("yyyy-LL-dd")}.
                 </p>
             </footer>
         </article>
@@ -61,25 +52,25 @@ function Model({ model }: { model: PrintableModel }) {
     const link = `https://www.printables.com/model/${model.id}-${model.slug}`;
 
     return (
-        <section className="rounded mb-9 border border-gray-300 dark:bg-gray-800">
+        <section className="rounded border border-gray-300 dark:bg-gray-800 flex flex-col justify-between">
 
             <header>
-                <h2 className="text-3xl font-light p-6 flex items-center">
-                    <ModelIcon className="me-3 h-8 w-8" />
-                    {model.name}
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-light p-6 flex items-center">
+                    <ModelIcon className="me-3 h-8 w-8 shrink-0" />
+                    <span className="line-clamp-2">{model.name}</span>
                 </h2>
             </header>
 
-            <div className="flex flex-col-reverse lg:flex-row border-t border-b">
-                <div className="basis-2/5">
-                    <img className="object-cover w-full h-auto lightbox-subject"
+            <div className="flex flex-col-reverse md:flex-row">
+                <div className="basis-2/5 p-3">
+                    <img className="object-cover w-full h-auto lightbox-subject rounded-md"
                         src={`https://media.printables.com/${model.image.filePath}`}
                         alt="Model preview"
                         {...{ "eleventy:widths": "512" }}
                     />
                 </div>
                 <div className="flex flex-col p-6 basis-3/5 grow-0">
-                    <p className="mb-3 grow">
+                    <p className="mb-3 grow prose dark:prose-invert max-w-none">
                         {model.summary}
                     </p>
                     <ul className="list-none flex flex-wrap h-12 overflow-hidden grow-0 text-sm text-gray-600 dark:text-gray-300" aria-hidden>
