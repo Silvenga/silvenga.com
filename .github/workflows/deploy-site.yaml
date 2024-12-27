@@ -84,7 +84,7 @@ jobs:
           name: dist
           path: dist
       - name: Deploy to Bunny Edge
-        uses: ayeressian/bunnycdn-storage-deploy@v2.2.3
+        uses: ayeressian/bunnycdn-storage-deploy@v2.2.5
         with:
           source: "dist"
           destination: ""
