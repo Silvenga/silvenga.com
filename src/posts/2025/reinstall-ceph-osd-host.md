@@ -23,7 +23,7 @@ Now the reinstall or image the OSD host and install all the normal prerequisites
 Of course, remember to copy the `orch` SSH key!
 
 ```bash
-ceph cephadm get-pub-key
+ceph cephadm get-pub-key > ceph.pub
 ssh-copy-id -f -i ceph.pub root@<host>
 ```
 
