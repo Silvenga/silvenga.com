@@ -2170,7 +2170,6 @@ __metadata:
     "@tailwindcss/postcss": "npm:^4.0.0"
     "@tailwindcss/typography": "npm:^0.5.16"
     "@types/11ty__eleventy-img": "npm:^4.0.0"
-    "@types/cross-spawn": "npm:^6.0.6"
     "@types/eslint__js": "npm:^8.42.3"
     "@types/luxon": "npm:^3.4.2"
     "@types/markdown-it": "npm:^14.1.2"
@@ -2179,7 +2178,6 @@ __metadata:
     clsx: "npm:^2.1.1"
     concurrently: "npm:^9.1.2"
     cross-env: "npm:^7.0.3"
-    cross-spawn: "npm:^7.0.6"
     eleventy-plugin-time-to-read: "npm:^1.3.0"
     eslint: "npm:^9.19.0"
     eslint-plugin-only-warn: "npm:^1.1.0"
@@ -2691,15 +2689,6 @@ __metadata:
     "@types/node": "npm:*"
     "@types/sharp": "npm:^0.31.0"
   checksum: 10/45c2715079bed6f7ce88288c61db42a91a25413f69ec0b6a1cedf8c1a3d33dcc433e0f61dc2eeaf068395efe8669725fc3813dfe25ad8bf2ddffb69f52ba9c3d
-  languageName: node
-  linkType: hard
-
-"@types/cross-spawn@npm:^6.0.6":
-  version: 6.0.6
-  resolution: "@types/cross-spawn@npm:6.0.6"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: 10/b4172927cd1387cf037c3ade785ef46c87537b7bc2803d7f6663b4904d0c5d6f726415d1adb2fee4fecb21746738f11336076449265d46be4ce110cc3a8c8436
   languageName: node
   linkType: hard
 
@@ -4217,18 +4206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "cross-spawn@npm:7.0.3"
-  dependencies:
-    path-key: "npm:^3.1.0"
-    shebang-command: "npm:^2.0.0"
-    which: "npm:^2.0.1"
-  checksum: 10/e1a13869d2f57d974de0d9ef7acbf69dc6937db20b918525a01dacb5032129bd552d290d886d981e99f1b624cb03657084cc87bd40f115c07ecf376821c729ce
-  languageName: node
-  linkType: hard
-
-"cross-spawn@npm:^7.0.6":
+"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.1, cross-spawn@npm:^7.0.3, cross-spawn@npm:^7.0.6":
   version: 7.0.6
   resolution: "cross-spawn@npm:7.0.6"
   dependencies:
