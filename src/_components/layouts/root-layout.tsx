@@ -100,7 +100,7 @@ export function RootLayout(this: RenderContext, { description, site, title, cont
 
             <body className="container mx-auto w-full max-w-[680px] px-6 md:p-0 min-h-svh flex flex-col transition-colors">
                 <div className="sr-only focus-within:not-sr-only focus-within:absolute top-6 left-6 p-6 z-10">
-                    <a className="p-3 border rounded-md bg-white dark:bg-gray-700" href="#content">
+                    <a className="p-3 border border-gray-200 rounded-md bg-white dark:bg-gray-700" href="#content">
                         Skip to Content
                     </a>
                 </div>

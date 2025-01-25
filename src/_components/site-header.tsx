@@ -41,7 +41,7 @@ export function SiteHeader(this: RenderContext, { site, renderContent }: Pick<Te
                 </div>
                 <details className="group sm:hidden relative" aria-hidden>
                     {/* CSS only hamburger menu. I had fun with this one. */}
-                    <summary className="list-none absolute right-0 -top-9 w-10 h-10 flex border p-2 justify-center items-center rounded-md" role="button">
+                    <summary className="list-none absolute right-0 -top-9 w-10 h-10 flex border border-gray-200 p-2 justify-center items-center rounded-md" role="button">
                         <MenuIcon className="h-7 w-7 group-open:hidden" />
                         <CloseIcon className="h-7 w-7 hidden group-open:block" />
                     </summary>

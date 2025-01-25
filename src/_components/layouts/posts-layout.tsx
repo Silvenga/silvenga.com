@@ -72,7 +72,7 @@ function KoFi() {
 
 function AuthorCard() {
     return (
-        <address className="not-italic border rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800" aria-label="About the author" role="region">
+        <address className="not-italic border border-gray-200 rounded p-6 flex lg:flex-row flex-col items-center text-center lg:text-left dark:bg-gray-800" aria-label="About the author" role="region">
             <Avatar className="lg:basis-1/3 lg:mb-12 lg:mr-3" />
             <About className="lg:basis-2/3 my-6" />
         </address>
@@ -81,7 +81,7 @@ function AuthorCard() {
 
 function ArchivedWarningCard({ archived }: { archived: Date }) {
     return (
-        <section aria-label="Post archived warning" role="status" className="border text-black border-yellow-500 rounded bg-yellow-100 p-3 text-center my-9">
+        <section aria-label="Post archived warning" role="status" className="border border-yellow-500 text-black rounded bg-yellow-100 p-3 text-center my-9">
             <p>
                 This post was archived on <ReadableDate className="font-medium" dateTime={archived} />.
             </p>

@@ -75,7 +75,7 @@ function Model({ model }: { model: PrintableModel }) {
                     </p>
                     <ul className="list-none flex flex-wrap h-12 overflow-hidden grow-0 text-sm text-gray-600 dark:text-gray-300" aria-hidden>
                         {model.tags.map(({ name }) => (
-                            <li key={name} className="mr-3 border rounded-full p-2 mb-3">
+                            <li key={name} className="mr-3 border border-gray-200 rounded-full p-2 mb-3">
                                 #{name}
                             </li>
                         ))}
