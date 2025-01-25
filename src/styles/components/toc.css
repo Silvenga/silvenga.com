@@ -1,0 +1,80 @@
+.toc {
+  @apply mb-3;
+
+  & > .toc-list {
+    @apply xl:border-s-2 border-gray-100 pt-1 -mt-1 ms-1;
+  }
+}
+
+.toc-header {
+  @apply prose dark:prose-invert mb-6 text-2xl font-bold;
+  color: var(--tw-prose-headings)
+}
+
+.toc-list {
+  @apply list-none p-0 my-0;
+}
+
+.toc-item {
+  @apply p-0 my-0 leading-7;
+}
+
+.toc-link {
+  @apply text-pretty no-underline hover:underline font-medium leading-tight relative inline-block max-w-full;
+  @apply ms-[-2px] border-s-2 border-gray-400/0 dark:border-gray-100/0 pe-3 py-1 -my-1 rounded-e w-full;
+
+  padding-inline-start: calc(var(--toc-depth) * 1rem);
+
+  &.active {
+    @apply xl:border-gray-400/100 dark:xl:border-gray-100/100 xl:bg-gray-50 dark:xl:bg-gray-800;
+  }
+  &.inactive {
+    @apply xl:opacity-70 dark:xl:opacity-70;
+  }
+}
+.toc-label {
+  @apply xl:overflow-x-hidden text-ellipsis max-w-full;
+}
+
+/* Depth */
+.toc-list {
+  --toc-depth: 1;
+}
+.toc-list .toc-list {
+  --toc-depth: 2;
+}
+.toc-list .toc-list .toc-list {
+  --toc-depth: 3;
+}
+.toc-list .toc-list .toc-list .toc-list {
+  --toc-depth: 4;
+}
+.toc-list .toc-list .toc-list .toc-list .toc-list {
+  --toc-depth: 5;
+}
+.toc-list .toc-list .toc-list .toc-list .toc-list .toc-list {
+  --toc-depth: 6;
+}
+
+/* Top */
+.top {
+  @apply ms-5;
+  &.toc-link {
+    @apply opacity-60;
+  }
+  &::before {
+    content: '';
+    mask: url("data-url:../assets/arrow-up-icon.svg") center/contain no-repeat;
+    @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block -left-5;
+  }
+}
+
+/* Mobile Styling */
+.toc-label {
+  @apply relative ms-4 xl:ms-0;
+  &::before {
+    content: '';
+    mask: url("data-url:../assets/dot-icon.svg") center/contain no-repeat;
+    @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block -left-5 top-0 xl:hidden;
+  }
+}

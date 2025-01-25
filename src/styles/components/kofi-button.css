@@ -1,0 +1,9 @@
+.kofi-button-light {
+  background: url("data-url:../assets/kofi-button-light.webp");
+}
+
+.kofi-button {
+  background-size: contain;
+  background-repeat: no-repeat;
+  aspect-ratio: 1392/218;
+}

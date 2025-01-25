@@ -1,0 +1,80 @@
+.avatar {
+  background: url('data-url:../assets/avatar.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.github-icon {
+  mask: url('data-url:../assets/github-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.mastodon-icon {
+  mask: url('data-url:../assets/mastodon-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.rss-icon {
+  mask: url('data-url:../assets/rss-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.blog-icon {
+  mask: url('data-url:../assets/blog-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.printables-icon {
+  mask: url('data-url:../assets/printables-icon.svg') center/contain no-repeat;
+  @apply bg-white dark:bg-white;
+}
+
+.heart-icon {
+  mask: url('data-url:../assets/heart-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.printer-icon {
+  mask: url('data-url:../assets/printer-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.model-icon {
+  mask: url('data-url:../assets/model-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.matrix-icon {
+  mask: url('data-url:../assets/matrix-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.cc-icon {
+  mask: url('data-url:../assets/cc-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.cc-by-icon {
+  mask: url('data-url:../assets/cc-by-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.cc-sa-icon {
+  mask: url('data-url:../assets/cc-sa-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.resume-icon {
+  mask: url('data-url:../assets/resume-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.menu-icon {
+  mask: url('data-url:../assets/menu-icon.svg') center/contain no-repeat;
+  @apply bg-black dark:bg-white;
+}
+
+.close-icon {
+  mask: url('data-url:../assets/close-icon.svg') center/contain no-repeat;
+  @apply bg-black group-open:bg-gray-500 dark:bg-white dark:group-open:bg-white/60;
+}

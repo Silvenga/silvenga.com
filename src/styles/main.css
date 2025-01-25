@@ -1,19 +1,76 @@
-@import "./copied-tooltip.css";
-@import "./lightbox.css";
+@import 'tailwindcss';
+@import './components/copied-tooltip.css' layer(components);
+@import './components/lightbox.css' layer(components);
+@import './components/icons.css' layer(components);
+@import './components/toc.css' layer(components);
+@import './components/theme-toggle.css' layer(components);
+@import './components/kofi-button.css' layer(components);
+@config '../../tailwind.config.ts';
 
-@font-face {
-  font-family: 'Inter Variable';
-  font-style: normal;
-  font-display: block;
-  font-weight: 100 900;
-  src: local("Inter Variable"),
-       url(data-url:npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2) format('woff2-variations');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+  .title {
+    @apply text-4xl sm:text-5xl font-light;
+  }
+
+  .prose {
+    img {
+      @apply rounded-sm w-auto max-h-96 max-w-96 mx-auto;
+    }
+
+    figcaption {
+      @apply text-center;
+    }
+
+    .header-anchor {
+      @apply no-underline hover:underline decoration-dashed decoration-gray-400;
+
+      &::after {
+        content: '#';
+        @apply hidden hover:inline-block no-underline ms-2 opacity-50;
+      }
+    }
+
+    a[rel~='external'] {
+      /* Preventing word breaking between text node and ::after */
+      /* inline block appears to be much better vs inline on the containing node, which fixes 90% of cases */
+      /* The last 10% text-wrap: balance seems to handle (breaking is more likely in the middle of a long text node, vs being greedy) */
+      /* Support for balance is iffy, but it's only handling the last 10% of cases, and is strictly not needed. */
+      @apply inline-block;
+      text-wrap: balance;
+      &::after {
+        content: '';
+        mask: url('data-url:../assets/external-icon.svg') center/contain no-repeat;
+        @apply bg-black dark:bg-white h-4 w-4 inline-block ms-[4px] relative top-[2px];
+      }
+    }
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Inter Variable';
+    font-style: normal;
+    font-display: block;
+    font-weight: 100 900;
+    src:
+      local('Inter Variable'),
+      url(data-url:npm:@fontsource-variable/inter/files/inter-latin-wght-normal.woff2)
+        format('woff2-variations');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+      U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+      U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+}
 
 @layer base {
   html, :host {
@@ -34,251 +91,6 @@
 
   .fluid {
     /* Needed to escape prose overrides on imgs. */
-    @apply max-w-full !important;
-  }
-}
-
-@layer components {
-
-  .title {
-    @apply text-4xl sm:text-5xl font-light;
-  }
-
-  .prose {
-    img {
-      @apply rounded w-auto max-h-96 max-w-96 mx-auto;
-    }
-
-    figcaption {
-      @apply text-center;
-    }
-
-    .header-anchor {
-      @apply no-underline hover:underline decoration-dashed decoration-gray-400;
-
-      &::after {
-        content: "#";
-        @apply hidden hover:inline-block no-underline ms-2 opacity-50;
-      }
-    }
-
-  a[rel~=external] {
-    /* Preventing word breaking between text node and ::after */
-    /* inline block appears to be much better vs inline on the containing node, which fixes 90% of cases */
-    /* The last 10% text-wrap: balance seems to handle (breaking is more likely in the middle of a long text node, vs being greedy) */
-    /* Support for balance is iffy, but it's only handling the last 10% of cases, and is strictly not needed. */
-    @apply inline-block;
-    text-wrap: balance;
-    &::after {
-        content: '';
-        mask: url("data-url:../assets/external-icon.svg") center/contain no-repeat;
-        @apply bg-black dark:bg-white h-4 w-4 inline-block ms-[4px] relative top-[2px];
-      }
-    }
-  }
-}
-
-/* Icons */
-@layer components {
-  .avatar {
-    background: url("data-url:../assets/avatar.webp");
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-
-  .github-icon {
-    mask: url("data-url:../assets/github-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .mastodon-icon {
-    mask: url("data-url:../assets/mastodon-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .rss-icon {
-    mask: url("data-url:../assets/rss-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .blog-icon {
-    mask: url("data-url:../assets/blog-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .printables-icon {
-    mask: url("data-url:../assets/printables-icon.svg") center/contain no-repeat;
-    @apply bg-white dark:bg-white;
-  }
-
-  .heart-icon {
-    mask: url("data-url:../assets/heart-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .printer-icon {
-    mask: url("data-url:../assets/printer-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .model-icon {
-    mask: url("data-url:../assets/model-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .matrix-icon {
-    mask: url("data-url:../assets/matrix-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .cc-icon {
-    mask: url("data-url:../assets/cc-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .cc-by-icon {
-    mask: url("data-url:../assets/cc-by-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .cc-sa-icon {
-    mask: url("data-url:../assets/cc-sa-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .resume-icon {
-    mask: url("data-url:../assets/resume-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .menu-icon {
-    mask: url("data-url:../assets/menu-icon.svg") center/contain no-repeat;
-    @apply bg-black dark:bg-white;
-  }
-
-  .close-icon {
-    mask: url("data-url:../assets/close-icon.svg") center/contain no-repeat;
-    @apply bg-black group-open:bg-gray-500 dark:bg-white dark:group-open:bg-white/60;
-  }
-
-  .kofi-button-light {
-    background: url("data-url:../assets/kofi-button-light.webp");
-  }
-  .kofi-button {
-    background-size: contain;
-    background-repeat: no-repeat;
-    aspect-ratio: 1392/218;
-  }
-}
-
-/* TOC */
-@layer components {
-  .toc {
-    @apply mb-3;
-
-    & > .toc-list {
-      @apply xl:border-s-2 border-gray-100 pt-1 -mt-1 ms-1;
-    }
-  }
-  .toc-list {
-    @apply list-none p-0 my-0;
-  }
-  .toc-item {
-    @apply p-0 my-0;
-  }
-  .toc-link {
-    @apply text-pretty no-underline hover:underline font-medium leading-tight relative inline-block max-w-full;
-    @apply ms-[-2px] border-s-2 border-gray-400 dark:border-gray-100 border-opacity-0 dark:border-opacity-0 pe-3 py-1 -my-1 rounded-e w-full;
-
-    padding-inline-start: calc(var(--toc-depth) * 1rem);
-
-    &.active {
-      @apply xl:border-opacity-100 xl:bg-gray-50 dark:xl:bg-gray-800;
-    }
-    &.inactive {
-      @apply xl:opacity-70 dark:xl:opacity-70;
-    }
-  }
-  .toc-label {
-    @apply xl:overflow-x-hidden text-ellipsis max-w-full;
-  }
-
-  /* Depth */
-  .toc-list {
-    --toc-depth: 1;
-  }
-  .toc-list .toc-list {
-    --toc-depth: 2;
-  }
-  .toc-list .toc-list .toc-list {
-    --toc-depth: 3;
-  }
-  .toc-list .toc-list .toc-list .toc-list {
-    --toc-depth: 4;
-  }
-  .toc-list .toc-list .toc-list .toc-list .toc-list {
-    --toc-depth: 5;
-  }
-  .toc-list .toc-list .toc-list .toc-list .toc-list .toc-list {
-    --toc-depth: 6;
-  }
-
-  /* Top */
-  .top {
-    @apply ms-5;
-    &.toc-link {
-      @apply opacity-60;
-    }
-    &::before {
-      content: '';
-      mask: url("data-url:../assets/arrow-up-icon.svg") center/contain no-repeat;
-      @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block -left-5;
-    }
-  }
-
-  /* Mobile Styling */
-  .toc-label {
-    @apply relative ms-4 xl:ms-0;
-    &::before {
-      content: '';
-      mask: url("data-url:../assets/dot-icon.svg") center/contain no-repeat;
-      @apply bg-gray-500 dark:bg-white h-5 w-3 absolute inline-block -left-5 top-0 xl:hidden;
-    }
-  }
-}
-
-/* Theme Toggle */
-@layer components {
-
-  /* There was a point I was actually doing the math for offsets... I gave up... */
-  .theme-toggle {
-    @apply w-[62px] h-[28px] bg-black dark:bg-white -mt-1 rounded-full relative;
-  }
-
-  .toggle-handle {
-    @apply absolute w-[20px] h-[20px] bg-white dark:bg-black rounded-full top-[4px] transition-all mx-[4px];
-  }
-
-  .toggle-handle:is(.dark, .dark *) {
-      @apply translate-x-[33px];
-  }
-  @media (prefers-color-scheme: dark) {
-    .toggle-handle:not(.light, .light *) {
-        @apply translate-x-[33px];
-    }
-  }
-
-  /* Icons */
-  .toggle-icon {
-    @apply absolute top-[5px] w-[18px] h-[18px];
-  }
-  .toggle-start {
-    @apply dark:bg-black bg-white left-[5px];
-    mask: url("data-url:../assets/moon-icon.svg") center/contain no-repeat;
-
-  }
-  .toggle-end {
-    @apply dark:bg-black bg-white right-[5px];
-    mask: url("data-url:../assets/sun-icon.svg") center/contain no-repeat;
+    @apply max-w-full!;
   }
 }
