@@ -50,7 +50,7 @@
     "lint": "eslint --max-warnings=0 src",
     "start": "concurrently \"yarn:eleventy:watch\" \"yarn:parcel:start\" --restart-tries -1",
     "clean": "rimraf ./dist && rimraf ./.cache",
-    "build": "yarn clean && yarn eleventy:build && yarn parcel:build && yarn sri-dist"
+    "build": "yarn clean && yarn eleventy:build && yarn parcel:build"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
