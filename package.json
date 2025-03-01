@@ -35,6 +35,10 @@
     {
       "staticPath": ".cache/eleventy/robots.txt",
       "staticOutPath": ""
+    },
+    {
+      "staticPath": ".cache/eleventy/gpg.njk",
+      "staticOutPath": ""
     }
   ],
   "scripts": {
