@@ -7,24 +7,24 @@ allowBuilds:
   sharp: true
 nodeLinker: hoisted
 overrides:
-  '@parcel/core': 2.13.3
-  '@parcel/workers': 2.13.3
-  '@parcel/utils': 2.13.3
-  '@parcel/fs': 2.13.3
-  '@parcel/cache': 2.13.3
-  '@parcel/package-manager': 2.13.3
-  '@parcel/node-resolver-core': 3.4.3
-  '@parcel/types': 2.13.3
-  '@parcel/diagnostic': 2.13.3
-  '@parcel/feature-flags': 2.13.3
-  '@parcel/hash': 2.13.3
-  '@parcel/logger': 2.13.3
-  '@parcel/markdown-ansi': 2.13.3
+  '@parcel/core': 2.16.4
+  '@parcel/workers': 2.16.4
+  '@parcel/utils': 2.16.4
+  '@parcel/fs': 2.16.4
+  '@parcel/cache': 2.16.4
+  '@parcel/package-manager': 2.16.4
+  '@parcel/node-resolver-core': 3.7.4
+  '@parcel/types': 2.16.4
+  '@parcel/diagnostic': 2.16.4
+  '@parcel/feature-flags': 2.16.4
+  '@parcel/hash': 2.16.4
+  '@parcel/logger': 2.16.4
+  '@parcel/markdown-ansi': 2.16.4
   '@parcel/source-map': 2.1.1
-  '@parcel/profiler': 2.13.3
-  '@parcel/rust': 2.13.3
-  parcel: 2.13.3
-  '@parcel/config-default': 2.13.3
-  '@parcel/optimizer-data-url': 2.13.3
-  '@parcel/transformer-inline-string': 2.13.3
-  '@parcel/resolver-default': 2.13.3
+  '@parcel/profiler': 2.16.4
+  '@parcel/rust': 2.16.4
+  parcel: 2.16.4
+  '@parcel/config-default': 2.16.4
+  '@parcel/optimizer-data-url': 2.16.4
+  '@parcel/transformer-inline-string': 2.16.4
+  '@parcel/resolver-default': 2.16.4
