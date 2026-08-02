@@ -37,7 +37,7 @@
       "staticOutPath": ""
     },
     {
-      "staticPath": ".cache/eleventy/gpg.njk",
+      "staticPath": ".cache/eleventy/gpg.asc",
       "staticOutPath": ""
     }
   ],
