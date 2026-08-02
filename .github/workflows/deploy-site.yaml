@@ -20,12 +20,12 @@ jobs:
           corepack enable
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: yarn
+          node-version: 24
+          cache: pnpm
       - name: Build
         run: |
-          yarn install --immutable
-          yarn build
+          pnpm install --frozen-lockfile
+          pnpm build
       - name: Setup Index Now
         run: |
           echo "${{ secrets.INDEXNOW_KEY }}" > "./dist/${{ secrets.INDEXNOW_KEY }}.txt"
